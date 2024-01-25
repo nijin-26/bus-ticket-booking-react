@@ -1,3 +1,3 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const TripsListingPageWrapper = styled.div``;
+export const TripsListingPageWrapper = styled.section``;
