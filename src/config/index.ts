@@ -1,2 +1,2 @@
-export * from './routes.config';
+export * from './routes/routes.config';
 export * from './constants';
