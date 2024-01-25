@@ -39,10 +39,10 @@ export interface ITrip {
     totalSeats: number;
 }
 
-export type ISeat = {
+export interface ISeat {
     seatNumber: number;
     status: ISeatStatus;
-};
+}
 
 export type ISeatType = 'SLEEPER' | 'SEMI_SLEEPER' | 'SEATER';
 export type IBusType = 'AC' | 'NON_AC';
