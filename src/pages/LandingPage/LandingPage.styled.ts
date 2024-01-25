@@ -1,3 +1,3 @@
 import styled from "styled-components";
 
-export const LandingPageWrapper = styled.div``;
+export const LandingPageWrapper = styled.section``;
