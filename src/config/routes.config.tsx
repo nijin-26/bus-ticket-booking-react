@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom';
 import { LandingPage, TripDetailPage, TripsListingPage } from '../pages';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { Layout } from '../layout';
+import { paths } from '.';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -9,15 +10,15 @@ export const routesConfig: RouteObject[] = [
         errorElement: <ErrorPage />,
         children: [
             {
-                path: '/',
+                path: paths.home,
                 element: <LandingPage />,
             },
             {
-                path: '/trips',
+                path: paths.tripsListing,
                 element: <TripsListingPage />,
             },
             {
-                path: '/trips/:tripId',
+                path: paths.tripDetail,
                 element: <TripDetailPage />,
             },
         ],
