@@ -8,6 +8,7 @@ export interface ITripsQueryRequest {
     pageSize: number;
     seatType?: ISeatType;
     busType?: IBusType;
+    passengerCount?: number;
 }
 
 export type ITripsSortKey = 'departureTimestamp' | 'arrivalTimestamp' | 'fare';
