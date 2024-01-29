@@ -34,7 +34,7 @@ export interface ITrip {
     arrivalTimestamp: string;
     seatType: ISeatType;
     busType: IBusType;
-    fare: number;
+    farePerSeat: number;
     availableSeats: number;
     totalSeats: number;
 }
