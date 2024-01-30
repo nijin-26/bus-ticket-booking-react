@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { getDesignTokens, routesConfig } from './config';
 import { CssBaseline, PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { GlobalStyle } from './config/styles/globalStyles';
 
 const basename = '/';
 
@@ -19,14 +20,9 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
+            <GlobalStyle />
             <CssBaseline />
-            <div>
-                {loading ? (
-                    <div>loading</div>
-                ) : (
-                    <RouterProvider router={router} />
-                )}
-            </div>
+            {loading ? <div>loading</div> : <RouterProvider router={router} />}
         </ThemeProvider>
     );
 }
