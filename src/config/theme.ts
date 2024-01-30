@@ -26,4 +26,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
                   },
               }),
     },
+    typography: {
+        fontFamily: ['Open Sans', 'sans-serif'].join(),
+    },
 });
