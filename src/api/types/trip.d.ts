@@ -4,15 +4,23 @@ export interface ITripsQueryRequest {
     departureDate: string;
     sortBy: ITripsSortKey;
     sortOrder: ISortOrder;
-    page: number;
+    pageNumber: number;
     pageSize: number;
     seatType?: ISeatType;
     busType?: IBusType;
     passengerCount?: number;
 }
 
-export type ITripsSortKey = 'departureTimestamp' | 'arrivalTimestamp' | 'fare';
-export type ISortOrder = 'ASC' | 'DESC';
+export enum ITripsSortKey {
+    DEPARTURE_TIMESTAMP = 'departureTimestamp',
+    ARRIVAL_TIMESTAMP = 'arrivalTimestamp',
+    FARE = 'fare'
+}
+
+export enum ISortOrder {
+    ASC = 'ASC',
+    DESC = 'DESC'
+}
 
 export interface ITripsQueryResponse {
     trips: ITrip[];
@@ -44,6 +52,17 @@ export interface ISeat {
     status: ISeatStatus;
 }
 
-export type ISeatType = 'SLEEPER' | 'SEMI_SLEEPER' | 'SEATER';
-export type IBusType = 'AC' | 'NON_AC';
-export type ISeatStatus = 'BOOKED' | 'AVAILABLE';
+export enum ISeatType {
+    SLEEPER = 'SLEEPER',
+    SEATER = 'SEATER'
+}
+
+export enum IBusType {
+    AC = 'AC',
+    NON_AC = 'NON_AC'
+}
+
+export enum ISeatStatus {
+    BOOKED = 'BOOKED',
+    AVAILABLE = 'AVAILABLE'
+}
