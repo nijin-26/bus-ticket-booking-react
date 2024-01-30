@@ -1,12 +1,8 @@
 import { useMemo, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { getDesignTokens, routesConfig } from './config';
-import {
-    CssBaseline,
-    PaletteMode,
-    ThemeProvider,
-    createTheme,
-} from '@mui/material';
+import { CssBaseline, PaletteMode } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const basename = '/';
 

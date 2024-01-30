@@ -1,5 +1,5 @@
 import { PaletteMode, ThemeOptions } from '@mui/material';
-import { amber, deepOrange, grey } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     palette: {
@@ -7,18 +7,27 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
         ...(mode === 'light'
             ? {
                   // palette values for light mode
-                  primary: amber,
+                  primary: {
+                      main: '#6750A4',
+                  },
+                  secondary: {
+                      main: '#E8DEF8',
+                  },
                   text: {
-                      primary: grey[900],
-                      secondary: grey[800],
+                      primary: '#202124',
+                      secondary: '#9E9E9E',
                   },
               }
             : {
                   // palette values for dark mode
-                  primary: deepOrange,
+                  primary: {
+                      main: '#E8DEF8',
+                  },
+                  secondary: {
+                      main: '#6750A4',
+                  },
                   background: {
-                      default: deepOrange[900],
-                      paper: deepOrange[900],
+                      default: grey[900],
                   },
                   text: {
                       primary: '#fff',
@@ -27,6 +36,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
               }),
     },
     typography: {
+        htmlFontSize: 10,
         fontFamily: ['Open Sans', 'sans-serif'].join(),
     },
 });
