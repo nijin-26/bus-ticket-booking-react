@@ -1,22 +1,38 @@
-import { useState } from "react";
-import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { routesConfig } from "./config";
+import { useMemo, useState } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { getDesignTokens, routesConfig } from './config';
+import {
+    CssBaseline,
+    PaletteMode,
+    ThemeProvider,
+    createTheme,
+} from '@mui/material';
 
-const basename = "/";
+const basename = '/';
 
 const router = createBrowserRouter(routesConfig, {
-  basename,
+    basename,
 });
 
 function App() {
-  const [loading] = useState(false);
+    const [loading] = useState(false);
+    const [mode] = useState<PaletteMode>('light'); // Replace with redux
 
-  return (
-    <div className="App">
-      {loading ? <div>loading</div> : <RouterProvider router={router} />}
-    </div>
-  );
+    // Update the theme only if the mode changes
+    const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div>
+                {loading ? (
+                    <div>loading</div>
+                ) : (
+                    <RouterProvider router={router} />
+                )}
+            </div>
+        </ThemeProvider>
+    );
 }
 
 export default App;
