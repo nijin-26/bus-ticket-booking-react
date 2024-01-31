@@ -38,5 +38,13 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     typography: {
         htmlFontSize: 10,
         fontFamily: ['Open Sans', 'sans-serif'].join(),
+        fontWeightMedium: 600, // semibold/medium
+        h1: { fontSize: '4rem' },
+        h2: { fontSize: '2rem' },
+        h3: { fontSize: '1.6rem' },
+        subtitle1: { fontSize: '1.6rem' }, // lg
+        subtitle2: { fontSize: '1.3rem' }, // md
+        body1: { fontSize: '1.1rem' }, //sm
+        body2: { fontSize: '0.8rem' }, //s
     },
 });
