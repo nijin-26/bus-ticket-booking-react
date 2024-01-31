@@ -2,16 +2,17 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { Container } from '@mui/material';
+import { MainWrapper } from './Layout.styled';
 
 export const Layout = () => {
     return (
         <>
             <Header />
-            <main style={{ flexGrow: '1' }}>
+            <MainWrapper>
                 <Container maxWidth="sm">
                     <Outlet />
                 </Container>
-            </main>
+            </MainWrapper>
             <Footer />
         </>
     );
