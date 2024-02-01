@@ -5,7 +5,6 @@ export const paths = {
 };
 
 export const LANGUAGES = [
-    { label: "English", code: "en" },
-    { label: "Spanish", code: "es" },
-  ];
-  
+    { label: 'English', code: 'en' },
+    { label: 'Spanish', code: 'es' },
+];

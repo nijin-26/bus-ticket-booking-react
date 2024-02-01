@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { getDesignTokens, routesConfig } from './config';
 import { CssBaseline, PaletteMode } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { GlobalStyle } from './config/styles/globalStyles';
+import { GlobalStyle } from './config';
 
 const basename = '/';
 

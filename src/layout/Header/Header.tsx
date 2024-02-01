@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from '../../config/constants';
 import { HeaderWrapper } from './Header.styled';
+import { useTranslation } from 'react-i18next';
+import { LANGUAGES } from '../../config/constants';
 
 export const Header = () => {
     const { i18n, t } = useTranslation();
