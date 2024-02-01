@@ -22,6 +22,7 @@ declare module '@emotion/react' {
             textPrimary: string;
             textSecondary: string;
             background: string;
+            red: string;
         };
     }
 }

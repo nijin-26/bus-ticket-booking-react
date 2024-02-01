@@ -22,6 +22,7 @@ const lightTheme = {
     textPrimary: colors.black,
     textSecondary: colors.grey500,
     background: colors.white,
+    red: colors.red,
 };
 
 const darkTheme = {
@@ -30,6 +31,7 @@ const darkTheme = {
     background: colors.black,
     textPrimary: colors.white,
     textSecondary: colors.grey500,
+    red: colors.red,
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
