@@ -3,12 +3,12 @@ import { LANGUAGES } from '../../config/constants';
 import { HeaderWrapper } from './Header.styled';
 
 export const Header = () => {
-    const { i18n, t } = useTranslation();
+    const { i18n, t } = useTranslation();// mention "ns2" to include values from ns2.json
 
     const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const lang_code = e.target.value;
         i18n.changeLanguage(lang_code).then((t) => {
-            t('key');
+            t('home');
         }).catch((error) => {
             console.log('Something went wrong loading', error);
         });
