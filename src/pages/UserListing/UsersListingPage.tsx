@@ -1,12 +1,12 @@
-import { TripsListingPageWrapper } from "./TripsListingPage.styled";
-import { TripCard } from "./components";
+import { UsersListingPageWrapper } from './UsersListingPage.styled';
+import { UserCard } from './components/UserCard/UserCard';
 
-export const TripsListingPage = () => {
-  return (
-    <TripsListingPageWrapper>
-      <h1>TripsListingPage</h1>
-      <TripCard />
-      <TripCard />
-    </TripsListingPageWrapper>
-  );
+export const UsersListingPage = () => {
+    return (
+        <UsersListingPageWrapper>
+            <h1>UsersListingPage</h1>
+            <UserCard />
+            <UserCard />
+        </UsersListingPageWrapper>
+    );
 };
