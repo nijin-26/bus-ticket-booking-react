@@ -2,6 +2,7 @@ export const paths = {
     home: '/',
     tripsListing: '/trips',
     tripDetail: '/trips/:tripId',
+    usersListing: '/users',
 };
 
 export const colors = {
