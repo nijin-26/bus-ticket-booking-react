@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { getCustomTheme, routesConfig } from './config';
+import { getCustomTheme, getMuiTheme, routesConfig } from './config';
 import { GlobalStyle } from './config';
-import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider as CustomThemeProvider } from '@emotion/react';
 
 // MUI Theme
-import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
+import {
+    CssBaseline,
+    ThemeProvider as MuiThemeProvider,
+    PaletteMode,
+} from '@mui/material';
 import { createTheme } from '@mui/material';
 
 const basename = '/';
@@ -16,11 +20,11 @@ const router = createBrowserRouter(routesConfig, {
 
 function App() {
     const [loading] = useState(false);
-    const [mode] = useState('light'); // Replace with redux
+    const [mode] = useState<PaletteMode>('light'); // Replace with redux
 
     return (
-        <MuiThemeProvider theme={createTheme()}>
-            <ThemeProvider theme={getCustomTheme(mode)}>
+        <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
+            <CustomThemeProvider theme={getCustomTheme(mode)}>
                 <GlobalStyle />
                 <CssBaseline />
                 {loading ? (
@@ -28,7 +32,7 @@ function App() {
                 ) : (
                     <RouterProvider router={router} />
                 )}
-            </ThemeProvider>
+            </CustomThemeProvider>
         </MuiThemeProvider>
     );
 }

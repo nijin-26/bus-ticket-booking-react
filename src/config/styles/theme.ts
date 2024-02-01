@@ -1,14 +1,8 @@
 import { Theme } from '@emotion/react';
 import { colors } from '..';
-
-export const getCustomTheme = (mode: string): Theme => ({
-    font: fontStyles,
-    color: mode === 'light' ? lightTheme : darkTheme,
-});
+import { PaletteMode, ThemeOptions } from '@mui/material';
 
 const fontStyles = {
-    htmlFontSize: 10,
-    fontFamily: ['Open Sans', 'sans-serif'].join(),
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 600,
@@ -37,3 +31,48 @@ const darkTheme = {
     textPrimary: colors.white,
     textSecondary: colors.grey500,
 };
+
+export const getCustomTheme = (mode: PaletteMode): Theme => ({
+    font: fontStyles,
+    color: mode === 'light' ? lightTheme : darkTheme,
+});
+
+export const getMuiTheme = (mode: PaletteMode): ThemeOptions => ({
+    palette: {
+        mode,
+        ...(mode === 'light'
+            ? {
+                  // palette values for light mode
+                  primary: {
+                      main: colors.deepPurple,
+                  },
+                  secondary: {
+                      main: colors.lightPurple,
+                  },
+                  text: {
+                      primary: colors.black,
+                      secondary: colors.grey500,
+                  },
+              }
+            : {
+                  // palette values for dark mode
+                  primary: {
+                      main: colors.lightPurple,
+                  },
+                  secondary: {
+                      main: colors.deepPurple,
+                  },
+                  background: {
+                      default: colors.black,
+                  },
+                  text: {
+                      primary: colors.white,
+                      secondary: colors.grey500,
+                  },
+              }),
+    },
+    typography: {
+        htmlFontSize: 10,
+        fontFamily: ['Open Sans', 'sans-serif'].join(),
+    },
+});

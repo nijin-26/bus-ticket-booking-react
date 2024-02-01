@@ -3,8 +3,6 @@ import '@emotion/react';
 declare module '@emotion/react' {
     export interface Theme {
         font: {
-            htmlFontSize: number;
-            fontFamily: string;
             fontWeightLight: number;
             fontWeightRegular: number;
             fontWeightMedium: number;
