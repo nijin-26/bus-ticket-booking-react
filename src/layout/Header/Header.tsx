@@ -7,7 +7,11 @@ export const Header = () => {
 
     const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const lang_code = e.target.value;
-        i18n.changeLanguage(lang_code);
+        i18n.changeLanguage(lang_code).then((t) => {
+            t('key');
+        }).catch((error) => {
+            console.log('Something went wrong loading', error);
+        });
     };
 
     return (
