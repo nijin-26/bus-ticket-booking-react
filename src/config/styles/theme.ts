@@ -1,5 +1,6 @@
 import { PaletteMode, ThemeOptions } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { colors } from '..';
 
 export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     palette: {
@@ -8,29 +9,29 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             ? {
                   // palette values for light mode
                   primary: {
-                      main: '#6750A4',
+                      main: colors.deepPurple,
                   },
                   secondary: {
-                      main: '#E8DEF8',
+                      main: colors.lightPurple,
                   },
                   text: {
-                      primary: '#202124',
-                      secondary: '#9E9E9E',
+                      primary: colors.black,
+                      secondary: grey[500],
                   },
               }
             : {
                   // palette values for dark mode
                   primary: {
-                      main: '#E8DEF8',
+                      main: colors.lightPurple,
                   },
                   secondary: {
-                      main: '#6750A4',
+                      main: colors.deepPurple,
                   },
                   background: {
                       default: grey[900],
                   },
                   text: {
-                      primary: '#fff',
+                      primary: colors.white,
                       secondary: grey[500],
                   },
               }),
