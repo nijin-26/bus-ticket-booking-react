@@ -9,6 +9,7 @@ export const GlobalStyle = () => (
             },
             body: {
                 height: '100%',
+                boxSizing: 'border-box',
             },
             '#root': {
                 height: '100%',
