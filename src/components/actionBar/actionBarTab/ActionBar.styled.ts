@@ -1,5 +1,11 @@
-import { styled } from '@mui/material';
+import { TabPanel } from '@mui/lab';
+import { Paper, styled } from '@mui/material';
 
-export const Wrapper = styled('div')(({ theme }) => ({
-    color: theme.palette.primary.main,
-}));
+export const WrapperPaper = styled(Paper)`
+    position: relative;
+    padding: 0;
+`;
+
+export const Panel = styled(TabPanel)`
+    padding: 0;
+`;

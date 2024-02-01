@@ -4,12 +4,7 @@ import {
     TextField,
     InputAdornment,
     IconButton,
-    Button,
-    Chip,
-    Menu,
-    MenuItem,
 } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import {
     PanoramaFishEyeSharp,
     FmdGood,
@@ -20,6 +15,8 @@ import {
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
+import FilterSort from '../filterSort/FilterSort';
+import { CenteredButton, Wrapper } from './PnrSearch.styled';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -52,13 +49,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
         ILocationOptions | undefined
     >(undefined);
 
-    // anchor state
-    const [anchorElBus, setAnchorElBus] = useState<null | HTMLElement>(null);
-    const openBusTypeFilter = Boolean(anchorElBus);
-
-    const [anchorElSeat, setAnchorElSeat] = useState<null | HTMLElement>(null);
-    const openSeatTypeFilter = Boolean(anchorElSeat);
-
     // setting start location
     const handleStartSelect = (
         event: React.SyntheticEvent,
@@ -79,30 +69,15 @@ const ActionBar: React.FC<IActionBarProps> = ({
         }
     };
 
-    // menu handlers
-    const busTypeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorElBus(event.currentTarget);
-    };
-
-    const seatTypeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorElSeat(event.currentTarget);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorElBus(null);
-        setAnchorElSeat(null);
-    };
-
     // submit handler
     const searchBusHandler = () => {
-        // submittable object
         // api call to get listing data
         // apply loading states
     };
 
     return (
-        <>
-            <Stack spacing={5} width="1200px" direction="row">
+        <Wrapper>
+            <Stack spacing={5} direction="row">
                 <Stack spacing={1} width="1000px" direction="row">
                     <Autocomplete
                         fullWidth
@@ -184,68 +159,17 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 />
             </Stack>
 
-            <Stack spacing={5} width="1200px" direction="row">
-                <Stack>
-                    <Chip></Chip>
-                </Stack>
-                <Button
-                    variant="outlined"
-                    id="bus-type-button"
-                    onClick={busTypeHandler}
-                    aria-controls={
-                        openBusTypeFilter ? 'bus-type-menu' : undefined
-                    }
-                    aria-haspopup="true"
-                    aria-expanded={openBusTypeFilter ? 'true' : undefined}
-                >
-                    Bus type
-                </Button>
-                <Button
-                    variant="outlined"
-                    id="seat-type-button"
-                    onClick={seatTypeHandler}
-                    aria-controls={
-                        openSeatTypeFilter ? 'seat-type-menu' : undefined
-                    }
-                    aria-haspopup="true"
-                    aria-expanded={openSeatTypeFilter ? 'true' : undefined}
-                >
-                    Seat type
-                </Button>
-                <Button>Clear all</Button>
-            </Stack>
+            {showFilterSort ? <FilterSort /> : <></>}
 
-            <Menu
-                id="bus-type-menu"
-                anchorEl={anchorElBus}
-                open={openBusTypeFilter}
-                MenuListProps={{ 'aria-labelledby': 'bus-type-button' }}
-                onClose={handleMenuClose}
-            >
-                <MenuItem>AC</MenuItem>
-                <MenuItem>Non-AC</MenuItem>
-            </Menu>
-
-            <Menu
-                id="seat-type-menu"
-                anchorEl={anchorElSeat}
-                open={openSeatTypeFilter}
-                MenuListProps={{ 'aria-labelledby': 'seat-type-button' }}
-                onClose={handleMenuClose}
-            >
-                <MenuItem onClick={handleMenuClose}>Seater</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Sleeper </MenuItem>
-            </Menu>
-
-            <LoadingButton
+            <CenteredButton
                 variant="contained"
                 onClick={searchBusHandler}
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
             >
                 Explore
-            </LoadingButton>
-        </>
+            </CenteredButton>
+        </Wrapper>
     );
 };
 

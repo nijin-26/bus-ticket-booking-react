@@ -1,6 +1,6 @@
 import { TextField, Stack, InputAdornment } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import { Search } from '@mui/icons-material';
+import { Wrapper, CenteredButton } from './PnrSearch.styled';
 
 export default function PnrSearch() {
     const searchPnrHandler = () => {
@@ -8,8 +8,8 @@ export default function PnrSearch() {
     };
 
     return (
-        <>
-            <Stack spacing={5} width="1200px" direction="row">
+        <Wrapper>
+            <Stack spacing={5} direction="row">
                 <TextField
                     label="Search for your ticket by PNR number"
                     fullWidth
@@ -22,14 +22,14 @@ export default function PnrSearch() {
                     }}
                 />
             </Stack>
-            <LoadingButton
+            <CenteredButton
                 variant="contained"
                 onClick={searchPnrHandler}
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
             >
                 Find my ticket
-            </LoadingButton>
-        </>
+            </CenteredButton>
+        </Wrapper>
     );
 }

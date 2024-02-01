@@ -1,10 +1,5 @@
-import { useState } from 'react';
-import './App.css';
-
-import { routesConfig } from './config';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-
 
 import { useMemo, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -20,25 +15,25 @@ const router = createBrowserRouter(routesConfig, {
 });
 
 function App() {
-      const [loading] = useState(false);
+    const [loading] = useState(false);
     const [mode] = useState<PaletteMode>('light'); // Replace with redux
 
     // Update the theme only if the mode changes
     const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
-      return (
+    return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <CssBaseline />
-                      {loading ? (
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <CssBaseline />
+                {loading ? (
                     <div>loading</div>
                 ) : (
                     <RouterProvider router={router} />
                 )}
-                </ThemeProvider>
+            </ThemeProvider>
         </LocalizationProvider>
-      );
+    );
 }
 
 export default App;
