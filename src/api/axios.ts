@@ -4,7 +4,7 @@ import { onResponse, onResponseError } from './responseInterceptor';
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_ENDPOINT as string,
-    timeout: 8000,
+    timeout: 30000,
 });
 
 apiClient.interceptors.request.use(
