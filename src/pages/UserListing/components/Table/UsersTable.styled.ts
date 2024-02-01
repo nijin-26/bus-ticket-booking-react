@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-export const TableWrapper = styled(Box)(() => ({
+export const UsersTableWrapper = styled(Box)(() => ({
     display: 'flex',
     justifyContent: 'flex-end',
     marginTop: 'auto',
