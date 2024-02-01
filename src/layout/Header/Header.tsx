@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from '../../config/constants';
 import { HeaderWrapper } from './Header.styled';
-import { useTranslation } from 'react-i18next';
-import { LANGUAGES } from '../../config/constants';
 
 export const Header = () => {
     const { i18n, t } = useTranslation();
 
     const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const lang_code = e.target.value;
-        void i18n.changeLanguage(lang_code);
+        i18n.changeLanguage(lang_code);
     };
 
     return (
