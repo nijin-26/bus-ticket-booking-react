@@ -1,15 +1,21 @@
 const storage = {
-    //returns the token if it exists else returns null
-    getToken: (tokenName: string) => {
-        return JSON.parse(window.localStorage.getItem(tokenName) as string);
+    // returns the keyValue if it exists else returns null
+    getItem: <TTokenValue>(keyName: string) => {
+        const tokenVal = localStorage.getItem(keyName)
+            ? (JSON.parse(
+                  localStorage.getItem(keyName) as string
+              ) as TTokenValue)
+            : null;
+
+        return tokenVal;
     },
 
-    setToken: <TTokenValue>(tokenName: string, tokenValue: TTokenValue) => {
-        window.localStorage.setItem(tokenName, JSON.stringify(tokenValue));
+    setItem: (keyName: string, keyValue: unknown) => {
+        window.localStorage.setItem(keyName, JSON.stringify(keyValue));
     },
 
-    clearToken: (tokenName: string) => {
-        window.localStorage.removeItem(tokenName);
+    removeItem: (keyName: string) => {
+        localStorage.removeItem(keyName);
     },
 };
 
