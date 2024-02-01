@@ -10,7 +10,7 @@ export const Header = () => {
         i18n.changeLanguage(lang_code).then((t) => {
             t('home');
         }).catch((error) => {
-            console.log('Something went wrong loading', error);
+            console.error('Something went wrong loading', error);
         });
     };
 
