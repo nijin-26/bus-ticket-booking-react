@@ -11,3 +11,8 @@ export const colors = {
     grey500: '#9e9e9e',
     black: '#202124',
 };
+
+export const LANGUAGES = [
+    { label: 'English', code: 'en' },
+    { label: 'Spanish', code: 'es' },
+];
