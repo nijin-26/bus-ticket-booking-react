@@ -2,3 +2,4 @@
 
 -   [86cueryke] Initial setup of folder structure, routes and configurations.
 -   [86cuewz17] Initialized Material-UI & Theming.
+-   [86cuewz4g] Add header and footer with theme selector and language selector buttons.
