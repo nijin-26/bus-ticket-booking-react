@@ -12,7 +12,8 @@ import { useEffect, useState } from 'react';
 // This state contains the seats selected by a user
 // const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
-// This function add/removes seats to/from the selectedSeat[]
+// This function adds a seat to selectedSeat[] on clicking it
+// If seat is already selected then the function will unselect it
 // const updateSelectedSeats = (newSeat: number) => {
 //     if (selectedSeats.includes(newSeat)) {
 //         setSelectedSeats((prev) =>
@@ -56,7 +57,11 @@ const SeatLayout = ({
     return (
         <SeatLayoutWrapper>
             <div className="driver-cabin">
-                <img src={steeringWheel} alt="steering icon" className="steering" />
+                <img
+                    src={steeringWheel}
+                    alt="steering icon"
+                    className="steering"
+                />
                 <div className="line"></div>
             </div>
             <div className="seats-container">

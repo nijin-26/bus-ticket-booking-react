@@ -8,7 +8,6 @@ padding: 2rem 4rem 2rem 2rem;
 border-radius: 2rem;
 background-color: ${theme.color.busLayoutBg};
 
-
 .driver-cabin{
     display: flex;
     

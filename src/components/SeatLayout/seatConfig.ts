@@ -5,15 +5,23 @@ export const layoutNames = {
     volvo25: 'volvo25',
 };
 
+// layoutConfig has the following parameters:
+// rows: the number of rows in the bus
+// columns: the number of seat column including the a column for aisle
+// aisle: the column number of aisle
+// seatType: this can be seater or sleeper
+// door: the position of doors in a bus. In case the door is in driver cabin then specify the door position as 0.
+// exceptionRows?: {rowNumber: number[]} if any particular row has a different arrangement then explicitly specify the row layout eg: [1,1,0,0,0]
+// 1=> seat
+// 0=> no seat
 export const layoutConfig: ILayoutConfig = {
     [layoutNames.volvo25]: {
         lowerDeck: {
             rows: 12,
             columns: 5,
             aisle: 3,
-            door: { 9: 'R' },
+            door: { 0: 'L' },
             seatType: 'seater',
-            exceptionRows: {10:[0,0,0,0,0]}
         },
     },
 };
