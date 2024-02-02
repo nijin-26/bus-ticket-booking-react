@@ -1,4 +1,4 @@
-import { ITicket, Gender } from '../../interfaces/';
+import { ITicket, Gender } from '../../interfaces';
 import { AllBookingsPageWrapper } from './AllBookingsPage.styled';
 import { BookingsTable } from './components/Table/BookingsTable';
 

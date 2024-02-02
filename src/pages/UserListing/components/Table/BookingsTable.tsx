@@ -10,6 +10,7 @@ export const BookingsTable = ({ bookings }: { bookings: ITicket[] }) => {
                 rows={bookings}
                 columns={columns}
                 pageSizeOptions={[5, 10, 20]}
+            
                 initialState={{
                     pagination: {
                         paginationModel: {

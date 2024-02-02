@@ -1,2 +1,2 @@
-export * from './trip';
-export * from './ticket';
+export * from './trip.d';
+export * from './ticket.d';
