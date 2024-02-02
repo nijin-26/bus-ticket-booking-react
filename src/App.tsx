@@ -8,7 +8,7 @@ import { ThemeProvider as CustomThemeProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
-import { useAppSelector } from './app/hook';
+import { useAppSelector } from './app/hooks';
 
 const basename = '/';
 
