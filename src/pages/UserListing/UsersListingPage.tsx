@@ -1,12 +1,11 @@
 import { UsersListingPageWrapper } from './UsersListingPage.styled';
-import { UserCard } from './components/UserCard/UserCard';
+import { UsersTable } from './components/Table/UsersTable';
+import users from './utils/sampleUsers.json';
 
 export const UsersListingPage = () => {
     return (
         <UsersListingPageWrapper>
-            <h1>UsersListingPage</h1>
-            <UserCard />
-            <UserCard />
+            <UsersTable users={users} />
         </UsersListingPageWrapper>
     );
 };
