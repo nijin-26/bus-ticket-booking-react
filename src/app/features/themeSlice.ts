@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+enum ITheme {
+    Light = 'light',
+    Dark = 'dark',
+}
+
 interface IThemeState {
-    currentTheme: 'light' | 'dark';
+    currentTheme: ITheme;
 }
 
 const localStorageTheme = localStorage.getItem('theme');
 const initialState: IThemeState = {
     currentTheme: localStorageTheme
-        ? (localStorageTheme as 'light' | 'dark')
-        : 'light',
+        ? (localStorageTheme as ITheme)
+        : ITheme.Light,
 };
 
 const themeSlice = createSlice({
@@ -17,7 +22,9 @@ const themeSlice = createSlice({
     reducers: {
         toggleTheme: (state) => {
             state.currentTheme =
-                state.currentTheme === 'light' ? 'dark' : 'light';
+                state.currentTheme === ITheme.Light
+                    ? ITheme.Dark
+                    : ITheme.Light;
             localStorage.setItem('theme', state.currentTheme);
         },
     },
