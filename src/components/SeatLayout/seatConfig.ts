@@ -1,27 +1,12 @@
 import { ISeat, ISeatStatus } from '../../api/types/trip';
+import { IDeckLayout, ILayoutConfig } from './types';
 
-interface IDeckLayout {
-    rows: number;
-    columns: number;
-    aisle: number;
-    seatType: string;
-    door: { [key: number]: string };
-    exceptionRows?: {
-        [key: number]: number[];
-    };
-}
-
-interface ILayout {
-    lowerDeck: IDeckLayout;
-    upperDeck?: IDeckLayout;
-}
-
-interface ILayoutConfig {
-    [key: string]: ILayout;
-}
+export const layoutNames = {
+    volvo25: 'volvo25',
+};
 
 export const layoutConfig: ILayoutConfig = {
-    volvo25: {
+    [layoutNames.volvo25]: {
         lowerDeck: {
             rows: 12,
             columns: 5,

@@ -1,9 +1,33 @@
 import { deckLayoutProducer, layoutConfig } from './seatConfig';
-import SeatLayoutWrapper from './seatLayout.style';
+import SeatLayoutWrapper from './SeatLayout.styled';
 import driverSeat from '../../assets/tabler_steering-wheel.svg';
 import { ISeat, ISeatStatus } from '../../api/types/trip';
 import { Tooltip } from '@mui/material';
 import { useEffect, useState } from 'react';
+
+// TODO: To be removed.
+// When calling the SeatLayout component, this state variable is to be declared
+// in the parent component and then passed as prop to the SeatLayout component.
+//
+// This state contains the seats selected by a user
+// const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+
+// This function add/removes seats to/from the selectedSeat[]
+// const updateSelectedSeats = (newSeat: number) => {
+//     if (selectedSeats.includes(newSeat)) {
+//         setSelectedSeats((prev) =>
+//             prev.filter((selectedSeat) => selectedSeat != newSeat)
+//         );
+//     } else setSelectedSeats((prev) => [...prev, newSeat]);
+// };
+//
+// This is how the seatLayout component is to be called when required.
+// <SeatLayout
+//     layoutName={layoutNames.volvo25}
+//     seats={seats}
+//     selectedSeats={selectedSeats}
+//     updateSelectedSeats={updateSelectedSeats}
+// />
 
 const SeatLayout = ({
     layoutName,
@@ -27,7 +51,7 @@ const SeatLayout = ({
             ...prev,
             lowerDeck: deckLayoutProducer(layoutConfig[layoutName].lowerDeck),
         }));
-    }, []);
+    }, [layoutName]);
 
     return (
         <SeatLayoutWrapper>
