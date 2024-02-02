@@ -105,7 +105,10 @@ export const Header = () => {
                                                 handleCloseUserMenu(setting);
                                             }}
                                         >
-                                            <Typography textAlign="center">
+                                            <Typography
+                                                variant="body2"
+                                                textAlign="center"
+                                            >
                                                 {setting}
                                             </Typography>
                                         </MenuItem>

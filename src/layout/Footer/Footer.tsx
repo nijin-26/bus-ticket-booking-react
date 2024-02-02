@@ -23,7 +23,7 @@ export const Footer = () => {
         <>
             <AppBar position="static" color="primary">
                 <StyledToolBar>
-                    <Typography variant="body1" color="inherit">
+                    <Typography variant="caption" color="inherit">
                         © 2024 All rights reserved
                     </Typography>
 
@@ -65,7 +65,7 @@ export const Footer = () => {
                                     handleCloseLanguageMenu(setting);
                                 }}
                             >
-                                <Typography textAlign="center">
+                                <Typography variant="body2" textAlign="center">
                                     {setting}
                                 </Typography>
                             </MenuItem>
