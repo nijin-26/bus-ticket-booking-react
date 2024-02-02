@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 export const TripCardStyled = styled('section')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
-    gap: '2rem',
-    backgroundColor: `${theme.color.background}`, // Placeholder for dynamic theme value
+    marginBottom: '2rem',
+    backgroundColor: theme.color.background, // Placeholder for dynamic theme value
 
     'trip-card-icons': {
         gap: '1rem',

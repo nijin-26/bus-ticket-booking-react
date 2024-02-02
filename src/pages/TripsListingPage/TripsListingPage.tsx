@@ -5,7 +5,8 @@ export const TripsListingPage = () => {
     return (
         <TripsListingPageWrapper>
             <h1>TripsListingPage</h1>
-            <TripCardAccordion />
+            <TripCardAccordion busType="AC" seatType="SLEEPER" />
+            <TripCardAccordion busType="NON_AC" seatType="SEATER"/>
         </TripsListingPageWrapper>
     );
 };
