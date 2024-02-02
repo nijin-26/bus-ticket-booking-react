@@ -1,30 +1,26 @@
 import styled from '@emotion/styled';
+import Accordion from '@mui/material/Accordion';
 
-export const TripCardStyled = styled('section')(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
+export const TripAccordionStyled = styled(Accordion)(({ theme }) => ({
     marginBottom: '2rem',
-    backgroundColor: theme.color.background, // Placeholder for dynamic theme value
+    backgroundColor: theme.color.background,
+    borderRadius: '0.7rem',
+    borderLeft: `0.8rem solid${theme.color.red}`,
+    boxShadow: '0 0 1rem 0 rgba(0,0,0,0.26)',
 
     'trip-card-icons': {
         gap: '1rem',
     },
 
-    '.summary': {
-        borderRadius: '0.7rem',
-        borderLeft: `0.8rem solid${theme.color.red}`, // Placeholder for dynamic theme value
-        boxShadow: '0 0 1rem 0 rgba(0,0,0,0.26)',
-    },
-
     p: {
         margin: 0,
         whiteSpace: 'nowrap',
-        fontSize: '', // Placeholder for dynamic theme value
+        fontSize: theme.font.lg,
         alignSelf: 'center',
     },
 
     'p.date': {
-        fontSize: '', // Placeholder for dynamic theme value
+        fontSize: theme.font.sm,
     },
 
     '.date-time': {
