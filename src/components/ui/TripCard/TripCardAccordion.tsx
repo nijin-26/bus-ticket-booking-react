@@ -22,21 +22,19 @@ export const TripCardAccordion = ({
         <TripAccordionStyled className="summary">
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
+                aria-controls="panel-content"
+                id="panel-header"
             >
                 <Stack direction={'row'} spacing={12} className="details">
                     <Stack className="trip-card-icons">
-                        {busType == 'AC' ? (
-                            <img src={acIcon} alt="Ac Icon" />
-                        ) : (
-                            <img src={nonAcIcon} alt="Non Ac Icon" />
-                        )}
-                        {seatType == 'SLEEPER' ? (
-                            <img src={sleeperIcon} alt="Sleeper Icon" />
-                        ) : (
-                            <img src={seatIcon} alt="Seat Icon" />
-                        )}
+                        <img
+                            src={busType == 'AC' ? acIcon : nonAcIcon}
+                            alt="Bus Type Icon"
+                        />
+                        <img
+                            src={seatType == 'SLEEPER' ? sleeperIcon : seatIcon}
+                            alt="Seat Type Icon"
+                        />
                     </Stack>
                     <Stack direction={'row'} spacing={4}>
                         <Stack className="date-time">

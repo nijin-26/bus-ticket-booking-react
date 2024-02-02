@@ -23,6 +23,7 @@ declare module '@emotion/react' {
             textSecondary: string;
             background: string;
             red: string;
+            boxShadowPrimary: string;
         };
     }
 }

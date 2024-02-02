@@ -6,7 +6,7 @@ export const TripAccordionStyled = styled(Accordion)(({ theme }) => ({
     backgroundColor: theme.color.background,
     borderRadius: '0.7rem',
     borderLeft: `0.8rem solid${theme.color.red}`,
-    boxShadow: '0 0 1rem 0 rgba(0,0,0,0.26)',
+    boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
 
     'trip-card-icons': {
         gap: '1rem',
