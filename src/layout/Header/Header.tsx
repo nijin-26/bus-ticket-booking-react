@@ -17,13 +17,16 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import testProfile from '../../assets/person1.jpeg';
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { toggleTheme } from '../../app/features/themeSlice';
 
 const settings = ['My bookings', 'Logout'];
 
 export const Header = () => {
     const { t } = useTranslation('headerFooter'); // mention "ns2" to include values from ns2.json
+    const themeMode = useAppSelector((state) => state.theme.currentTheme);
+    const dispatch = useAppDispatch();
 
-    const [themeBool, setThemeBool] = useState(true);
     const [isLoginClicked, setLoginClick] = useState(false);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -31,7 +34,7 @@ export const Header = () => {
         setLoginClick(true);
     };
     const handleThemeClick = () => {
-        setThemeBool(!themeBool);
+        dispatch(toggleTheme());
     };
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -69,7 +72,7 @@ export const Header = () => {
                             aria-label="menu"
                             className="theme-button"
                         >
-                            {themeBool ? (
+                            {themeMode.toString() === 'dark' ? (
                                 <LightModeRoundedIcon />
                             ) : (
                                 <DarkModeRoundedIcon />
