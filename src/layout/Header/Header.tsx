@@ -50,11 +50,8 @@ export const Header = () => {
                     >
                         <Box display="flex" alignItems="center">
                             <DirectionsBusRoundedIcon
-                                sx={{
-                                    marginRight: 1,
-                                    marginTop: 0.25,
-                                    fontSize: '36px',
-                                }}
+                                fontSize="large"
+                                className="app-logo"
                             />
                             Bustle
                         </Box>
@@ -66,7 +63,7 @@ export const Header = () => {
                             edge="start"
                             color="inherit"
                             aria-label="menu"
-                            sx={{ mr: 2 }}
+                            className="theme-button"
                         >
                             {themeBool ? (
                                 <LightModeRoundedIcon />
@@ -87,7 +84,7 @@ export const Header = () => {
                             <>
                                 <IconButton
                                     onClick={handleOpenUserMenu}
-                                    sx={{ p: 0 }}
+                                    className="profile-avatar"
                                 >
                                     <Avatar
                                         alt="profile-Picture"

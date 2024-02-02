@@ -34,12 +34,12 @@ export const Footer = () => {
                         startIcon={
                             <LanguageRoundedIcon
                                 fontSize="small"
-                                sx={{ marginRight: 1 }}
+                                className="language-icon"
                             />
                         }
                         onClick={handleOpenLanguageMenu}
                     >
-                        <span style={{ fontSize: '12px' }}>
+                        <span className="language-span">
                             {selectedLanguage}
                         </span>
                     </Button>
