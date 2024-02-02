@@ -8,7 +8,6 @@ import esNs2 from './locales/es/ns2.json';
 export const defaultNS = 'ns1';
 
 void i18n.use(initReactI18next).init({
-    debug: true, // for debugging
     resources: {
         en: {
             ns1: enNs1,
