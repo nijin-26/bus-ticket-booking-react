@@ -16,32 +16,17 @@ import {
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
-import { CenteredButton, Wrapper } from './PnrSearch.styled';
+import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
+import { ILocationOptions } from '../types';
+import { locationOptions } from '../../../config';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
 }
 
-// interface in the mui format
-interface ILocationOptions {
-    id: number;
-    label: string;
-}
-
 const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
-    // api format: id, name => mui format: id, label
-    const locationOptions: ILocationOptions[] = [
-        { id: 1, label: 'Trivandrum' },
-        { id: 2, label: 'Chennai' },
-        { id: 3, label: 'Bangalore' },
-        { id: 4, label: 'Pune' },
-        { id: 5, label: 'Mumbai' },
-        { id: 5, label: 'Ahmedabad' },
-        { id: 5, label: 'Lucknow' },
-    ];
-
     const [startLocation, setStartLocation] = useState<
         ILocationOptions | undefined
     >(undefined);

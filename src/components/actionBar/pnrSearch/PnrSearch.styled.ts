@@ -1,5 +1,5 @@
 import { LoadingButton } from '@mui/lab';
-import { styled } from '@mui/material';
+import styled from '@emotion/styled';
 
 export const Wrapper = styled('div')`
     position: relative;

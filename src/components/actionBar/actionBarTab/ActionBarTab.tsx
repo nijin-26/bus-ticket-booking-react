@@ -2,8 +2,8 @@ import { Box, Tab } from '@mui/material';
 import { TabContext, TabList } from '@mui/lab';
 import React, { useState } from 'react';
 import ActionBar from '../actionBar/ActionBar';
-import PnrSearch from '../actionBar/PnrSearch';
-import { Panel, WrapperPaper } from './ActionBar.styled';
+import PnrSearch from '../pnrSearch/PnrSearch';
+import { Panel, WrapperPaper } from './ActionBarTab.styled';
 
 export default function ActionBarTab() {
     const [value, setValue] = useState('1');

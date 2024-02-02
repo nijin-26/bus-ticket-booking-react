@@ -1,5 +1,5 @@
-import { styled } from '@mui/material';
+import styled from '@emotion/styled';
 
-export const MainWrapper = styled('main')({
+export const MainWrapper = styled('main')(() => ({
     flexGrow: 1,
-});
+}));
