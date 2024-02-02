@@ -3,6 +3,7 @@ import { AuthModalWrapper, StyledTab } from './AuthModal.styled';
 import { useState } from 'react';
 import SignIn from './SignIn/SignIn';
 import SingUp from './SignUp/SignUp';
+import { useTranslation } from 'react-i18next';
 
 type TAuthModalProps = {
     isOpen: boolean;
@@ -11,6 +12,7 @@ type TAuthModalProps = {
 
 export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
     const [selectedTab, setSelectedTab] = useState(0);
+    const { t } = useTranslation('auth');
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setSelectedTab(newValue);
@@ -24,8 +26,8 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                     onChange={handleTabChange}
                     variant="fullWidth"
                 >
-                    <StyledTab label="Sign In" />
-                    <StyledTab label="Sign Up" />
+                    <StyledTab label={t('signIn')} />
+                    <StyledTab label={t('signUp')} />
                 </Tabs>
                 <Box py={4} px={2}>
                     {selectedTab === 0 ? <SignIn /> : <SingUp />}
