@@ -18,3 +18,8 @@ export const colors = {
     busLayoutBg: '#eeeeee',
     darkBusLayoutBg: '#575757',
 };
+
+export const LANGUAGES = [
+    { label: 'English', code: 'en' },
+    { label: 'Spanish', code: 'es' },
+];
