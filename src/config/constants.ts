@@ -12,3 +12,8 @@ export const colors = {
     black: '#202124',
     red: '#D84E55',
 };
+
+export const LANGUAGES = [
+    { label: 'English', code: 'en' },
+    { label: 'Spanish', code: 'es' },
+];
