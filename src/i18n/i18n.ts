@@ -6,6 +6,8 @@ import esNs1 from './locales/es/ns1.json';
 import esNs2 from './locales/es/ns2.json';
 import authEn from './locales/en/auth.json';
 import authEs from './locales/es/auth.json';
+import esHeaderFooter from './locales/es/headerFooter.json';
+import enHeaderFooter from './locales/en/headerFooter.json';
 
 export const defaultNS = 'ns1';
 
@@ -16,11 +18,13 @@ void i18n.use(initReactI18next).init({
             ns1: enNs1,
             ns2: enNs2,
             auth: authEn,
+            headerFooter: enHeaderFooter,
         },
         es: {
             ns1: esNs1,
             ns2: esNs2,
             auth: authEs,
+            headerFooter: esHeaderFooter,
         },
     },
     lng: 'en',
