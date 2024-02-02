@@ -13,7 +13,7 @@ import Stack from '@mui/material/Stack';
 import { TripCardStyled } from './TripCard.styled';
 export const TripCardAccordion = () => {
     return (
-        <TripCardStyled className="accordion">
+        <TripCardStyled>
             <Accordion className="summary">
                 <AccordionSummary
                     expandIcon={<ArrowDropDownIcon />}
@@ -84,4 +84,3 @@ export const TripCardAccordion = () => {
         </TripCardStyled>
     );
 };
-

@@ -27,7 +27,7 @@ export const TripCardStyled = styled('section')(({ theme }) => ({
         fontSize: '', // Placeholder for dynamic theme value
     },
 
-    'date-time': {
+    '.date-time': {
         gap: '0.4rem',
     },
 
