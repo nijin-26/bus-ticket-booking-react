@@ -8,9 +8,9 @@ export const BookingsTable = ({ bookings }: { bookings: ITicket[] }) => {
         <BookingsTableWrapper>
             <DataGrid
                 rows={bookings}
+                getRowId={(row) => row.pnrNumber}
                 columns={columns}
                 pageSizeOptions={[5, 10, 20]}
-            
                 initialState={{
                     pagination: {
                         paginationModel: {
