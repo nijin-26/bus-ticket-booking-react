@@ -1,18 +1,20 @@
 import styled from '@emotion/styled';
 
-const SeatLayoutWrapper = styled('div')(({ theme }) => `
-height: 29rem;
-display: inline-flex;
-gap: 1rem;
+const SeatLayoutWrapper = styled('div')(
+    ({ theme }) => `
+
+display: flex;
 padding: 2rem 4rem 2rem 2rem;
-box-sizing: border-box;
 border-radius: 2rem;
 background-color: ${theme.color.busLayoutBg};
 
-.driver {
+
+.driver-cabin{
+    display: flex;
+    
+    .steering {
     width: 4.5rem;
     height: 4.5rem;
-    margin-left: auto;
 }
 
 .line {
@@ -22,20 +24,26 @@ background-color: ${theme.color.busLayoutBg};
     border: 0.1rem solid ${theme.color.bookedSeat};
     border-radius: 0.1rem;
 }
-
-.seat-row {
-    display: flex;
+}
+.seats-container{
+    display:flex;
+    flex-grow: 1;
     gap: 1rem;
+    justify-content: space-between;
+    
+    .seat-row {
+    display: flex;
     flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
+    gap: 1rem;
+    justify-content: space-between;
 
     .seat {
         width: 4.5rem;
         height: 4.5rem;
         border-radius: 0.3rem;
-        box-sizing: border-box;
         background-color: ${theme.color.seat};
         line-height: 4.5rem;
         text-align: center;
@@ -54,7 +62,7 @@ background-color: ${theme.color.busLayoutBg};
     .hide-seat {
         visibility: hidden;
     }
-}
+}}
 `
 );
 

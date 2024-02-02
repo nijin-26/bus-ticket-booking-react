@@ -20,7 +20,7 @@ const router = createBrowserRouter(routesConfig, {
 
 function App() {
     const [loading] = useState(false);
-    const [mode] = useState<PaletteMode>('light'); // Replace with redux
+    const [mode] = useState<PaletteMode>('dark'); // Replace with redux
 
     return (
         <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>

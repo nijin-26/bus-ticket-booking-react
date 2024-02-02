@@ -11,8 +11,9 @@ export const layoutConfig: ILayoutConfig = {
             rows: 12,
             columns: 5,
             aisle: 3,
-            door: { 10: 'R' },
+            door: { 9: 'R' },
             seatType: 'seater',
+            exceptionRows: {10:[0,0,0,0,0]}
         },
     },
 };

@@ -12,6 +12,9 @@ export const colors = {
     black: '#202124',
     selectedSeat: '#56a55c',
     bookedSeat: '#bdbdbd',
+    darkBookedSeat: '#8a8a8a',
     seat: '#fcfcfc',
+    darkSeat: '#d2d2d2',
     busLayoutBg: '#eeeeee',
+    darkBusLayoutBg: '#575757',
 };

@@ -1,6 +1,6 @@
 import { deckLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
-import driverSeat from '../../assets/tabler_steering-wheel.svg';
+import steeringWheel from '../../assets/tabler_steering-wheel.svg';
 import { ISeat, ISeatStatus } from '../../api/types/trip';
 import { Tooltip } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -55,77 +55,75 @@ const SeatLayout = ({
 
     return (
         <SeatLayoutWrapper>
-            <img src={driverSeat} alt="driver seat" className="driver" />
-            <div className="line"></div>
-            {deck.lowerDeck.map((row: number[], rowIndex: number) => {
-                return (
-                    <ul className="seat-row" key={`seatRow${rowIndex}`}>
-                        {row.map((seat: number, index: number) => {
-                            if (seat === 1) {
-                                const currentSeat = seats[seatIndex];
-                                seatIndex++;
-                                return currentSeat.status.toString() ===
-                                    ISeatStatus.AVAILABLE.toString() ? (
-                                    selectedSeats.includes(
-                                        currentSeat.seatNumber
-                                    ) ? (
-                                        <Tooltip
-                                            title={`${currentSeat.seatNumber}: Selected`}
-                                            arrow
-                                            key={`seat${rowIndex}_${index}`}
-                                        >
-                                            <li
-                                                className={`seat selected`}
-                                                onClick={() => {
-                                                    updateSelectedSeats(
-                                                        currentSeat.seatNumber
-                                                    );
-                                                }}
+            <div className="driver-cabin">
+                <img src={steeringWheel} alt="steering icon" className="steering" />
+                <div className="line"></div>
+            </div>
+            <div className="seats-container">
+                {deck.lowerDeck.map((row: number[], rowIndex: number) => {
+                    return (
+                        <ul className="seat-row" key={`seatRow${rowIndex}`}>
+                            {row.map((seat: number, index: number) => {
+                                if (seat === 1) {
+                                    const currentSeat = seats[seatIndex];
+                                    seatIndex++;
+                                    return currentSeat.status.toString() ===
+                                        ISeatStatus.AVAILABLE.toString() ? (
+                                        selectedSeats.includes(
+                                            currentSeat.seatNumber
+                                        ) ? (
+                                            <Tooltip
+                                                title={`${currentSeat.seatNumber}: Selected`}
+                                                arrow
+                                                key={`seat${rowIndex}_${index}`}
                                             >
-                                                {currentSeat.seatNumber}
-                                            </li>
-                                        </Tooltip>
+                                                <li
+                                                    className={`seat selected`}
+                                                    onClick={() => {
+                                                        updateSelectedSeats(
+                                                            currentSeat.seatNumber
+                                                        );
+                                                    }}
+                                                ></li>
+                                            </Tooltip>
+                                        ) : (
+                                            <Tooltip
+                                                title={`${currentSeat.seatNumber}: Available`}
+                                                arrow
+                                                key={`seat${rowIndex}_${index}`}
+                                            >
+                                                <li
+                                                    className={`seat`}
+                                                    onClick={() => {
+                                                        updateSelectedSeats(
+                                                            currentSeat.seatNumber
+                                                        );
+                                                    }}
+                                                ></li>
+                                            </Tooltip>
+                                        )
                                     ) : (
                                         <Tooltip
-                                            title={`${currentSeat.seatNumber}: Unbooked`}
+                                            title={`${currentSeat.seatNumber}: Unavailable`}
                                             arrow
                                             key={`seat${rowIndex}_${index}`}
                                         >
-                                            <li
-                                                className={`seat`}
-                                                onClick={() => {
-                                                    updateSelectedSeats(
-                                                        currentSeat.seatNumber
-                                                    );
-                                                }}
-                                            >
-                                                {currentSeat.seatNumber}
-                                            </li>
+                                            <li className={`seat booked`}></li>
                                         </Tooltip>
-                                    )
-                                ) : (
-                                    <Tooltip
-                                        title={`${currentSeat.seatNumber}: Booked`}
-                                        arrow
-                                        key={`seat${rowIndex}_${index}`}
-                                    >
-                                        <li className={`seat booked`}>
-                                            {currentSeat.seatNumber}
-                                        </li>
-                                    </Tooltip>
-                                );
-                            } else {
-                                return (
-                                    <li
-                                        className="seat hide-seat"
-                                        key={`seat${rowIndex}_${index}`}
-                                    ></li>
-                                );
-                            }
-                        })}
-                    </ul>
-                );
-            })}
+                                    );
+                                } else {
+                                    return (
+                                        <li
+                                            className="seat hide-seat"
+                                            key={`seat${rowIndex}_${index}`}
+                                        ></li>
+                                    );
+                                }
+                            })}
+                        </ul>
+                    );
+                })}
+            </div>
         </SeatLayoutWrapper>
     );
 };

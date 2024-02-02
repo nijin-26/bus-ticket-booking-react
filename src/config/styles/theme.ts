@@ -34,11 +34,10 @@ const darkTheme = {
     background: colors.black,
     textPrimary: colors.white,
     textSecondary: colors.grey500,
-    //TODO: Dark theme bus colours
     selectedSeat: colors.selectedSeat,
-    bookedSeat: colors.bookedSeat,
-    seat: colors.seat,
-    busLayoutBg: colors.busLayoutBg,
+    bookedSeat: colors.darkBookedSeat,
+    seat: colors.darkSeat,
+    busLayoutBg: colors.darkBusLayoutBg,
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
