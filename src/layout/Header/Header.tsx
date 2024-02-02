@@ -2,7 +2,14 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { StyledToolBar } from './Header.styled';
 import IconButton from '@mui/material/IconButton';
-import { Avatar, Button, Menu, MenuItem, Typography } from '@mui/material';
+import {
+    Avatar,
+    Button,
+    Link,
+    Menu,
+    MenuItem,
+    Typography,
+} from '@mui/material';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
@@ -35,18 +42,23 @@ export const Header = () => {
         <>
             <AppBar position="sticky">
                 <StyledToolBar>
-                    <IconButton
-                        size="large"
-                        edge="start"
+                    <Link
+                        href="#"
+                        variant="h5"
                         color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
+                        underline="none"
                     >
-                        <DirectionsBusRoundedIcon
-                            sx={{ marginRight: 1, marginTop: 0.25 }}
-                        />
-                        Bustle
-                    </IconButton>
+                        <Box display="flex" alignItems="center">
+                            <DirectionsBusRoundedIcon
+                                sx={{
+                                    marginRight: 1,
+                                    marginTop: 0.25,
+                                    fontSize: '36px',
+                                }}
+                            />
+                            Bustle
+                        </Box>
+                    </Link>
                     <Box>
                         <IconButton
                             onClick={handleThemeClick}

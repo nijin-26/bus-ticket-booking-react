@@ -1,23 +1,24 @@
-import { AppBar, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { AppBar, Button, Menu, MenuItem, Typography } from '@mui/material';
 import { StyledToolBar } from './Footer.styled';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import { useState } from 'react';
 
-const languages: string[] = ['English/en', 'Espanol/es'];
+const languages: string[] = ['English - en', 'Espanol - es'];
 
 export const Footer = () => {
-    const [selectedLanguage, setSelectedLanguage] = useState('English/en');
+    const [selectedLanguage, setSelectedLanguage] = useState('English - en');
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenLanguageMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
-
-    const handleCloseLanguageMenu = (setting: string) => {
-        setAnchorElUser(null);
+    const handleLanguageSelection = (setting: string) => {
         if (languages.includes(setting)) {
             setSelectedLanguage(setting);
         }
+    };
+    const handleCloseLanguageMenu = () => {
+        setAnchorElUser(null);
     };
     return (
         <>
@@ -27,42 +28,40 @@ export const Footer = () => {
                         © 2024 All rights reserved
                     </Typography>
 
-                    <IconButton
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        startIcon={
+                            <LanguageRoundedIcon
+                                fontSize="small"
+                                sx={{ marginRight: 1 }}
+                            />
+                        }
                         onClick={handleOpenLanguageMenu}
-                        size="small"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
                     >
-                        <LanguageRoundedIcon
-                            fontSize="small"
-                            sx={{ marginRight: 1 }}
-                        />
                         <span style={{ fontSize: '12px' }}>
                             {selectedLanguage}
                         </span>
-                    </IconButton>
+                    </Button>
                     <Menu
                         id="language-appbar"
+                        sx={{ marginTop: '-35px' }}
                         anchorEl={anchorElUser}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
                         keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseLanguageMenu}
+                        MenuListProps={{
+                            sx: {
+                                width: anchorElUser && anchorElUser.offsetWidth,
+                            },
+                        }}
                     >
                         {languages.map((setting) => (
                             <MenuItem
                                 key={setting}
                                 onClick={() => {
-                                    handleCloseLanguageMenu(setting);
+                                    handleCloseLanguageMenu();
+                                    handleLanguageSelection(setting);
                                 }}
                             >
                                 <Typography variant="body2" textAlign="center">
