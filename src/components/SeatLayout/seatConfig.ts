@@ -20,7 +20,7 @@ export const layoutConfig: ILayoutConfig = {
             rows: 12,
             columns: 5,
             aisle: 3,
-            door: { 0: 'L' },
+            door: { 10: 'R' },
             seatType: 'seater',
         },
     },

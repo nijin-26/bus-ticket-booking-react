@@ -4,6 +4,7 @@ import steeringWheel from '../../assets/tabler_steering-wheel.svg';
 import { ISeat, ISeatStatus } from '../../api/types/trip';
 import { Tooltip } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // TODO: To be removed.
 // When calling the SeatLayout component, this state variable is to be declared
@@ -44,7 +45,7 @@ const SeatLayout = ({
     const [deck, setDeck] = useState<{
         lowerDeck: number[][];
     }>({ lowerDeck: [] });
-
+    const { t } = useTranslation('seatLayout');
     let seatIndex = 0;
 
     useEffect(() => {
@@ -78,7 +79,9 @@ const SeatLayout = ({
                                             currentSeat.seatNumber
                                         ) ? (
                                             <Tooltip
-                                                title={`${currentSeat.seatNumber}: Selected`}
+                                                title={`${
+                                                    currentSeat.seatNumber
+                                                }: ${t('selected')}`}
                                                 arrow
                                                 key={`seat${rowIndex}_${index}`}
                                             >
@@ -93,7 +96,9 @@ const SeatLayout = ({
                                             </Tooltip>
                                         ) : (
                                             <Tooltip
-                                                title={`${currentSeat.seatNumber}: Available`}
+                                                title={`${
+                                                    currentSeat.seatNumber
+                                                }: ${t('available')}`}
                                                 arrow
                                                 key={`seat${rowIndex}_${index}`}
                                             >
@@ -109,7 +114,9 @@ const SeatLayout = ({
                                         )
                                     ) : (
                                         <Tooltip
-                                            title={`${currentSeat.seatNumber}: Unavailable`}
+                                            title={`${
+                                                currentSeat.seatNumber
+                                            }: ${t('unavailable')}`}
                                             arrow
                                             key={`seat${rowIndex}_${index}`}
                                         >

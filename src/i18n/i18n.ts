@@ -6,6 +6,8 @@ import esNs1 from './locales/es/ns1.json';
 import esNs2 from './locales/es/ns2.json';
 import esHeaderFooter from './locales/es/headerFooter.json';
 import enHeaderFooter from './locales/en/headerFooter.json';
+import enSeatLayout from './locales/en/seatLayout.json';
+import esSeatLayout from './locales/es/seatLayout.json';
 
 export const defaultNS = 'ns1';
 
@@ -16,11 +18,13 @@ void i18n.use(initReactI18next).init({
             ns1: enNs1,
             ns2: enNs2,
             headerFooter: enHeaderFooter,
+            seatLayout: enSeatLayout,
         },
         es: {
             ns1: esNs1,
             ns2: esNs2,
             headerFooter: esHeaderFooter,
+            seatLayout: esSeatLayout,
         },
     },
     lng: 'en',
