@@ -26,6 +26,8 @@ declare module '@emotion/react' {
             bookedSeat: string;
             seat: string;
             busLayoutBg: string;
+            red: string;
+            boxShadowPrimary: string;
         };
     }
 }

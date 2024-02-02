@@ -17,6 +17,8 @@ export const colors = {
     darkSeat: '#d2d2d2',
     busLayoutBg: '#eeeeee',
     darkBusLayoutBg: '#575757',
+    red: '#D84E55',
+    boxShadowPrimary: 'rgba(0,0,0,0.26)',
 };
 
 export const LANGUAGES = [
