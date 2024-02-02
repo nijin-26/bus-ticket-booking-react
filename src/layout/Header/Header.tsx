@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+// import { LANGUAGES } from '../../config/constants';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { StyledToolBar } from './Header.styled';
@@ -19,6 +21,8 @@ import { useState } from 'react';
 const settings = ['My bookings', 'Logout'];
 
 export const Header = () => {
+    const { t } = useTranslation('headerFooter'); // mention "ns2" to include values from ns2.json
+
     const [themeBool, setThemeBool] = useState(true);
     const [isLoginClicked, setLoginClick] = useState(false);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -78,7 +82,7 @@ export const Header = () => {
                                 color="secondary"
                                 size="small"
                             >
-                                Login
+                                {t('Login')}
                             </Button>
                         ) : (
                             <>

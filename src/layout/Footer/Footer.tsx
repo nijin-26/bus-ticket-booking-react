@@ -1,22 +1,38 @@
 import { AppBar, Button, Menu, MenuItem, Typography } from '@mui/material';
 import { StyledToolBar } from './Footer.styled';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
-import { useState } from 'react';
-
-const languages: string[] = ['English - en', 'Espanol - es'];
+import { useMemo, useState } from 'react';
+import { LANGUAGES } from '../../config';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
-    const [selectedLanguage, setSelectedLanguage] = useState('English - en');
+    const { i18n, t } = useTranslation('headerFooter');
+
+    const currentLanguageObject = useMemo(() => {
+        return LANGUAGES.find((e) => e.code === i18n.language);
+    }, [i18n.language]);
+
+    const currentLanguageBtnText =
+        currentLanguageObject?.label + '-' + currentLanguageObject?.code;
+
+    const [selectedLanguage, setSelectedLanguage] = useState(
+        currentLanguageBtnText
+    );
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenLanguageMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleLanguageSelection = (setting: string) => {
-        if (languages.includes(setting)) {
-            setSelectedLanguage(setting);
+        const languageObjSelected = LANGUAGES.find((e) => e.code == setting);
+
+        if (languageObjSelected?.code) {
+            setSelectedLanguage(
+                languageObjSelected.label + '-' + languageObjSelected.code
+            );
         }
     };
+
     const handleCloseLanguageMenu = () => {
         setAnchorElUser(null);
     };
@@ -25,7 +41,7 @@ export const Footer = () => {
             <AppBar position="static" color="primary">
                 <StyledToolBar>
                     <Typography variant="caption" color="inherit">
-                        © 2024 All rights reserved
+                        {t('copyRight')}
                     </Typography>
 
                     <Button
@@ -56,16 +72,16 @@ export const Footer = () => {
                             },
                         }}
                     >
-                        {languages.map((setting) => (
+                        {LANGUAGES.map((setting) => (
                             <MenuItem
-                                key={setting}
+                                key={setting.code}
                                 onClick={() => {
                                     handleCloseLanguageMenu();
-                                    handleLanguageSelection(setting);
+                                    handleLanguageSelection(setting.code);
                                 }}
                             >
                                 <Typography variant="body2" textAlign="center">
-                                    {setting}
+                                    {` ${setting.label}-${setting.code}`}
                                 </Typography>
                             </MenuItem>
                         ))}
