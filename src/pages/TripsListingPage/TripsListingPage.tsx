@@ -1,4 +1,4 @@
-import TripCardAccordion from '../../components/ui/TripCard/TripCardAccordion';
+import { TripCardAccordion } from '../../components';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 
 export const TripsListingPage = () => {

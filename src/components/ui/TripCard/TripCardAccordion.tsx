@@ -11,7 +11,7 @@ import sleeperIcon from '../../../assets/SleeperIcon.svg';
 import Stack from '@mui/material/Stack';
 
 import { TripCardStyled } from './TripCard.styled';
-const TripCardAccordion = () => {
+export const TripCardAccordion = () => {
     return (
         <TripCardStyled className="accordion">
             <Accordion className="summary">
@@ -85,4 +85,3 @@ const TripCardAccordion = () => {
     );
 };
 
-export default TripCardAccordion;
