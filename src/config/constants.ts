@@ -24,3 +24,8 @@ export const locationOptions: ILocationOptions[] = [
     { id: 5, label: 'Ahmedabad' },
     { id: 5, label: 'Lucknow' },
 ];
+
+export const LANGUAGES = [
+    { label: 'English', code: 'en' },
+    { label: 'Spanish', code: 'es' },
+];

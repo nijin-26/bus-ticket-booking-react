@@ -8,12 +8,10 @@ import { GlobalStyle } from './config';
 import { ThemeProvider as CustomThemeProvider } from '@emotion/react';
 
 // MUI Theme
-import {
-    CssBaseline,
-    ThemeProvider as MuiThemeProvider,
-    PaletteMode,
-} from '@mui/material';
+import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
+
+import { useAppSelector } from './app/hooks';
 
 const basename = '/';
 
@@ -23,7 +21,7 @@ const router = createBrowserRouter(routesConfig, {
 
 function App() {
     const [loading] = useState(false);
-    const [mode] = useState<PaletteMode>('light'); // Replace with redux
+    const mode = useAppSelector((state) => state.theme.currentTheme);
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
