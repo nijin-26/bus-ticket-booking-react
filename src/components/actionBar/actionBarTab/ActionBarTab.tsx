@@ -24,7 +24,7 @@ export default function ActionBarTab() {
                         <Tab label="Find my ticket" value="2"></Tab>
                     </TabList>
                     <Panel value="1">
-                        <ActionBar />
+                        <ActionBar showFilterSort />
                     </Panel>
                     <Panel value="2">
                         <PnrSearch />
