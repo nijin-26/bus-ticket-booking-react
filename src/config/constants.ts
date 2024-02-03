@@ -14,7 +14,12 @@ export const colors = {
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
 };
 
-export const LANGUAGES = [
-    { label: 'English', code: 'en' },
-    { label: 'Spanish', code: 'es' },
+export enum ILanguage {
+    English = 'en',
+    Spanish = 'es',
+}
+
+export const LANGUAGES: Language[] = [
+    { label: 'English', code: ILanguage.English },
+    { label: 'Spanish', code: ILanguage.Spanish},
 ];

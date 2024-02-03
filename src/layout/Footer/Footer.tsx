@@ -2,18 +2,24 @@ import { AppBar, Button, Menu, MenuItem, Typography } from '@mui/material';
 import { StyledToolBar } from './Footer.styled';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import { useMemo, useState } from 'react';
-import { LANGUAGES } from '../../config';
+import { ILanguage, LANGUAGES } from '../../config';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { toggleLanguage } from '../../app/features/languageSlice';
 
 export const Footer = () => {
-    const { i18n, t } = useTranslation('headerFooter');
+    const { t } = useTranslation('headerFooter');
+    const languageMode = useAppSelector(
+        (state) => state.language.currentLanguage
+    );
+    const dispatch = useAppDispatch();
 
     const currentLanguageObject = useMemo(() => {
-        return LANGUAGES.find((e) => e.code === i18n.language);
-    }, [i18n.language]);
+        return LANGUAGES.find((e) => e.code == languageMode);
+    }, [languageMode]);
 
     const currentLanguageBtnText =
-        currentLanguageObject?.label + '-' + currentLanguageObject?.code;
+        currentLanguageObject?.label + '-' + currentLanguageObject?.code || '-';
 
     const [selectedLanguage, setSelectedLanguage] = useState(
         currentLanguageBtnText
@@ -23,13 +29,16 @@ export const Footer = () => {
     const handleOpenLanguageMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleLanguageSelection = (setting: string) => {
-        const languageObjSelected = LANGUAGES.find((e) => e.code == setting);
+    const handleLanguageSelection = (languageCode: ILanguage) => {
+        const languageObjSelected = LANGUAGES.find(
+            (e) => e.code == languageCode
+        );
 
         if (languageObjSelected?.code) {
             setSelectedLanguage(
                 languageObjSelected.label + '-' + languageObjSelected.code
             );
+            dispatch(toggleLanguage(languageCode));
         }
     };
 
