@@ -1,3 +1,5 @@
+import { Language } from "../api/types/language";
+
 export const paths = {
     home: '/',
     tripsListing: '/trips',
