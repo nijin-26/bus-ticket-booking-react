@@ -11,6 +11,8 @@ export const colors = {
     cardWhite: '#f9f9f9',
     grey500: '#9e9e9e',
     black: '#202124',
+    red: '#D84E55',
+    boxShadowPrimary: 'rgba(0,0,0,0.26)',
 };
 
 export const LANGUAGES = [

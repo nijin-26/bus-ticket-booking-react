@@ -1,8 +1,21 @@
-import styled from 'styled-components';
+import { Toolbar, styled } from '@mui/material';
 
-export const HeaderWrapper = styled.header`
-    display: flex;
+export const StyledToolBar = styled(Toolbar)`
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     justify-content: space-between;
-    align-items: center;
-    margin: 0 15px;
+
+    .app-logo {
+        margin-right: 0.5rem;
+        margin-top: 0.25rem;
+        font-size: 3.6rem;
+    }
+
+    .theme-button {
+        margin-right: 2rem;
+    }
+    .profile-avatar {
+        padding: 0;
+    }
 `;

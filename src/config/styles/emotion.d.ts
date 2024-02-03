@@ -22,7 +22,8 @@ declare module '@emotion/react' {
             textPrimary: string;
             textSecondary: string;
             background: string;
-            cardWhite: string;
+            red: string;
+            boxShadowPrimary: string;
         };
     }
 }
