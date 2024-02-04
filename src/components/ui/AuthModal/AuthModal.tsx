@@ -30,7 +30,11 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                     <StyledTab label={t('signUp')} />
                 </Tabs>
                 <Box py={4} px={2}>
-                    {selectedTab === 0 ? <SignIn /> : <SingUp />}
+                    {selectedTab === 0 ? (
+                        <SignIn closeModal={closeModal} />
+                    ) : (
+                        <SingUp closeModal={closeModal} />
+                    )}
                 </Box>
             </AuthModalWrapper>
         </Modal>

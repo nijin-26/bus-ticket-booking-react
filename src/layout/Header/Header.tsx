@@ -19,6 +19,7 @@ import testProfile from '../../assets/person1.jpeg';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
+import { AuthModal } from '../../components';
 
 const settings = ['My bookings', 'Logout'];
 
@@ -28,23 +29,30 @@ export const Header = () => {
     const dispatch = useAppDispatch();
 
     const [isLoginClicked, setLoginClick] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleLoginClick = () => {
         setLoginClick(true);
+        setIsLoginModalOpen(true);
     };
+
     const handleThemeClick = () => {
         dispatch(toggleTheme());
     };
+
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
+
     const handleCloseUserMenu = (setting: string) => {
         setAnchorElUser(null);
         if (setting === 'Logout') {
             setLoginClick(false);
+            setIsLoginModalOpen(false);
         }
     };
+
     return (
         <>
             <AppBar position="sticky">
@@ -135,6 +143,10 @@ export const Header = () => {
                     </Box>
                 </StyledToolBar>
             </AppBar>
+            <AuthModal
+                isOpen={isLoginModalOpen}
+                closeModal={() => setIsLoginModalOpen(false)}
+            />
         </>
     );
 };
