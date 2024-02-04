@@ -24,6 +24,7 @@ declare module '@emotion/react' {
             background: string;
             red: string;
             boxShadowPrimary: string;
+            cardWhite: string;
         };
     }
 }
