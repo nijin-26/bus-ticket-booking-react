@@ -1,73 +1,63 @@
 import {
     Box,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    SelectChangeEvent,
-    Stack,
-    TextField,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogTitle,
+    Grid,
     Typography,
 } from '@mui/material';
+import PassengerDetails from './components/PassengerDetails';
 import { useState } from 'react';
+import TicketTotalFare from './components/ticketTotalFare';
 
 export const TripBookingPage = () => {
-    const [gender, setGender] = useState('');
+    const [open, setOpen] = useState(false);
 
-    const handleGenderChange = (event: SelectChangeEvent) => {
-        setGender(event.target.value);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     return (
         <Box component="form">
-            <Typography component="h3" sx={{ typography: 'h5' }} gutterBottom>
+            <Typography component="h3" variant="h5" mb={2}>
                 Passenger Details
             </Typography>
-            <Box component="fieldset" p="20px">
-                <Typography
-                    component="h4"
-                    sx={{ typography: 'h6' }}
-                    gutterBottom
-                >
-                    Passenger 1 | seat 12
-                </Typography>
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    spacing={2}
-                >
-                    <TextField
-                        margin="normal"
-                        required
+            <PassengerDetails />
+            <Grid container mt={3}>
+                <Grid item xs={12} sm={9}>
+                    <TicketTotalFare ticketFare={1200} noOfSeatsBooked={4} />
+                </Grid>
+                <Grid item xs={12} sm={3} ml="auto">
+                    <Button
+                        variant="outlined"
+                        onClick={handleClickOpen}
                         fullWidth
-                        id="fullName"
-                        label="Full Name"
-                        name="fullName"
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        id="age"
-                        label="Age"
-                        name="age"
-                    />
-                    <FormControl sx={{ minWidth: 150 }}>
-                        <InputLabel id="gender-label">Gender</InputLabel>
-                        <Select
-                            labelId="gender-label"
-                            id="gender"
-                            label="Gender"
-                            value={gender}
-                            onChange={handleGenderChange}
-                        >
-                            <MenuItem value={'male'}>Male</MenuItem>
-                            <MenuItem value={'female'}>Female</MenuItem>
-                            <MenuItem value={'other'}>Other</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Stack>
-            </Box>
+                    >
+                        Checkout
+                    </Button>
+                </Grid>
+            </Grid>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {'Proceed with the booking?'}
+                </DialogTitle>
+                <DialogActions>
+                    <Button onClick={handleClose}>No</Button>
+                    <Button onClick={handleClose} autoFocus>
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 };
