@@ -22,6 +22,8 @@ const lightTheme = {
     textPrimary: colors.black,
     textSecondary: colors.grey500,
     background: colors.white,
+    red: colors.red,
+    boxShadowPrimary: colors.boxShadowPrimary,
 };
 
 const darkTheme = {
@@ -30,6 +32,8 @@ const darkTheme = {
     background: colors.black,
     textPrimary: colors.white,
     textSecondary: colors.grey500,
+    red: colors.red,
+    boxShadowPrimary: colors.boxShadowPrimary,
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
