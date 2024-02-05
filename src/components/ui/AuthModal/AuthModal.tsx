@@ -1,9 +1,10 @@
-import { Box, Modal, Tabs } from '@mui/material';
-import { AuthModalWrapper, StyledTab } from './AuthModal.styled';
 import { useState } from 'react';
-import SignIn from './SignIn/SignIn';
-import SingUp from './SignUp/SignUp';
+import { Box, Collapse, Modal, Tabs } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+
+import { AuthModalWrapper, StyledTab } from './AuthModal.styled';
+import SignIn from './SignIn/SignIn';
+import SignUp from './SignUp/SignUp';
 
 type TAuthModalProps = {
     isOpen: boolean;
@@ -29,12 +30,17 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                     <StyledTab label={t('signIn')} />
                     <StyledTab label={t('signUp')} />
                 </Tabs>
-                <Box py={4} px={2}>
-                    {selectedTab === 0 ? (
-                        <SignIn closeModal={closeModal} />
-                    ) : (
-                        <SingUp closeModal={closeModal} />
-                    )}
+                <Box px={2}>
+                    <Collapse in={selectedTab === 0} timeout={300}>
+                        <Box py={4}>
+                            <SignIn closeModal={closeModal} />
+                        </Box>
+                    </Collapse>
+                    <Collapse in={selectedTab === 1} timeout={300}>
+                        <Box py={4}>
+                            <SignUp closeModal={closeModal} />
+                        </Box>
+                    </Collapse>
                 </Box>
             </AuthModalWrapper>
         </Modal>
