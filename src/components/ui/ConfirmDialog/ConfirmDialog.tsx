@@ -4,53 +4,53 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { useState } from 'react';
+import { IconButton } from '@mui/material';
 
 interface ConfirmDialogProps {
     title?: string;
-    agreeText?: string;
+    agreeText: string;
     disagreeText?: string;
-    ButtonText: string;
     handleAgreeFunction?: () => void;
     handleDisagreeFunction?: () => void;
+    open: boolean;
+    handleClose: () => void;
     children: React.ReactNode;
 }
 
 export default function ConfirmDialog({
-    agreeText = 'Yes',
-    disagreeText = 'No',
     handleAgreeFunction = () => {},
     handleDisagreeFunction = () => {},
     ...props
 }: ConfirmDialogProps) {
-    const [open, setOpen] = useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <>
-            <Button variant="contained" onClick={handleClickOpen}>
-                {props.ButtonText}
-            </Button>
             <Dialog
                 fullScreen={fullScreen}
-                open={open}
-                onClose={handleClose}
+                open={props.open}
+                onClose={props.handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title">
                     {props.title}
                 </DialogTitle>
+                <IconButton
+                    aria-label="close"
+                    onClick={props.handleClose}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[500],
+                    }}
+                >
+                    <CloseIcon />
+                </IconButton>
                 <DialogContent>
                     <DialogContentText>{props.children}</DialogContentText>
                 </DialogContent>
@@ -58,21 +58,23 @@ export default function ConfirmDialog({
                     <Button
                         onClick={() => {
                             handleAgreeFunction();
-                            handleClose();
+                            props.handleClose();
                         }}
                         autoFocus
                     >
-                        {agreeText}
+                        {props.agreeText}
                     </Button>
-                    <Button
-                        autoFocus
-                        onClick={() => {
-                            handleDisagreeFunction();
-                            handleClose();
-                        }}
-                    >
-                        {disagreeText}
-                    </Button>
+                    {props.disagreeText ? (
+                        <Button
+                            autoFocus
+                            onClick={() => {
+                                handleDisagreeFunction();
+                                props.handleClose();
+                            }}
+                        >
+                            {props.disagreeText}
+                        </Button>
+                    ) : null}
                 </DialogActions>
             </Dialog>
         </>
