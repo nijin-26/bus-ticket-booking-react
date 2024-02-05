@@ -5,7 +5,13 @@ import ActionBar from '../actionBar/ActionBar';
 import PnrSearch from '../pnrSearch/PnrSearch';
 import { Panel, WrapperPaper } from './ActionBarTab.styled';
 
-export default function ActionBarTab() {
+interface IActionBarProps {
+    showFilterSort?: boolean;
+}
+
+const ActionBarTab: React.FC<IActionBarProps> = ({
+    showFilterSort,
+}: IActionBarProps) => {
     const [value, setValue] = useState('1');
 
     const changeTabHandler = (
@@ -24,7 +30,7 @@ export default function ActionBarTab() {
                         <Tab label="Find my ticket" value="2"></Tab>
                     </TabList>
                     <Panel value="1">
-                        <ActionBar showFilterSort />
+                        <ActionBar showFilterSort={showFilterSort} />
                     </Panel>
                     <Panel value="2">
                         <PnrSearch />
@@ -33,4 +39,6 @@ export default function ActionBarTab() {
             </TabContext>
         </WrapperPaper>
     );
-}
+};
+
+export default ActionBarTab;

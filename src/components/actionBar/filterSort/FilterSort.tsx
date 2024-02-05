@@ -36,8 +36,6 @@ export default function FilterSort() {
     const [seatTypeFilter, setSeatTypeFilter] = useState<string | null>(null);
     const [sortBy, setSortBy] = useState<string | null>(null);
 
-    console.log(sortBy);
-
     // menu handlers
     const busTypeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorElBus(event.currentTarget);
@@ -224,7 +222,7 @@ export default function FilterSort() {
 
                 {/* Sort menu */}
                 <Menu
-                    id="seat-type-menu"
+                    id="sort-menu"
                     anchorEl={anchorElSort}
                     open={openSort}
                     MenuListProps={{ 'aria-labelledby': 'sort-button' }}
@@ -251,7 +249,7 @@ export default function FilterSort() {
 
                     <Button
                         onClick={() => {
-                            setSeatTypeFilter(null);
+                            setSortBy(null);
                         }}
                     >
                         Clear

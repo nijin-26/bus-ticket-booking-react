@@ -5,6 +5,8 @@ export const LandingPage = () => {
     return (
         <LandingPageWrapper>
             <ActionBarTab />
+            <>jajjajaja</>
+            <ActionBarTab showFilterSort />
         </LandingPageWrapper>
     );
 };
