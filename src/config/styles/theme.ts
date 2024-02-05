@@ -22,6 +22,12 @@ const lightTheme = {
     textPrimary: colors.black,
     textSecondary: colors.grey500,
     background: colors.white,
+    selectedSeat: colors.selectedSeat,
+    bookedSeat: colors.bookedSeat,
+    seat: colors.seat,
+    busLayoutBg: colors.busLayoutBg,
+    red: colors.red,
+    boxShadowPrimary: colors.boxShadowPrimary,
 };
 
 const darkTheme = {
@@ -30,6 +36,12 @@ const darkTheme = {
     background: colors.black,
     textPrimary: colors.white,
     textSecondary: colors.grey500,
+    selectedSeat: colors.selectedSeat,
+    bookedSeat: colors.darkBookedSeat,
+    seat: colors.darkSeat,
+    busLayoutBg: colors.darkBusLayoutBg,
+    red: colors.red,
+    boxShadowPrimary: colors.boxShadowPrimary,
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
