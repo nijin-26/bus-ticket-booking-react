@@ -6,3 +6,4 @@
 -   [86cuewym2] Implemented Redux Toolkit, themeSlice, custom hooks, and organized structure.
 -   [86cufjjjg] Initialize translation files & enabled language switching.
 -   [86cuewz4g] Add header and footer with theme selector and language selector buttons.
+-   [86cuex03r] Add a custom Confirmation Dialog for the app for reusability.
