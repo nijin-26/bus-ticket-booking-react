@@ -17,7 +17,6 @@ const languageSlice = createSlice({
         toggleLanguage: (state, action: PayloadAction<ILanguage>) => {
             state.currentLanguage = action.payload;
             i18n.changeLanguage(action.payload)
-                .then(() => {})
                 .catch((error) => {
                     console.error('Something went wrong loading', error);
                 });
