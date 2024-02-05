@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { IconButton } from '@mui/material';
 
-interface ConfirmDialogProps {
+interface IConfirmDialogProps {
     title?: string;
     agreeText: string;
     disagreeText?: string;
@@ -24,7 +24,7 @@ export default function ConfirmDialog({
     handleAgreeFunction = () => {},
     handleDisagreeFunction = () => {},
     ...props
-}: ConfirmDialogProps) {
+}: IConfirmDialogProps) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
