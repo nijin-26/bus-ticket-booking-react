@@ -1,4 +1,5 @@
-import { Language, LanguageCode } from '../interfaces/index';
+import { ILocationOptions } from '../components/actionBar/types';
+import { Language, LanguageCode } from '../types';
 
 export const paths = {
     home: '/',
@@ -22,6 +23,17 @@ export const colors = {
     red: '#D84E55',
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
 };
+
+// api format: id, name => mui format: id, label
+export const locationOptions: ILocationOptions[] = [
+    { id: 1, label: 'Trivandrum' },
+    { id: 2, label: 'Chennai' },
+    { id: 3, label: 'Bangalore' },
+    { id: 4, label: 'Pune' },
+    { id: 5, label: 'Mumbai' },
+    { id: 5, label: 'Ahmedabad' },
+    { id: 5, label: 'Lucknow' },
+];
 
 export const LANGUAGES: Language[] = [
     { label: 'English', code: LanguageCode.English },
