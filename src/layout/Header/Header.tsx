@@ -21,8 +21,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
 import { AuthModal } from '../../components';
 
-const settings = ['My bookings', 'Logout'];
-
 export const Header = () => {
     const { t } = useTranslation('headerFooter'); // mention "ns2" to include values from ns2.json
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
@@ -32,6 +30,8 @@ export const Header = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [menuAnchorElement, setMenuAnchorElement] =
         useState<null | HTMLElement>(null);
+
+    const settings = [t('myBooking'), t('Logout')];
 
     const handleLoginClick = () => {
         setLoginClick(true);
@@ -48,7 +48,7 @@ export const Header = () => {
 
     const handleCloseUserMenu = (setting: string) => {
         setMenuAnchorElement(null);
-        if (setting === 'Logout') {
+        if (setting === t('Logout')) {
             setLoginClick(false);
             setIsLoginModalOpen(false);
         }

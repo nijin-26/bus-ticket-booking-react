@@ -6,8 +6,10 @@
         "hello": "hello"
     },
     "headerFooter": {
+        "myBooking": "My Booking",
         "copyRight": "© 2024 All rights reserved",
-        "Login": "Login"
+        "Login": "Login",
+        "Logout": "Logout"
     },
     "auth": {
         "signIn": "SIGN IN",
