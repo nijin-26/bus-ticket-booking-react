@@ -4,7 +4,7 @@ import users from '../../data/sampleUsers.json';
 
 export const UsersListingPage = () => {
     return (
-        <UsersListingPageWrapper>
+        <UsersListingPageWrapper component={'section'}>
             <UsersTable users={users} />
         </UsersListingPageWrapper>
     );
