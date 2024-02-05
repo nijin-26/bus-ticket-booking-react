@@ -1,6 +1,7 @@
 import { Button, Stack, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import validationSchema from './validationSchema';
 
 type TSignUpProps = {
     closeModal: () => void;
@@ -22,8 +23,12 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
     };
 
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            {(props) => (
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ errors, touched }) => (
                 <Form>
                     <Stack gap={4}>
                         <Field
@@ -33,9 +38,7 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
                             name="fullName"
                             required
                             fullWidth
-                            error={
-                                props.errors.fullName && props.touched.fullName
-                            }
+                            error={errors.fullName && touched.fullName}
                             helperText={<ErrorMessage name="fullName" />}
                         />
 
@@ -46,18 +49,18 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
                             name="email"
                             required
                             fullWidth
-                            error={props.errors.email && props.touched.email}
+                            error={errors.email && touched.email}
                             helperText={<ErrorMessage name="email" />}
                         />
 
                         <Field
                             as={TextField}
                             label={t('phone')}
-                            type="tel"
+                            type=""
                             name="phone"
                             required
                             fullWidth
-                            error={props.errors.phone && props.touched.phone}
+                            error={errors.phone && touched.phone}
                             helperText={<ErrorMessage name="phone" />}
                         />
 
@@ -69,10 +72,7 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
                                 name="password"
                                 required
                                 fullWidth
-                                error={
-                                    props.errors.password &&
-                                    props.touched.password
-                                }
+                                error={errors.password && touched.password}
                                 helperText={<ErrorMessage name="password" />}
                             />
 
@@ -84,8 +84,8 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
                                 required
                                 fullWidth
                                 error={
-                                    props.errors.confirmPassword &&
-                                    props.touched.confirmPassword
+                                    errors.confirmPassword &&
+                                    touched.confirmPassword
                                 }
                                 helperText={
                                     <ErrorMessage name="confirmPassword" />

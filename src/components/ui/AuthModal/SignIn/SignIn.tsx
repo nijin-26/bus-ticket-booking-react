@@ -1,6 +1,7 @@
 import { Button, Stack, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import validationSchema from './validationSchema';
 
 type TSignInProps = {
     closeModal: () => void;
@@ -19,8 +20,12 @@ const SignIn = ({ closeModal }: TSignInProps) => {
     };
 
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            {(props) => {
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ errors, touched }) => {
                 return (
                     <Form>
                         <Stack gap={4}>
@@ -31,9 +36,7 @@ const SignIn = ({ closeModal }: TSignInProps) => {
                                 name="email"
                                 required
                                 fullWidth
-                                error={
-                                    props.errors.email && props.touched.email
-                                }
+                                error={errors.email && touched.email}
                                 helperText={<ErrorMessage name="email" />}
                             />
 
@@ -44,10 +47,7 @@ const SignIn = ({ closeModal }: TSignInProps) => {
                                 name="password"
                                 required
                                 fullWidth
-                                error={
-                                    props.errors.password &&
-                                    props.touched.password
-                                }
+                                error={errors.password && touched.password}
                                 helperText={<ErrorMessage name="password" />}
                             />
                             <Stack
