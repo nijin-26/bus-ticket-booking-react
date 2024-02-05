@@ -29,5 +29,10 @@
         "passwordRequired": "Se requiere la contraseña.",
         "passwordMatch": "Las contraseñas deben coincidir.",
         "confirmPasswordRequired": "Se requiere confirmar la contraseña."
+    },
+    "seatLayout": {
+        "available": "Disponible",
+        "unavailable": "Indisponible",
+        "selected": "Seleccionado"
     }
 }

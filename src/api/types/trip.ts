@@ -14,12 +14,12 @@ export interface ITripsQueryRequest {
 export enum ITripsSortKey {
     DEPARTURE_TIMESTAMP = 'departureTimestamp',
     ARRIVAL_TIMESTAMP = 'arrivalTimestamp',
-    FARE = 'fare'
+    FARE = 'fare',
 }
 
 export enum ISortOrder {
     ASC = 'ASC',
-    DESC = 'DESC'
+    DESC = 'DESC',
 }
 
 export interface ITripsQueryResponse {
@@ -54,15 +54,15 @@ export interface ISeat {
 
 export enum ISeatType {
     SLEEPER = 'SLEEPER',
-    SEATER = 'SEATER'
+    SEATER = 'SEATER',
 }
 
 export enum IBusType {
     AC = 'AC',
-    NON_AC = 'NON_AC'
+    NON_AC = 'NON_AC',
 }
 
 export enum ISeatStatus {
     BOOKED = 'BOOKED',
-    AVAILABLE = 'AVAILABLE'
+    AVAILABLE = 'AVAILABLE',
 }

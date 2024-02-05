@@ -7,13 +7,14 @@ const {
     ns1: enNs1,
     ns2: enNs2,
     headerFooter: enHeaderFooter,
+    seatLayout: enSeatLayout,
     auth: enAuth,
 } = en;
-
 const {
     ns1: esNs1,
     ns2: esNs2,
     headerFooter: esHeaderFooter,
+    seatLayout: esSeatLayout,
     auth: esAuth,
 } = es;
 
@@ -27,18 +28,20 @@ void i18n.use(initReactI18next).init({
             ns2: enNs2,
             auth: enAuth,
             headerFooter: enHeaderFooter,
+            seatLayout: enSeatLayout,
         },
         es: {
             ns1: esNs1,
             ns2: esNs2,
             auth: esAuth,
             headerFooter: esHeaderFooter,
+            seatLayout: esSeatLayout,
         },
     },
     lng: 'en',
     fallbackLng: 'en',
     defaultNS,
-    ns: ['ns1', 'ns2', 'headerFooter', 'auth'],
+    ns: ['ns1', 'ns2', 'headerFooter', 'seatLayout', 'auth'],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.
     },
