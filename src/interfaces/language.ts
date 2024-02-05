@@ -1,8 +1,8 @@
-export enum eLanguage {
+export enum LanguageCode {
     English = 'en',
     Spanish = 'es',
 }
 export interface Language {
-    code: eLanguage;
+    code: LanguageCode;
     label: string;
 }

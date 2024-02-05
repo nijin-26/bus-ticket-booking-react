@@ -6,7 +6,7 @@ import { LANGUAGES } from '../../config';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleLanguage } from '../../app/features/languageSlice';
-import { eLanguage } from '../../interfaces/index';
+import { LanguageCode } from '../../interfaces/index';
 
 export const Footer = () => {
     const { t } = useTranslation('headerFooter');
@@ -30,7 +30,7 @@ export const Footer = () => {
     const handleOpenLanguageMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleLanguageSelection = (languageCode: eLanguage) => {
+    const handleLanguageSelection = (languageCode: LanguageCode) => {
         const languageObjSelected = LANGUAGES.find(
             (e) => e.code == languageCode
         );

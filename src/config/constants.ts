@@ -1,4 +1,4 @@
-import { Language, eLanguage } from '../interfaces/index';
+import { Language, LanguageCode } from '../interfaces/index';
 
 export const paths = {
     home: '/',
@@ -17,6 +17,6 @@ export const colors = {
 };
 
 export const LANGUAGES: Language[] = [
-    { label: 'English', code: eLanguage.English },
-    { label: 'Spanish', code: eLanguage.Spanish },
+    { label: 'English', code: LanguageCode.English },
+    { label: 'Spanish', code: LanguageCode.Spanish },
 ];
