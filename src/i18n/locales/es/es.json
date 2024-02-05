@@ -1,0 +1,17 @@
+{
+    "ns1": {
+        "home": "hogar"
+    },
+    "ns2": {
+        "hello": "hola"
+    },
+    "headerFooter": {
+        "copyRight": "© 2024 Todos los derechos reservados",
+        "Login": "Iniciar sesión"
+    },
+    "seatLayout": {
+        "available": "Disponible",
+        "unavailable": "Indisponible",
+        "selected": "Seleccionado"
+    }
+}
