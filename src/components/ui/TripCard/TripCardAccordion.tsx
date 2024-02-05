@@ -1,6 +1,4 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import longArrow from '../../../assets/Long_arrow.svg';
 import acIcon from '../../../assets/AcIcon.svg';
@@ -9,6 +7,7 @@ import seatIcon from '../../../assets/SeatIcon.svg';
 import sleeperIcon from '../../../assets/SleeperIcon.svg';
 import Stack from '@mui/material/Stack';
 import { TripAccordionStyled } from './TripCard.styled';
+import { TripCardDetails } from './AccordianDetails/TripCardDetails';
 
 interface ITripCardAccordion {
     busType: string;
@@ -50,13 +49,7 @@ export const TripCardAccordion = ({
                     <p>Rs. 1300/-</p>
                 </Stack>
             </AccordionSummary>
-            <AccordionDetails>
-                <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
-                </Typography>
-            </AccordionDetails>
+            <TripCardDetails />
         </TripAccordionStyled>
     );
 };
