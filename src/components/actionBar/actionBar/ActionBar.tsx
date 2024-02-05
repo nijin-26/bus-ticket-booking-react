@@ -122,9 +122,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         openPickerIcon: Today,
                     }}
                     slotProps={{
-                        // textField: {
-                        //     fullWidth: true,
-                        // },
                         inputAdornment: {
                             position: 'start',
                         },
@@ -133,7 +130,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 <TextField
                     label="Passengers"
                     type="number"
-                    // fullWidth
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
