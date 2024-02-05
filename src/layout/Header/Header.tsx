@@ -59,7 +59,7 @@ export const Header = () => {
             <AppBar position="sticky">
                 <StyledToolBar>
                     <Link
-                        href="#"
+                        href="/"
                         variant="h5"
                         color="inherit"
                         underline="none"

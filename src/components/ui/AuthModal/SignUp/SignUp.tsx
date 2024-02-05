@@ -1,7 +1,7 @@
 import { Button, Stack, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import validationSchema from './validationSchema';
+import getValidationSchema from './validationSchema';
 
 type TSignUpProps = {
     closeModal: () => void;
@@ -25,7 +25,7 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            validationSchema={getValidationSchema(t)}
             onSubmit={handleSubmit}
         >
             {({ errors, touched }) => (
