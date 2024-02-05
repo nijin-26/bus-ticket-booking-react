@@ -1,0 +1,33 @@
+{
+    "ns1": {
+        "home": "home"
+    },
+    "ns2": {
+        "hello": "hello"
+    },
+    "headerFooter": {
+        "copyRight": "© 2024 All rights reserved",
+        "Login": "Login"
+    },
+    "auth": {
+        "signIn": "SIGN IN",
+        "signUp": "SIGN UP",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "phone": "Phone",
+        "fullName": "Full Name",
+        "cancel": "Cancel",
+        "minNameMsg": "Full Name must be at least 3 characters.",
+        "maxNameMsg": "Full Name must be at most 50 characters.",
+        "nameRequired": "Full Name is required",
+        "invalidEmailMsg": "Invalid email address.",
+        "emailRequired": "Email is required.",
+        "invalidPhone": "Invalid phone number.",
+        "phoneRequired": "Phone number is required.",
+        "passwordValidationMsg": "Password must be at least 6 characters.",
+        "passwordRequired": "Password is required.",
+        "passwordMatch": "Passwords must match.",
+        "confirmPasswordRequired": "Confirm Password is required."
+    }
+}

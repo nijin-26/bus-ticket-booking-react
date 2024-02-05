@@ -1,8 +1,6 @@
-import ns1 from '../locales/en/ns1.json';
-import ns2 from '../locales/en/ns2.json';
-import auth from '../locales/en/auth.json';
-import headerFooter from '../locales/en/headerFooter.json';
+import data from '../locales/en/en.json';
 
+const { ns1, ns2, headerFooter, auth } = data;
 const resources = {
     ns1,
     ns2,

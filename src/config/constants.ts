@@ -1,3 +1,5 @@
+import { Language, LanguageCode } from '../interfaces/index';
+
 export const paths = {
     home: '/',
     tripsListing: '/trips',
@@ -14,7 +16,7 @@ export const colors = {
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
 };
 
-export const LANGUAGES = [
-    { label: 'English', code: 'en' },
-    { label: 'Spanish', code: 'es' },
+export const LANGUAGES: Language[] = [
+    { label: 'English', code: LanguageCode.English },
+    { label: 'Spanish', code: LanguageCode.Spanish },
 ];
