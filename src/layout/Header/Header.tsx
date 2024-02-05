@@ -30,7 +30,8 @@ export const Header = () => {
 
     const [isLoginClicked, setLoginClick] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const [menuAnchorElement, setMenuAnchorElement] =
+        useState<null | HTMLElement>(null);
 
     const handleLoginClick = () => {
         setLoginClick(true);
@@ -42,11 +43,11 @@ export const Header = () => {
     };
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget);
+        setMenuAnchorElement(event.currentTarget);
     };
 
     const handleCloseUserMenu = (setting: string) => {
-        setAnchorElUser(null);
+        setMenuAnchorElement(null);
         if (setting === 'Logout') {
             setLoginClick(false);
             setIsLoginModalOpen(false);
@@ -109,7 +110,7 @@ export const Header = () => {
                                 <Menu
                                     sx={{ mt: '45px' }}
                                     id="menu-appbar"
-                                    anchorEl={anchorElUser}
+                                    anchorEl={menuAnchorElement}
                                     anchorOrigin={{
                                         vertical: 'top',
                                         horizontal: 'right',
@@ -119,7 +120,7 @@ export const Header = () => {
                                         vertical: 'top',
                                         horizontal: 'right',
                                     }}
-                                    open={Boolean(anchorElUser)}
+                                    open={Boolean(menuAnchorElement)}
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting) => (
@@ -145,7 +146,9 @@ export const Header = () => {
             </AppBar>
             <AuthModal
                 isOpen={isLoginModalOpen}
-                closeModal={() => setIsLoginModalOpen(false)}
+                closeModal={() => {
+                    setIsLoginModalOpen(false);
+                }}
             />
         </>
     );
