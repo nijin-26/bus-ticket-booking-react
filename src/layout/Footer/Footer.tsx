@@ -2,10 +2,11 @@ import { AppBar, Button, Menu, MenuItem, Typography } from '@mui/material';
 import { StyledToolBar } from './Footer.styled';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import { useMemo, useState } from 'react';
-import { ILanguage, LANGUAGES } from '../../config';
+import { LANGUAGES } from '../../config';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleLanguage } from '../../app/features/languageSlice';
+import { eLanguage } from '../../interfaces/index';
 
 export const Footer = () => {
     const { t } = useTranslation('headerFooter');
@@ -29,7 +30,7 @@ export const Footer = () => {
     const handleOpenLanguageMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleLanguageSelection = (languageCode: ILanguage) => {
+    const handleLanguageSelection = (languageCode: eLanguage) => {
         const languageObjSelected = LANGUAGES.find(
             (e) => e.code == languageCode
         );

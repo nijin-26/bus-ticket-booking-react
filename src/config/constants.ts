@@ -1,4 +1,4 @@
-import { Language } from "../api/types/language";
+import { Language, eLanguage } from '../interfaces/index';
 
 export const paths = {
     home: '/',
@@ -16,12 +16,7 @@ export const colors = {
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
 };
 
-export enum ILanguage {
-    English = 'en',
-    Spanish = 'es',
-}
-
 export const LANGUAGES: Language[] = [
-    { label: 'English', code: ILanguage.English },
-    { label: 'Spanish', code: ILanguage.Spanish},
+    { label: 'English', code: eLanguage.English },
+    { label: 'Spanish', code: eLanguage.Spanish },
 ];
