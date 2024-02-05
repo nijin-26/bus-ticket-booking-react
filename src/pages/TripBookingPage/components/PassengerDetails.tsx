@@ -1,8 +1,21 @@
-import { MenuItem } from '@mui/base';
-import { Paper, Typography, Grid, TextField } from '@mui/material';
-import { Box } from '@mui/system';
+import {
+    Paper,
+    Typography,
+    Grid,
+    TextField,
+    MenuItem,
+    Box,
+} from '@mui/material';
 
-const PassengerDetails = () => {
+interface IPassengerDetails {
+    passengerNumber: number;
+    seatNumber: number;
+}
+
+const PassengerDetails = ({
+    passengerNumber,
+    seatNumber,
+}: IPassengerDetails) => {
     const genders = [
         {
             value: 'male',
@@ -19,30 +32,30 @@ const PassengerDetails = () => {
     ];
 
     return (
-        <Box component={Paper} py="10px" px="20px" elevation={6}>
+        <Box component={Paper} py="10px" px="20px" mb="30px" elevation={4}>
             <Typography component="h4" variant="h6" mb={2}>
-                Passenger 1 | seat 12
+                {`Passenger ${passengerNumber} | seat ${seatNumber}`}
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                     <TextField
                         fullWidth
                         required
-                        id="fullName"
+                        id={`${passengerNumber}-fullName`}
+                        name={`${passengerNumber}-fullName`}
                         label="Full Name"
-                        name="fullName"
                         size="small"
-                        error
-                        helperText="Full name is a required field"
+                        // error
+                        // helperText="Full name is a required field"
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
                     <TextField
                         fullWidth
                         required
-                        id="age"
+                        id={`${passengerNumber}-age`}
+                        name={`${passengerNumber}-age`}
                         label="Age"
-                        name="age"
                         size="small"
                         helperText=" "
                     />
@@ -51,7 +64,8 @@ const PassengerDetails = () => {
                     <TextField
                         fullWidth
                         select
-                        id="gender"
+                        id={`${passengerNumber}-gender`}
+                        name={`${passengerNumber}-gender`}
                         label="Gender"
                         size="small"
                         helperText=" "

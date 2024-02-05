@@ -30,7 +30,7 @@ void i18n.use(initReactI18next).init({
     lng: 'en',
     fallbackLng: 'en',
     defaultNS,
-    ns: ['ns1', 'ns2'],
+    ns: ['ns1', 'ns2', 'passengerDetails'],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.
     },
