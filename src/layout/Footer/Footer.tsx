@@ -6,7 +6,7 @@ import { LANGUAGES } from '../../config';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleLanguage } from '../../app/features/languageSlice';
-import { LanguageCode } from '../../interfaces/index';
+import { LanguageCode } from '../../types';
 
 export const Footer = () => {
     const { t } = useTranslation('headerFooter');
