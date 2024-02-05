@@ -1,7 +1,6 @@
-import ns1 from '../locales/en/ns1.json';
-import ns2 from '../locales/en/ns2.json';
-import headerFooter from '../locales/en/headerFooter.json';
+import data from '../locales/en/en.json';
 
+const { ns1, ns2, headerFooter } = data;
 const resources = {
     ns1,
     ns2,
