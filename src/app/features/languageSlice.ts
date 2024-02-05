@@ -2,11 +2,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ILanguage } from '../../config';
 import i18n from '../../i18n/i18n';
 
-interface LanguageState {
+interface ILanguageState {
     currentLanguage: ILanguage;
 }
 
-const initialState: LanguageState = {
+const initialState: ILanguageState = {
     currentLanguage: i18n.language as ILanguage.English,
 };
 
