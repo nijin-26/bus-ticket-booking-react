@@ -1,3 +1,6 @@
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 import { useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { getCustomTheme, getMuiTheme, routesConfig } from './config';
@@ -21,17 +24,19 @@ function App() {
     const mode = useAppSelector((state) => state.theme.currentTheme);
 
     return (
-        <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
-            <CustomThemeProvider theme={getCustomTheme(mode)}>
-                <GlobalStyle />
-                <CssBaseline />
-                {loading ? (
-                    <div>loading</div>
-                ) : (
-                    <RouterProvider router={router} />
-                )}
-            </CustomThemeProvider>
-        </MuiThemeProvider>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
+                <CustomThemeProvider theme={getCustomTheme(mode)}>
+                    <GlobalStyle />
+                    <CssBaseline />
+                    {loading ? (
+                        <div>loading</div>
+                    ) : (
+                        <RouterProvider router={router} />
+                    )}
+                </CustomThemeProvider>
+            </MuiThemeProvider>
+        </LocalizationProvider>
     );
 }
 
