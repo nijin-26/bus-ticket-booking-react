@@ -10,19 +10,15 @@ background-color: ${theme.color.busLayoutBg};
 
 .driver-cabin{
     display: flex;
-    
+    border-right:0.3rem solid ${theme.color.bookedSeat};
+    margin-right: 4rem;
+    padding-right: 4rem;
+
     .steering {
     width: 4.5rem;
     height: 4.5rem;
 }
 
-.line {
-    height: 100%;
-    width: 0;
-    margin: 0 4rem;
-    border: 0.1rem solid ${theme.color.bookedSeat};
-    border-radius: 0.1rem;
-}
 }
 .seats-container{
     display:flex;
@@ -49,7 +45,7 @@ background-color: ${theme.color.busLayoutBg};
         cursor: pointer;
     }
 
-    .booked {
+    .unavailable {
         background-color: ${theme.color.bookedSeat};
         cursor: not-allowed;
     }
@@ -58,7 +54,7 @@ background-color: ${theme.color.busLayoutBg};
         background-color: ${theme.color.selectedSeat};
     }
 
-    .hide-seat {
+    .aisle {
         visibility: hidden;
     }
 }}

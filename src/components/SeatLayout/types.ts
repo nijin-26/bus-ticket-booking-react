@@ -1,4 +1,4 @@
-export interface IDeckLayout {
+export interface IBerthLayout {
     rows: number;
     columns: number;
     aisle: number;
@@ -10,8 +10,8 @@ export interface IDeckLayout {
 }
 
 export interface ILayout {
-    lowerDeck: IDeckLayout;
-    upperDeck?: IDeckLayout;
+    lowerBerth: IBerthLayout;
+    upperBerth?: IBerthLayout;
 }
 
 export interface ILayoutConfig {

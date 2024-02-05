@@ -1,5 +1,5 @@
 import { ISeat, ISeatStatus } from '../../api/types/trip';
-import { IDeckLayout, ILayoutConfig } from './types';
+import { IBerthLayout, ILayoutConfig } from './types';
 
 export const layoutNames = {
     volvo25: 'volvo25',
@@ -16,7 +16,7 @@ export const layoutNames = {
 // 0=> no seat
 export const layoutConfig: ILayoutConfig = {
     [layoutNames.volvo25]: {
-        lowerDeck: {
+        lowerBerth: {
             rows: 12,
             columns: 5,
             aisle: 3,
@@ -27,27 +27,27 @@ export const layoutConfig: ILayoutConfig = {
 };
 
 //This method uses the layout config and creates a pattern of seats: [[1,1,0,1,1],[1,1,0,1,1]....]
-export const deckLayoutProducer = (deckLayoutConfig: IDeckLayout) => {
-    const deckLayout: number[][] = [];
-    for (let i = 0; i < deckLayoutConfig.rows; i++) {
+export const berthLayoutProducer = (berthLayoutConfig: IBerthLayout) => {
+    const berthLayout: number[][] = [];
+    for (let i = 0; i < berthLayoutConfig.rows; i++) {
         if (
-            deckLayoutConfig.exceptionRows &&
-            Object.keys(deckLayoutConfig.exceptionRows).includes(String(i + 1))
+            berthLayoutConfig.exceptionRows &&
+            Object.keys(berthLayoutConfig.exceptionRows).includes(String(i + 1))
         ) {
-            deckLayout.push(deckLayoutConfig.exceptionRows[i + 1]);
+            berthLayout.push(berthLayoutConfig.exceptionRows[i + 1]);
         } else {
             const rowLayout = [];
-            for (let j = 0; j < deckLayoutConfig.columns; j++) {
-                if (j + 1 === deckLayoutConfig.aisle) {
+            for (let j = 0; j < berthLayoutConfig.columns; j++) {
+                if (j + 1 === berthLayoutConfig.aisle) {
                     rowLayout.push(0);
                 } else if (
-                    Object.keys(deckLayoutConfig.door).includes(String(i + 1))
+                    Object.keys(berthLayoutConfig.door).includes(String(i + 1))
                 ) {
                     if (
-                        (deckLayoutConfig.door[i + 1] === 'R' &&
-                            j + 1 < deckLayoutConfig.aisle) ||
-                        (deckLayoutConfig.door[i + 1] === 'L' &&
-                            j + 1 > deckLayoutConfig.aisle)
+                        (berthLayoutConfig.door[i + 1] === 'R' &&
+                            j + 1 < berthLayoutConfig.aisle) ||
+                        (berthLayoutConfig.door[i + 1] === 'L' &&
+                            j + 1 > berthLayoutConfig.aisle)
                     ) {
                         rowLayout.push(0);
                     } else {
@@ -57,10 +57,10 @@ export const deckLayoutProducer = (deckLayoutConfig: IDeckLayout) => {
                     rowLayout.push(1);
                 }
             }
-            deckLayout.push(rowLayout);
+            berthLayout.push(rowLayout);
         }
     }
-    return deckLayout;
+    return berthLayout;
 };
 
 //TODO: To be removed after API integration

@@ -1,35 +1,9 @@
-import { deckLayoutProducer, layoutConfig } from './seatConfig';
+import { berthLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
 import steeringWheel from '../../assets/tabler_steering-wheel.svg';
 import { ISeat, ISeatStatus } from '../../api/types/trip';
-import { Tooltip } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-
-// TODO: To be removed.
-// When calling the SeatLayout component, this state variable is to be declared
-// in the parent component and then passed as prop to the SeatLayout component.
-//
-// This state contains the seats selected by a user
-// const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
-
-// This function adds a seat to selectedSeat[] on clicking it
-// If seat is already selected then the function will unselect it
-// const updateSelectedSeats = (newSeat: number) => {
-//     if (selectedSeats.includes(newSeat)) {
-//         setSelectedSeats((prev) =>
-//             prev.filter((selectedSeat) => selectedSeat != newSeat)
-//         );
-//     } else setSelectedSeats((prev) => [...prev, newSeat]);
-// };
-//
-// This is how the seatLayout component is to be called when required.
-// <SeatLayout
-//     layoutName={layoutNames.volvo25}
-//     seats={seats}
-//     selectedSeats={selectedSeats}
-//     updateSelectedSeats={updateSelectedSeats}
-// />
+import Seat from './Seat';
 
 const SeatLayout = ({
     layoutName,
@@ -42,16 +16,17 @@ const SeatLayout = ({
     selectedSeats: number[];
     updateSelectedSeats: (seat: number) => void;
 }) => {
-    const [deck, setDeck] = useState<{
-        lowerDeck: number[][];
-    }>({ lowerDeck: [] });
-    const { t } = useTranslation('seatLayout');
+    const [berth, setBerth] = useState<{
+        lowerBerth: number[][];
+    }>({ lowerBerth: [] });
     let seatIndex = 0;
 
     useEffect(() => {
-        setDeck((prev) => ({
+        setBerth((prev) => ({
             ...prev,
-            lowerDeck: deckLayoutProducer(layoutConfig[layoutName].lowerDeck),
+            lowerBerth: berthLayoutProducer(
+                layoutConfig[layoutName].lowerBerth
+            ),
         }));
     }, [layoutName]);
 
@@ -63,10 +38,9 @@ const SeatLayout = ({
                     alt="steering icon"
                     className="steering"
                 />
-                <div className="line"></div>
             </div>
             <div className="seats-container">
-                {deck.lowerDeck.map((row: number[], rowIndex: number) => {
+                {berth.lowerBerth.map((row: number[], rowIndex: number) => {
                     return (
                         <ul className="seat-row" key={`seatRow${rowIndex}`}>
                             {row.map((seat: number, index: number) => {
@@ -78,57 +52,41 @@ const SeatLayout = ({
                                         selectedSeats.includes(
                                             currentSeat.seatNumber
                                         ) ? (
-                                            <Tooltip
-                                                title={`${
+                                            <Seat
+                                                seatNumber={
                                                     currentSeat.seatNumber
-                                                }: ${t('selected')}`}
-                                                arrow
-                                                key={`seat${rowIndex}_${index}`}
-                                            >
-                                                <li
-                                                    className={`seat selected`}
-                                                    onClick={() => {
-                                                        updateSelectedSeats(
-                                                            currentSeat.seatNumber
-                                                        );
-                                                    }}
-                                                ></li>
-                                            </Tooltip>
+                                                }
+                                                key={`seat${rowIndex}-${index}`}
+                                                updateSelectedSeats={
+                                                    updateSelectedSeats
+                                                }
+                                                seatStatus={'selected'}
+                                            />
                                         ) : (
-                                            <Tooltip
-                                                title={`${
+                                            <Seat
+                                                seatNumber={
                                                     currentSeat.seatNumber
-                                                }: ${t('available')}`}
-                                                arrow
-                                                key={`seat${rowIndex}_${index}`}
-                                            >
-                                                <li
-                                                    className={`seat`}
-                                                    onClick={() => {
-                                                        updateSelectedSeats(
-                                                            currentSeat.seatNumber
-                                                        );
-                                                    }}
-                                                ></li>
-                                            </Tooltip>
+                                                }
+                                                key={`seat${rowIndex}-${index}`}
+                                                updateSelectedSeats={
+                                                    updateSelectedSeats
+                                                }
+                                                seatStatus={'available'}
+                                            />
                                         )
                                     ) : (
-                                        <Tooltip
-                                            title={`${
-                                                currentSeat.seatNumber
-                                            }: ${t('unavailable')}`}
-                                            arrow
-                                            key={`seat${rowIndex}_${index}`}
-                                        >
-                                            <li className={`seat booked`}></li>
-                                        </Tooltip>
+                                        <Seat
+                                            seatNumber={currentSeat.seatNumber}
+                                            key={`seat${rowIndex}-${index}`}
+                                            seatStatus={'unavailable'}
+                                        />
                                     );
                                 } else {
                                     return (
-                                        <li
-                                            className="seat hide-seat"
-                                            key={`seat${rowIndex}_${index}`}
-                                        ></li>
+                                        <Seat
+                                            seatStatus={'aisle'}
+                                            key={`seat${rowIndex}-${index}`}
+                                        />
                                     );
                                 }
                             })}
