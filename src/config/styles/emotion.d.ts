@@ -22,6 +22,12 @@ declare module '@emotion/react' {
             textPrimary: string;
             textSecondary: string;
             background: string;
+            selectedSeat: string;
+            bookedSeat: string;
+            seat: string;
+            busLayoutBg: string;
+            red: string;
+            boxShadowPrimary: string;
         };
     }
 }
