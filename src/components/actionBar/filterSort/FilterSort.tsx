@@ -26,14 +26,14 @@ export default function FilterSort() {
     const { t } = useTranslation('filterSort');
 
     // anchor state
-    const [anchorElBus, setAnchorElBus] = useState<null | HTMLElement>(null);
-    const openBusTypeFilter = Boolean(anchorElBus);
+    const [busMenu, setBusMenu] = useState<null | HTMLElement>(null);
+    const openBusTypeFilter = Boolean(busMenu);
 
-    const [anchorElSeat, setAnchorElSeat] = useState<null | HTMLElement>(null);
-    const openSeatTypeFilter = Boolean(anchorElSeat);
+    const [seatMenu, setSeatMenu] = useState<null | HTMLElement>(null);
+    const openSeatTypeFilter = Boolean(seatMenu);
 
-    const [anchorElSort, setAnchorElSort] = useState<null | HTMLElement>(null);
-    const openSort = Boolean(anchorElSort);
+    const [sortMenu, setSortMenu] = useState<null | HTMLElement>(null);
+    const openSort = Boolean(sortMenu);
 
     // applied filter states
     const [busTypeFilter, setBusTypeFilter] = useState<string | null>(null);
@@ -42,21 +42,21 @@ export default function FilterSort() {
 
     // menu handlers
     const busTypeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorElBus(event.currentTarget);
+        setBusMenu(event.currentTarget);
     };
 
     const seatTypeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorElSeat(event.currentTarget);
+        setSeatMenu(event.currentTarget);
     };
 
     const sortTypeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorElSort(event.currentTarget);
+        setSortMenu(event.currentTarget);
     };
 
     const handleMenuClose = () => {
-        setAnchorElBus(null);
-        setAnchorElSeat(null);
-        setAnchorElSort(null);
+        setBusMenu(null);
+        setSeatMenu(null);
+        setSortMenu(null);
     };
 
     // selection handlers
@@ -170,7 +170,7 @@ export default function FilterSort() {
                 {/* Filters menu */}
                 <Menu
                     id="bus-type-menu"
-                    anchorEl={anchorElBus}
+                    anchorEl={busMenu}
                     open={openBusTypeFilter}
                     MenuListProps={{ 'aria-labelledby': 'bus-type-button' }}
                     onClose={handleMenuClose}
@@ -208,7 +208,7 @@ export default function FilterSort() {
                 </Menu>
                 <Menu
                     id="seat-type-menu"
-                    anchorEl={anchorElSeat}
+                    anchorEl={seatMenu}
                     open={openSeatTypeFilter}
                     MenuListProps={{ 'aria-labelledby': 'seat-type-button' }}
                     onClose={handleMenuClose}
@@ -248,7 +248,7 @@ export default function FilterSort() {
                 {/* Sort menu */}
                 <Menu
                     id="sort-menu"
-                    anchorEl={anchorElSort}
+                    anchorEl={sortMenu}
                     open={openSort}
                     MenuListProps={{ 'aria-labelledby': 'sort-button' }}
                     onClose={handleMenuClose}
