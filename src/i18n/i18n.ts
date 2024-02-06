@@ -8,12 +8,14 @@ const {
     ns2: enNs2,
     headerFooter: enHeaderFooter,
     seatLayout: enSeatLayout,
+    passengerDetails: enPassengerDetails,
 } = en;
 const {
     ns1: esNs1,
     ns2: esNs2,
     headerFooter: esHeaderFooter,
     seatLayout: esSeatLayout,
+    passengerDetails: esPassengerDetails,
 } = es;
 
 export const defaultNS = 'ns1';
@@ -26,18 +28,20 @@ void i18n.use(initReactI18next).init({
             ns2: enNs2,
             headerFooter: enHeaderFooter,
             seatLayout: enSeatLayout,
+            passengerDetails: enPassengerDetails,
         },
         es: {
             ns1: esNs1,
             ns2: esNs2,
             headerFooter: esHeaderFooter,
             seatLayout: esSeatLayout,
+            passengerDetails: esPassengerDetails,
         },
     },
     lng: 'en',
     fallbackLng: 'en',
     defaultNS,
-    ns: ['ns1', 'ns2', 'headerFooter', 'seatLayout'],
+    ns: ['ns1', 'ns2', 'headerFooter', 'seatLayout', 'passengerDetails'],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.
     },

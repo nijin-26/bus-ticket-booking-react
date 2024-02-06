@@ -13,5 +13,34 @@
         "available": "Disponible",
         "unavailable": "Indisponible",
         "selected": "Seleccionado"
+    },
+    "passengerDetails": {
+        "passengerDetailsFormHeading": "Detalles del Pasajero",
+        "passenger": "Pasajero",
+        "seat": "Asiento",
+        "fullName": "Nombre Completo",
+        "age": "Edad",
+        "gender": "Género",
+        "genderValues": [
+            {
+                "value": "male",
+                "label": "Hombre"
+            },
+            {
+                "value": "female",
+                "label": "Mujer"
+            },
+            {
+                "value": "other",
+                "label": "Otro"
+            }
+        ],
+        "checkout": "Pagar",
+        "fullNameRequired": "El Nombre Completo es un campo requerido",
+        "ageRequired": "La Edad es un campo requerido",
+        "genderRequired": "El Género es un campo requerido",
+        "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
+        "AgeNumberCheck": "La Edad debe ser un número",
+        "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
     }
 }

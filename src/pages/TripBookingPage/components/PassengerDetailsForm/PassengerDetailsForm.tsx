@@ -3,22 +3,10 @@ import TicketTotalFare from '../TicketTotalFare';
 import { Box, Button, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
+import { useTranslation } from 'react-i18next';
 
 const PassengerDetailsForm = () => {
-    const genders = [
-        {
-            value: 'male',
-            label: 'Male',
-        },
-        {
-            value: 'female',
-            label: 'Female',
-        },
-        {
-            value: 'other',
-            label: 'Other',
-        },
-    ];
+    const { t } = useTranslation('passengerDetails');
 
     const generateInitialValues = () => {
         const selectedSeatCount = 2;
@@ -37,7 +25,7 @@ const PassengerDetailsForm = () => {
             initialValues={{
                 passengers: generateInitialValues(),
             }}
-            validationSchema={getValidationSchema}
+            validationSchema={getValidationSchema(t)}
             validateOnChange={false}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(false);
@@ -47,7 +35,7 @@ const PassengerDetailsForm = () => {
             {({ values }) => (
                 <Form autoComplete="off" noValidate>
                     <Typography component="h3" variant="h5" mb={2} mt={4}>
-                        Passenger Details
+                        {t('passengerDetailsFormHeading')}
                     </Typography>
                     <FieldArray name="passengers">
                         {() =>
@@ -65,7 +53,9 @@ const PassengerDetailsForm = () => {
                                         variant="h6"
                                         mb={2}
                                     >
-                                        {`Passenger ${index + 1} | seat ${
+                                        {`${t('passenger')} ${index + 1} | ${t(
+                                            'seat'
+                                        )} ${
                                             values.passengers[index].seatNumber
                                         }`}
                                     </Typography>
@@ -77,7 +67,7 @@ const PassengerDetailsForm = () => {
                                                 component={TextField}
                                                 name={`passengers.${index}.fullName`}
                                                 id={`passengers.${index}.fullName`}
-                                                label="Full Name"
+                                                label={t('fullName')}
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
@@ -87,7 +77,7 @@ const PassengerDetailsForm = () => {
                                                 component={TextField}
                                                 id={'age'}
                                                 name={`passengers.${index}.age`}
-                                                label="Age"
+                                                label={t('age')}
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
@@ -100,10 +90,12 @@ const PassengerDetailsForm = () => {
                                                 }}
                                                 name={`passengers.${index}.gender`}
                                                 id={`passengers.${index}.gender`}
-                                                label="Gender"
+                                                label={t('gender')}
                                                 labelId={`passengers.${index}.gender-simple`}
                                             >
-                                                {genders.map((option) => (
+                                                {t('genderValues', {
+                                                    returnObjects: true,
+                                                }).map((option) => (
                                                     <MenuItem
                                                         key={option.value}
                                                         value={option.value}
@@ -128,7 +120,7 @@ const PassengerDetailsForm = () => {
                         </Grid>
                         <Grid item xs={12} sm={3} ml="auto">
                             <Button variant="contained" type="submit" fullWidth>
-                                Checkout
+                                {t('checkout')}
                             </Button>
                         </Grid>
                     </Grid>
