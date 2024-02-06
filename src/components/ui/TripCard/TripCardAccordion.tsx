@@ -2,52 +2,97 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import longArrow from '../../../assets/Long_arrow.svg';
 import acIcon from '../../../assets/AcIcon.svg';
 import nonAcIcon from '../../../assets/NonAcIcon.svg';
 import seatIcon from '../../../assets/SeatIcon.svg';
 import sleeperIcon from '../../../assets/SleeperIcon.svg';
 import Stack from '@mui/material/Stack';
-import { TripAccordionStyled } from './TripCard.styled';
-
+import { format, formatDuration, intervalToDuration } from 'date-fns';
+import LongArrow from '../../icons/LongArrow';
+import Tooltip from '@mui/material/Tooltip';
+import { TripAccordionWrapper } from './TripCard.styled';
 interface ITripCardAccordion {
-    busType: string;
+    id: string;
+    origin: string;
+    destination: string;
+    departureTimestamp: string;
+    arrivalTimestamp: string;
     seatType: string;
+    busType: string;
+    farePerSeat: number;
+    availableSeats: number;
+    totalSeats: number;
 }
-export const TripCardAccordion = ({
-    busType,
-    seatType,
-}: ITripCardAccordion) => {
+let borderDesignClass: string;
+
+export const TripCardAccordion = ({ data }: { data: ITripCardAccordion }) => {
+    if (data.availableSeats >= 20) {
+        borderDesignClass = 'more-seats';
+    } else if (data.availableSeats > 0) {
+        borderDesignClass = 'less-seats';
+    } else {
+        borderDesignClass = 'no-seats';
+    }
+
+    const departureDate = new Date(data.departureTimestamp);
+    const arrivalDate = new Date(data.arrivalTimestamp);
+    const duration = intervalToDuration({
+        start: departureDate,
+        end: arrivalDate,
+    });
+    const formattedDuration = formatDuration(duration, {
+        format: ['days', 'hours', 'minutes'],
+    });
+
     return (
-        <TripAccordionStyled className="summary">
+        <TripAccordionWrapper className={`summary ${borderDesignClass}`}>
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
                 id="panel-header"
+                disabled={data.availableSeats == 0}
             >
                 <Stack direction={'row'} spacing={12} className="details">
                     <Stack className="trip-card-icons">
                         <img
-                            src={busType == 'AC' ? acIcon : nonAcIcon}
+                            src={data.busType == 'AC' ? acIcon : nonAcIcon}
                             alt="Bus Type Icon"
                         />
                         <img
-                            src={seatType == 'SLEEPER' ? sleeperIcon : seatIcon}
+                            src={
+                                data.seatType == 'SLEEPER'
+                                    ? sleeperIcon
+                                    : seatIcon
+                            }
                             alt="Seat Type Icon"
                         />
                     </Stack>
-                    <Stack direction={'row'} spacing={4}>
+                    <Stack
+                        direction={'row'}
+                        spacing={4}
+                        className="date-time-parent"
+                    >
                         <Stack className="date-time">
-                            <p>5.00 AM</p> <p className="date">20 Jan</p>
+                            <p>{format(data.departureTimestamp, 'p')}</p>
+                            <p className="date">
+                                {format(data.departureTimestamp, 'do LLL')}
+                            </p>
                         </Stack>
-                        <img src={longArrow} alt="long-arrow" />
+                        <LongArrow />
                         <Stack className="date-time">
-                            <p>18.40 PM</p> <p className="date">23 Jan</p>
+                            <p>{format(data.arrivalTimestamp, 'p')}</p>
+                            <p className="date">
+                                {format(data.arrivalTimestamp, 'do LLL')}
+                            </p>
                         </Stack>
                     </Stack>
-                    <p>3 days, 13 hours</p>
-                    <p>36 seats available</p>
-                    <p>Rs. 1300/-</p>
+                    <Tooltip title={formattedDuration} arrow>
+                        <p className="duration">{formattedDuration}</p>
+                    </Tooltip>
+                    <p className={`seats ${borderDesignClass}`}>
+                        {data.availableSeats} seats available
+                    </p>
+                    <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
             <AccordionDetails>
@@ -57,6 +102,6 @@ export const TripCardAccordion = ({
                     lobortis eget.
                 </Typography>
             </AccordionDetails>
-        </TripAccordionStyled>
+        </TripAccordionWrapper>
     );
 };

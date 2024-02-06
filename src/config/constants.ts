@@ -12,6 +12,7 @@ export const colors = {
     black: '#202124',
     red: '#D84E55',
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
+    green: '#56A55C',
 };
 
 export const LANGUAGES = [
