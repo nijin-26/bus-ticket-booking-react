@@ -1,12 +1,13 @@
 import { TripCardAccordion } from '../../components';
+import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 
 export const TripsListingPage = () => {
     return (
         <TripsListingPageWrapper>
-            <h1>TripsListingPage</h1>
+            <ActionBarTab showFilterSort />
             <TripCardAccordion busType="AC" seatType="SLEEPER" />
-            <TripCardAccordion busType="NON_AC" seatType="SEATER"/>
+            <TripCardAccordion busType="NON_AC" seatType="SEATER" />
         </TripsListingPageWrapper>
     );
 };
