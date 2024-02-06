@@ -17,7 +17,7 @@ const getValidationSchema = () =>
                         (value) => {
                             if (!value) return false;
                             const age = parseInt(value);
-                            return age >= 1 && age <= 120;
+                            return age >= 1 && age <= 130;
                         }
                     ),
                 gender: Yup.string().required('Gender is a required field'),

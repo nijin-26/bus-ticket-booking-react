@@ -21,8 +21,8 @@ const PassengerDetailsForm = () => {
     ];
 
     const generateInitialValues = () => {
-        const selectedSeatCount = 3;
-        const seatNumber = [12, 22, 34];
+        const selectedSeatCount = 2;
+        const seatNumber = [12, 22];
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -78,7 +78,6 @@ const PassengerDetailsForm = () => {
                                                 name={`passengers.${index}.fullName`}
                                                 id={`passengers.${index}.fullName`}
                                                 label="Full Name"
-                                                helperText="hello"
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
