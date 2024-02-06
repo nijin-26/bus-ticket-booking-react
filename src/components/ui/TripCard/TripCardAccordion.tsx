@@ -36,6 +36,11 @@ export const TripCardAccordion = ({ data }: { data: ITripCardAccordion }) => {
 
     const departureDate = new Date(data.departureTimestamp);
     const arrivalDate = new Date(data.arrivalTimestamp);
+    const formattedDepartureTime = format(departureDate, 'p');
+    const formattedDepartureDate = format(departureDate, 'do LLL');
+    const formattedArrivalTime = format(arrivalDate, 'p');
+    const formattedArrivalDate = format(arrivalDate, 'do LLL');
+
     const duration = intervalToDuration({
         start: departureDate,
         end: arrivalDate,
@@ -73,16 +78,16 @@ export const TripCardAccordion = ({ data }: { data: ITripCardAccordion }) => {
                         className="date-time-parent"
                     >
                         <Stack className="date-time">
-                            <p>{format(data.departureTimestamp, 'p')}</p>
+                            <p>{formattedDepartureTime}</p>
                             <p className="date">
-                                {format(data.departureTimestamp, 'do LLL')}
+                                {formattedDepartureDate}
                             </p>
                         </Stack>
                         <LongArrow />
                         <Stack className="date-time">
-                            <p>{format(data.arrivalTimestamp, 'p')}</p>
+                            <p>{formattedArrivalTime}</p>
                             <p className="date">
-                                {format(data.arrivalTimestamp, 'do LLL')}
+                                {formattedArrivalDate}
                             </p>
                         </Stack>
                     </Stack>
