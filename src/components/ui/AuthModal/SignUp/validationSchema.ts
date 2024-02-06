@@ -17,8 +17,8 @@ const getValidationSchema = (t: TFunction<'auth'>) =>
             .required(t('phoneRequired')),
 
         password: Yup.string()
-            .min(6, t('invalidPhone'))
-            .required(t('phoneRequired')),
+            .min(6, t('passwordValidationMsg'))
+            .required(t('passwordRequired')),
 
         confirmPassword: Yup.string()
             .oneOf([Yup.ref('password'), ''], t('passwordMatch'))

@@ -18,9 +18,7 @@ const initialValues = {
 const SignUp = ({ closeModal }: TSignUpProps) => {
     const { t } = useTranslation('auth');
 
-    const handleSubmit = () => {
-        console.log('Sign up submit');
-    };
+    const handleSubmit = () => {};
 
     return (
         <Formik
