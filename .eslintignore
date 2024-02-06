@@ -1,0 +1,18 @@
+# .eslintignore
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore build and output directories
+build/
+dist/
+
+# Ignore generated files
+*.js
+*.js.map
+*.d.ts
+
+# Ignore configuration files
+.eslint*
+tsconfig*
+babel.config.js
