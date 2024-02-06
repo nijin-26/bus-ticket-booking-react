@@ -48,7 +48,7 @@ export const Footer = () => {
     };
     return (
         <>
-            <AppBar position="static" color="primary">
+            <AppBar component={'footer'} position="static" color="primary">
                 <StyledToolBar>
                     <Typography variant="caption" color="inherit">
                         {t('copyRight')}
