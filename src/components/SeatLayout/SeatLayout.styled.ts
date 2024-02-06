@@ -1,52 +1,40 @@
 import styled from '@emotion/styled';
+const seatLayoutWrapper = styled('div')(({ theme }) => ({
+    display: 'flex',
+    padding: '2rem 4rem 2rem 2rem',
+    borderRadius: '2rem',
+    backgroundColor: theme.color.busLayoutBg,
+    width: '100%',
+    height: '100%',
+    overflow: 'scroll',
 
-const SeatLayoutWrapper = styled('div')(
-    ({ theme }) => `
+    '.driver-cabin': {
+        display: 'flex',
+        borderRight: `0.3rem solid ${theme.color.bookedSeat}`,
+        marginRight: '4rem',
+        paddingRight: '4rem',
 
-display: flex;
-padding: 2rem 4rem 2rem 2rem;
-border-radius: 2rem;
-background-color: ${theme.color.busLayoutBg};
-position: relative;
-width: 100%;
-height: 100%;
+        '.steering': {
+            width: '4.5rem',
+            height: '4.5rem',
+        },
+    },
 
-.reset-icon{
-    position: absolute ;
-    top: -20px;
-    right: 0;
-    color: ${theme.color.textPrimary};
-}
+    '.seats-container': {
+        display: 'flex',
+        flexGrow: 1,
+        gap: '1rem',
+        justifyContent: 'space-between',
 
-.driver-cabin{
-    display: flex;
-    border-right:0.3rem solid ${theme.color.bookedSeat};
-    margin-right: 4rem;
-    padding-right: 4rem;
-
-    .steering {
-    width: 4.5rem;
-    height: 4.5rem;
-}
-
-}
-.seats-container{
-    display:flex;
-    flex-grow: 1;
-    gap: 1rem;
-    justify-content: space-between;
-    
-    .seat-row {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 1rem;
-    justify-content: space-between;
-
-}}
-`
-);
-
-export default SeatLayoutWrapper;
+        '.seat-row': {
+            display: 'flex',
+            flexDirection: 'column',
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
+            gap: '1rem',
+            justifyContent: 'space-between',
+        },
+    },
+}));
+export default seatLayoutWrapper;

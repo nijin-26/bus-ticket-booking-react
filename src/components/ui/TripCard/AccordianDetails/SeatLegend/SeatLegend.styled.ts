@@ -7,16 +7,15 @@ const SeatLegendWrapper = styled('ul')(({ theme }) => ({
     flexDirection: 'row',
 
     li: {
-        '> ul': {
+        ul: {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             listStyle: 'none',
-            // marginLeft: '20px',
         },
     },
     'li:first-of-type': {
-        '> ul': {
+        ul: {
             padding: 0,
         },
     },

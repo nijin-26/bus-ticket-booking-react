@@ -2,26 +2,19 @@ import { berthLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
 import steeringWheel from '../../assets/tabler_steering-wheel.svg';
 import { ISeat, ISeatStatus } from '../../api/types/trip';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import Seat from './Seat';
-import RestartAltRoundedIcon from '@mui/icons-material/RestartAltRounded';
-import { IconButton, Tooltip } from '@mui/material';
 
 const SeatLayout = ({
     layoutName,
     seats,
     selectedSeats,
     updateSelectedSeats,
-    seatSelectionObj,
 }: {
     layoutName: string;
     seats: ISeat[];
     selectedSeats: number[];
     updateSelectedSeats: (seat: number) => void;
-    seatSelectionObj: {
-        selectedSeats: number[];
-        setSelectedSeats: Dispatch<SetStateAction<number[]>>;
-    };
 }) => {
     const [berth, setBerth] = useState<{
         lowerBerth: number[][];
@@ -37,19 +30,8 @@ const SeatLayout = ({
         }));
     }, [layoutName]);
 
-    const resetSeats = () => {
-        seatSelectionObj.setSelectedSeats(() => []);
-    };
-
     return (
         <SeatLayoutWrapper>
-            {selectedSeats.length > 0 && (
-                <Tooltip title="Reset your selection" arrow>
-                    <IconButton className="reset-icon" onClick={resetSeats}>
-                        <RestartAltRoundedIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
             <div className="driver-cabin">
                 <img
                     src={steeringWheel}
