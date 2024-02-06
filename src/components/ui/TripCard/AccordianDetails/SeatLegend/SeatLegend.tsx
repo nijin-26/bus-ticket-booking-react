@@ -1,74 +1,33 @@
-import {  Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import Seat from '../../../../SeatLayout/Seat';
+import SeatLegendWrapper from './SeatLegend.styled';
 
 export const SeatLegend = () => {
     return (
-        <ul
-            style={{
-                listStyle: 'none',
-                padding: 0,
-                display: 'flex',
-                flexDirection: 'row',
-            }}
-        >
+        <SeatLegendWrapper>
             <li>
-                <ul
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        listStyle: 'none',
-                    }}
-                >
+                <ul>
+                    <Seat seatStatus="available" />
                     <li>
-                        <Seat seatStatus="available" />
-                    </li>
-                    <li>
-                        <Typography
-                            variant="body2"
-                            className="title"
-                            style={{ marginLeft: '15px' }}
-                        >
+                        <Typography variant="body2" className="title">
                             Available
                         </Typography>
                     </li>
                 </ul>
             </li>
             <li>
-                <ul
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        listStyle: 'none',
-                    }}
-                >
+                <ul>
+                    <Seat seatStatus="unavailable" />
                     <li>
-                        <Seat seatStatus="unavailable" />
-                    </li>
-                    <li>
-                        <Typography
-                            variant="body2"
-                            className="title"
-                            style={{ marginLeft: '15px' }}
-                        >
+                        <Typography variant="body2" className="title">
                             Unavailable
                         </Typography>
                     </li>
                 </ul>
             </li>
             <li>
-                <ul
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        listStyle: 'none',
-                    }}
-                >
-                    <li>
-                        <Seat seatStatus="selected" />
-                    </li>
+                <ul>
+                    <Seat seatStatus="selected" />
                     <li>
                         <Typography
                             variant="body2"
@@ -80,6 +39,6 @@ export const SeatLegend = () => {
                     </li>
                 </ul>
             </li>
-        </ul>
+        </SeatLegendWrapper>
     );
 };

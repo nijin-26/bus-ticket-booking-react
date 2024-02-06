@@ -15,7 +15,7 @@ export const DetailsItem = ({
 }: IDetailsItemProps) => {
     return (
         <DetailsItemWrapper direction={'row'} justifyContent={'space-between'}>
-            <Stack direction={'row'} spacing={1} alignItems={'flex-end'}>
+            <Stack direction={'row'} spacing={1}>
                 <img src={imageSrc} alt={imageAlt} />
                 {title && (
                     <Typography variant="body2" className="title">
@@ -23,7 +23,11 @@ export const DetailsItem = ({
                     </Typography>
                 )}
             </Stack>
-            {value && <Typography variant="body2">{value}</Typography>}
+            {value && (
+                <Typography variant="body2" className="value">
+                    {value}
+                </Typography>
+            )}
         </DetailsItemWrapper>
     );
 };
