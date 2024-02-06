@@ -6,6 +6,7 @@ import bus from '../../../../../assets/accordianDetails/Bus.svg';
 import stopwatch from '../../../../../assets/accordianDetails/Stopwatch.svg';
 
 export const DetailsGrid = () => {
+
     return (
         <Box sx={{ width: '100%' }}>
             <Grid

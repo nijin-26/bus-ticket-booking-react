@@ -6,6 +6,7 @@ import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
 import { SeatLegend } from './SeatLegend/SeatLegend';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { Checkout } from './Checkout/Checkout';
+import { useTranslation } from 'react-i18next';
 
 export const TripCardDetails = () => {
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
@@ -19,6 +20,7 @@ export const TripCardDetails = () => {
     };
     const seatSelectionObj = { selectedSeats, setSelectedSeats };
 
+    const { t } = useTranslation('tripDetails');
     return (
         <AccordionDetails>
             <Stack direction={'column'} p={3} pt={0} spacing={4}>
@@ -27,11 +29,11 @@ export const TripCardDetails = () => {
                         direction={'row'}
                         justifyContent={'space-between'}
                         alignItems={'center'}
+                        spacing={3}
                     >
                         <SeatLegend />
                         <StyledAlert variant="filled" severity="info">
-                            Click the close icon to see the Collapse transition
-                            in action!
+                            {t('info')}
                         </StyledAlert>
                     </Stack>
                     <SeatLayout
@@ -39,7 +41,7 @@ export const TripCardDetails = () => {
                         seats={seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
-                        seatSelectionObj ={seatSelectionObj}
+                        seatSelectionObj={seatSelectionObj}
                     />
                     <Checkout
                         noOfSeats={selectedSeats.length}

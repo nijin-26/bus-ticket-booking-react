@@ -13,5 +13,11 @@
         "available": "Available",
         "unavailable": "Unavailable",
         "selected": "Selected"
+    },
+    "tripDetails": {
+        "info": "Click on an available seat to proceed with your transaction.",
+        "checkoutTitle": "Total Amount",
+        "checkoutSubtitle": " All taxes will be calculated at checkout "
+
     }
 }

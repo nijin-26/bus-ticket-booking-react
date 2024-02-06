@@ -1,8 +1,10 @@
 import { Typography } from '@mui/material';
 import Seat from '../../../../SeatLayout/Seat';
 import SeatLegendWrapper from './SeatLegend.styled';
+import { useTranslation } from 'react-i18next';
 
 export const SeatLegend = () => {
+    const { t } = useTranslation('seatLayout');
     return (
         <SeatLegendWrapper>
             <li>
@@ -10,7 +12,7 @@ export const SeatLegend = () => {
                     <Seat seatStatus="available" />
                     <li>
                         <Typography variant="body2" className="title">
-                            Available
+                            {t('available')}
                         </Typography>
                     </li>
                 </ul>
@@ -20,7 +22,7 @@ export const SeatLegend = () => {
                     <Seat seatStatus="unavailable" />
                     <li>
                         <Typography variant="body2" className="title">
-                            Unavailable
+                            {t('unavailable')}
                         </Typography>
                     </li>
                 </ul>
@@ -34,7 +36,7 @@ export const SeatLegend = () => {
                             className="title"
                             style={{ marginLeft: '15px' }}
                         >
-                            Selected
+                            {t('selected')}
                         </Typography>
                     </li>
                 </ul>

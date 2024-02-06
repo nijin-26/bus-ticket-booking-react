@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 import { CheckoutWrapper } from './Checkout.styled';
 import { StyledButton } from '../../../../Button/Button.styled';
+import { useTranslation } from 'react-i18next';
 
 interface ICheckoutProps {
     noOfSeats: number;
@@ -10,9 +11,10 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
     const totalFare = noOfSeats * farePerSeat;
     const totalFareInString = `${noOfSeats} seat${noOfSeats > 1 ? 's' : ''} * ₹${farePerSeat} = ₹${totalFare}`;
 
+    const { t } = useTranslation('tripDetails');
+
     return (
         <CheckoutWrapper
-            $noOfSeats={noOfSeats}
             direction={'row'}
             justifyContent={'space-between'}
             alignItems={'center'}
@@ -22,10 +24,10 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
             {noOfSeats > 0 && farePerSeat > 0 && (
                 <Stack direction={'row'} spacing={1} className="totalAmt">
                     <Typography variant="body2" className="title">
-                        Total Amount
+                        {t('checkoutTitle')}
                     </Typography>
                     <Typography variant="body2">
-                        ( All taxes will be calculated at checkout ) :
+                        ({t('checkoutSubtitle')}) :
                     </Typography>
 
                     <Typography variant="body2" className="value">
