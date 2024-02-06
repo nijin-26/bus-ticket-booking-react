@@ -1,4 +1,4 @@
-import { AccordionDetails, IconButton, Stack } from '@mui/material';
+import { AccordionDetails, IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './DetailsGrid/DetailsGrid';
 import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
@@ -7,7 +7,7 @@ import { SeatLegend } from './SeatLegend/SeatLegend';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { Checkout } from './Checkout/Checkout';
 import { useTranslation } from 'react-i18next';
-import CloseIcon from '@mui/icons-material/Close';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export const TripCardDetails = () => {
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
@@ -43,16 +43,18 @@ export const TripCardDetails = () => {
                         ) : (
                             <StyledAlert
                                 action={
-                                    <IconButton
-                                        aria-label="close"
-                                        color="inherit"
-                                        size="small"
-                                        onClick={() => {
-                                            clearSelectedSeats();
-                                        }}
-                                    >
-                                        <CloseIcon fontSize="inherit" />
-                                    </IconButton>
+                                    <Tooltip title="Delete selection" arrow>
+                                        <IconButton
+                                            aria-label="delete"
+                                            color="inherit"
+                                            size="small"
+                                            onClick={() => {
+                                                clearSelectedSeats();
+                                            }}
+                                        >
+                                            <DeleteForeverIcon fontSize="inherit" />
+                                        </IconButton>
+                                    </Tooltip>
                                 }
                                 sx={{ mb: 2 }}
                             >
