@@ -1,9 +1,34 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { BookingsTableWrapper } from './BookingsTable.styled';
-import { ITicket } from '../../../../interfaces/ticket';
+import { IBooking } from '../../../../api/types/bookings';
 
-export const BookingsTable = ({ bookings }: { bookings: ITicket[] }) => {
-    const columns = [{ field: 'pnrNumber', headerName: 'PNR Number', flex: 1 }];
+export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
+
+    interface GridValueGetterParams {
+        row: IBooking;
+    }
+    
+    const columns = [
+        { field: 'pnrNumber', headerName: 'PNR Number', flex: 1 },
+        {
+            field: 'username',
+            headerName: 'User Name',
+            flex: 1,
+            valueGetter: (params: GridValueGetterParams): string => {
+
+                    const firstPersonName =
+                        params.row.seats[0].passenger.fullName || '';
+                    return firstPersonName.toString();
+            },
+        },
+        { field: 'origin', headerName: 'Origin', flex: 1 },
+        { field: 'destination', headerName: 'Destination', flex: 1 },
+        { field: 'departureTimestamp', headerName: 'Departure Time', flex: 1 },
+        { field: 'arrivalTimestamp', headerName: 'Arrival Time', flex: 1 },
+        { field: 'busType', headerName: 'Bus Type', flex: 1 },
+        { field: 'seatType', headerName: 'Seat Type', flex: 1 },
+        { field: 'farePerSeat', headerName: 'Fare Per Seat', flex: 1 },
+    ];
     return (
         <BookingsTableWrapper>
             <DataGrid
