@@ -1,37 +1,138 @@
-import { DataGrid } from '@mui/x-data-grid';
+import {
+    DataGrid,
+    GridToolbarContainer,
+    GridToolbarExport,
+    useGridApiContext,
+    useGridSelector,
+    gridPageCountSelector,
+    gridPageSelector,
+} from '@mui/x-data-grid';
 import { BookingsTableWrapper } from './BookingsTable.styled';
 import { IBooking } from '../../../../api/types/bookings';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
+
+const CustomToolbar = () => {
+    return (
+        <GridToolbarContainer
+            sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+            }}
+        >
+            <GridToolbarExport />
+        </GridToolbarContainer>
+    );
+};
+
+function CustomPagination() {
+    const apiRef = useGridApiContext();
+    const page = useGridSelector(apiRef, gridPageSelector);
+    const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+    return (
+        <div
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '16px',
+                width: '100%',
+            }}
+        >
+            {/* Total rows text */}
+            <div>
+                {pageCount} result{pageCount > 1 ? 's' : ''}
+            </div>
+
+            {/* Pagination */}
+            <Pagination
+                color="primary"
+                variant="outlined"
+                shape="rounded"
+                page={page + 1}
+                count={pageCount}
+                renderItem={(props) => <PaginationItem {...props} />}
+                onChange={(event, value) => {
+                    apiRef.current.setPage(value - 1);
+                }}
+            />
+        </div>
+    );
+}
 
 export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
-
     interface GridValueGetterParams {
         row: IBooking;
     }
-    
+
     const columns = [
-        { field: 'pnrNumber', headerName: 'PNR Number', flex: 1 },
+        {
+            field: 'pnrNumber',
+            headerName: 'PNR Number',
+            headerClassName: 'custom-header',
+            flex: 1,
+            sortable: false,
+
+            renderCell: (params: GridValueGetterParams): JSX.Element => {
+                const pnrNumber = params.row.pnrNumber || '';
+                return (
+                    <a
+                        href="#"
+                        style={{ textDecoration: 'none', color: '#0000EE' }}
+                    >
+                        {pnrNumber}
+                    </a>
+                );
+            },
+        },
         {
             field: 'username',
             headerName: 'User Name',
+            headerClassName: 'custom-header',
             flex: 1,
             valueGetter: (params: GridValueGetterParams): string => {
-
-                    const firstPersonName =
-                        params.row.seats[0].passenger.fullName || '';
-                    return firstPersonName.toString();
+                const firstPersonName =
+                    params.row.seats[0].passenger.fullName || '';
+                return firstPersonName.toString();
             },
         },
-        { field: 'origin', headerName: 'Origin', flex: 1 },
-        { field: 'destination', headerName: 'Destination', flex: 1 },
-        { field: 'departureTimestamp', headerName: 'Departure Time', flex: 1 },
-        { field: 'arrivalTimestamp', headerName: 'Arrival Time', flex: 1 },
-        { field: 'busType', headerName: 'Bus Type', flex: 1 },
-        { field: 'seatType', headerName: 'Seat Type', flex: 1 },
-        { field: 'farePerSeat', headerName: 'Fare Per Seat', flex: 1 },
+        {
+            field: 'origin',
+            headerName: 'Origin',
+            headerClassName: 'custom-header',
+            flex: 1,
+            sortable: false,
+        },
+        {
+            field: 'destination',
+            headerName: 'Destination',
+            headerClassName: 'custom-header',
+            flex: 1,
+            sortable: false,
+        },
+        {
+            field: 'busType',
+            headerName: 'Bus Type',
+            headerClassName: 'custom-header',
+            flex: 1,
+            sortable: false,
+        },
+        {
+            field: 'seatType',
+            headerName: 'Seat Type',
+            headerClassName: 'custom-header',
+            flex: 1,
+            sortable: false,
+        },
     ];
     return (
         <BookingsTableWrapper>
             <DataGrid
+                sx={{
+                    borderRadius: 2,
+                    boxShadow: 3,
+                }}
                 rows={bookings}
                 getRowId={(row) => row.pnrNumber}
                 columns={columns}
@@ -46,6 +147,10 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
                 }}
                 pagination
                 disableRowSelectionOnClick
+                disableColumnFilter
+                disableColumnSelector
+                disableColumnMenu
+                slots={{ toolbar: CustomToolbar, pagination: CustomPagination }}
             />
         </BookingsTableWrapper>
     );

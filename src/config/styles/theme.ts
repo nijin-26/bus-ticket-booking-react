@@ -28,6 +28,7 @@ const lightTheme = {
     busLayoutBg: colors.busLayoutBg,
     red: colors.red,
     boxShadowPrimary: colors.boxShadowPrimary,
+    grey500: colors.grey500
 };
 
 const darkTheme = {
@@ -42,6 +43,7 @@ const darkTheme = {
     busLayoutBg: colors.darkBusLayoutBg,
     red: colors.red,
     boxShadowPrimary: colors.boxShadowPrimary,
+    grey500: colors.grey500
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
