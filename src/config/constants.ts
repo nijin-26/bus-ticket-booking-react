@@ -35,6 +35,13 @@ export const locationOptions: ILocationOptions[] = [
     { id: 5, label: 'Lucknow' },
 ];
 
+export const filterValues = {
+    ac: 'AC',
+    nonAc: 'Non-AC',
+    seater: 'Seater',
+    sleeper: 'Sleeper',
+};
+
 export const LANGUAGES: Language[] = [
     { label: 'English', code: LanguageCode.English },
     { label: 'Spanish', code: LanguageCode.Spanish },

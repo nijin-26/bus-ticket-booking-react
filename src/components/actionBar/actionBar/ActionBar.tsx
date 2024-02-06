@@ -6,12 +6,12 @@ import {
     IconButton,
 } from '@mui/material';
 import {
-    PanoramaFishEyeSharp,
     FmdGood,
     Today,
     People,
     Search,
     SwapHoriz,
+    TripOrigin,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
@@ -19,6 +19,7 @@ import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { locationOptions } from '../../../config';
+import { useTranslation } from 'react-i18next';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -33,6 +34,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const [stopLocation, setStopLocation] = useState<
         ILocationOptions | undefined
     >(undefined);
+
+    const { t } = useTranslation('actionBar');
 
     // setting start location
     const handleStartSelect = (
@@ -63,7 +66,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
     return (
         <Wrapper>
             <Stack spacing={5} direction="row">
-                <Stack spacing={1} width="1000px" direction="row">
+                <Stack spacing={0} width="1000px" direction="row">
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -73,13 +76,13 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         renderInput={(params) => (
                             <TextField
                                 {...params}
-                                label="From"
+                                label={t('from')}
                                 InputProps={{
                                     ...params.InputProps,
                                     startAdornment: (
                                         <>
                                             <InputAdornment position="start">
-                                                <PanoramaFishEyeSharp />
+                                                <TripOrigin />
                                             </InputAdornment>
                                             {params.InputProps.startAdornment}
                                         </>
@@ -89,7 +92,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         )}
                     ></Autocomplete>
                     <IconButton>
-                        <SwapHoriz />
+                        <SwapHoriz style={{ minWidth: '40px' }} />
                     </IconButton>
                     <Autocomplete
                         fullWidth
@@ -100,7 +103,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         renderInput={(params) => (
                             <TextField
                                 {...params}
-                                label="To"
+                                label={t('to')}
                                 InputProps={{
                                     ...params.InputProps,
                                     startAdornment: (
@@ -117,18 +120,19 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     ></Autocomplete>
                 </Stack>
                 <DatePicker
-                    label="Date"
+                    label={t('date')}
                     slots={{
                         openPickerIcon: Today,
                     }}
                     slotProps={{
                         inputAdornment: {
                             position: 'start',
+                            sx: { pl: '5px' },
                         },
                     }}
                 />
                 <TextField
-                    label="Passengers"
+                    label={t('passengers')}
                     type="number"
                     InputProps={{
                         startAdornment: (
@@ -148,7 +152,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
             >
-                Explore
+                {t('explore')}
             </CenteredButton>
         </Wrapper>
     );

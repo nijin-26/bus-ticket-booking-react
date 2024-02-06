@@ -19,8 +19,12 @@ import {
     AirlineSeatReclineNormal,
     Hotel,
 } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { filterValues } from '../../../config';
 
 export default function FilterSort() {
+    const { t } = useTranslation('filterSort');
+
     // anchor state
     const [anchorElBus, setAnchorElBus] = useState<null | HTMLElement>(null);
     const openBusTypeFilter = Boolean(anchorElBus);
@@ -89,7 +93,11 @@ export default function FilterSort() {
                             {busTypeFilter ? (
                                 <FixedChip
                                     onDelete={busFilterHandler}
-                                    label={busTypeFilter}
+                                    label={
+                                        busTypeFilter === filterValues.ac
+                                            ? t('AC')
+                                            : t('nonAC')
+                                    }
                                 />
                             ) : (
                                 <></>
@@ -97,7 +105,11 @@ export default function FilterSort() {
                             {seatTypeFilter ? (
                                 <FixedChip
                                     onDelete={seatFilterHandler}
-                                    label={seatTypeFilter}
+                                    label={
+                                        seatTypeFilter === filterValues.seater
+                                            ? t('seater')
+                                            : t('sleeper')
+                                    }
                                 />
                             ) : (
                                 <></>
@@ -116,7 +128,7 @@ export default function FilterSort() {
                                 openBusTypeFilter ? 'true' : undefined
                             }
                         >
-                            Bus type
+                            {t('busType')}
                         </Button>
                         <Button
                             variant="outlined"
@@ -132,7 +144,7 @@ export default function FilterSort() {
                                 openSeatTypeFilter ? 'true' : undefined
                             }
                         >
-                            Seat type
+                            {t('seatType')}
                         </Button>
                         <Button
                             onClick={() => {
@@ -140,7 +152,7 @@ export default function FilterSort() {
                                 setSeatTypeFilter(null);
                             }}
                         >
-                            Clear all
+                            {t('clearAll')}
                         </Button>
                     </Stack>
                     <Badge
@@ -150,7 +162,7 @@ export default function FilterSort() {
                         variant="dot"
                     >
                         <Button variant="outlined" onClick={sortTypeHandler}>
-                            Sort
+                            {t('sort')}
                         </Button>
                     </Badge>
                 </Stack>
@@ -163,27 +175,35 @@ export default function FilterSort() {
                     MenuListProps={{ 'aria-labelledby': 'bus-type-button' }}
                     onClose={handleMenuClose}
                 >
-                    {/* <FormControl> */}
                     <RadioGroup
                         onChange={busFilterHandler}
                         value={busTypeFilter}
                     >
                         <StyledFormControlLabel
-                            label="AC"
-                            control={<Radio value="AC" icon={<AcUnit />} />}
+                            label={t('AC')}
+                            control={
+                                <Radio
+                                    value={filterValues.ac}
+                                    icon={<AcUnit />}
+                                />
+                            }
                         />
                         <StyledFormControlLabel
-                            label="Non-AC"
-                            control={<Radio value="Non-AC" icon={<Air />} />}
+                            label={t('nonAC')}
+                            control={
+                                <Radio
+                                    value={filterValues.nonAc}
+                                    icon={<Air />}
+                                />
+                            }
                         />
                     </RadioGroup>
-                    {/* </FormControl> */}
                     <Button
                         onClick={() => {
                             setBusTypeFilter(null);
                         }}
                     >
-                        Clear
+                        {t('clear')}
                     </Button>
                 </Menu>
                 <Menu
@@ -198,17 +218,22 @@ export default function FilterSort() {
                         value={seatTypeFilter}
                     >
                         <StyledFormControlLabel
-                            label="Seater"
+                            label={t('seater')}
                             control={
                                 <Radio
-                                    value="Seater"
+                                    value={filterValues.seater}
                                     icon={<AirlineSeatReclineNormal />}
                                 />
                             }
                         />
                         <StyledFormControlLabel
-                            label="Sleeper"
-                            control={<Radio value="Sleeper" icon={<Hotel />} />}
+                            label={t('sleeper')}
+                            control={
+                                <Radio
+                                    value={filterValues.sleeper}
+                                    icon={<Hotel />}
+                                />
+                            }
                         />
                     </RadioGroup>
                     <Button
@@ -216,7 +241,7 @@ export default function FilterSort() {
                             setSeatTypeFilter(null);
                         }}
                     >
-                        Clear
+                        {t('clear')}
                     </Button>
                 </Menu>
 
@@ -230,19 +255,19 @@ export default function FilterSort() {
                 >
                     <RadioGroup onChange={sortHandler} value={sortBy}>
                         <StyledFormControlLabel
-                            label="Start date"
+                            label={t('startDate')}
                             control={<Radio value="StartDate" />}
                         />
                         <StyledFormControlLabel
-                            label="Seats available"
+                            label={t('seatsAvailable')}
                             control={<Radio value="SeatsAvailable" />}
                         />
                         <StyledFormControlLabel
-                            label="Price: high to low"
+                            label={t('priceHighToLow')}
                             control={<Radio value="PriceHighToLow" />}
                         />
                         <StyledFormControlLabel
-                            label="Price: low to high"
+                            label={t('priceLowToHigh')}
                             control={<Radio value="PriceLowToHigh" />}
                         />
                     </RadioGroup>
@@ -252,7 +277,7 @@ export default function FilterSort() {
                             setSortBy(null);
                         }}
                     >
-                        Clear
+                        {t('clear')}
                     </Button>
                 </Menu>
             </Wrapper>
