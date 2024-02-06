@@ -7,16 +7,16 @@ type TSignUpProps = {
     closeModal: () => void;
 };
 
+const initialValues = {
+    fullName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+};
+
 const SignUp = ({ closeModal }: TSignUpProps) => {
     const { t } = useTranslation('auth');
-
-    const initialValues = {
-        fullName: '',
-        email: '',
-        phone: '',
-        password: '',
-        confirmPassword: '',
-    };
 
     const handleSubmit = () => {
         console.log('Sign up submit');

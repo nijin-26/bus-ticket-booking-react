@@ -8,7 +8,6 @@ export const AuthModalWrapper = styled(Box)(({ theme }) => ({
     transform: 'translate(-50%, -50%)',
     width: '60rem',
     minWidth: '45rem',
-    // padding: '2rem',
     backgroundColor: theme.color.background,
     borderRadius: '10px',
 }));

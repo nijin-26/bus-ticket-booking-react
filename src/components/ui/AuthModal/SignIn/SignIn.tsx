@@ -7,13 +7,13 @@ type TSignInProps = {
     closeModal: () => void;
 };
 
+const initialValues = {
+    email: '',
+    password: '',
+};
+
 const SignIn = ({ closeModal }: TSignInProps) => {
     const { t } = useTranslation('auth');
-
-    const initialValues = {
-        email: '',
-        password: '',
-    };
 
     const handleSubmit = () => {
         console.log('Sign in submit');
