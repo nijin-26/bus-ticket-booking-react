@@ -17,7 +17,10 @@
     "tripDetails": {
         "info": "Click on an available seat to proceed with your transaction.",
         "checkoutTitle": "Total Amount",
-        "checkoutSubtitle": " All taxes will be calculated at checkout "
-
+        "checkoutSubtitle": " All taxes will be calculated at checkout ",
+        "departure": "Departure",
+        "arrival": "Arrival",
+        "duration": "Duration",
+        "busType": "Bus Type"
     }
 }

@@ -17,6 +17,11 @@
     "tripDetails": {
         "info": "Haga clic en un asiento disponible para continuar con su transacción.",
         "checkoutTitle": "Cantidad total",
-        "checkoutSubtitle": " Todos los impuestos se calcularán al finalizar la compra "
+        "checkoutSubtitle": " Todos los impuestos se calcularán al finalizar la compra ",
+        "departure": "Partida",
+        "arrival": "Llegada",
+        "duration": "Duración",
+        "busType": "Tipo de autobús"
     }
 }
+    

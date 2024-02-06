@@ -4,8 +4,38 @@ import busDeparture from '../../../../../assets/accordianDetails/Bus_departure.s
 import busArrival from '../../../../../assets/accordianDetails/Bus_arrival.svg';
 import bus from '../../../../../assets/accordianDetails/Bus.svg';
 import stopwatch from '../../../../../assets/accordianDetails/Stopwatch.svg';
+import { useTranslation } from 'react-i18next';
 
 export const DetailsGrid = () => {
+
+    const { t } = useTranslation('tripDetails');
+
+    const detailsData = [
+        {
+            title: t('departure'),
+            value: 'Trivandrum, 20th Jan, 5:00 am',
+            imageSrc: busDeparture,
+            imageAlt: 'Bus with a clock symbol for departure',
+        },
+        {
+            title: t('arrival'),
+            value: 'Bangalore, 23rd Jan, 18:40 pm',
+            imageSrc: busArrival,
+            imageAlt: 'Bus with a marker symbol for arrival',
+        },
+        {
+            title: t('duration'),
+            value: '3 days, 13 hours, 40 minutes',
+            imageSrc: stopwatch,
+            imageAlt: 'Timer',
+        },
+        {
+            title: t('busType'),
+            value: 'AC, Seater',
+            imageSrc: bus,
+            imageAlt: 'Bus',
+        },
+    ];
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -14,39 +44,18 @@ export const DetailsGrid = () => {
                 rowSpacing={2}
                 columnSpacing={{ xs: 3, sm: 5, md: 10 }}
             >
-                <Grid item xs={6}>
-                    <DetailsItem
-                        title="Departure"
-                        value="Trivandrum, 20th Jan, 5:00 am"
-                        imageSrc={busDeparture}
-                        imageAlt="Bus with a clock symbol for departure"
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <DetailsItem
-                        title="Arrival"
-                        value="Banglore, 23rd Jan, 18.40 pm"
-                        imageSrc={busArrival}
-                        imageAlt="Bus with a marker symbol for arrival"
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <DetailsItem
-                        title="Duration"
-                        value="3 days, 13 hours, 40 minutes"
-                        imageSrc={stopwatch}
-                        imageAlt="Timer"
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <DetailsItem
-                        title="Bus Type"
-                        value="AC, Seater"
-                        imageSrc={bus}
-                        imageAlt="Bus"
-                    />
-                </Grid>
+                {detailsData.map((detail, index) => (
+                    <Grid item xs={6} key={index}>
+                        <DetailsItem
+                            title={detail.title}
+                            value={detail.value}
+                            imageSrc={detail.imageSrc}
+                            imageAlt={detail.imageAlt}
+                        />
+                    </Grid>
+                ))}
             </Grid>
         </Box>
     );
 };
+
