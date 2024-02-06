@@ -9,3 +9,4 @@
 -   [86cufjjjg] Initialize translation files & enabled language switching.
 -   [86cuewz4g] Add header and footer with theme selector and language selector buttons.
 -   [86cufjjjg] Implemented a dedicated slice and configured the reducer using the reduxjs toolkit for language switching.
+-   [86cugqgpt] Implemented filters and sort for action bar
