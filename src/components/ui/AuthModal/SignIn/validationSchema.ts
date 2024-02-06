@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 const getValidationSchema = (t: TFunction<'auth'>) =>
     Yup.object({
         email: Yup.string()
+            .trim()
             .email(t('invalidEmailMsg'))
             .required(t('emailRequired')),
         password: Yup.string()
