@@ -8,11 +8,7 @@ import {
     Badge,
 } from '@mui/material';
 import React, { useState } from 'react';
-import {
-    Wrapper,
-    StyledFormControlLabel,
-    FixedChip,
-} from './FilterSort.styled';
+import { Wrapper, StyledFormControlLabel } from './FilterSort.styled';
 import {
     AcUnit,
     Air,
@@ -21,6 +17,7 @@ import {
 } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { filterValues } from '../../../config';
+import FilterChip from './FilterChip';
 
 export default function FilterSort() {
     const { t } = useTranslation('filterSort');
@@ -88,7 +85,12 @@ export default function FilterSort() {
         <>
             <Wrapper>
                 <Stack spacing={2} direction="row">
-                    <Stack spacing={2} width="1200px" direction="row">
+                    <Stack
+                        spacing={2}
+                        width="1200px"
+                        direction="row"
+                        sx={{ displayPrint: 'flex', alignItems: 'center' }}
+                    >
                         <Button
                             variant="outlined"
                             id="bus-type-button"
@@ -128,32 +130,12 @@ export default function FilterSort() {
                         >
                             {t('clearAll')}
                         </Button>
-                        <Stack spacing={1} direction="row">
-                            {busTypeFilter ? (
-                                <FixedChip
-                                    onDelete={busFilterHandler}
-                                    label={
-                                        busTypeFilter === filterValues.ac
-                                            ? t('AC')
-                                            : t('nonAC')
-                                    }
-                                />
-                            ) : (
-                                <></>
-                            )}
-                            {seatTypeFilter ? (
-                                <FixedChip
-                                    onDelete={seatFilterHandler}
-                                    label={
-                                        seatTypeFilter === filterValues.seater
-                                            ? t('seater')
-                                            : t('sleeper')
-                                    }
-                                />
-                            ) : (
-                                <></>
-                            )}
-                        </Stack>
+                        <FilterChip
+                            busTypeFilter={busTypeFilter}
+                            busFilterHandler={busFilterHandler}
+                            seatTypeFilter={seatTypeFilter}
+                            seatFilterHandler={seatFilterHandler}
+                        />
                     </Stack>
                     <Badge
                         invisible={Boolean(!sortBy)}
