@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 import { Chip, FormControlLabel } from '@mui/material';
 
 export const Wrapper = styled('div')`
-    padding: 40px 0 0 0;
+    padding: 4rem 0 0 0;
 `;
 
 export const StyledFormControlLabel = styled(FormControlLabel)`
-    padding: 0 20px;
+    padding: 0 2rem;
 `;
 
 export const FixedChip = styled(Chip)`
     display: flex;
     justify-content: space-around;
-    width: 100px;
+    width: 10rem;
 `;
