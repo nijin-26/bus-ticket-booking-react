@@ -19,6 +19,7 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
             justifyContent={'space-between'}
             alignItems={'center'}
             spacing={3}
+            mt={5}
         >
             {noOfSeats > 0 && farePerSeat > 0 && (
                 <Stack direction={'row'} spacing={1}>

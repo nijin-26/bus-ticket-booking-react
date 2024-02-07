@@ -37,14 +37,13 @@ export const DetailsGrid = () => {
     ];
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%' }} mt={3}>
             <Grid container rowSpacing={2} columnSpacing={30}>
                 {detailsData.map((detail, index) => (
                     <Grid item key={index} xs={12} sm={12} md={6} lg={6}>
                         {/* 
                         For small and medium screens (xs, sm), it will be a single column.
-                        For screens equal to or larger than md (medium) or lg(large), it will be 2 columns.
-                        */}
+                        For screens equal to or larger than md (medium) or lg(large), it will be 2 columns.*/}
                         <DetailsItem
                             title={detail.title}
                             value={detail.value}

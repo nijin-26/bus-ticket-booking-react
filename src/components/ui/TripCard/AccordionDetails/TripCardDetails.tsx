@@ -27,7 +27,7 @@ export const TripCardDetails = () => {
 
     return (
         <AccordionDetails>
-            <Stack direction={'column'} p={3} pt={0} spacing={4}>
+            <Stack direction={'column'} p={3} pt={3}>
                 <Stack direction={'column'} spacing={2}>
                     <Stack
                         direction={'row'}
@@ -70,11 +70,9 @@ export const TripCardDetails = () => {
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
                     />
-                    <Checkout
-                        noOfSeats={selectedSeats.length}
-                        farePerSeat={1200}
-                    />
                 </Stack>
+
+                <Checkout noOfSeats={selectedSeats.length} farePerSeat={1200} />
                 <DetailsGrid></DetailsGrid>
             </Stack>
         </AccordionDetails>
