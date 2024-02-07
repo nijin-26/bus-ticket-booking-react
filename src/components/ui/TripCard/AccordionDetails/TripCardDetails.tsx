@@ -25,6 +25,8 @@ export const TripCardDetails = () => {
 
     const { t } = useTranslation('tripDetails');
 
+    const farePerSeat = 1200;
+
     return (
         <AccordionDetails>
             <Stack direction={'column'} p={3} pt={3}>
@@ -72,7 +74,7 @@ export const TripCardDetails = () => {
                     />
                 </Stack>
 
-                <Checkout noOfSeats={selectedSeats.length} farePerSeat={1200} />
+                <Checkout noOfSeats={selectedSeats.length} farePerSeat={farePerSeat} />
                 <DetailsGrid></DetailsGrid>
             </Stack>
         </AccordionDetails>
