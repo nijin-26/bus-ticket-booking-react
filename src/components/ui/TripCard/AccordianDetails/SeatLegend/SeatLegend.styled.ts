@@ -21,6 +21,8 @@ const SeatLegendWrapper = styled('ul')(({ theme }) => ({
     },
 
     '.seat': {
+        width: '2rem',
+        height: '2rem',
         boxShadow: `0 0 4px ${theme.color.boxShadowPrimary}`,
     },
 
