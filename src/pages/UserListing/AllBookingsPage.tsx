@@ -95,6 +95,586 @@ export const AllBookingsPage = () => {
                 },
             ],
         },
+        {
+            pnrNumber: 'MNO3451',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3452',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3453',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3454',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3455',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3456',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3457',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3458',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3459',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO3450',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34511',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34512',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34513',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34514',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34515',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34516',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34517',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34518',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34519',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: 'MNO34520',
+            tripId: 'R56ST',
+            origin: 'Chennai',
+            destination: 'Mumbai',
+            departureTimestamp: '2024-02-05T13:00:00Z',
+            arrivalTimestamp: '2024-02-05T19:30:00Z',
+            seatType: 'SEMI-SLEEPER',
+            busType: 'NON-AC',
+            farePerSeat: 45,
+            seats: [
+                {
+                    seatNumber: 9,
+                    passenger: {
+                        fullName: 'Frank Johnson',
+                        age: 22,
+                        gender: Gender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 10,
+                    passenger: {
+                        fullName: 'Grace Davis',
+                        age: 25,
+                        gender: Gender.FEMALE,
+                    },
+                },
+            ],
+        },
     ];
 
     return (

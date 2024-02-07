@@ -7,7 +7,7 @@ export const BookingsTableWrapper = styled(Box)(({ theme }) => ({
     width: '100%',
 
     '& .custom-header': {
-        fontSize: theme.font.md,
+        fontSize: theme.font.lg,
 
         '&:focus': {
             outline: 'none',

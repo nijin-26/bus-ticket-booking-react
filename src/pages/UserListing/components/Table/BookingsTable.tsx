@@ -42,7 +42,7 @@ function CustomPagination() {
         >
             {/* Total rows text */}
             <div>
-                {pageCount} result{pageCount > 1 ? 's' : ''}
+                Total {pageCount}$add_count{pageCount > 1 ? 's' : ''}
             </div>
 
             {/* Pagination */}
@@ -91,6 +91,7 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
             headerName: 'User Name',
             headerClassName: 'custom-header',
             flex: 1,
+            sortable: false,
             valueGetter: (params: GridValueGetterParams): string => {
                 const firstPersonName =
                     params.row.seats[0].passenger.fullName || '';
