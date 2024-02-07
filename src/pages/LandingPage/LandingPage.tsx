@@ -1,7 +1,6 @@
 import { useTheme } from '@mui/material';
 import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
-import { LandingPageWrapper } from './LandingPage.styled';
-import LandingPageIllustration from './LandingPageIllustrationLight';
+import { LandingPageHeading, LandingPageWrapper } from './LandingPage.styled';
 import LandingPageIllustrationDark from './LandingPageIllustrationDark copy';
 import LandingPageIllustrationLight from './LandingPageIllustrationLight';
 
@@ -18,7 +17,7 @@ export const LandingPage = () => {
                 <LandingPageIllustrationLight />
             )}
 
-            <h1>Bus with us.</h1>
+            <LandingPageHeading>Bus with us.</LandingPageHeading>
             <ActionBarTab />
         </LandingPageWrapper>
     );
