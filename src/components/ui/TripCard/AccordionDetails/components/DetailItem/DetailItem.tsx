@@ -1,5 +1,4 @@
 import { Stack, Typography } from '@mui/material';
-import { DetailsItemWrapper } from './DetailItem.styled';
 
 interface IDetailsItemProps {
     title: string;
@@ -12,8 +11,8 @@ export const DetailsItem = ({
     icon
 }: IDetailsItemProps) => {
     return (
-        <DetailsItemWrapper direction={'row'} spacing={3}>
-            <Stack direction={'row'} spacing={1}>
+        <Stack direction={'row'} spacing={3}>
+            <Stack direction={'row'} spacing={1} className='title-container'>
                 {icon}
                 {title && (
                     <Typography variant="body2" className="title">
@@ -26,6 +25,6 @@ export const DetailsItem = ({
                     {value}
                 </Typography>
             )}
-        </DetailsItemWrapper>
+        </Stack>
     );
 };

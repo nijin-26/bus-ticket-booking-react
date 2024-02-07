@@ -1,15 +1,21 @@
-import { AccordionDetails, IconButton, Stack, Tooltip } from '@mui/material';
-import { DetailsGrid } from './DetailsGrid/DetailsGrid';
+import { IconButton, Stack, Tooltip } from '@mui/material';
+import { DetailsGrid } from './components/DetailsGrid';
 import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
 import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
-import { SeatLegend } from './SeatLegend/SeatLegend';
 import { StyledAlert } from '../../../Alert/Alert.styled';
-import { Checkout } from './Checkout/Checkout';
-import { useTranslation } from 'react-i18next';
+import { Checkout } from './components/Checkout';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
+import { StyledButton } from '../../../Button/Button.styled';
+import { paths } from '../../../../config';
+import { TripCardDetailsWrapper } from './TripCardDetails.styled';
+import { SeatLegend } from './components/SeatLegend/SeatLegend';
 
 export const TripCardDetails = () => {
+    const farePerSeat: number = 1200;
+
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
     const updateSelectedSeats = (newSeat: number) => {
@@ -24,11 +30,10 @@ export const TripCardDetails = () => {
     };
 
     const { t } = useTranslation('tripDetails');
-
-    const farePerSeat = 1200;
+    const currentUrl = useLocation();
 
     return (
-        <AccordionDetails>
+        <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
                 <Stack direction={'column'} spacing={2}>
                     <Stack
@@ -73,10 +78,31 @@ export const TripCardDetails = () => {
                         updateSelectedSeats={updateSelectedSeats}
                     />
                 </Stack>
-
-                <Checkout noOfSeats={selectedSeats.length} farePerSeat={farePerSeat} />
+                <Stack
+                    direction={'row'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    spacing={3}
+                    mt={5}
+                    className="checkout-section"
+                >
+                    <Checkout
+                        noOfSeats={selectedSeats.length}
+                        farePerSeat={farePerSeat}
+                    />
+                    {currentUrl.pathname !== paths.tripBooking && (
+                        <StyledButton
+                            variant="contained"
+                            disabled={
+                                !(selectedSeats.length > 0 && farePerSeat > 0)
+                            }
+                        >
+                            {t('checkoutBtnTxt')}
+                        </StyledButton>
+                    )}
+                </Stack>
                 <DetailsGrid></DetailsGrid>
             </Stack>
-        </AccordionDetails>
+        </TripCardDetailsWrapper>
     );
 };

@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
-import Seat from '../../../../SeatLayout/Seat';
 import SeatLegendWrapper from './SeatLegend.styled';
 import { useTranslation } from 'react-i18next';
+import Seat from '../../../../../SeatLayout/Seat';
 
 export const SeatLegend = () => {
     const { t } = useTranslation('seatLayout');

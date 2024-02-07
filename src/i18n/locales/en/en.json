@@ -19,7 +19,6 @@
         "selectAlertTitle":"Seat",
         "selectAlertMsg":"are selected.",
         "checkoutTitle": "Total Amount",
-        "checkoutSubtitle": " All taxes will be calculated at checkout ",
         "checkoutBtnTxt":"Book now",
         "departure": "Departure",
         "arrival": "Arrival",
