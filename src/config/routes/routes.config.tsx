@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import {
     LandingPage,
-    TripDetailPage,
+    
     TripsListingPage,
     TripBookingPage,
 } from '../../pages';
@@ -21,10 +21,6 @@ export const routesConfig: RouteObject[] = [
             {
                 path: paths.tripsListing,
                 element: <TripsListingPage />,
-            },
-            {
-                path: paths.tripDetail,
-                element: <TripDetailPage />,
             },
             {
                 path: paths.tripBooking,
