@@ -14,7 +14,7 @@ export const DetailsItem = ({
     imageAlt,
 }: IDetailsItemProps) => {
     return (
-        <DetailsItemWrapper direction={'row'} justifyContent={'space-between'}>
+        <DetailsItemWrapper direction={'row'} spacing={3}>
             <Stack direction={'row'} spacing={1}>
                 <img src={imageSrc} alt={imageAlt} />
                 {title && (
