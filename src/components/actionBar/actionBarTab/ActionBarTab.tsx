@@ -32,7 +32,7 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
                         {!showFilterSort ? (
                             <Tab label={t('findTicket')} value="2"></Tab>
                         ) : (
-                            <></>
+                            <Tab disabled></Tab>
                         )}
                     </TabList>
                     <Panel value="1">
