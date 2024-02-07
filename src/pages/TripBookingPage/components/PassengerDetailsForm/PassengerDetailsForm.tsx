@@ -1,4 +1,4 @@
-import { Formik, Form, FieldArray, Field } from 'formik';
+import { Formik, Form, FieldArray, FastField } from 'formik';
 import TicketTotalFare from '../TicketTotalFare';
 import { Box, Button, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
@@ -9,8 +9,8 @@ const PassengerDetailsForm = () => {
     const { t } = useTranslation('passengerDetails');
 
     const generateInitialValues = () => {
-        const selectedSeatCount = 2;
-        const seatNumber = [12, 22];
+        const selectedSeatCount = 3;
+        const seatNumber = [1, 3, 2];
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -61,7 +61,7 @@ const PassengerDetailsForm = () => {
                                     </Typography>
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={6}>
-                                            <Field
+                                            <FastField
                                                 fullWidth
                                                 size="small"
                                                 component={TextField}
@@ -71,7 +71,7 @@ const PassengerDetailsForm = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
-                                            <Field
+                                            <FastField
                                                 fullWidth
                                                 size="small"
                                                 component={TextField}
@@ -81,7 +81,7 @@ const PassengerDetailsForm = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
-                                            <Field
+                                            <FastField
                                                 fullWidth
                                                 component={Select}
                                                 formControl={{
@@ -103,7 +103,7 @@ const PassengerDetailsForm = () => {
                                                         {option.label}
                                                     </MenuItem>
                                                 ))}
-                                            </Field>
+                                            </FastField>
                                         </Grid>
                                     </Grid>
                                 </Box>
