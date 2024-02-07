@@ -34,7 +34,7 @@ const PassengerDetailsForm = () => {
         >
             {({ values }) => (
                 <Form autoComplete="off" noValidate>
-                    <Typography component="h3" variant="h5" mb={2} mt={4}>
+                    <Typography component="h3" variant="h5" mb={2}>
                         {t('passengerDetailsFormHeading')}
                     </Typography>
                     <FieldArray name="passengers">
