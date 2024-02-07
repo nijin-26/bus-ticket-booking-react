@@ -16,8 +16,11 @@
     },
     "tripDetails": {
         "info": "Click on an available seat to proceed with your transaction.",
+        "selectAlertTitle":"Seat",
+        "selectAlertMsg":"are selected.",
         "checkoutTitle": "Total Amount",
         "checkoutSubtitle": " All taxes will be calculated at checkout ",
+        "checkoutBtnTxt":"Book now",
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",

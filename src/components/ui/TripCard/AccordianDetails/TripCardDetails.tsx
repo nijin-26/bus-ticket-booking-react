@@ -58,10 +58,9 @@ export const TripCardDetails = () => {
                                 }
                                 sx={{ mb: 2 }}
                             >
-                                {'Seat' +
-                                    (selectedSeats.length > 1 ? 's ' : ' ') +
-                                    selectedSeats.join(', ') +
-                                    ' are selected'}
+                                {t('selectAlertTitle')}
+                                {selectedSeats.length > 1 ? 's' : ''}{' '}
+                                {selectedSeats.join(', ')} {t('selectAlertMsg')}
                             </StyledAlert>
                         )}
                     </Stack>

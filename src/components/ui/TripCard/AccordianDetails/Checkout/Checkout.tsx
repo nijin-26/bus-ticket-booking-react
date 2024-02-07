@@ -18,11 +18,10 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
             direction={'row'}
             justifyContent={'space-between'}
             alignItems={'center'}
-            spacing={6}
-            className="hi"
+            spacing={3}
         >
             {noOfSeats > 0 && farePerSeat > 0 && (
-                <Stack direction={'row'} spacing={1} className="totalAmt">
+                <Stack direction={'row'} spacing={1}>
                     <Typography variant="body2" className="title">
                         {t('checkoutTitle')}
                     </Typography>
@@ -39,7 +38,7 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
                 variant="contained"
                 disabled={!(noOfSeats > 0 && farePerSeat > 0)}
             >
-                Book now
+                {t('checkoutBtnTxt')}
             </StyledButton>
         </CheckoutWrapper>
     );
