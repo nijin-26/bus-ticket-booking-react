@@ -64,7 +64,7 @@ export default function ConfirmDialog({
                     >
                         {props.agreeText}
                     </Button>
-                    {props.disagreeText ? (
+                    {props.disagreeText && (
                         <Button
                             autoFocus
                             onClick={() => {
@@ -74,7 +74,7 @@ export default function ConfirmDialog({
                         >
                             {props.disagreeText}
                         </Button>
-                    ) : null}
+                    )}
                 </DialogActions>
             </Dialog>
         </>
