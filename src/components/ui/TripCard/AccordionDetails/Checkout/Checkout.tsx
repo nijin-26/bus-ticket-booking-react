@@ -2,6 +2,8 @@ import { Stack, Typography } from '@mui/material';
 import { CheckoutWrapper } from './Checkout.styled';
 import { StyledButton } from '../../../../Button/Button.styled';
 import { useTranslation } from 'react-i18next';
+import { paths } from '../../../../../config';
+import { useLocation } from 'react-router-dom';
 
 interface ICheckoutProps {
     noOfSeats: number;
@@ -12,6 +14,7 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
     const totalFareInString = `${noOfSeats} seat${noOfSeats > 1 ? 's' : ''} * ₹${farePerSeat} = ₹${totalFare}`;
 
     const { t } = useTranslation('tripDetails');
+    const currentUrl = useLocation();
 
     return (
         <CheckoutWrapper
@@ -35,12 +38,15 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
                     </Typography>
                 </Stack>
             )}
-            <StyledButton
-                variant="contained"
-                disabled={!(noOfSeats > 0 && farePerSeat > 0)}
-            >
-                {t('checkoutBtnTxt')}
-            </StyledButton>
+
+            {currentUrl.pathname !== paths.tripBooking && (
+                <StyledButton
+                    variant="contained"
+                    disabled={!(noOfSeats > 0 && farePerSeat > 0)}
+                >
+                    {t('checkoutBtnTxt')}
+                </StyledButton>
+            )}
         </CheckoutWrapper>
     );
 };
