@@ -4,19 +4,17 @@ import { DetailsItemWrapper } from './DetailItem.styled';
 interface IDetailsItemProps {
     title: string;
     value: string;
-    imageSrc: string;
-    imageAlt: string;
+    icon: JSX.Element
 }
 export const DetailsItem = ({
     title,
     value,
-    imageSrc,
-    imageAlt,
+    icon
 }: IDetailsItemProps) => {
     return (
         <DetailsItemWrapper direction={'row'} spacing={3}>
             <Stack direction={'row'} spacing={1}>
-                <img src={imageSrc} alt={imageAlt} />
+                {icon}
                 {title && (
                     <Typography variant="body2" className="title">
                         {title}:
