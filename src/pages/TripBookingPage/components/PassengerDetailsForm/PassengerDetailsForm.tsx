@@ -1,9 +1,9 @@
 import { Formik, Form, FieldArray, FastField } from 'formik';
-import TicketTotalFare from '../TicketTotalFare';
 import { Box, Button, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
+import { Checkout } from '../../../../components/ui/TripCard/AccordionDetails/components/Checkout';
 
 const PassengerDetailsForm = () => {
     const { t } = useTranslation('passengerDetails');
@@ -34,7 +34,7 @@ const PassengerDetailsForm = () => {
         >
             {({ values }) => (
                 <Form autoComplete="off" noValidate>
-                    <Typography component="h3" variant="h5" mb={2}>
+                    <Typography component="h3" variant="h5" mb={2} mt={4}>
                         {t('passengerDetailsFormHeading')}
                     </Typography>
                     <FieldArray name="passengers">
@@ -68,6 +68,7 @@ const PassengerDetailsForm = () => {
                                                 name={`passengers.${index}.fullName`}
                                                 id={`passengers.${index}.fullName`}
                                                 label={t('fullName')}
+                                                helperText=" "
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
@@ -78,6 +79,7 @@ const PassengerDetailsForm = () => {
                                                 id={'age'}
                                                 name={`passengers.${index}.age`}
                                                 label={t('age')}
+                                                helperText=" "
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
@@ -92,6 +94,7 @@ const PassengerDetailsForm = () => {
                                                 id={`passengers.${index}.gender`}
                                                 label={t('gender')}
                                                 labelId={`passengers.${index}.gender-simple`}
+                                                helperText=" "
                                             >
                                                 {t('genderValues', {
                                                     returnObjects: true,
@@ -111,12 +114,9 @@ const PassengerDetailsForm = () => {
                         }
                     </FieldArray>
 
-                    <Grid container>
+                    <Grid container sx={{ alignItems: 'center' }} mb={6}>
                         <Grid item xs={12} sm={9}>
-                            <TicketTotalFare
-                                ticketFare={1200}
-                                noOfSeatsBooked={4}
-                            />
+                            <Checkout noOfSeats={3} farePerSeat={1200} />
                         </Grid>
                         <Grid item xs={12} sm={3} ml="auto">
                             <Button variant="contained" type="submit" fullWidth>

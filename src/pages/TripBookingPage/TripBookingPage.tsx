@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 import PassengerDetailsForm from './components/PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/longArrow';
+import { TripCardAccordion } from '../../components';
 
 export const TripBookingPage = () => {
     return (
@@ -9,11 +10,16 @@ export const TripBookingPage = () => {
                 <Typography component="h2" variant="h4">
                     Thiruvananthapuram
                 </Typography>
-                <LongArrow width="100px" height="100%" />
+                <LongArrow width="80px" height="100%" />
                 <Typography component="h2" variant="h4">
                     Bangalore
                 </Typography>
             </Stack>
+            <TripCardAccordion
+                busType="AC"
+                seatType="SLEEPER"
+                isDefaultExpanded
+            />
             <PassengerDetailsForm />
         </>
     );

@@ -78,19 +78,19 @@ export const TripCardDetails = () => {
                         updateSelectedSeats={updateSelectedSeats}
                     />
                 </Stack>
-                <Stack
-                    direction={'row'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    spacing={3}
-                    mt={5}
-                    className="checkout-section"
-                >
-                    <Checkout
-                        noOfSeats={selectedSeats.length}
-                        farePerSeat={farePerSeat}
-                    />
-                    {currentUrl.pathname !== paths.tripBooking && (
+                {currentUrl.pathname !== paths.tripBooking && (
+                    <Stack
+                        direction={'row'}
+                        justifyContent={'space-between'}
+                        alignItems={'center'}
+                        spacing={3}
+                        mt={5}
+                        className="checkout-section"
+                    >
+                        <Checkout
+                            noOfSeats={selectedSeats.length}
+                            farePerSeat={farePerSeat}
+                        />
                         <StyledButton
                             variant="contained"
                             disabled={
@@ -99,8 +99,8 @@ export const TripCardDetails = () => {
                         >
                             {t('checkoutBtnTxt')}
                         </StyledButton>
-                    )}
-                </Stack>
+                    </Stack>
+                )}
                 <DetailsGrid></DetailsGrid>
             </Stack>
         </TripCardDetailsWrapper>

@@ -9,8 +9,8 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
     const totalFare = noOfSeats * farePerSeat;
     const totalFareInString = `${noOfSeats} seat${
         noOfSeats > 1 ? 's' : ''
-        } * ₹${farePerSeat} = ₹${totalFare}`;
-    
+    } * ₹${farePerSeat} = ₹${totalFare}`;
+
     const { t } = useTranslation('tripDetails');
 
     return (
@@ -18,7 +18,8 @@ export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
         farePerSeat > 0 && (
             <Stack direction={'row'} spacing={1}>
                 <Typography variant="body2" className="title">
-                    {t('checkoutTitle')}{'  '}:
+                    {t('checkoutTitle')}
+                    {'  '}:
                 </Typography>
                 <Typography variant="body2" className="value">
                     {totalFareInString}
