@@ -12,18 +12,17 @@ const SeatLegendWrapper = styled('ul')(({ theme }) => ({
             flexDirection: 'row',
             alignItems: 'center',
             listStyle: 'none',
+            '& .seat': {
+                width: '2rem',
+                height: '2rem',
+                boxShadow: `0 0 4px ${theme.color.boxShadowPrimary}`,
+            },
         },
     },
     'li:first-of-type': {
         ul: {
             padding: 0,
         },
-    },
-
-    '.seat': {
-        width: '2rem',
-        height: '2rem',
-        boxShadow: `0 0 4px ${theme.color.boxShadowPrimary}`,
     },
 
     '.title': {
