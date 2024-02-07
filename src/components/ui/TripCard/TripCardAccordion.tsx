@@ -7,7 +7,7 @@ import seatIcon from '../../../assets/SeatIcon.svg';
 import sleeperIcon from '../../../assets/SleeperIcon.svg';
 import Stack from '@mui/material/Stack';
 import { TripAccordionStyled } from './TripCard.styled';
-import { TripCardDetails } from './AccordianDetails/TripCardDetails';
+import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 
 interface ITripCardAccordion {
     busType: string;
