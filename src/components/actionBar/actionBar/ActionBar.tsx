@@ -36,6 +36,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
         null
     );
 
+    const navigate = useNavigate();
+
     const { t } = useTranslation('actionBar');
 
     // setting start location
