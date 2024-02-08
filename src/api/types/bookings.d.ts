@@ -25,4 +25,4 @@ export interface IBooking {
     busType: string;
     farePerSeat: number;
     seats: IPassengerSeat[];
-  }
+}

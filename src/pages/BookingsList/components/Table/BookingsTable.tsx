@@ -25,7 +25,7 @@ const CustomToolbar = () => {
     );
 };
 
-function CustomPagination() {
+function CustomPagination({ totalBookings }: { totalBookings: number }) {
     const apiRef = useGridApiContext();
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
@@ -42,7 +42,7 @@ function CustomPagination() {
         >
             {/* Total rows text */}
             <div>
-                Total {pageCount}$add_count{pageCount > 1 ? 's' : ''}
+                Total {totalBookings} booking{totalBookings > 1 ? 's' : ''}
             </div>
 
             {/* Pagination */}
@@ -151,7 +151,12 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
                 disableColumnFilter
                 disableColumnSelector
                 disableColumnMenu
-                slots={{ toolbar: CustomToolbar, pagination: CustomPagination }}
+                slots={{
+                    toolbar: CustomToolbar,
+                    pagination: () => (
+                        <CustomPagination totalBookings={bookings.length} />
+                    ),
+                }}
             />
         </BookingsTableWrapper>
     );

@@ -3,7 +3,7 @@ import { LandingPage,  TripsListingPage } from '../../pages';
 import { ErrorPage } from '../../pages/ErrorPage/ErrorPage';
 import { Layout } from '../../layout';
 import { paths } from '..';
-import { AllBookingsPage } from '../../pages/UserListing/AllBookingsPage';
+import { AllBookingsPage } from '../../pages/BookingsList/AllBookingsPage';
 
 export const routesConfig: RouteObject[] = [
     {
