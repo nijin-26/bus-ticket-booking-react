@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import PassengerDetailsForm from './components/PassengerDetailsForm/PassengerDetailsForm';
+import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/longArrow';
 import { TripCardAccordion } from '../../components';
 

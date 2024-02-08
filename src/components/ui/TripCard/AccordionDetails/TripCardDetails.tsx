@@ -101,7 +101,7 @@ export const TripCardDetails = () => {
                         </StyledButton>
                     </Stack>
                 )}
-                <DetailsGrid></DetailsGrid>
+                <DetailsGrid />
             </Stack>
         </TripCardDetailsWrapper>
     );
