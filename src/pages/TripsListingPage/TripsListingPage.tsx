@@ -1,4 +1,8 @@
+import { IBusType, ISeatType } from '../../api/types/trip';
+import { setTripListingData } from '../../app/features/tripListingSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TripCardAccordion } from '../../components';
+import LoadMore from '../../components/loadMore/LoadMore';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 
 const dummyData = [
@@ -8,8 +12,8 @@ const dummyData = [
         destination: 'Kochi',
         departureTimestamp: '2024-02-01T08:00:00Z',
         arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: 'SLEEPER',
-        busType: 'AC',
+        seatType: ISeatType.SLEEPER,
+        busType: IBusType.AC,
         farePerSeat: 50,
         availableSeats: 20,
         totalSeats: 30,
@@ -20,8 +24,8 @@ const dummyData = [
         destination: 'Kochi',
         departureTimestamp: '2024-02-01T08:00:00Z',
         arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: 'SEATER',
-        busType: 'AC',
+        seatType: ISeatType.SEATER,
+        busType: IBusType.AC,
         farePerSeat: 2350,
         availableSeats: 5,
         totalSeats: 30,
@@ -32,8 +36,8 @@ const dummyData = [
         destination: 'Kochi',
         departureTimestamp: '2024-02-01T08:00:00Z',
         arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: 'SLEEPER',
-        busType: 'NON-AC',
+        seatType: ISeatType.SLEEPER,
+        busType: IBusType.NON_AC,
         farePerSeat: 150,
         availableSeats: 0,
         totalSeats: 30,
@@ -44,8 +48,8 @@ const dummyData = [
         destination: 'Kochi',
         departureTimestamp: '2024-02-01T08:00:00Z',
         arrivalTimestamp: '2024-02-03T12:10:20Z',
-        seatType: 'SEATER',
-        busType: 'AC',
+        seatType: ISeatType.SEATER,
+        busType: IBusType.AC,
         farePerSeat: 23150,
         availableSeats: 2,
         totalSeats: 30,
@@ -56,20 +60,25 @@ const dummyData = [
         destination: 'Kochi',
         departureTimestamp: '2024-02-01T08:00:00Z',
         arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: 'SLEEPER',
-        busType: 'AC',
+        seatType: ISeatType.SLEEPER,
+        busType: IBusType.AC,
         farePerSeat: 150,
         availableSeats: 23,
         totalSeats: 30,
     },
 ];
 export const TripsListingPage = () => {
+    const state = useAppSelector((state) => state.tripListing);
+    const dispatch = useAppDispatch();
+    dispatch(setTripListingData(dummyData));
+
     return (
         <TripsListingPageWrapper>
             <h1>TripsListingPage</h1>
-            {dummyData.map((indData) => (
+            {state.map((indData) => (
                 <TripCardAccordion key={indData.id} data={indData} />
             ))}
+            <LoadMore />
         </TripsListingPageWrapper>
     );
 };

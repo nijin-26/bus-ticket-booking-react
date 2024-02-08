@@ -1,11 +1,11 @@
 import { useTheme } from '@emotion/react';
 
-const LongArrow = () => {
+const LongArrow = ({ width, height }: { width: string; height: string }) => {
     const theme = useTheme();
     return (
         <svg
-            width="39"
-            height="6"
+            width={width}
+            height={height}
             viewBox="0 0 39 6"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

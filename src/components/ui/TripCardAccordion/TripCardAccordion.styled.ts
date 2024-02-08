@@ -74,3 +74,4 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
         minWidth: '9rem',
     },
 }));
+

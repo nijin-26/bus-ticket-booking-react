@@ -7,25 +7,15 @@ import nonAcIcon from '../../../assets/NonAcIcon.svg';
 import seatIcon from '../../../assets/SeatIcon.svg';
 import sleeperIcon from '../../../assets/SleeperIcon.svg';
 import Stack from '@mui/material/Stack';
-import { format, formatDuration, intervalToDuration } from 'date-fns';
 import LongArrow from '../../icons/LongArrow';
 import Tooltip from '@mui/material/Tooltip';
-import { TripAccordionWrapper } from './TripCard.styled';
-interface ITripCardAccordion {
-    id: string;
-    origin: string;
-    destination: string;
-    departureTimestamp: string;
-    arrivalTimestamp: string;
-    seatType: string;
-    busType: string;
-    farePerSeat: number;
-    availableSeats: number;
-    totalSeats: number;
-}
+import { TripAccordionWrapper } from './TripCardAccordion.styled';
+import { convertTimeStamp } from '../../../utils';
+import { ITrip } from '../../../api/types/trip';
+
 let borderDesignClass: string;
 
-export const TripCardAccordion = ({ data }: { data: ITripCardAccordion }) => {
+export const TripCardAccordion = ({ data }: { data: ITrip }) => {
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
     } else if (data.availableSeats > 0) {
@@ -34,20 +24,10 @@ export const TripCardAccordion = ({ data }: { data: ITripCardAccordion }) => {
         borderDesignClass = 'no-seats';
     }
 
-    const departureDate = new Date(data.departureTimestamp);
-    const arrivalDate = new Date(data.arrivalTimestamp);
-    const formattedDepartureTime = format(departureDate, 'p');
-    const formattedDepartureDate = format(departureDate, 'do LLL');
-    const formattedArrivalTime = format(arrivalDate, 'p');
-    const formattedArrivalDate = format(arrivalDate, 'do LLL');
-
-    const duration = intervalToDuration({
-        start: departureDate,
-        end: arrivalDate,
-    });
-    const formattedDuration = formatDuration(duration, {
-        format: ['days', 'hours', 'minutes'],
-    });
+    const dates = convertTimeStamp(
+        data.departureTimestamp,
+        data.arrivalTimestamp
+    );
 
     return (
         <TripAccordionWrapper className={`summary ${borderDesignClass}`}>
@@ -78,21 +58,19 @@ export const TripCardAccordion = ({ data }: { data: ITripCardAccordion }) => {
                         className="date-time-parent"
                     >
                         <Stack className="date-time">
-                            <p>{formattedDepartureTime}</p>
+                            <p>{dates.formattedDepartureTime}</p>
                             <p className="date">
-                                {formattedDepartureDate}
+                                {dates.formattedDepartureDate}
                             </p>
                         </Stack>
-                        <LongArrow />
+                        <LongArrow width="39px" height="6px" />
                         <Stack className="date-time">
-                            <p>{formattedArrivalTime}</p>
-                            <p className="date">
-                                {formattedArrivalDate}
-                            </p>
+                            <p>{dates.formattedArrivalTime}</p>
+                            <p className="date">{dates.formattedArrivalDate}</p>
                         </Stack>
                     </Stack>
-                    <Tooltip title={formattedDuration} arrow>
-                        <p className="duration">{formattedDuration}</p>
+                    <Tooltip title={dates.formattedDuration} arrow>
+                        <p className="duration">{dates.formattedDuration}</p>
                     </Tooltip>
                     <p className={`seats ${borderDesignClass}`}>
                         {data.availableSeats} seats available

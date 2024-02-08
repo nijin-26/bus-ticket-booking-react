@@ -1,1 +1,1 @@
-export * from './ui/TripCard/TripCardAccordion';
+export * from './ui/TripCardAccordion/TripCardAccordion';
