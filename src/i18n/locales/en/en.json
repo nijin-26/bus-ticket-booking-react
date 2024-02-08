@@ -36,5 +36,16 @@
         "available": "Available",
         "unavailable": "Unavailable",
         "selected": "Selected"
+    },
+    "tripDetails": {
+        "info": "Click on an available seat to proceed with your transaction.",
+        "selectAlertTitle":"Seat",
+        "selectAlertMsg":"are selected.",
+        "checkoutTitle": "Total Amount",
+        "checkoutBtnTxt":"Book now",
+        "departure": "Departure",
+        "arrival": "Arrival",
+        "duration": "Duration",
+        "busType": "Bus Type"
     }
 }
