@@ -6,7 +6,7 @@ import nonAcIcon from '../../../assets/NonAcIcon.svg';
 import seatIcon from '../../../assets/SeatIcon.svg';
 import sleeperIcon from '../../../assets/SleeperIcon.svg';
 import Stack from '@mui/material/Stack';
-import { TripAccordionStyled } from './TripCard.styled';
+import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 
 interface ITripCardAccordion {
@@ -18,7 +18,7 @@ export const TripCardAccordion = ({
     seatType,
 }: ITripCardAccordion) => {
     return (
-        <TripAccordionStyled className="summary">
+        <TripAccordionWrapper className="summary">
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
@@ -50,6 +50,6 @@ export const TripCardAccordion = ({
                 </Stack>
             </AccordionSummary>
             <TripCardDetails />
-        </TripAccordionStyled>
+        </TripAccordionWrapper>
     );
 };
