@@ -7,10 +7,6 @@ export const StyledButton = styled(Button)(({ theme }) => ({
     color: colors.white,
     width: '100%',
     
-    
-    ':not(:disabled)': {
-        maxWidth: '400px',
-    },
     '&:hover': {
         backgroundColor: theme.color.redHover, 
         opacity:1
