@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Accordion from '@mui/material/Accordion';
 
-export const TripAccordionStyled = styled(Accordion)(({ theme }) => ({
+export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
     marginBottom: '2rem',
     backgroundColor: theme.color.background,
     borderRadius: '0.7rem',
