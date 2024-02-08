@@ -80,17 +80,18 @@ export const TripCardDetails = () => {
                 </Stack>
                 {currentUrl.pathname !== paths.tripBooking && (
                     <Stack
-                        direction={'row'}
+                        direction={{ xs: 'column', sm: 'row' }}
                         justifyContent={'space-between'}
-                        alignItems={'center'}
-                        spacing={3}
+                        spacing={{ xs: 1, sm: 2, md: 4 }}
                         mt={5}
                         className="checkout-section"
                     >
-                        <FareDetails
-                            noOfSeats={selectedSeats.length}
-                            farePerSeat={farePerSeat}
-                        />
+                        {selectedSeats.length > 0 && farePerSeat > 0 && (
+                            <FareDetails
+                                noOfSeats={selectedSeats.length}
+                                farePerSeat={farePerSeat}
+                            />
+                        )}
                         <StyledButton
                             variant="contained"
                             disabled={
