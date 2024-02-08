@@ -3,7 +3,7 @@ import { Box, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
-import { Checkout } from '../../../components/ui/TripCard/AccordionDetails/components/Checkout';
+import { FareDetails } from '../../../components/FairDetails/FareDetails';
 import { StyledButton } from '../../../components/Button/Button.styled';
 
 const PassengerDetailsForm = () => {
@@ -122,7 +122,7 @@ const PassengerDetailsForm = () => {
 
                     <Grid container alignItems="center" mb={6} spacing={1.5}>
                         <Grid item xs={12} sm={9}>
-                            <Checkout noOfSeats={3} farePerSeat={1200} />
+                            <FareDetails noOfSeats={3} farePerSeat={1200} />
                         </Grid>
                         <Grid item xs={12} sm={3} ml="auto">
                             <StyledButton type="submit" fullWidth>

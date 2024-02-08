@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
+import { colors } from '../../config/constants';
 
 export const StyledButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.color.red,
-    color: theme.color.textPrimary,
+    color: colors.white,
     width: '100%',
 
     '&:hover': {

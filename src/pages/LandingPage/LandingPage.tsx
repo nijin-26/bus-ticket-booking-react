@@ -1,10 +1,10 @@
 import { LandingPageWrapper } from './LandingPage.styled';
+import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 
 export const LandingPage = () => {
-
     return (
         <LandingPageWrapper>
-            <h1>LandingPage</h1>
+            <ActionBarTab />
         </LandingPageWrapper>
     );
 };
