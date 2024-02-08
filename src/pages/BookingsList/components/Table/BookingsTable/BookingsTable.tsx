@@ -6,18 +6,14 @@ import {
     useGridSelector,
     gridPageSelector,
     gridPageSizeSelector,
-    gridPageCountSelector,
 } from '@mui/x-data-grid';
 import { BookingsTableWrapper } from './BookingsTable.styled';
 import { IBooking, IBookingsList } from '../../../../../api/types/bookings';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-<<<<<<< HEAD:src/pages/BookingsList/components/Table/BookingsTable/BookingsTable.tsx
 import { LinearProgress } from '@mui/material';
 import CustomNoRowsOverlay from '../CustomNoRowsOverlay/CustomNoRowsOverlay';
-=======
 import { Link } from 'react-router-dom';
->>>>>>> 667094cddf69938312ec114d9c290b31c116567c:src/pages/BookingsList/components/Table/BookingsTable.tsx
 
 const CustomToolbar = () => {
     return (
