@@ -1,11 +1,11 @@
 import { Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-interface ICheckoutProps {
+interface IFareDetailsProps {
     noOfSeats: number;
     farePerSeat: number;
 }
 
-export const Checkout = ({ noOfSeats, farePerSeat }: ICheckoutProps) => {
+export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
     const totalFare = noOfSeats * farePerSeat;
     const totalFareInString = `${noOfSeats} seat${
         noOfSeats > 1 ? 's' : ''

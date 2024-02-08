@@ -4,7 +4,7 @@ import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
 import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
-import { Checkout } from './components/Checkout';
+import { FareDetails } from './components/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -78,19 +78,19 @@ export const TripCardDetails = () => {
                         updateSelectedSeats={updateSelectedSeats}
                     />
                 </Stack>
-                <Stack
-                    direction={'row'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    spacing={3}
-                    mt={5}
-                    className="checkout-section"
-                >
-                    <Checkout
-                        noOfSeats={selectedSeats.length}
-                        farePerSeat={farePerSeat}
-                    />
-                    {currentUrl.pathname !== paths.tripBooking && (
+                {currentUrl.pathname !== paths.tripBooking && (
+                    <Stack
+                        direction={'row'}
+                        justifyContent={'space-between'}
+                        alignItems={'center'}
+                        spacing={3}
+                        mt={5}
+                        className="checkout-section"
+                    >
+                        <FareDetails
+                            noOfSeats={selectedSeats.length}
+                            farePerSeat={farePerSeat}
+                        />
                         <StyledButton
                             variant="contained"
                             disabled={
@@ -99,9 +99,9 @@ export const TripCardDetails = () => {
                         >
                             {t('checkoutBtnTxt')}
                         </StyledButton>
-                    )}
-                </Stack>
-                <DetailsGrid></DetailsGrid>
+                    </Stack>
+                )}
+                <DetailsGrid />
             </Stack>
         </TripCardDetailsWrapper>
     );

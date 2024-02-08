@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from '../../TripCardAccordion/AccordionDetails/TripCardDetails.styled';
-import { Checkout } from '../../TripCardAccordion/AccordionDetails/components/Checkout';
+import { Checkout } from '../../TripCardAccordion/AccordionDetails/components/FareDetails';
 import { DetailsGrid } from '../../TripCardAccordion/AccordionDetails/components/DetailsGrid';
 import { SeatLegend } from '../../TripCardAccordion/AccordionDetails/components/SeatLegend/SeatLegend';
 
