@@ -28,19 +28,19 @@ interface IActionBarProps {
 const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
-    const [startLocation, setStartLocation] = useState<
-        ILocationOptions | undefined | string
-    >(' ');
-    const [stopLocation, setStopLocation] = useState<
-        ILocationOptions | undefined | string
-    >(' ');
+    const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
+        null
+    );
+    const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
+        null
+    );
 
     const { t } = useTranslation('actionBar');
 
     // setting start location
     const handleStartSelect = (
-        event: React.SyntheticEvent,
-        selectedValue: ILocationOptions | null | string
+        _: React.SyntheticEvent,
+        selectedValue: ILocationOptions | null
     ) => {
         if (selectedValue) {
             setStartLocation(selectedValue);
@@ -49,8 +49,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // setting stop location
     const handleStopSelect = (
-        event: React.SyntheticEvent,
-        selectedValue: ILocationOptions | null | string
+        _: React.SyntheticEvent,
+        selectedValue: ILocationOptions | null
     ) => {
         if (selectedValue) {
             setStopLocation(selectedValue);
