@@ -16,10 +16,10 @@
     },
     "tripDetails": {
         "info": "Click on an available seat to proceed with your transaction.",
-        "selectAlertTitle":"Seat",
-        "selectAlertMsg":"are selected.",
+        "selectAlertTitle": "Seat",
+        "selectAlertMsg": "are selected.",
         "checkoutTitle": "Total Amount",
-        "checkoutBtnTxt":"Book now",
+        "checkoutBtnTxt": "Book now",
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",
@@ -31,7 +31,7 @@
         "seat": "seat",
         "fullName": "Full Name",
         "age": "Age",
-        "gender": "gender",
+        "gender": "Gender",
         "genderValues": [
             {
                 "value": "male",

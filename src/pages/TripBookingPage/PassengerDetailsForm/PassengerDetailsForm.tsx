@@ -10,8 +10,8 @@ const PassengerDetailsForm = () => {
     const { t } = useTranslation('passengerDetails');
 
     const generateInitialValues = () => {
-        const selectedSeatCount = 3;
-        const seatNumber = [1, 3, 2];
+        const selectedSeatCount = 2;
+        const seatNumber = [1, 3];
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -92,12 +92,12 @@ const PassengerDetailsForm = () => {
                                                 formControl={{
                                                     fullWidth: true,
                                                     size: 'small',
+                                                    required: true,
                                                 }}
                                                 name={`passengers.${index}.gender`}
                                                 id={`passengers.${index}.gender`}
                                                 label={t('gender')}
                                                 labelId={`passengers.${index}.gender-simple`}
-                                                required
                                                 formHelperText={{
                                                     children: ' ',
                                                 }}
