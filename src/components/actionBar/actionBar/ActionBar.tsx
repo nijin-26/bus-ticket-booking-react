@@ -29,18 +29,18 @@ const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
     const [startLocation, setStartLocation] = useState<
-        ILocationOptions | undefined
-    >(undefined);
+        ILocationOptions | undefined | string
+    >(' ');
     const [stopLocation, setStopLocation] = useState<
-        ILocationOptions | undefined
-    >(undefined);
+        ILocationOptions | undefined | string
+    >(' ');
 
     const { t } = useTranslation('actionBar');
 
     // setting start location
     const handleStartSelect = (
         event: React.SyntheticEvent,
-        selectedValue: ILocationOptions | null
+        selectedValue: ILocationOptions | null | string
     ) => {
         if (selectedValue) {
             setStartLocation(selectedValue);
@@ -50,11 +50,18 @@ const ActionBar: React.FC<IActionBarProps> = ({
     // setting stop location
     const handleStopSelect = (
         event: React.SyntheticEvent,
-        selectedValue: ILocationOptions | null
+        selectedValue: ILocationOptions | null | string
     ) => {
         if (selectedValue) {
             setStopLocation(selectedValue);
         }
+    };
+
+    // swap to and from locations
+    const swapLocationOptions = () => {
+        const tempTo = stopLocation;
+        setStopLocation(startLocation);
+        setStartLocation(tempTo);
     };
 
     // submit handler
