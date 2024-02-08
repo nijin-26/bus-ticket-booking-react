@@ -5,6 +5,7 @@ const {
     ns2,
     headerFooter,
     seatLayout,
+    tripDetails,
     actionBarTab,
     actionBar,
     pnrSearch,
@@ -19,6 +20,7 @@ const resources = {
     actionBar,
     pnrSearch,
     filterSort,
+    tripDetails,
 } as const;
 
 export default resources;
