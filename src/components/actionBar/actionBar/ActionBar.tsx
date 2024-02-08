@@ -72,6 +72,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         options={locationOptions.filter((loc) => {
                             return loc != stopLocation;
                         })}
+                        value={startLocation}
                         onChange={handleStartSelect}
                         renderInput={(params) => (
                             <TextField
@@ -91,7 +92,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             />
                         )}
                     ></Autocomplete>
-                    <IconButton>
+                    <IconButton onClick={swapLocationOptions}>
                         <SwapHoriz style={{ minWidth: '40px' }} />
                     </IconButton>
                     <Autocomplete
@@ -99,6 +100,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         options={locationOptions.filter((loc) => {
                             return loc != startLocation;
                         })}
+                        value={stopLocation}
                         onChange={handleStopSelect}
                         renderInput={(params) => (
                             <TextField
