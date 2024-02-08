@@ -73,7 +73,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
     return (
         <Wrapper>
             <Stack spacing={5} direction="row">
-                <Stack spacing={0} width="1000px" direction="row">
+                <Stack spacing={0} width="900px" direction="row" flexGrow={1}>
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -150,6 +150,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             </InputAdornment>
                         ),
                     }}
+                    // sx={{ maxWidth: '300px' }}
                 />
             </Stack>
 
