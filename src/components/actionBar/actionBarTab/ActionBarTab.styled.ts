@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 export const WrapperPaper = styled(Paper)`
     position: relative;
-    margin: 5rem 0;
+    margin: 0 0 5rem 0;
     min-width: 120rem;
 `;
 
