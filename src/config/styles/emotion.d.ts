@@ -31,6 +31,7 @@ declare module '@emotion/react' {
             redHover: string;
             boxShadowPrimary: string;
             grey500: string;
+            linkColor: string;
         };
     }
 }

@@ -24,7 +24,7 @@ export const AllBookingsPageWrapper = styled(Box)(({ theme }) => ({
             height:'100%'
         },
         '& .title': {
-            color: theme.color.grey500,
+            color: theme.color.textPrimary,
             fontSize: theme.font.md,
         },
         '& .value': {

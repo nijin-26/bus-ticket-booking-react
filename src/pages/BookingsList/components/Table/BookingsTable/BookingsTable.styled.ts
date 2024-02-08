@@ -14,6 +14,12 @@ export const BookingsTableWrapper = styled(Box)(({ theme }) => ({
         },
     },
 
+    a: {
+        fontWeight: theme.font.fontWeightMedium,
+        textDecoration: 'none',
+        color: theme.color.linkColor,
+    },
+
     '& .MuiDataGrid-root': {
         fontSize: '1.15rem',
         border: 'none',
