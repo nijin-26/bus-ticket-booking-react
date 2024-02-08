@@ -15,7 +15,11 @@ export const TripBookingPage = () => {
                     Bangalore
                 </Typography>
             </Stack>
-            <TripCardAccordion busType="AC" seatType="SLEEPER" />
+            <TripCardAccordion
+                busType="AC"
+                seatType="SLEEPER"
+                isExpanded={true}
+            />
             <PassengerDetailsForm />
         </>
     );

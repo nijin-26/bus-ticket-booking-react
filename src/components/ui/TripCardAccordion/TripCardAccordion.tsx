@@ -12,13 +12,15 @@ import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 interface ITripCardAccordion {
     busType: string;
     seatType: string;
+    isExpanded?: boolean;
 }
 export const TripCardAccordion = ({
     busType,
     seatType,
+    isExpanded = false,
 }: ITripCardAccordion) => {
     return (
-        <TripAccordionWrapper className="summary">
+        <TripAccordionWrapper className="summary" defaultExpanded={isExpanded}>
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
