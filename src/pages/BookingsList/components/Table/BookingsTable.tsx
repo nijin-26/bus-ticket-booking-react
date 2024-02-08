@@ -11,6 +11,7 @@ import { BookingsTableWrapper } from './BookingsTable.styled';
 import { IBooking } from '../../../../api/types/bookings';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
+import { Link } from 'react-router-dom';
 
 const CustomToolbar = () => {
     return (
@@ -76,14 +77,7 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
 
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const pnrNumber = params.row.pnrNumber || '';
-                return (
-                    <a
-                        href="#"
-                        style={{ textDecoration: 'none', color: '#0000EE' }}
-                    >
-                        {pnrNumber}
-                    </a>
-                );
+                return <Link to="#">{pnrNumber}</Link>;
             },
         },
         {

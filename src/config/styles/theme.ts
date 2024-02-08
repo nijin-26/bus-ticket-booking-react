@@ -29,7 +29,8 @@ const lightTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
-    grey500: colors.grey500
+    grey500: colors.grey500,
+    linkColor: colors.linkColor
 };
 
 const darkTheme = {
@@ -45,7 +46,8 @@ const darkTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
-    grey500: colors.grey500
+    grey500: colors.grey500,
+    linkColor: colors.lightPurple,
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({

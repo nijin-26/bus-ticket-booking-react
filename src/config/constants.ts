@@ -25,6 +25,7 @@ export const colors = {
     red: '#D84E55',
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
     redHover: '#AB3840',
+    linkColor: '#0000EE',
 };
 
 // api format: id, name => mui format: id, label
