@@ -18,7 +18,8 @@ import React, { useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
-import { locationOptions } from '../../../config';
+import { locationOptions, paths } from '../../../config';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 interface IActionBarProps {
@@ -66,6 +67,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // submit handler
     const searchBusHandler = () => {
+        navigate(paths.tripsListing);
         // api call to get listing data
         // apply loading states
     };
