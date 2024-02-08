@@ -37,9 +37,9 @@ export const TripCardDetails = () => {
             <Stack direction={'column'} p={3} pt={3}>
                 <Stack direction={'column'} spacing={2}>
                     <Stack
-                        direction={'row'}
+                        direction={{ sm: 'column', md: 'row' }}
                         justifyContent={'space-between'}
-                        alignItems={'center'}
+                        alignItems={{ sm: 'space-between', md: 'center' }}
                         spacing={3}
                     >
                         <SeatLegend />
@@ -82,7 +82,7 @@ export const TripCardDetails = () => {
                     <Stack
                         direction={{ xs: 'column', sm: 'row' }}
                         justifyContent={'space-between'}
-                        spacing={{ xs: 1, sm: 2, md: 4 }}
+                        spacing={{ xs: 1, sm: 10 }}
                         mt={5}
                         className="checkout-section"
                     >
