@@ -23,8 +23,6 @@ export const BookingsTableWrapper = styled(Box)(({ theme }) => ({
         },
 
         '& [class^=MuiDataGrid]': {
-            border: 'none',
-
             '&:focus': {
                 outline: 'none',
             },
