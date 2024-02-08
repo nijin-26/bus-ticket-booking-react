@@ -1,5 +1,6 @@
 import { Tooltip } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import SeatWrapper from './Seat.styled';
 
 const Seat = ({
     seatNumber,
@@ -18,15 +19,15 @@ const Seat = ({
             )}`}
             arrow
         >
-            <li
+            <SeatWrapper
                 className={`seat ${seatStatus}`}
                 onClick={() => {
                     updateSelectedSeats && updateSelectedSeats(seatNumber);
                 }}
-            ></li>
+            ></SeatWrapper>
         </Tooltip>
     ) : (
-        <li className={`seat ${seatStatus}`}></li>
+        <SeatWrapper className={`seat ${seatStatus}`}></SeatWrapper>
     );
 };
 
