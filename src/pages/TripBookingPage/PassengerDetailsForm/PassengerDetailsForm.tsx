@@ -5,13 +5,21 @@ import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
 import { FareDetails } from '../../../components/FairDetails/FareDetails';
 import { StyledButton } from '../../../components/Button/Button.styled';
+import { useState, useEffect } from 'react';
 
 const PassengerDetailsForm = () => {
     const { t } = useTranslation('passengerDetails');
 
+    const [languageChangeKey, setLanguageChangeKey] = useState(0);
+
+    useEffect(() => {
+        // Incrementing languageChangeKey to force re-render when language changes
+        setLanguageChangeKey((prevKey) => prevKey + 1);
+    }, [t]);
+
     const generateInitialValues = () => {
-        const selectedSeatCount = 2;
-        const seatNumber = [1, 3];
+        const selectedSeatCount = 1;
+        const seatNumber = [1];
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -71,6 +79,7 @@ const PassengerDetailsForm = () => {
                                                 label={t('fullName')}
                                                 required
                                                 helperText=" "
+                                                key={languageChangeKey}
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
@@ -83,6 +92,7 @@ const PassengerDetailsForm = () => {
                                                 label={t('age')}
                                                 required
                                                 helperText=" "
+                                                key={languageChangeKey}
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
@@ -101,6 +111,7 @@ const PassengerDetailsForm = () => {
                                                 formHelperText={{
                                                     children: ' ',
                                                 }}
+                                                key={languageChangeKey}
                                             >
                                                 {t('genderValues', {
                                                     returnObjects: true,
