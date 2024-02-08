@@ -15,7 +15,7 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
     const [selectedTab, setSelectedTab] = useState(0);
     const { t } = useTranslation('auth');
 
-    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
         setSelectedTab(newValue);
     };
 
