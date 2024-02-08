@@ -154,7 +154,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             </InputAdornment>
                         ),
                     }}
-                    // sx={{ maxWidth: '300px' }}
                 />
             </Stack>
 
