@@ -12,6 +12,7 @@ const {
     actionBar: enActionBar,
     pnrSearch: enPnrSearch,
     filterSort: enFilterSort,
+    auth: enAuth,
     tripDetails: enTripDetails,
 } = en;
 const {
@@ -23,6 +24,7 @@ const {
     actionBar: esActionBar,
     pnrSearch: esPnrSearch,
     filterSort: esFilterSort,
+    auth: esAuth,
     tripDetails: esTripDetails,
 } = es;
 
@@ -34,6 +36,7 @@ void i18n.use(initReactI18next).init({
         en: {
             ns1: enNs1,
             ns2: enNs2,
+            auth: enAuth,
             headerFooter: enHeaderFooter,
             seatLayout: enSeatLayout,
             actionBarTab: enActionBarTab,
@@ -45,6 +48,7 @@ void i18n.use(initReactI18next).init({
         es: {
             ns1: esNs1,
             ns2: esNs2,
+            auth: esAuth,
             headerFooter: esHeaderFooter,
             seatLayout: esSeatLayout,
             actionBarTab: esActionBarTab,
@@ -63,6 +67,7 @@ void i18n.use(initReactI18next).init({
         'headerFooter',
         'seatLayout',
         'tripDetails',
+        'auth',
         'actionBarTab',
         'actionBar',
         'pnrSearch',

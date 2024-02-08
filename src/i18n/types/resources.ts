@@ -6,6 +6,7 @@ const {
     headerFooter,
     seatLayout,
     tripDetails,
+    auth,
     actionBarTab,
     actionBar,
     pnrSearch,
@@ -14,6 +15,7 @@ const {
 const resources = {
     ns1,
     ns2,
+    auth,
     headerFooter,
     seatLayout,
     actionBarTab,
