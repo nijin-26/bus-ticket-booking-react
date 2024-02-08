@@ -1,8 +1,11 @@
 import { TextField, Stack, InputAdornment } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { Wrapper, CenteredButton } from './PnrSearch.styled';
+import { useTranslation } from 'react-i18next';
 
 export default function PnrSearch() {
+    const { t } = useTranslation('pnrSearch');
+
     const searchPnrHandler = () => {
         // handler function
     };
@@ -11,7 +14,7 @@ export default function PnrSearch() {
         <Wrapper>
             <Stack spacing={5} direction="row">
                 <TextField
-                    label="Search for your ticket by PNR number"
+                    label={t('searchForTicketByPNR')}
                     fullWidth
                     InputProps={{
                         startAdornment: (
@@ -28,7 +31,7 @@ export default function PnrSearch() {
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
             >
-                Find my ticket
+                {t('findMyTicket')}
             </CenteredButton>
         </Wrapper>
     );

@@ -5,6 +5,7 @@ export const paths = {
     home: '/',
     tripsListing: '/trips',
     tripDetail: '/trips/:tripId',
+    tripBooking:'/trips/booking'
 };
 
 export const colors = {
@@ -22,6 +23,7 @@ export const colors = {
     darkBusLayoutBg: '#575757',
     red: '#D84E55',
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
+    redHover: '#AB3840',
 };
 
 // api format: id, name => mui format: id, label
@@ -34,6 +36,13 @@ export const locationOptions: ILocationOptions[] = [
     { id: 5, label: 'Ahmedabad' },
     { id: 5, label: 'Lucknow' },
 ];
+
+export const filterValues = {
+    ac: 'AC',
+    nonAc: 'Non-AC',
+    seater: 'Seater',
+    sleeper: 'Sleeper',
+};
 
 export const LANGUAGES: Language[] = [
     { label: 'English', code: LanguageCode.English },

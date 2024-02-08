@@ -6,12 +6,12 @@ import {
     IconButton,
 } from '@mui/material';
 import {
-    PanoramaFishEyeSharp,
     FmdGood,
     Today,
     People,
     Search,
     SwapHoriz,
+    TripOrigin,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
@@ -20,6 +20,7 @@ import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { locationOptions, paths } from '../../../config';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -28,13 +29,14 @@ interface IActionBarProps {
 const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
-    const [startLocation, setStartLocation] = useState<
-        ILocationOptions | undefined
-    >(undefined);
-    const [stopLocation, setStopLocation] = useState<
-        ILocationOptions | undefined
-    >(undefined);
+    const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
+        null
+    );
+    const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
+        null
+    );
 
+    const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
 
     // setting start location
@@ -57,6 +59,13 @@ const ActionBar: React.FC<IActionBarProps> = ({
         }
     };
 
+    // swap to and from locations
+    const swapLocationOptions = () => {
+        const tempTo = stopLocation;
+        setStopLocation(startLocation);
+        setStartLocation(tempTo);
+    };
+
     // submit handler
     const searchBusHandler = () => {
         navigate(paths.tripsListing);
@@ -67,23 +76,24 @@ const ActionBar: React.FC<IActionBarProps> = ({
     return (
         <Wrapper>
             <Stack spacing={5} direction="row">
-                <Stack spacing={1} width="1000px" direction="row">
+                <Stack spacing={0} width="1000px" direction="row">
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
                             return loc != stopLocation;
                         })}
+                        value={startLocation}
                         onChange={handleStartSelect}
                         renderInput={(params) => (
                             <TextField
                                 {...params}
-                                label="From"
+                                label={t('from')}
                                 InputProps={{
                                     ...params.InputProps,
                                     startAdornment: (
                                         <>
                                             <InputAdornment position="start">
-                                                <PanoramaFishEyeSharp />
+                                                <TripOrigin />
                                             </InputAdornment>
                                             {params.InputProps.startAdornment}
                                         </>
@@ -92,19 +102,20 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             />
                         )}
                     ></Autocomplete>
-                    <IconButton>
-                        <SwapHoriz />
+                    <IconButton onClick={swapLocationOptions}>
+                        <SwapHoriz style={{ minWidth: '40px' }} />
                     </IconButton>
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
                             return loc != startLocation;
                         })}
+                        value={stopLocation}
                         onChange={handleStopSelect}
                         renderInput={(params) => (
                             <TextField
                                 {...params}
-                                label="To"
+                                label={t('to')}
                                 InputProps={{
                                     ...params.InputProps,
                                     startAdornment: (
@@ -121,18 +132,19 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     ></Autocomplete>
                 </Stack>
                 <DatePicker
-                    label="Date"
+                    label={t('date')}
                     slots={{
                         openPickerIcon: Today,
                     }}
                     slotProps={{
                         inputAdornment: {
                             position: 'start',
+                            sx: { pl: '5px' },
                         },
                     }}
                 />
                 <TextField
-                    label="Passengers"
+                    label={t('passengers')}
                     type="number"
                     InputProps={{
                         startAdornment: (
@@ -152,7 +164,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
             >
-                Explore
+                {t('explore')}
             </CenteredButton>
         </Wrapper>
     );
