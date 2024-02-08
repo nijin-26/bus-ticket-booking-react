@@ -13,5 +13,16 @@
         "available": "Disponible",
         "unavailable": "Indisponible",
         "selected": "Seleccionado"
+    },
+    "tripDetails": {
+        "info": "Haga clic en un asiento disponible para continuar con su transacción.",
+        "selectAlertTitle": "Asiento",
+        "selectAlertMsg": "son seleccionados.",
+        "checkoutTitle": "Cantidad total",
+        "checkoutBtnTxt": "Reservar ahora",
+        "departure": "Partida",
+        "arrival": "Llegada",
+        "duration": "Duración",
+        "busType": "Tipo de autobús"
     }
 }
