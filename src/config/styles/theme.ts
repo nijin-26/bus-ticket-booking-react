@@ -17,6 +17,7 @@ const fontStyles = {
 };
 
 const lightTheme = {
+    mode: "light",
     primary: colors.deepPurple,
     secondary: colors.lightPurple,
     textPrimary: colors.black,
@@ -33,6 +34,7 @@ const lightTheme = {
 };
 
 const darkTheme = {
+    mode: "dark",
     primary: colors.lightPurple,
     secondary: colors.deepPurple,
     background: colors.black,

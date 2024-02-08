@@ -4,13 +4,16 @@ import {
     GridToolbarExport,
     useGridApiContext,
     useGridSelector,
-    gridPageCountSelector,
     gridPageSelector,
+    gridPageSizeSelector,
+    gridPageCountSelector,
 } from '@mui/x-data-grid';
 import { BookingsTableWrapper } from './BookingsTable.styled';
-import { IBooking } from '../../../../api/types/bookings';
+import { IBooking, IBookingsList } from '../../../../../api/types/bookings';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
+import { LinearProgress } from '@mui/material';
+import CustomNoRowsOverlay from '../CustomNoRowsOverlay/CustomNoRowsOverlay';
 
 const CustomToolbar = () => {
     return (
@@ -25,11 +28,16 @@ const CustomToolbar = () => {
     );
 };
 
-function CustomPagination({ totalBookings }: { totalBookings: number }) {
+const CustomPagination = ({
+    totalBookings,
+    updateSearchParams,
+}: {
+    totalBookings: number;
+    updateSearchParams: (newPage: string) => void;
+}) => {
     const apiRef = useGridApiContext();
     const page = useGridSelector(apiRef, gridPageSelector);
-    const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
+    const pageSize = useGridSelector(apiRef, gridPageSizeSelector);
     return (
         <div
             style={{
@@ -51,21 +59,31 @@ function CustomPagination({ totalBookings }: { totalBookings: number }) {
                 variant="outlined"
                 shape="rounded"
                 page={page + 1}
-                count={pageCount}
+                // count={pageCount}
+                count={Math.ceil(totalBookings / pageSize)}
                 renderItem={(props) => <PaginationItem {...props} />}
                 onChange={(event, value) => {
-                    apiRef.current.setPage(value - 1);
+                    console.log(value);
+                    updateSearchParams(String(value));
+                    apiRef.current.setPage(value);
                 }}
             />
         </div>
     );
-}
+};
 
-export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
+export const BookingsTable = ({
+    bookingsData,
+    loading,
+    updateSearchParams,
+}: {
+    bookingsData: IBookingsList | { count: number; data: [] };
+    loading: boolean;
+    updateSearchParams: (newPage: string) => void;
+}) => {
     interface GridValueGetterParams {
         row: IBooking;
     }
-
     const columns = [
         {
             field: 'pnrNumber',
@@ -134,10 +152,10 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
                     borderRadius: 2,
                     boxShadow: 3,
                 }}
-                rows={bookings}
+                rows={bookingsData.data}
                 getRowId={(row) => row.pnrNumber}
                 columns={columns}
-                pageSizeOptions={[5, 10, 20]}
+                autoHeight={true}
                 initialState={{
                     pagination: {
                         paginationModel: {
@@ -147,6 +165,7 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
                     },
                 }}
                 pagination
+                loading={loading}
                 disableRowSelectionOnClick
                 disableColumnFilter
                 disableColumnSelector
@@ -154,8 +173,13 @@ export const BookingsTable = ({ bookings }: { bookings: IBooking[] }) => {
                 slots={{
                     toolbar: CustomToolbar,
                     pagination: () => (
-                        <CustomPagination totalBookings={bookings.length} />
+                        <CustomPagination
+                            totalBookings={bookingsData.count}
+                            updateSearchParams={updateSearchParams}
+                        />
                     ),
+                    loadingOverlay: LinearProgress,
+                    noRowsOverlay: CustomNoRowsOverlay,
                 }}
             />
         </BookingsTableWrapper>
