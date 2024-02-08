@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled('div')`
     position: relative;
-    padding: 24px 24px 40px 24px;
+    padding: 2.4rem 2.4rem 4rem 2.4rem;
 `;
 
 export const CenteredButton = styled(LoadingButton)`
@@ -11,5 +11,5 @@ export const CenteredButton = styled(LoadingButton)`
     bottom: 0;
     left: 50%;
     transform: translateY(50%) translateX(-50%);
-    border-radius: 20px;
+    border-radius: 2rem;
 `;

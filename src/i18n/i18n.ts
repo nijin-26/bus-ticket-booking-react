@@ -8,6 +8,10 @@ const {
     ns2: enNs2,
     headerFooter: enHeaderFooter,
     seatLayout: enSeatLayout,
+    actionBarTab: enActionBarTab,
+    actionBar: enActionBar,
+    pnrSearch: enPnrSearch,
+    filterSort: enFilterSort,
     tripDetails: enTripDetails,
 } = en;
 const {
@@ -15,6 +19,10 @@ const {
     ns2: esNs2,
     headerFooter: esHeaderFooter,
     seatLayout: esSeatLayout,
+    actionBarTab: esActionBarTab,
+    actionBar: esActionBar,
+    pnrSearch: esPnrSearch,
+    filterSort: esFilterSort,
     tripDetails: esTripDetails,
 } = es;
 
@@ -28,6 +36,10 @@ void i18n.use(initReactI18next).init({
             ns2: enNs2,
             headerFooter: enHeaderFooter,
             seatLayout: enSeatLayout,
+            actionBarTab: enActionBarTab,
+            actionBar: enActionBar,
+            pnrSearch: enPnrSearch,
+            filterSort: enFilterSort,
             tripDetails: enTripDetails,
         },
         es: {
@@ -35,13 +47,27 @@ void i18n.use(initReactI18next).init({
             ns2: esNs2,
             headerFooter: esHeaderFooter,
             seatLayout: esSeatLayout,
+            actionBarTab: esActionBarTab,
+            actionBar: esActionBar,
+            pnrSearch: esPnrSearch,
+            filterSort: esFilterSort,
             tripDetails: esTripDetails,
         },
     },
     lng: 'en',
     fallbackLng: 'en',
     defaultNS,
-    ns: ['ns1', 'ns2', 'headerFooter', 'seatLayout', 'tripDetails'],
+    ns: [
+        'ns1',
+        'ns2',
+        'headerFooter',
+        'seatLayout',
+        'tripDetails',
+        'actionBarTab',
+        'actionBar',
+        'pnrSearch',
+        'filterSort',
+    ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.
     },
