@@ -8,10 +8,7 @@ import { Panel, WrapperPaper } from './ActionBarTab.styled';
 export default function ActionBarTab() {
     const [value, setValue] = useState('1');
 
-    const changeTabHandler = (
-        event: React.SyntheticEvent,
-        newValue: string
-    ) => {
+    const changeTabHandler = (_: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 

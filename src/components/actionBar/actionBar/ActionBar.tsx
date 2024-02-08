@@ -18,7 +18,8 @@ import React, { useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
-import { locationOptions } from '../../../config';
+import { locationOptions, paths } from '../../../config';
+import { useNavigate } from 'react-router-dom';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -34,9 +35,11 @@ const ActionBar: React.FC<IActionBarProps> = ({
         ILocationOptions | undefined
     >(undefined);
 
+    const navigate = useNavigate();
+
     // setting start location
     const handleStartSelect = (
-        event: React.SyntheticEvent,
+        _: React.SyntheticEvent,
         selectedValue: ILocationOptions | null
     ) => {
         if (selectedValue) {
@@ -46,7 +49,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // setting stop location
     const handleStopSelect = (
-        event: React.SyntheticEvent,
+        _: React.SyntheticEvent,
         selectedValue: ILocationOptions | null
     ) => {
         if (selectedValue) {
@@ -56,6 +59,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // submit handler
     const searchBusHandler = () => {
+        navigate(paths.tripsListing);
         // api call to get listing data
         // apply loading states
     };
