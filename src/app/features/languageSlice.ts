@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import i18n from '../../i18n/i18n';
-import { LanguageCode } from '../../types';
+import { LanguageCode } from '../../types/index';
 
 interface ILanguageState {
     currentLanguage: LanguageCode;
