@@ -41,20 +41,40 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
             >
                 <Stack direction={'row'} spacing={12} className="details">
                     <Stack className="trip-card-icons">
-                        <img
-                            src={
-                                data.busType == IBusType.AC ? acIcon : nonAcIcon
+                        <Tooltip
+                            title={
+                                data.busType == IBusType.AC
+                                    ? 'Bus Type - AC'
+                                    : 'Bus Type - Non-AC'
                             }
-                            alt="Bus Type Icon"
-                        />
-                        <img
-                            src={
+                            arrow
+                        >
+                            <img
+                                src={
+                                    data.busType == IBusType.AC
+                                        ? acIcon
+                                        : nonAcIcon
+                                }
+                                alt="Bus Type Icon"
+                            />
+                        </Tooltip>
+                        <Tooltip
+                            title={
                                 data.seatType == ISeatType.SLEEPER
-                                    ? sleeperIcon
-                                    : seatIcon
+                                    ? 'Seat Type - Sleeper'
+                                    : 'Seat Type - Seater'
                             }
-                            alt="Seat Type Icon"
-                        />
+                            arrow
+                        >
+                            <img
+                                src={
+                                    data.seatType == ISeatType.SLEEPER
+                                        ? sleeperIcon
+                                        : seatIcon
+                                }
+                                alt="Seat Type Icon"
+                            />
+                        </Tooltip>
                     </Stack>
                     <Stack
                         direction={'row'}
