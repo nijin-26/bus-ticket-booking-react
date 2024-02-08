@@ -27,6 +27,7 @@ declare module '@emotion/react' {
             seat: string;
             busLayoutBg: string;
             red: string;
+            redHover: string;
             boxShadowPrimary: string;
             grey500: string;
         };
