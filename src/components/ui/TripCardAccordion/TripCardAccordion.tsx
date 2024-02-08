@@ -1,6 +1,4 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import acIcon from '../../../assets/AcIcon.svg';
 import nonAcIcon from '../../../assets/NonAcIcon.svg';
@@ -11,7 +9,8 @@ import LongArrow from '../../icons/LongArrow';
 import Tooltip from '@mui/material/Tooltip';
 import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
-import { ITrip } from '../../../api/types/trip';
+import { IBusType, ISeatType, ITrip } from '../../../api/types/trip';
+import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 
 let borderDesignClass: string;
 
@@ -24,10 +23,13 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
         borderDesignClass = 'no-seats';
     }
 
-    const dates = convertTimeStamp(
-        data.departureTimestamp,
-        data.arrivalTimestamp
-    );
+    const dates: {
+        formattedDepartureTime: string;
+        formattedDepartureDate: string;
+        formattedArrivalTime: string;
+        formattedArrivalDate: string;
+        formattedDuration: string;
+    } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
 
     return (
         <TripAccordionWrapper className={`summary ${borderDesignClass}`}>
@@ -40,12 +42,14 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
                 <Stack direction={'row'} spacing={12} className="details">
                     <Stack className="trip-card-icons">
                         <img
-                            src={data.busType == 'AC' ? acIcon : nonAcIcon}
+                            src={
+                                data.busType == IBusType.AC ? acIcon : nonAcIcon
+                            }
                             alt="Bus Type Icon"
                         />
                         <img
                             src={
-                                data.seatType == 'SLEEPER'
+                                data.seatType == ISeatType.SLEEPER
                                     ? sleeperIcon
                                     : seatIcon
                             }
@@ -78,13 +82,7 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
                     <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
-            <AccordionDetails>
-                <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
-                </Typography>
-            </AccordionDetails>
+            <TripCardDetails />
         </TripAccordionWrapper>
     );
 };
