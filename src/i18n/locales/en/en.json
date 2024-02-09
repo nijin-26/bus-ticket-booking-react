@@ -1,0 +1,58 @@
+{
+    "ns1": {
+        "home": "home"
+    },
+    "ns2": {
+        "hello": "hello"
+    },
+    "headerFooter": {
+        "copyRight": "© 2024 All rights reserved",
+        "Login": "Login"
+    },
+    "seatLayout": {
+        "available": "Available",
+        "unavailable": "Unavailable",
+        "selected": "Selected"
+    },
+    "actionBarTab": {
+        "findBuses": "Find buses",
+        "findTicket": "Find my ticket"
+    },
+    "actionBar": {
+        "from": "From",
+        "to": "To",
+        "date": "Date",
+        "passengers": "Passengers",
+        "explore": "Explore"
+    },
+    "pnrSearch": {
+        "searchForTicketByPNR": "Search for your ticket by PNR number",
+        "findMyTicket": "Find my ticket"
+    },
+    "filterSort": {
+        "busType": " Bus type",
+        "AC": "AC",
+        "nonAC": "Non-AC",
+        "seatType": "Seat type",
+        "seater": "Seater",
+        "sleeper": "Sleeper",
+        "sort": "Sort",
+        "startDate": "Start date",
+        "seatsAvailable": "Seats available",
+        "priceHighToLow": "Price: high to low",
+        "priceLowToHigh": "Price: low to high",
+        "clearAll": "Clear all",
+        "clear": "Clear"
+    },
+    "tripDetails": {
+        "info": "Click on an available seat to proceed with your transaction.",
+        "selectAlertTitle": "Seat",
+        "selectAlertMsg": "are selected.",
+        "checkoutTitle": "Total Amount",
+        "checkoutBtnTxt": "Book now",
+        "departure": "Departure",
+        "arrival": "Arrival",
+        "duration": "Duration",
+        "busType": "Bus Type"
+    }
+}
