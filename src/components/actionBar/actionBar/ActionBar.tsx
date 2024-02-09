@@ -76,7 +76,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
     return (
         <Wrapper>
             <Stack spacing={5} direction="row">
-                <Stack spacing={0} width="900px" direction="row" flexGrow={1}>
+                <Stack spacing={0} width="90rem" direction="row" flexGrow={1}>
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -103,7 +103,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         )}
                     ></Autocomplete>
                     <IconButton onClick={swapLocationOptions}>
-                        <SwapHoriz style={{ minWidth: '40px' }} />
+                        <SwapHoriz style={{ minWidth: '4rem' }} />
                     </IconButton>
                     <Autocomplete
                         fullWidth
@@ -139,7 +139,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     slotProps={{
                         inputAdornment: {
                             position: 'start',
-                            sx: { pl: '5px' },
+                            sx: { pl: '0.5rem' },
                         },
                     }}
                 />

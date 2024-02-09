@@ -87,7 +87,7 @@ export default function FilterSort() {
                 <Stack spacing={2} direction="row">
                     <Stack
                         spacing={2}
-                        width="1200px"
+                        width="120rem"
                         direction="row"
                         sx={{ displayPrint: 'flex', alignItems: 'center' }}
                     >
