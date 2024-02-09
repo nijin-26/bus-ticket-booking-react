@@ -7,7 +7,7 @@ import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../fairDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
@@ -27,7 +27,6 @@ export const TripCardDetails = ({
         formattedDuration: string;
     };
 }) => {
-    const farePerSeat: number = 1200;
 
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
@@ -44,29 +43,26 @@ export const TripCardDetails = ({
 
     const { t } = useTranslation('tripDetails');
     const currentUrl = useLocation();
+    const navigate = useNavigate();
 
-    // const { origin, destination,  };
-    const {
-        formattedDepartureTime,
-        formattedDepartureDate,
-        formattedArrivalDate,
-        formattedArrivalTime,
-        formattedDuration,
-    } = dates;
+const tripDetails = {
+    departureTime: dates.formattedDepartureTime,
+    departureDate: dates.formattedDepartureDate,
+    arrivalTime: dates.formattedArrivalTime,
+    arrivalDate: dates.formattedArrivalDate,
+    duration: dates.formattedDuration,
+    origin: data.origin,
+    destination: data.destination,
+    seatType: data.seatType,
+    busType: data.busType,
+};
 
-    const tripSpecificData: ITripById = {
-        id: data.id,
-        origin: data.origin,
-        destination: data.destination,
-        departureTimestamp: data.departureTimestamp,
-        arrivalTimestamp: data.arrivalTimestamp,
-        seatType: data.seatType,
-        busType: data.busType,
-        farePerSeat: data.farePerSeat,
-        availableSeats: data.availableSeats,
-        totalSeats: data.totalSeats,
-        seats: generateSeats(data.availableSeats,data.totalSeats),
-    };
+
+  const tripSpecificData: ITripById = {
+      ...data,
+      seats: generateSeats(data.availableSeats, data.totalSeats),
+  };
+
 
     return (
         <TripCardDetailsWrapper>
@@ -122,7 +118,7 @@ export const TripCardDetails = ({
                         mt={5}
                         className="checkout-section"
                     >
-                        {selectedSeats.length > 0 && farePerSeat > 0 && (
+                        {selectedSeats.length > 0 && data.farePerSeat > 0 && (
                             <FareDetails
                                 noOfSeats={selectedSeats.length}
                                 farePerSeat={data.farePerSeat}
@@ -131,24 +127,20 @@ export const TripCardDetails = ({
                         <StyledButton
                             variant="contained"
                             disabled={
-                                !(selectedSeats.length > 0 && farePerSeat > 0)
+                                !(
+                                    selectedSeats.length > 0 &&
+                                    data.farePerSeat > 0
+                                )
                             }
+                            onClick={() => {
+                                navigate('/trips/bookings');
+                            }}
                         >
                             {t('checkoutBtnTxt')}
                         </StyledButton>
                     </Stack>
                 )}
-                <DetailsGrid
-                    departureTime={formattedDepartureTime}
-                    departureData={formattedDepartureDate}
-                    arrivalTime={formattedArrivalTime}
-                    arrivalDate={formattedArrivalDate}
-                    duration={formattedDuration}
-                    origin={data.origin}
-                    destination={data.destination}
-                    seatType={data.seatType}
-                    busType={data.busType}
-                />
+                <DetailsGrid tripDetails={tripDetails} />
             </Stack>
         </TripCardDetailsWrapper>
     );

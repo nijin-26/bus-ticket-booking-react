@@ -99,10 +99,10 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
                     <p className={`seats ${borderDesignClass}`}>
                         {data.availableSeats} seats available
                     </p>
-                    <p className="price">Rs. {data.farePerSeat}/-</p>
+                    <p className="price">₹ {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
-            <TripCardDetails data={data} dates={dates}/>
+            <TripCardDetails data={data} dates={dates} />
         </TripAccordionWrapper>
     );
 };

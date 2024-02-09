@@ -9,7 +9,7 @@ export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
     const totalFare = noOfSeats * farePerSeat;
     const totalFareInString = `${noOfSeats} seat${
         noOfSeats > 1 ? 's' : ''
-    } * ₹${farePerSeat} = ₹${totalFare}`;
+    } x ₹${farePerSeat} = ₹${totalFare}`;
 
     const { t } = useTranslation('tripDetails');
 

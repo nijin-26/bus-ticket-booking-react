@@ -8,47 +8,41 @@ import { BusIcon } from '../../../../../assets/accordianDetails/BusIcon';
 import { IBusType, ISeatType } from '../../../../../api/types/trip';
 
 export const DetailsGrid = ({
-    departureTime,
-    departureData,
-    arrivalTime,
-    arrivalDate,
-    duration,
-    seatType,
-    busType,
-    origin,
-    destination,
+    tripDetails,
 }: {
-    departureTime: string;
-    departureData: string;
-    arrivalTime: string;
-    arrivalDate: string;
-    duration: string;
-    seatType: ISeatType;
-    busType: IBusType;
-    origin: string;
-    destination: string;
+    tripDetails: {
+        departureTime: string;
+        departureDate: string;
+        arrivalTime: string;
+        arrivalDate: string;
+        duration: string;
+        origin: string;
+        destination: string;
+        seatType: ISeatType;
+        busType: IBusType;
+    };
 }) => {
     const { t } = useTranslation('tripDetails');
 
     const detailsData = [
         {
             title: t('departure'),
-            value: `${origin} ${departureData}, ${departureTime}`,
+            value: `${tripDetails.origin} ${tripDetails.departureDate}, ${tripDetails.departureTime}`,
             icon: <BusDepartureIcon />,
         },
         {
             title: t('arrival'),
-            value: `${destination} ${arrivalDate}, ${arrivalTime}`,
+            value: `${tripDetails.destination} ${tripDetails.arrivalDate}, ${tripDetails.arrivalTime}`,
             icon: <BusArrivalIcon />,
         },
         {
             title: t('duration'),
-            value: duration,
+            value: tripDetails.duration,
             icon: <StopwatchIcon />,
         },
         {
             title: t('busType'),
-            value: `${busType} , ${seatType}`,
+            value: `${tripDetails.busType} , ${tripDetails.seatType}`,
             icon: <BusIcon />,
         },
     ];

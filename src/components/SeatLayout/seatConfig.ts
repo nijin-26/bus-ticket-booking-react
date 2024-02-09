@@ -78,7 +78,6 @@ export const generateSeats = (
 
         seats.push({ seatNumber, status });
     }
-    console.log(seats);
 
     return seats;
 };
