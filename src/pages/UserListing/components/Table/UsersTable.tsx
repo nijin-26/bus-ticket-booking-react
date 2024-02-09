@@ -9,22 +9,20 @@ export const UsersTable = ({ users }: { users: IUser[] }) => {
         { field: 'phone', headerName: 'Phone', flex: 1 },
     ];
     return (
-        <UsersTableWrapper>
-            <DataGrid
-                rows={users}
-                columns={columns}
-                pageSizeOptions={[5, 10, 20]}
-                initialState={{
-                    pagination: {
-                        paginationModel: {
-                            page: 0,
-                            pageSize: 10,
-                        },
+        <DataGrid
+            rows={users}
+            columns={columns}
+            pageSizeOptions={[5, 10, 20]}
+            initialState={{
+                pagination: {
+                    paginationModel: {
+                        page: 0,
+                        pageSize: 10,
                     },
-                }}
-                pagination
-                disableRowSelectionOnClick
-            />
-        </UsersTableWrapper>
+                },
+            }}
+            pagination
+            disableRowSelectionOnClick
+        />
     );
 };
