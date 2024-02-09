@@ -32,6 +32,7 @@ declare module '@emotion/react' {
             boxShadowPrimary: string;
             grey500: string;
             linkColor: string;
+            green:string
         };
     }
 }

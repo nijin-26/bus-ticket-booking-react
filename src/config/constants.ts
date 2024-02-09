@@ -6,6 +6,7 @@ export const paths = {
     tripsListing: '/trips',
     tripDetail: '/trips/:tripId',
     bookings: '/bookings',
+    usersListing: '/users',
     tripBooking:'/trips/booking'
 };
 
@@ -24,6 +25,7 @@ export const colors = {
     darkBusLayoutBg: '#575757',
     red: '#D84E55',
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
+    green: '#56A55C',
     redHover: '#AB3840',
     linkColor: '#0000EE',
 };
@@ -38,6 +40,13 @@ export const locationOptions: ILocationOptions[] = [
     { id: 5, label: 'Ahmedabad' },
     { id: 5, label: 'Lucknow' },
 ];
+
+export const filterValues = {
+    ac: 'AC',
+    nonAc: 'Non-AC',
+    seater: 'Seater',
+    sleeper: 'Sleeper',
+};
 
 export const LANGUAGES: Language[] = [
     { label: 'English', code: LanguageCode.English },
