@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { IUser } from '../../../../interfaces';
+import { IUser } from '../../../../types/user';
 
 export const UsersTable = ({ users }: { users: IUser[] }) => {
     const columns = [
