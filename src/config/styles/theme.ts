@@ -29,6 +29,7 @@ const lightTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
+    green: colors.green,
 };
 
 const darkTheme = {
@@ -44,6 +45,7 @@ const darkTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
+    green: colors.green,
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({

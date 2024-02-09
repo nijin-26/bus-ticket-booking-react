@@ -1,25 +1,38 @@
-import { Formik, Form, FieldArray, FastField } from 'formik';
+import { Formik, Form, FieldArray, FastField, FormikProps } from 'formik';
 import { Box, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
-import { FareDetails } from '../../../components/FairDetails/FareDetails';
+import { FareDetails } from '../../../components/FareDetails/FareDetails';
 import { StyledButton } from '../../../components/Button/Button.styled';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useTheme } from '@emotion/react';
+
+interface IPassengerDetails {
+    passengers: {
+        seatNumber: number;
+        fullName: string;
+        age: string;
+        gender: string;
+    }[];
+}
 
 const PassengerDetailsForm = () => {
     const { t } = useTranslation('passengerDetails');
+    const theme = useTheme();
 
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
+    const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
 
     useEffect(() => {
         // Incrementing languageChangeKey to force re-render when language changes
         setLanguageChangeKey((prevKey) => prevKey + 1);
+        void formikRef.current?.validateForm();
     }, [t]);
 
     const generateInitialValues = () => {
-        const selectedSeatCount = 1;
-        const seatNumber = [1];
+        const selectedSeatCount = 2;
+        const seatNumber = [1, 2];
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -31,6 +44,7 @@ const PassengerDetailsForm = () => {
 
     return (
         <Formik
+            innerRef={formikRef}
             initialValues={{
                 passengers: generateInitialValues(),
             }}
@@ -43,7 +57,7 @@ const PassengerDetailsForm = () => {
         >
             {({ values }) => (
                 <Form autoComplete="off" noValidate>
-                    <Typography component="h3" variant="h5" mb={2} mt={4}>
+                    <Typography component="h2" variant="h5" mb={2} mt={4}>
                         {t('passengerDetailsFormHeading')}
                     </Typography>
                     <FieldArray name="passengers">
@@ -52,13 +66,14 @@ const PassengerDetailsForm = () => {
                                 <Box
                                     key={index}
                                     component={Paper}
-                                    py="10px"
-                                    px="20px"
-                                    mb="30px"
-                                    elevation={4}
+                                    py="1rem"
+                                    px="2rem"
+                                    mb="3rem"
+                                    bgcolor={theme.color.background}
+                                    boxShadow={`0 0 1rem 0 ${theme.color.boxShadowPrimary}`}
                                 >
                                     <Typography
-                                        component="h4"
+                                        component="h3"
                                         variant="h6"
                                         mb={2}
                                     >

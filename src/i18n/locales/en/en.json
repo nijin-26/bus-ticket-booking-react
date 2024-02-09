@@ -104,7 +104,7 @@
         "ageRequired": "Age is a required field",
         "genderRequired": "Gender is a required field",
         "fullNameLength": "Full Name must be 3 to 60 characters long",
-        "AgeNumberCheck": "Age must be a number",
+        "AgeNumberCheck": "Age must be a valid number",
         "AgeRangeCheck": "Age must be between 1 and 130"
     },
     "landingPage": {
