@@ -4,10 +4,10 @@ import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
 import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
-import { FareDetails } from '../../../fairDetails/FareDetails';
+import { FareDetails } from '../../../FairDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
@@ -15,6 +15,8 @@ import { SeatLegend } from './components/SeatLegend/SeatLegend';
 
 export const TripCardDetails = () => {
     const farePerSeat: number = 1200;
+
+    const navigate = useNavigate();
 
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
@@ -97,6 +99,9 @@ export const TripCardDetails = () => {
                             disabled={
                                 !(selectedSeats.length > 0 && farePerSeat > 0)
                             }
+                            onClick={() => {
+                                navigate(paths.tripBooking);
+                            }}
                         >
                             {t('checkoutBtnTxt')}
                         </StyledButton>

@@ -6,6 +6,7 @@ const {
     headerFooter,
     seatLayout,
     tripDetails,
+    passengerDetails,
     auth,
     actionBarTab,
     actionBar,
@@ -24,6 +25,7 @@ const resources = {
     pnrSearch,
     filterSort,
     tripDetails,
+    passengerDetails,
     landingPage,
 } as const;
 

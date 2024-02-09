@@ -14,6 +14,7 @@ const {
     filterSort: enFilterSort,
     auth: enAuth,
     tripDetails: enTripDetails,
+    passengerDetails: enPassengerDetails,
     landingPage: enLandingPage,
 } = en;
 const {
@@ -27,6 +28,7 @@ const {
     filterSort: esFilterSort,
     auth: esAuth,
     tripDetails: esTripDetails,
+    passengerDetails: esPassengerDetails,
     landingPage: eslandingPage,
 } = es;
 
@@ -46,6 +48,7 @@ void i18n.use(initReactI18next).init({
             pnrSearch: enPnrSearch,
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
+            passengerDetails: enPassengerDetails,
             landingPage: enLandingPage,
         },
         es: {
@@ -59,6 +62,7 @@ void i18n.use(initReactI18next).init({
             pnrSearch: esPnrSearch,
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
+            passengerDetails: esPassengerDetails,
             landingPage: eslandingPage,
         },
     },
@@ -71,6 +75,7 @@ void i18n.use(initReactI18next).init({
         'headerFooter',
         'seatLayout',
         'tripDetails',
+        'passengerDetails',
         'auth',
         'actionBarTab',
         'actionBar',
