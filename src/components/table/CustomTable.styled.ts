@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 
-export const BookingsTableWrapper = styled(Box)(({ theme }) => ({
+export const CustomTableWrapper = styled(Box)(({ theme }) => ({
     background: theme.color.background,
     marginTop: '3rem',
     width: '100%',

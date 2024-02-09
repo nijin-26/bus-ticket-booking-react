@@ -24,10 +24,6 @@ export const routesConfig: RouteObject[] = [
                 element: <AllBookingsPage />,
             },
             {
-                path: paths.tripDetail,
-                element: <TripDetailPage />,
-            },
-            {
                 path: paths.usersListing,
                 element: <UsersListingPage />,
             },

@@ -2,10 +2,11 @@ import { Stack, Box, Typography, CircularProgress } from '@mui/material';
 import { IBooking } from '../../api/types/bookings';
 import { Gender } from '../../types/ticket';
 import { AllBookingsPageWrapper } from './AllBookingsPage.styled';
-import { BookingsTable } from './components/Table/BookingsTable/BookingsTable';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { IPageState } from './types';
+import { IPagination } from '../../types/pagination';
+import bookingsListTableColumns from './bookingsListConfig';
+import { CustomTable } from '../../components/table/CustomTable';
 
 export const AllBookingsPage = () => {
     //Mock data
@@ -684,18 +685,21 @@ export const AllBookingsPage = () => {
     };
 
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
+
     const updateSearchParams = (newPage: string) => {
         searchParams.set('page', String(newPage));
         setSearchParams(searchParams);
     };
-    const [pageState, setPageState] = useState<IPageState>({
+
+    const [pageState, setPageState] = useState<IPagination>({
         loading: true,
-        page: Number(searchParams.get('page'))-1 || 0,
+        page: Number(searchParams.get('page')) - 1 || 0,
         pageSize: 10,
-        totalBookings: 0,
-        bookingsList: [],
+        totalNumberOfData: 0,
+        data: [],
     });
-    const updatePageState = (newPageState: Partial<IPageState>) => {
+
+    const updatePageState = (newPageState: Partial<IPagination>) => {
         setPageState((prev) => ({ ...prev, ...newPageState }));
     };
 
@@ -787,16 +791,18 @@ export const AllBookingsPage = () => {
                             {pageState.loading ? (
                                 <CircularProgress />
                             ) : (
-                                pageState.totalBookings
+                                pageState.totalNumberOfData
                             )}
                         </Typography>
                     </Stack>
                 </Box>
             </Stack>
-            <BookingsTable
+            <CustomTable
                 pageState={pageState}
                 updatePageState={updatePageState}
                 updateSearchParams={updateSearchParams}
+                columns={bookingsListTableColumns}
+                rowId={'pnrNumber'}
             />
         </AllBookingsPageWrapper>
     );
