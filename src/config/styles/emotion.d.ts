@@ -29,6 +29,7 @@ declare module '@emotion/react' {
             red: string;
             redHover: string;
             boxShadowPrimary: string;
+            green:string
         };
     }
 }
