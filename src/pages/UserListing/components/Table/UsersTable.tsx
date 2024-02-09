@@ -1,5 +1,4 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { UsersTableWrapper } from './UsersTable.styled';
 import { IUser } from '../../../../interfaces';
 
 export const UsersTable = ({ users }: { users: IUser[] }) => {
