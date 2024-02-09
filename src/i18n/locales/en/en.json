@@ -54,5 +54,8 @@
         "arrival": "Arrival",
         "duration": "Duration",
         "busType": "Bus Type"
+    },
+    "landingPage": {
+        "busWithUs": "Bus with us."
     }
 }
