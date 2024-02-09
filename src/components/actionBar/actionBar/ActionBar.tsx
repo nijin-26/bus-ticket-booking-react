@@ -4,6 +4,7 @@ import {
     TextField,
     InputAdornment,
     IconButton,
+    Grid,
 } from '@mui/material';
 import {
     FmdGood,
@@ -75,8 +76,10 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     return (
         <Wrapper>
-            <Stack spacing={5} direction="row">
-                <Stack spacing={0} width="90rem" direction="row" flexGrow={1}>
+            {/* <Stack spacing={5} direction="row"> */}
+            {/* <Stack spacing={0} width="90rem" direction="row" flexGrow={1}> */}
+            <Grid container spacing={4}>
+                <Grid item xs={12} md={3.5}>
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -102,9 +105,15 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             />
                         )}
                     ></Autocomplete>
+                </Grid>
+
+                <Grid item xs={12} md={0.8}>
                     <IconButton onClick={swapLocationOptions}>
                         <SwapHoriz style={{ minWidth: '4rem' }} />
                     </IconButton>
+                </Grid>
+
+                <Grid item xs={12} md={3.5}>
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -130,31 +139,38 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             />
                         )}
                     ></Autocomplete>
-                </Stack>
-                <DatePicker
-                    label={t('date')}
-                    slots={{
-                        openPickerIcon: Today,
-                    }}
-                    slotProps={{
-                        inputAdornment: {
-                            position: 'start',
-                            sx: { pl: '0.5rem' },
-                        },
-                    }}
-                />
-                <TextField
-                    label={t('passengers')}
-                    type="number"
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <People />
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            </Stack>
+                </Grid>
+
+                {/* </Stack> */}
+                <Grid item xs={6} md={2}>
+                    <DatePicker
+                        label={t('date')}
+                        slots={{
+                            openPickerIcon: Today,
+                        }}
+                        slotProps={{
+                            inputAdornment: {
+                                position: 'start',
+                                sx: { pl: '0.5rem' },
+                            },
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={6} md={2}>
+                    <TextField
+                        label={t('passengers')}
+                        type="number"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <People />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Grid>
+            </Grid>
+            {/* </Stack> */}
 
             {showFilterSort ? <FilterSort /> : <></>}
 
