@@ -4,7 +4,7 @@ import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
 import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
-import { Checkout } from './components/Checkout';
+import { FareDetails } from '../../../fairDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -37,9 +37,9 @@ export const TripCardDetails = () => {
             <Stack direction={'column'} p={3} pt={3}>
                 <Stack direction={'column'} spacing={2}>
                     <Stack
-                        direction={'row'}
+                        direction={{ sm: 'column', md: 'row' }}
                         justifyContent={'space-between'}
-                        alignItems={'center'}
+                        alignItems={{ sm: 'space-between', md: 'center' }}
                         spacing={3}
                     >
                         <SeatLegend />
@@ -78,19 +78,20 @@ export const TripCardDetails = () => {
                         updateSelectedSeats={updateSelectedSeats}
                     />
                 </Stack>
-                <Stack
-                    direction={'row'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    spacing={3}
-                    mt={5}
-                    className="checkout-section"
-                >
-                    <Checkout
-                        noOfSeats={selectedSeats.length}
-                        farePerSeat={farePerSeat}
-                    />
-                    {currentUrl.pathname !== paths.tripBooking && (
+                {currentUrl.pathname !== paths.tripBooking && (
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        justifyContent={'space-between'}
+                        spacing={{ xs: 1, sm: 10 }}
+                        mt={5}
+                        className="checkout-section"
+                    >
+                        {selectedSeats.length > 0 && farePerSeat > 0 && (
+                            <FareDetails
+                                noOfSeats={selectedSeats.length}
+                                farePerSeat={farePerSeat}
+                            />
+                        )}
                         <StyledButton
                             variant="contained"
                             disabled={
@@ -99,9 +100,9 @@ export const TripCardDetails = () => {
                         >
                             {t('checkoutBtnTxt')}
                         </StyledButton>
-                    )}
-                </Stack>
-                <DetailsGrid></DetailsGrid>
+                    </Stack>
+                )}
+                <DetailsGrid />
             </Stack>
         </TripCardDetailsWrapper>
     );

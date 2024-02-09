@@ -11,6 +11,7 @@ const {
     actionBar,
     pnrSearch,
     filterSort,
+    landingPage,
 } = data;
 const resources = {
     ns1,
@@ -23,6 +24,7 @@ const resources = {
     pnrSearch,
     filterSort,
     tripDetails,
+    landingPage,
 } as const;
 
 export default resources;

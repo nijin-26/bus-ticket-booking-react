@@ -21,6 +21,7 @@ import { ILocationOptions } from '../types';
 import { locationOptions, paths } from '../../../config';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -36,9 +37,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
         null
     );
 
-    const navigate = useNavigate();
-
     const { t } = useTranslation('actionBar');
+    const navigate = useNavigate();
 
     // setting start location
     const handleStartSelect = (

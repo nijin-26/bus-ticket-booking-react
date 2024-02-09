@@ -3,11 +3,12 @@ import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import { LandingPageHeading, LandingPageWrapper } from './LandingPage.styled';
 import LandingPageIllustrationDark from './LandingPageIllustrationDark copy';
 import LandingPageIllustrationLight from './LandingPageIllustrationLight';
+import { useTranslation } from 'react-i18next';
 
 export const LandingPage = () => {
     const theme = useTheme();
+    const { t } = useTranslation('landingPage');
     const currentTheme = theme.palette.mode;
-    console.log(currentTheme);
 
     return (
         <LandingPageWrapper>
@@ -17,7 +18,7 @@ export const LandingPage = () => {
                 <LandingPageIllustrationLight />
             )}
 
-            <LandingPageHeading>Bus with us.</LandingPageHeading>
+            <LandingPageHeading>{t('busWithUs')}</LandingPageHeading>
             <ActionBarTab />
         </LandingPageWrapper>
     );

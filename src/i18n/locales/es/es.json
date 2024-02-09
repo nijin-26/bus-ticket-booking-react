@@ -77,5 +77,8 @@
         "arrival": "Llegada",
         "duration": "Duración",
         "busType": "Tipo de autobús"
+    },
+    "landingPage": {
+        "busWithUs": "Autobús con nosotras."
     }
 }
