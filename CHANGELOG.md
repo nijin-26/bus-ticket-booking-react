@@ -15,4 +15,4 @@
 -   [86cueuydg] Created axios instance, implemented axios interceptors and local storage helper functions
 -   [86cuhfyvp] Implemented functionality of Trip listing card using dummy data
 -   [86cugqgpt] Implemented filters and sort for action bar
--   [86cueubmz] Implemented trip booking page and booking details form UI
+-   [86cugexhf] Landing page illustration, action bar incorporated and routing to trip listing page.

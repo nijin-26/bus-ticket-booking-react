@@ -8,7 +8,6 @@ import {
 import {
     FmdGood,
     Today,
-    People,
     Search,
     SwapHoriz,
     TripOrigin,
@@ -143,7 +142,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         },
                     }}
                 />
-                <TextField
+                {/* <TextField
                     label={t('passengers')}
                     type="number"
                     InputProps={{
@@ -153,7 +152,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             </InputAdornment>
                         ),
                     }}
-                />
+                /> */}
             </Stack>
 
             {showFilterSort ? <FilterSort /> : <></>}

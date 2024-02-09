@@ -2,6 +2,7 @@ import { IBusType, ISeatType } from '../../api/types/trip';
 import { setTripListingData } from '../../app/features/tripListingSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TripCardAccordion } from '../../components';
+import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import LoadMore from '../../components/loadMore/LoadMore';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 
@@ -74,7 +75,7 @@ export const TripsListingPage = () => {
 
     return (
         <TripsListingPageWrapper>
-            <h1>TripsListingPage</h1>
+            <ActionBarTab showFilterSort />
             {state.map((indData) => (
                 <TripCardAccordion key={indData.id} data={indData} />
             ))}
