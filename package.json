@@ -18,9 +18,13 @@
         "@mui/material": "^5.15.6",
         "@mui/x-date-pickers": "^6.19.2",
         "@reduxjs/toolkit": "^2.1.0",
+<<<<<<< HEAD
         "formik": "^2.4.5",
         "i18next": "^23.8.2",
         "react": "^18.2.0",
+=======
+        "i18next": "^23.8.2",
+>>>>>>> 987de3c719b7dbb3c7323bec0a6fbbbd375ae92f
         "axios": "^1.6.7",
         "react-dom": "^18.2.0",
         "react-i18next": "^14.0.1",

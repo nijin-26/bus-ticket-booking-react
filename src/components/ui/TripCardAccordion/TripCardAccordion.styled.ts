@@ -8,8 +8,27 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
     borderLeft: `0.8rem solid${theme.color.red}`,
     boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
 
-    'trip-card-icons': {
-        gap: '1rem',
+    '.details': {
+        width: '100%',
+        justifyContent: 'space-between',
+        paddingRight: '2rem',
+        alignItems: 'center',
+    },
+
+    '&.more-seats': {
+        borderLeft: `0.8rem solid ${theme.color.green}`,
+    },
+
+    '&.less-seats': {
+        borderLeft: `0.8rem solid${theme.color.red}`,
+    },
+
+    '&.no-seats': {
+        borderLeft: `0.8rem solid${theme.color.textSecondary}`,
+    },
+
+    '.trip-card-icons': {
+        gap: '0.5rem',
     },
 
     p: {
@@ -21,16 +40,38 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
 
     'p.date': {
         fontSize: theme.font.sm,
+        color: theme.color.textSecondary,
+    },
+
+    '.seats': {
+        minWidth: '13rem',
+    },
+
+    'p.more-seats': {
+        color: theme.color.green,
+    },
+
+    'p.less-seats': {
+        color: theme.color.red,
+    },
+
+    '.date-time-parent': {
+        alignItems: 'center',
     },
 
     '.date-time': {
         gap: '0.4rem',
     },
 
-    '.details': {
-        width: '100%',
-        justifyContent: 'space-between',
-        paddingRight: '7rem',
-        alignItems: 'center',
+    '.duration': {
+        width: '15rem',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        textAlign: 'center',
+    },
+
+    '.price': {
+        minWidth: '9rem',
     },
 }));
+
