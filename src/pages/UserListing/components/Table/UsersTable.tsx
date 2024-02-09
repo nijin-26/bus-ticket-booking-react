@@ -1,8 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { User } from '../../../../interfaces';
 import { UsersTableWrapper } from './UsersTable.styled';
+import { IUser } from '../../../../interfaces';
 
-export const UsersTable = ({ users }: { users: User[] }) => {
+export const UsersTable = ({ users }: { users: IUser[] }) => {
     const columns = [
         { field: 'fullName', headerName: 'Full name', flex: 1 },
         { field: 'email', headerName: 'Email', flex: 1 },
