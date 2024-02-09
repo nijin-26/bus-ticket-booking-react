@@ -3,7 +3,7 @@ import { Box, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
-import { FareDetails } from '../../../components/FairDetails/FareDetails';
+import { FareDetails } from '../../../components/FareDetails/FareDetails';
 import { StyledButton } from '../../../components/Button/Button.styled';
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '@emotion/react';

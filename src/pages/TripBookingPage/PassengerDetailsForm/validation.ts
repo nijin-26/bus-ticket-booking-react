@@ -6,6 +6,7 @@ const getValidationSchema = (t: TFunction<'passengerDetails'>) =>
         passengers: Yup.array().of(
             Yup.object().shape({
                 fullName: Yup.string()
+                    .trim()
                     .required(t('fullNameRequired'))
                     .test('valid-fullName', t('fullNameLength'), (value) => {
                         if (!value) return false;

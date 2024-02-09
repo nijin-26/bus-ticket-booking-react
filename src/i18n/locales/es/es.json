@@ -81,7 +81,7 @@
         "ageRequired": "La Edad es un campo requerido",
         "genderRequired": "El Género es un campo requerido",
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
-        "AgeNumberCheck": "La Edad debe ser un número",
+        "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
     }
 }
