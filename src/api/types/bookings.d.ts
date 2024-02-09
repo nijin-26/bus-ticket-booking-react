@@ -14,11 +14,6 @@ export interface IPassengerSeat {
     passenger: IPassenger;
 }
 
-export interface IBookingsList {
-    count: number;
-    data: IBooking[];
-}
-
 export interface IBooking {
     pnrNumber: string;
     tripId: string;

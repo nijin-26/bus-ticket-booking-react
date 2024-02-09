@@ -1,12 +1,14 @@
 import { Stack, Box, Typography, CircularProgress } from '@mui/material';
-import { IBookingsList } from '../../api/types/bookings';
+import { IBooking } from '../../api/types/bookings';
 import { Gender } from '../../types/ticket';
 import { AllBookingsPageWrapper } from './AllBookingsPage.styled';
 import { BookingsTable } from './components/Table/BookingsTable/BookingsTable';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { IPageState } from './types';
 
 export const AllBookingsPage = () => {
+    //Mock data
     const mockBookings = {
         count: 23,
         data: [
@@ -681,30 +683,27 @@ export const AllBookingsPage = () => {
         ],
     };
 
-    const [loading, setLoading] = useState(true);
-    const [bookingsData, setBookingsData] = useState<
-        | IBookingsList
-        | {
-              count: 0;
-              data: [];
-          }
-    >({ count: 0, data: [] });
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
     const updateSearchParams = (newPage: string) => {
         searchParams.set('page', String(newPage));
         setSearchParams(searchParams);
     };
+    const [pageState, setPageState] = useState<IPageState>({
+        loading: true,
+        page: Number(searchParams.get('page'))-1 || 0,
+        pageSize: 10,
+        totalBookings: 0,
+        bookingsList: [],
+    });
+    const updatePageState = (newPageState: Partial<IPageState>) => {
+        setPageState((prev) => ({ ...prev, ...newPageState }));
+    };
+
+    // Function to mimic API call
     const getAllBookings = () => {
         return new Promise((resolve) => {
             setTimeout(() => {
                 const pageNumber = searchParams.get('page');
-                console.log(
-                    pageNumber,
-                    mockBookings.data.slice(
-                        (Number(pageNumber) - 1) * 10,
-                        Number(pageNumber) * 10
-                    )
-                );
                 resolve({
                     count: mockBookings.count,
                     data: mockBookings.data.slice(
@@ -717,19 +716,26 @@ export const AllBookingsPage = () => {
     };
 
     useEffect(() => {
+        //Fething data
         const getBookings = async () => {
             try {
-                setLoading(true);
-                const bookingsResponse =
-                    (await getAllBookings()) as IBookingsList;
-                setBookingsData(bookingsResponse);
+                setPageState((prev) => ({ ...prev, loading: true }));
+                const bookingsResponse = (await getAllBookings()) as {
+                    count: number;
+                    data: IBooking[];
+                };
+                setPageState((prev) => ({
+                    ...prev,
+                    totalBookings: bookingsResponse.count,
+                    bookingsList: bookingsResponse.data,
+                }));
             } catch (error) {
                 console.error(error);
             } finally {
-                setLoading(false);
+                setPageState((prev) => ({ ...prev, loading: false }));
             }
         };
-        getBookings();
+        void getBookings();
     }, [searchParams]);
 
     return (
@@ -778,41 +784,18 @@ export const AllBookingsPage = () => {
                             className="value"
                             textAlign={'center'}
                         >
-                            {loading ? (
+                            {pageState.loading ? (
                                 <CircularProgress />
                             ) : (
-                                bookingsData.count
+                                pageState.totalBookings
                             )}
-                        </Typography>
-                    </Stack>
-                </Box>
-                <Box
-                    component="div"
-                    className="boxes"
-                    boxShadow={3}
-                    borderRadius={2}
-                >
-                    <Stack direction={'column'} className="box-col">
-                        <Typography
-                            variant="body2"
-                            className="title"
-                            textAlign={'left'}
-                        >
-                            Total Revenue
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            className="value"
-                            textAlign={'center'}
-                        >
-                            ₹124
                         </Typography>
                     </Stack>
                 </Box>
             </Stack>
             <BookingsTable
-                bookingsData={bookingsData}
-                loading={loading}
+                pageState={pageState}
+                updatePageState={updatePageState}
                 updateSearchParams={updateSearchParams}
             />
         </AllBookingsPageWrapper>

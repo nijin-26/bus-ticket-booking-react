@@ -8,12 +8,13 @@ import {
     gridPageSizeSelector,
 } from '@mui/x-data-grid';
 import { BookingsTableWrapper } from './BookingsTable.styled';
-import { IBooking, IBookingsList } from '../../../../../api/types/bookings';
+import { IBooking } from '../../../../../api/types/bookings';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { LinearProgress } from '@mui/material';
 import CustomNoRowsOverlay from '../CustomNoRowsOverlay/CustomNoRowsOverlay';
 import { Link } from 'react-router-dom';
+import { IPageState } from '../../../types';
 
 const CustomToolbar = () => {
     return (
@@ -59,13 +60,11 @@ const CustomPagination = ({
                 variant="outlined"
                 shape="rounded"
                 page={page + 1}
-                // count={pageCount}
                 count={Math.ceil(totalBookings / pageSize)}
                 renderItem={(props) => <PaginationItem {...props} />}
-                onChange={(event, value) => {
-                    console.log(value);
+                onChange={(_event, value) => {
                     updateSearchParams(String(value));
-                    apiRef.current.setPage(value);
+                    apiRef.current.setPage(value - 1);
                 }}
             />
         </div>
@@ -73,12 +72,12 @@ const CustomPagination = ({
 };
 
 export const BookingsTable = ({
-    bookingsData,
-    loading,
+    pageState,
+    updatePageState,
     updateSearchParams,
 }: {
-    bookingsData: IBookingsList | { count: number; data: [] };
-    loading: boolean;
+    pageState: IPageState;
+    updatePageState: (pageState: Partial<IPageState>) => void;
     updateSearchParams: (newPage: string) => void;
 }) => {
     interface GridValueGetterParams {
@@ -144,8 +143,11 @@ export const BookingsTable = ({
                 sx={{
                     borderRadius: 2,
                     boxShadow: 3,
+                    pl: '5rem',
+                    pr: '5rem',
                 }}
-                rows={bookingsData.data}
+                rows={pageState.bookingsList}
+                rowCount={pageState.totalBookings}
                 getRowId={(row) => row.pnrNumber}
                 columns={columns}
                 autoHeight={true}
@@ -158,16 +160,24 @@ export const BookingsTable = ({
                     },
                 }}
                 pagination
-                loading={loading}
+                paginationModel={{
+                    page: pageState.page,
+                    pageSize: pageState.pageSize,
+                }}
+                paginationMode="server"
+                loading={pageState.loading}
                 disableRowSelectionOnClick
                 disableColumnFilter
                 disableColumnSelector
                 disableColumnMenu
+                onPaginationModelChange={(newPaginationModel) => {
+                    updatePageState(newPaginationModel);
+                }}
                 slots={{
                     toolbar: CustomToolbar,
                     pagination: () => (
                         <CustomPagination
-                            totalBookings={bookingsData.count}
+                            totalBookings={pageState.totalBookings}
                             updateSearchParams={updateSearchParams}
                         />
                     ),
