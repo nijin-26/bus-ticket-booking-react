@@ -3,6 +3,7 @@ import { LandingPage,  TripsListingPage } from '../../pages';
 import { ErrorPage } from '../../pages/ErrorPage/ErrorPage';
 import { Layout } from '../../layout';
 import { paths } from '..';
+import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -16,6 +17,14 @@ export const routesConfig: RouteObject[] = [
             {
                 path: paths.tripsListing,
                 element: <TripsListingPage />,
+            },
+            {
+                path: paths.tripDetail,
+                element: <TripDetailPage />,
+            },
+            {
+                path: paths.usersListing,
+                element: <UsersListingPage />,
             },
         ],
     },

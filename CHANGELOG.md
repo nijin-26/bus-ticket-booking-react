@@ -2,6 +2,7 @@
 
 -   [86cueryke] Initial setup of folder structure, routes and configurations.
 -   [86cuewz17] Initialized Material-UI & Theming.
+-   [86cuex00r] Developed UI for users listing in admin view
 -   [86cuex138] UI for Action Bar
 -   [86cuex0qp] Added SeatLayout config file and component.
 -   [86cufj5wm] Implemented UI for Trip listing card.
