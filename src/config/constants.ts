@@ -23,6 +23,7 @@ export const colors = {
     darkBusLayoutBg: '#575757',
     red: '#D84E55',
     boxShadowPrimary: 'rgba(0,0,0,0.26)',
+    green: '#56A55C',
     redHover: '#AB3840',
 };
 
