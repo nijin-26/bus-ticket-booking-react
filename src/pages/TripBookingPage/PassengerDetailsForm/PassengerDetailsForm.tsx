@@ -6,9 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { FareDetails } from '../../../components/FairDetails/FareDetails';
 import { StyledButton } from '../../../components/Button/Button.styled';
 import { useState, useEffect } from 'react';
+import { useTheme } from '@emotion/react';
 
 const PassengerDetailsForm = () => {
     const { t } = useTranslation('passengerDetails');
+    const theme = useTheme();
 
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
 
@@ -43,7 +45,7 @@ const PassengerDetailsForm = () => {
         >
             {({ values }) => (
                 <Form autoComplete="off" noValidate>
-                    <Typography component="h3" variant="h5" mb={2} mt={4}>
+                    <Typography component="h2" variant="h5" mb={2} mt={4}>
                         {t('passengerDetailsFormHeading')}
                     </Typography>
                     <FieldArray name="passengers">
@@ -52,13 +54,14 @@ const PassengerDetailsForm = () => {
                                 <Box
                                     key={index}
                                     component={Paper}
-                                    py="10px"
-                                    px="20px"
-                                    mb="30px"
-                                    elevation={4}
+                                    py="1rem"
+                                    px="2rem"
+                                    mb="3rem"
+                                    bgcolor={theme.color.background}
+                                    boxShadow={`0 0 1rem 0 ${theme.color.boxShadowPrimary}`}
                                 >
                                     <Typography
-                                        component="h4"
+                                        component="h3"
                                         variant="h6"
                                         mb={2}
                                     >
