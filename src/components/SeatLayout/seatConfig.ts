@@ -64,51 +64,21 @@ export const berthLayoutProducer = (berthLayoutConfig: IBerthLayout) => {
 };
 
 //TODO: To be removed after API integration
-export const seats: ISeat[] = [
-    { seatNumber: 1, status: ISeatStatus.BOOKED },
-    { seatNumber: 2, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 3, status: ISeatStatus.BOOKED },
-    { seatNumber: 4, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 5, status: ISeatStatus.BOOKED },
-    { seatNumber: 6, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 7, status: ISeatStatus.BOOKED },
-    { seatNumber: 8, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 9, status: ISeatStatus.BOOKED },
-    { seatNumber: 10, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 11, status: ISeatStatus.BOOKED },
-    { seatNumber: 12, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 13, status: ISeatStatus.BOOKED },
-    { seatNumber: 14, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 15, status: ISeatStatus.BOOKED },
-    { seatNumber: 16, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 17, status: ISeatStatus.BOOKED },
-    { seatNumber: 18, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 19, status: ISeatStatus.BOOKED },
-    { seatNumber: 20, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 21, status: ISeatStatus.BOOKED },
-    { seatNumber: 22, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 23, status: ISeatStatus.BOOKED },
-    { seatNumber: 24, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 25, status: ISeatStatus.BOOKED },
-    { seatNumber: 26, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 27, status: ISeatStatus.BOOKED },
-    { seatNumber: 28, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 29, status: ISeatStatus.BOOKED },
-    { seatNumber: 30, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 31, status: ISeatStatus.BOOKED },
-    { seatNumber: 32, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 33, status: ISeatStatus.BOOKED },
-    { seatNumber: 34, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 35, status: ISeatStatus.BOOKED },
-    { seatNumber: 36, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 37, status: ISeatStatus.BOOKED },
-    { seatNumber: 38, status: ISeatStatus.BOOKED },
-    { seatNumber: 39, status: ISeatStatus.BOOKED },
-    { seatNumber: 40, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 41, status: ISeatStatus.BOOKED },
-    { seatNumber: 42, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 43, status: ISeatStatus.BOOKED },
-    { seatNumber: 44, status: ISeatStatus.AVAILABLE },
-    { seatNumber: 45, status: ISeatStatus.BOOKED },
-    { seatNumber: 46, status: ISeatStatus.AVAILABLE },
-];
+export const generateSeats = (
+    availableSeats: number,
+    totalSeats: number
+): ISeat[] => {
+    const seats: ISeat[] = [];
+
+    for (let seatNumber = 1; seatNumber <= totalSeats; seatNumber++) {
+        const status =
+            seatNumber <= availableSeats
+                ? ISeatStatus.AVAILABLE
+                : ISeatStatus.BOOKED;
+
+        seats.push({ seatNumber, status });
+    }
+    console.log(seats);
+
+    return seats;
+};

@@ -2,7 +2,7 @@ import { IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
 import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
-import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
+import { generateSeats, layoutNames } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../fairDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -12,8 +12,21 @@ import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
+import { ITrip, ITripById } from '../../../../api/types/trip';
 
-export const TripCardDetails = () => {
+export const TripCardDetails = ({
+    data,
+    dates,
+}: {
+    data: ITrip;
+    dates: {
+        formattedDepartureTime: string;
+        formattedDepartureDate: string;
+        formattedArrivalTime: string;
+        formattedArrivalDate: string;
+        formattedDuration: string;
+    };
+}) => {
     const farePerSeat: number = 1200;
 
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
@@ -31,6 +44,29 @@ export const TripCardDetails = () => {
 
     const { t } = useTranslation('tripDetails');
     const currentUrl = useLocation();
+
+    // const { origin, destination,  };
+    const {
+        formattedDepartureTime,
+        formattedDepartureDate,
+        formattedArrivalDate,
+        formattedArrivalTime,
+        formattedDuration,
+    } = dates;
+
+    const tripSpecificData: ITripById = {
+        id: data.id,
+        origin: data.origin,
+        destination: data.destination,
+        departureTimestamp: data.departureTimestamp,
+        arrivalTimestamp: data.arrivalTimestamp,
+        seatType: data.seatType,
+        busType: data.busType,
+        farePerSeat: data.farePerSeat,
+        availableSeats: data.availableSeats,
+        totalSeats: data.totalSeats,
+        seats: generateSeats(data.availableSeats,data.totalSeats),
+    };
 
     return (
         <TripCardDetailsWrapper>
@@ -73,7 +109,7 @@ export const TripCardDetails = () => {
                     </Stack>
                     <SeatLayout
                         layoutName={layoutNames.volvo25}
-                        seats={seats}
+                        seats={tripSpecificData.seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
                     />
@@ -89,7 +125,7 @@ export const TripCardDetails = () => {
                         {selectedSeats.length > 0 && farePerSeat > 0 && (
                             <FareDetails
                                 noOfSeats={selectedSeats.length}
-                                farePerSeat={farePerSeat}
+                                farePerSeat={data.farePerSeat}
                             />
                         )}
                         <StyledButton
@@ -102,7 +138,17 @@ export const TripCardDetails = () => {
                         </StyledButton>
                     </Stack>
                 )}
-                <DetailsGrid />
+                <DetailsGrid
+                    departureTime={formattedDepartureTime}
+                    departureData={formattedDepartureDate}
+                    arrivalTime={formattedArrivalTime}
+                    arrivalDate={formattedArrivalDate}
+                    duration={formattedDuration}
+                    origin={data.origin}
+                    destination={data.destination}
+                    seatType={data.seatType}
+                    busType={data.busType}
+                />
             </Stack>
         </TripCardDetailsWrapper>
     );

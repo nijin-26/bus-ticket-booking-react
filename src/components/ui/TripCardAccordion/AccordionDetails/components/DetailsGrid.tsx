@@ -5,29 +5,50 @@ import { BusDepartureIcon } from '../../../../../assets/accordianDetails/BusDepa
 import { BusArrivalIcon } from '../../../../../assets/accordianDetails/BusArrivalIcon';
 import { StopwatchIcon } from '../../../../../assets/accordianDetails/StopwatchIcon';
 import { BusIcon } from '../../../../../assets/accordianDetails/BusIcon';
+import { IBusType, ISeatType } from '../../../../../api/types/trip';
 
-export const DetailsGrid = () => {
+export const DetailsGrid = ({
+    departureTime,
+    departureData,
+    arrivalTime,
+    arrivalDate,
+    duration,
+    seatType,
+    busType,
+    origin,
+    destination,
+}: {
+    departureTime: string;
+    departureData: string;
+    arrivalTime: string;
+    arrivalDate: string;
+    duration: string;
+    seatType: ISeatType;
+    busType: IBusType;
+    origin: string;
+    destination: string;
+}) => {
     const { t } = useTranslation('tripDetails');
 
     const detailsData = [
         {
             title: t('departure'),
-            value: 'Trivandrum, 20th Jan, 5:00 am',
+            value: `${origin} ${departureData}, ${departureTime}`,
             icon: <BusDepartureIcon />,
         },
         {
             title: t('arrival'),
-            value: 'Bangalore, 23rd Jan, 18:40 pm',
+            value: `${destination} ${arrivalDate}, ${arrivalTime}`,
             icon: <BusArrivalIcon />,
         },
         {
             title: t('duration'),
-            value: '3 days, 13 hours, 40 minutes',
+            value: duration,
             icon: <StopwatchIcon />,
         },
         {
             title: t('busType'),
-            value: 'AC, Seater',
+            value: `${busType} , ${seatType}`,
             icon: <BusIcon />,
         },
     ];

@@ -102,7 +102,7 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
                     <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
-            <TripCardDetails />
+            <TripCardDetails data={data} dates={dates}/>
         </TripAccordionWrapper>
     );
 };

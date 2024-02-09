@@ -16,7 +16,7 @@ const dummyData = [
         busType: IBusType.AC,
         farePerSeat: 50,
         availableSeats: 20,
-        totalSeats: 30,
+        totalSeats: 46,
     },
     {
         id: '2',
@@ -28,7 +28,7 @@ const dummyData = [
         busType: IBusType.AC,
         farePerSeat: 2350,
         availableSeats: 5,
-        totalSeats: 30,
+        totalSeats: 46,
     },
     {
         id: '3',
@@ -40,7 +40,7 @@ const dummyData = [
         busType: IBusType.NON_AC,
         farePerSeat: 150,
         availableSeats: 0,
-        totalSeats: 30,
+        totalSeats: 46,
     },
     {
         id: '4',
@@ -52,7 +52,7 @@ const dummyData = [
         busType: IBusType.AC,
         farePerSeat: 23150,
         availableSeats: 2,
-        totalSeats: 30,
+        totalSeats: 46,
     },
     {
         id: '5',
@@ -64,7 +64,7 @@ const dummyData = [
         busType: IBusType.AC,
         farePerSeat: 150,
         availableSeats: 23,
-        totalSeats: 30,
+        totalSeats: 46,
     },
 ];
 export const TripsListingPage = () => {
