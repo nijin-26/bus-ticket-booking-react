@@ -6,10 +6,12 @@ const Seat = ({
     seatNumber,
     seatStatus,
     updateSelectedSeats,
+    mode,
 }: {
     seatNumber?: number;
     seatStatus: 'available' | 'unavailable' | 'selected' | 'aisle';
     updateSelectedSeats?: (seatNumber: number) => void;
+    mode: 'view' | 'edit';
 }) => {
     const { t } = useTranslation('seatLayout');
     return seatNumber ? (
@@ -20,11 +22,20 @@ const Seat = ({
             arrow
         >
             <SeatWrapper
-                className={`seat ${seatStatus}`}
+                className={`seat ${seatStatus} ${
+                    mode === 'view'
+                        ? 'disable-click'
+                        : seatStatus === 'available' ||
+                          seatStatus === 'selected'
+                        ? 'cursor-pointer'
+                        : 'disable-click'
+                }`}
                 onClick={() => {
-                    updateSelectedSeats && updateSelectedSeats(seatNumber);
+                    mode === 'edit' &&
+                        updateSelectedSeats &&
+                        updateSelectedSeats(seatNumber);
                 }}
-            ></SeatWrapper>
+            />
         </Tooltip>
     ) : (
         <SeatWrapper className={`seat ${seatStatus}`}></SeatWrapper>

@@ -76,6 +76,7 @@ export const TripCardDetails = () => {
                         seats={seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
+                        mode={'edit'}
                     />
                 </Stack>
                 {currentUrl.pathname !== paths.tripBooking && (

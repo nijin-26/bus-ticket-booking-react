@@ -2,18 +2,20 @@ import { berthLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
 import steeringWheel from '../../assets/tabler_steering-wheel.svg';
 import { ISeat, ISeatStatus } from '../../api/types/trip';
-import {  useEffect, useState } from 'react';
-import Seat from './Seat';
+import { useEffect, useState } from 'react';
+import Seat from './Seat/Seat';
 
 const SeatLayout = ({
     layoutName,
     seats,
     selectedSeats,
+    mode,
     updateSelectedSeats,
 }: {
     layoutName: string;
     seats: ISeat[];
     selectedSeats: number[];
+    mode: 'view' | 'edit';
     updateSelectedSeats: (seat: number) => void;
 }) => {
     const [berth, setBerth] = useState<{
@@ -61,6 +63,7 @@ const SeatLayout = ({
                                                     updateSelectedSeats
                                                 }
                                                 seatStatus={'selected'}
+                                                mode={mode}
                                             />
                                         ) : (
                                             <Seat
@@ -72,6 +75,7 @@ const SeatLayout = ({
                                                     updateSelectedSeats
                                                 }
                                                 seatStatus={'available'}
+                                                mode={mode}
                                             />
                                         )
                                     ) : (
@@ -79,6 +83,7 @@ const SeatLayout = ({
                                             seatNumber={currentSeat.seatNumber}
                                             key={`seat${rowIndex}-${index}`}
                                             seatStatus={'unavailable'}
+                                            mode={mode}
                                         />
                                     );
                                 } else {
@@ -86,6 +91,7 @@ const SeatLayout = ({
                                         <Seat
                                             seatStatus={'aisle'}
                                             key={`seat${rowIndex}-${index}`}
+                                            mode={mode}
                                         />
                                     );
                                 }
