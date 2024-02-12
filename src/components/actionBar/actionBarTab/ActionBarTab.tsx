@@ -16,10 +16,7 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
     const { t } = useTranslation('actionBarTab');
     const [value, setValue] = useState('1');
 
-    const changeTabHandler = (
-        event: React.SyntheticEvent,
-        newValue: string
-    ) => {
+    const changeTabHandler = (_: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 

@@ -1,5 +1,6 @@
-import { Toolbar } from '@mui/material';
+import { Button, Toolbar } from '@mui/material';
 import styled from '@emotion/styled';
+import { colors } from '../../config';
 
 export const StyledToolBar = styled(Toolbar)`
     width: 100%;
@@ -14,3 +15,11 @@ export const StyledToolBar = styled(Toolbar)`
         font-size: 1.2rem;
     }
 `;
+
+export const StyledButton = styled(Button)(({ theme }) => ({
+    color: colors.white,
+    borderColor: colors.white,
+    ':hover': {
+        borderColor: theme.color.textSecondary,
+    },
+}));
