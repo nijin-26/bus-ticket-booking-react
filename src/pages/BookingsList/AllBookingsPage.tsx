@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
 import bookingsListTableColumns from './bookingsListConfig';
 import { CustomTable } from '../../components/table/CustomTable';
+import { useTranslation } from 'react-i18next';
 
 export const AllBookingsPage = () => {
     //Mock data
@@ -683,7 +684,7 @@ export const AllBookingsPage = () => {
             },
         ],
     };
-
+    const { t } = useTranslation('bookingsList');
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
     const updateSearchParams = (newPage: string) => {
@@ -757,7 +758,7 @@ export const AllBookingsPage = () => {
                             className="title"
                             textAlign={'left'}
                         >
-                            Total Users
+                            {t('totalUsers')}
                         </Typography>
                         <Typography
                             variant="body2"
@@ -781,7 +782,7 @@ export const AllBookingsPage = () => {
                             className="title"
                             textAlign={'left'}
                         >
-                            Total Bookings
+                            {t('totalBookings')}
                         </Typography>
                         <Typography
                             variant="body2"

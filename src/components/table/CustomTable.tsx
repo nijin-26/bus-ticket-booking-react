@@ -6,6 +6,15 @@ import CustomToolbar from './CustomToolbar';
 import CustomPagination from './CustomPagination';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay/CustomNoRowsOverlay';
 import { IBooking } from '../../api/types/bookings';
+import { useTranslation } from 'react-i18next';
+
+export interface ICustomTable {
+    pageState: IPagination;
+    updatePageState: (pageState: Partial<IPagination>) => void;
+    updateSearchParams: (newPage: string) => void;
+    columns: GridColDef[];
+    rowId: keyof IBooking;
+}
 
 export const CustomTable = ({
     pageState,
@@ -13,13 +22,8 @@ export const CustomTable = ({
     updateSearchParams,
     columns,
     rowId,
-}: {
-    pageState: IPagination;
-    updatePageState: (pageState: Partial<IPagination>) => void;
-    updateSearchParams: (newPage: string) => void;
-    columns: GridColDef[];
-    rowId: keyof IBooking;
-}) => {
+}: ICustomTable) => {
+    const { t } = useTranslation('bookingsList');
     return (
         <CustomTableWrapper>
             <DataGrid
@@ -34,6 +38,7 @@ export const CustomTable = ({
                 getRowId={(row: IBooking) => String(row[rowId])}
                 columns={columns.map((column) => ({
                     ...column,
+                    headerName: t(column.field as 'pnrNumber'),
                     headerClassName: 'custom-header',
                     flex: 1,
                     sortable: false,
@@ -60,6 +65,11 @@ export const CustomTable = ({
                 disableColumnMenu
                 onPaginationModelChange={(newPaginationModel) => {
                     updatePageState(newPaginationModel);
+                }}
+                localeText={{
+                    toolbarExport: t('export'),
+                    toolbarExportCSV: t('exportAsCsv'),
+                    toolbarExportPrint: t('exportPrint'),
                 }}
                 slots={{
                     toolbar: CustomToolbar,

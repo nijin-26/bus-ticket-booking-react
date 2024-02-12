@@ -54,5 +54,20 @@
         "arrival": "Arrival",
         "duration": "Duration",
         "busType": "Bus Type"
+    },
+    "bookingsList": {
+        "totalUsers": "Total users",
+        "totalBookings": "Total bookings",
+        "pnrNumber": "PNR Number",
+        "username": "User Name",
+        "origin": "Origin",
+        "destination": "Destination",
+        "busType": "Bus Type",
+        "seatType": "Seat Type",
+        "export": "Export",
+        "exportAsCsv": "Download as CSV",
+        "exportPrint": "Print",
+        "total": "Total",
+        "booking": "booking"
     }
 }

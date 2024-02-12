@@ -54,5 +54,20 @@
         "arrival": "Llegada",
         "duration": "Duración",
         "busType": "Tipo de autobús"
+    },
+    "bookingsList": {
+        "totalUsers": "Total de usuarios",
+        "totalBookings": "Total de reservas",
+        "pnrNumber": "Número de PNR",
+        "username": "Nombre de usuario",
+        "origin": "Origen",
+        "destination": "Destino",
+        "busType": "Tipo de autobús",
+        "seatType": "Tipo de asiento",
+        "export": "Exportar",
+        "exportAsCsv": "Descargar como CSV",
+        "exportPrint": "Imprimir",
+        "total": "Total",
+        "booking": "reserva"
     }
 }

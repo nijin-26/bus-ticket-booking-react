@@ -5,6 +5,7 @@ import {
     useGridApiContext,
     useGridSelector,
 } from '@mui/x-data-grid';
+import { useTranslation } from 'react-i18next';
 
 const CustomPagination = ({
     totalBookings,
@@ -14,6 +15,7 @@ const CustomPagination = ({
     updateSearchParams: (newPage: string) => void;
 }) => {
     const apiRef = useGridApiContext();
+    const { t } = useTranslation('bookingsList');
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageSize = useGridSelector(apiRef, gridPageSizeSelector);
     return (
@@ -28,7 +30,8 @@ const CustomPagination = ({
         >
             {/* Total rows text */}
             <div>
-                Total {totalBookings} booking{totalBookings > 1 ? 's' : ''}
+                {t('total')} {totalBookings} {t('booking')}
+                {totalBookings > 1 ? 's' : ''}
             </div>
 
             {/* Pagination */}
