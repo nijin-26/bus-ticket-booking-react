@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material';
-import { DetailsItem } from './DetailItem/DetailItem';
+import { DetailsItem } from './DetailItem';
 import { useTranslation } from 'react-i18next';
 import { BusDepartureIcon } from '../../../../../assets/accordianDetails/BusDepartureIcon';
 import { BusArrivalIcon } from '../../../../../assets/accordianDetails/BusArrivalIcon';
