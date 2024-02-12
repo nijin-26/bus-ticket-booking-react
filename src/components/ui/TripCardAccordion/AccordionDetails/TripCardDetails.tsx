@@ -14,18 +14,19 @@ import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
 import { ITrip, ITripById } from '../../../../api/types/trip';
 
+interface ITripCardDetailsProps {
+    formattedDepartureTime: string;
+    formattedDepartureDate: string;
+    formattedArrivalTime: string;
+    formattedArrivalDate: string;
+    formattedDuration: string;
+}
 export const TripCardDetails = ({
     data,
     dates,
 }: {
     data: ITrip;
-    dates: {
-        formattedDepartureTime: string;
-        formattedDepartureDate: string;
-        formattedArrivalTime: string;
-        formattedArrivalDate: string;
-        formattedDuration: string;
-    };
+    dates: ITripCardDetailsProps;
 }) => {
 
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);

@@ -7,20 +7,21 @@ import { StopwatchIcon } from '../../../../../assets/accordianDetails/StopwatchI
 import { BusIcon } from '../../../../../assets/accordianDetails/BusIcon';
 import { IBusType, ISeatType } from '../../../../../api/types/trip';
 
+export interface IDetailsGridProps {
+    departureTime: string;
+    departureDate: string;
+    arrivalTime: string;
+    arrivalDate: string;
+    duration: string;
+    origin: string;
+    destination: string;
+    seatType: ISeatType;
+    busType: IBusType;
+}
 export const DetailsGrid = ({
     tripDetails,
 }: {
-    tripDetails: {
-        departureTime: string;
-        departureDate: string;
-        arrivalTime: string;
-        arrivalDate: string;
-        duration: string;
-        origin: string;
-        destination: string;
-        seatType: ISeatType;
-        busType: IBusType;
-    };
+    tripDetails: IDetailsGridProps;
 }) => {
     const { t } = useTranslation('tripDetails');
 
