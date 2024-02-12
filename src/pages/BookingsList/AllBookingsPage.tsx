@@ -730,8 +730,8 @@ export const AllBookingsPage = () => {
                 };
                 setPageState((prev) => ({
                     ...prev,
-                    totalBookings: bookingsResponse.count,
-                    bookingsList: bookingsResponse.data,
+                    totalNumberOfData: bookingsResponse.count,
+                    data: bookingsResponse.data,
                 }));
             } catch (error) {
                 console.error(error);

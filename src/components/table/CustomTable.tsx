@@ -5,6 +5,7 @@ import { CustomTableWrapper } from './CustomTable.styled';
 import CustomToolbar from './CustomToolbar';
 import CustomPagination from './CustomPagination';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay/CustomNoRowsOverlay';
+import { IBooking } from '../../api/types/bookings';
 
 export const CustomTable = ({
     pageState,
@@ -17,7 +18,7 @@ export const CustomTable = ({
     updatePageState: (pageState: Partial<IPagination>) => void;
     updateSearchParams: (newPage: string) => void;
     columns: GridColDef[];
-    rowId: keyof (typeof pageState.data)[];
+    rowId: keyof IBooking;
 }) => {
     return (
         <CustomTableWrapper>
@@ -30,7 +31,7 @@ export const CustomTable = ({
                 }}
                 rows={pageState.data}
                 rowCount={pageState.totalNumberOfData}
-                getRowId={(row) => row[rowId] as string}
+                getRowId={(row: IBooking) => String(row[rowId])}
                 columns={columns.map((column) => ({
                     ...column,
                     headerClassName: 'custom-header',
@@ -64,7 +65,7 @@ export const CustomTable = ({
                     toolbar: CustomToolbar,
                     pagination: () => (
                         <CustomPagination
-                            totalBookings={pageState.totalBookings}
+                            totalBookings={pageState.totalNumberOfData}
                             updateSearchParams={updateSearchParams}
                         />
                     ),
