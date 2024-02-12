@@ -6,8 +6,13 @@ const getValidationSchema = (t: TFunction<'auth'>) =>
         email: Yup.string()
             .trim()
             .email(t('invalidEmailMsg'))
-            .required(t('emailRequired')),
+            .required(t('emailRequired'))
+            .matches(
+                /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                t('invalidEmailMsg')
+            ),
         password: Yup.string()
+            .trim()
             .min(6, t('passwordValidationMsg'))
             .required(t('passwordRequired')),
     });
