@@ -1,5 +1,4 @@
 import {
-    Stack,
     Autocomplete,
     TextField,
     InputAdornment,
@@ -9,7 +8,6 @@ import {
 import {
     FmdGood,
     Today,
-    People,
     Search,
     SwapHoriz,
     TripOrigin,
@@ -76,98 +74,92 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     return (
         <Wrapper>
-            {/* <Stack spacing={5} direction="row"> */}
-            {/* <Stack spacing={0} width="90rem" direction="row" flexGrow={1}> */}
-            <Grid
-                container
-                spacing={4}
-                sx={{ display: 'flex', alignItems: 'center' }}
-            >
-                <Grid item xs={12} md={4}>
-                    <Autocomplete
-                        fullWidth
-                        options={locationOptions.filter((loc) => {
-                            return loc != stopLocation;
-                        })}
-                        value={startLocation}
-                        onChange={handleStartSelect}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                label={t('from')}
-                                InputProps={{
-                                    ...params.InputProps,
-                                    startAdornment: (
-                                        <>
-                                            <InputAdornment position="start">
-                                                <TripOrigin />
-                                            </InputAdornment>
-                                            {params.InputProps.startAdornment}
-                                        </>
-                                    ),
-                                }}
-                            />
-                        )}
-                    ></Autocomplete>
-                </Grid>
-
-                {/* <Grid item xs={12} md={0.8}> */}
-                <IconButton
-                    onClick={swapLocationOptions}
-                    sx={{
-                        transform: { xs: 'rotate(90deg)', md: 'none' },
-                        pl: { xs: '3.2rem', md: '0.1rem' },
-                        p: '1rem',
-                        mt: { xs: '0', md: '3.2rem' },
-                        ml: { xs: '50%', md: '3.2rem' },
-                    }}
-                >
-                    {/* sx={{
-                        transform: { xs: 'rotate(90deg)', md: 'none' },
-                        pl: { xs: '3.2rem', md: '0.1rem' },
-                        p: '1rem',
-                        mt: { xs: '0', md: '3.2rem' },
-                        ml: { xs: '50%', md: '3.2rem' },
-                    }} */}
-                    <SwapHoriz style={{ minWidth: '4rem' }} />
-                </IconButton>
-                {/* </Grid> */}
-
+            <Grid container spacing={2}>
                 <Grid
                     item
+                    container
                     xs={12}
-                    md={4}
-                    sx={{ pl: { xs: '3.2rem', md: '0' } }}
+                    md={9}
+                    spacing={0.5}
+                    alignItems="center"
                 >
-                    <Autocomplete
-                        fullWidth
-                        options={locationOptions.filter((loc) => {
-                            return loc != startLocation;
-                        })}
-                        value={stopLocation}
-                        onChange={handleStopSelect}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                label={t('to')}
-                                InputProps={{
-                                    ...params.InputProps,
-                                    startAdornment: (
-                                        <>
-                                            <InputAdornment position="start">
-                                                <FmdGood />
-                                            </InputAdornment>
-                                            {params.InputProps.startAdornment}
-                                        </>
-                                    ),
-                                }}
-                            />
-                        )}
-                    ></Autocomplete>
+                    <Grid item xs={12} sm>
+                        <Autocomplete
+                            fullWidth
+                            options={locationOptions.filter((loc) => {
+                                return loc != stopLocation;
+                            })}
+                            value={startLocation}
+                            onChange={handleStartSelect}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label={t('from')}
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        startAdornment: (
+                                            <>
+                                                <InputAdornment position="start">
+                                                    <TripOrigin />
+                                                </InputAdornment>
+                                                {
+                                                    params.InputProps
+                                                        .startAdornment
+                                                }
+                                            </>
+                                        ),
+                                    }}
+                                />
+                            )}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm="auto" textAlign="center">
+                        <IconButton
+                            sx={{
+                                rotate: { xs: '90deg', sm: '0deg' },
+                                height: '40px',
+                                width: '40px',
+                            }}
+                            onClick={swapLocationOptions}
+                        >
+                            <SwapHoriz style={{ minWidth: '4rem' }} />
+                        </IconButton>
+                    </Grid>
+
+                    <Grid item xs={12} sm>
+                        <Autocomplete
+                            fullWidth
+                            options={locationOptions.filter((loc) => {
+                                return loc != startLocation;
+                            })}
+                            value={stopLocation}
+                            onChange={handleStopSelect}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label={t('to')}
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        startAdornment: (
+                                            <>
+                                                <InputAdornment position="start">
+                                                    <FmdGood />
+                                                </InputAdornment>
+                                                {
+                                                    params.InputProps
+                                                        .startAdornment
+                                                }
+                                            </>
+                                        ),
+                                    }}
+                                />
+                            )}
+                        />
+                    </Grid>
                 </Grid>
 
-                {/* </Stack> */}
-                <Grid item xs={6} md={3}>
+                <Grid item xs={12} md={3}>
                     <DatePicker
                         label={t('date')}
                         slots={{
@@ -179,25 +171,12 @@ const ActionBar: React.FC<IActionBarProps> = ({
                                 sx: { pl: '0.5rem' },
                             },
                         }}
+                        sx={{ width: '100%' }}
                     />
                 </Grid>
-                {/* <Grid item xs={6} md={2}>
-                    <TextField
-                        label={t('passengers')}
-                        type="number"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <People />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Grid> */}
             </Grid>
-            {/* </Stack> */}
 
-            {showFilterSort ? <FilterSort /> : <></>}
+            {showFilterSort ? <FilterSort /> : null}
 
             <CenteredButton
                 variant="contained"
