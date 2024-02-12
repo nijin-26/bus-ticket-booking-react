@@ -7,12 +7,12 @@ const {
     seatLayout,
     tripDetails,
     passengerDetails,
-    auth,
     actionBarTab,
     actionBar,
     pnrSearch,
     filterSort,
     landingPage,
+    auth
 } = data;
 const resources = {
     ns1,

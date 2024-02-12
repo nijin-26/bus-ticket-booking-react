@@ -22,11 +22,11 @@ const {
     ns2: esNs2,
     headerFooter: esHeaderFooter,
     seatLayout: esSeatLayout,
+    auth: esAuth,
     actionBarTab: esActionBarTab,
     actionBar: esActionBar,
     pnrSearch: esPnrSearch,
     filterSort: esFilterSort,
-    auth: esAuth,
     tripDetails: esTripDetails,
     passengerDetails: esPassengerDetails,
     landingPage: eslandingPage,
@@ -82,6 +82,7 @@ void i18n.use(initReactI18next).init({
         'pnrSearch',
         'filterSort',
         'landingPage',
+        'auth'
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.
