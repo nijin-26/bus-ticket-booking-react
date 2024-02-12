@@ -11,10 +11,12 @@ const {
     actionBar,
     pnrSearch,
     filterSort,
+    auth
 } = data;
 const resources = {
     ns1,
     ns2,
+    auth,
     headerFooter,
     seatLayout,
     actionBarTab,

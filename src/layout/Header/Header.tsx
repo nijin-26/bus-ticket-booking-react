@@ -19,8 +19,7 @@ import testProfile from '../../assets/person1.jpeg';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
-
-const settings = ['My bookings', 'Logout'];
+import { AuthModal } from '../../components';
 
 export const Header = () => {
     const { t } = useTranslation('headerFooter'); // mention "ns2" to include values from ns2.json
@@ -28,29 +27,39 @@ export const Header = () => {
     const dispatch = useAppDispatch();
 
     const [isLoginClicked, setLoginClick] = useState(false);
-    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [menuAnchorElement, setMenuAnchorElement] =
+        useState<null | HTMLElement>(null);
+
+    const settings = [t('myBooking'), t('Logout')];
 
     const handleLoginClick = () => {
         setLoginClick(true);
+        setIsLoginModalOpen(true);
     };
+
     const handleThemeClick = () => {
         dispatch(toggleTheme());
     };
+
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget);
+        setMenuAnchorElement(event.currentTarget);
     };
+
     const handleCloseUserMenu = (setting: string) => {
-        setAnchorElUser(null);
-        if (setting === 'Logout') {
+        setMenuAnchorElement(null);
+        if (setting === t('Logout')) {
             setLoginClick(false);
+            setIsLoginModalOpen(false);
         }
     };
+
     return (
         <>
             <AppBar position="sticky">
                 <StyledToolBar>
                     <Link
-                        href="#"
+                        href="/"
                         variant="h5"
                         color="inherit"
                         underline="none"
@@ -101,7 +110,7 @@ export const Header = () => {
                                 <Menu
                                     sx={{ mt: '45px' }}
                                     id="menu-appbar"
-                                    anchorEl={anchorElUser}
+                                    anchorEl={menuAnchorElement}
                                     anchorOrigin={{
                                         vertical: 'top',
                                         horizontal: 'right',
@@ -111,7 +120,7 @@ export const Header = () => {
                                         vertical: 'top',
                                         horizontal: 'right',
                                     }}
-                                    open={Boolean(anchorElUser)}
+                                    open={Boolean(menuAnchorElement)}
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting) => (
@@ -135,6 +144,12 @@ export const Header = () => {
                     </Box>
                 </StyledToolBar>
             </AppBar>
+            <AuthModal
+                isOpen={isLoginModalOpen}
+                closeModal={() => {
+                    setIsLoginModalOpen(false);
+                }}
+            />
         </>
     );
 };
