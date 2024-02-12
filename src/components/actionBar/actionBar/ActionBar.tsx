@@ -78,8 +78,12 @@ const ActionBar: React.FC<IActionBarProps> = ({
         <Wrapper>
             {/* <Stack spacing={5} direction="row"> */}
             {/* <Stack spacing={0} width="90rem" direction="row" flexGrow={1}> */}
-            <Grid container spacing={4}>
-                <Grid item xs={12} md={3.5}>
+            <Grid
+                container
+                spacing={4}
+                sx={{ display: 'flex', alignItems: 'center' }}
+            >
+                <Grid item xs={12} md={4}>
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -107,13 +111,34 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     ></Autocomplete>
                 </Grid>
 
-                <Grid item xs={12} md={0.8}>
-                    <IconButton onClick={swapLocationOptions}>
-                        <SwapHoriz style={{ minWidth: '4rem' }} />
-                    </IconButton>
-                </Grid>
+                {/* <Grid item xs={12} md={0.8}> */}
+                <IconButton
+                    onClick={swapLocationOptions}
+                    sx={{
+                        transform: { xs: 'rotate(90deg)', md: 'none' },
+                        pl: { xs: '3.2rem', md: '0.1rem' },
+                        p: '1rem',
+                        mt: { xs: '0', md: '3.2rem' },
+                        ml: { xs: '50%', md: '3.2rem' },
+                    }}
+                >
+                    {/* sx={{
+                        transform: { xs: 'rotate(90deg)', md: 'none' },
+                        pl: { xs: '3.2rem', md: '0.1rem' },
+                        p: '1rem',
+                        mt: { xs: '0', md: '3.2rem' },
+                        ml: { xs: '50%', md: '3.2rem' },
+                    }} */}
+                    <SwapHoriz style={{ minWidth: '4rem' }} />
+                </IconButton>
+                {/* </Grid> */}
 
-                <Grid item xs={12} md={3.5}>
+                <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{ pl: { xs: '3.2rem', md: '0' } }}
+                >
                     <Autocomplete
                         fullWidth
                         options={locationOptions.filter((loc) => {
@@ -142,7 +167,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 </Grid>
 
                 {/* </Stack> */}
-                <Grid item xs={6} md={2}>
+                <Grid item xs={6} md={3}>
                     <DatePicker
                         label={t('date')}
                         slots={{
@@ -156,7 +181,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         }}
                     />
                 </Grid>
-                <Grid item xs={6} md={2}>
+                {/* <Grid item xs={6} md={2}>
                     <TextField
                         label={t('passengers')}
                         type="number"
@@ -168,7 +193,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             ),
                         }}
                     />
-                </Grid>
+                </Grid> */}
             </Grid>
             {/* </Stack> */}
 
