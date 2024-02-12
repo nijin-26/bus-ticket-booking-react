@@ -13,7 +13,8 @@ const {
     pnrSearch: enPnrSearch,
     filterSort: enFilterSort,
     tripDetails: enTripDetails,
-    auth: enAuth
+    auth: enAuth,
+    passengerDetails: enPassengerDetails,
 } = en;
 const {
     ns1: esNs1,
@@ -26,6 +27,7 @@ const {
     pnrSearch: esPnrSearch,
     filterSort: esFilterSort,
     tripDetails: esTripDetails,
+    passengerDetails: esPassengerDetails,
 } = es;
 
 export const defaultNS = 'ns1';
@@ -44,6 +46,7 @@ void i18n.use(initReactI18next).init({
             pnrSearch: enPnrSearch,
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
+            passengerDetails: enPassengerDetails,
         },
         es: {
             ns1: esNs1,
@@ -56,6 +59,7 @@ void i18n.use(initReactI18next).init({
             pnrSearch: esPnrSearch,
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
+            passengerDetails: esPassengerDetails,
         },
     },
     lng: 'en',
@@ -67,11 +71,12 @@ void i18n.use(initReactI18next).init({
         'headerFooter',
         'seatLayout',
         'tripDetails',
+        'passengerDetails',
         'actionBarTab',
         'actionBar',
         'pnrSearch',
         'filterSort',
-        'auth'
+        'auth',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

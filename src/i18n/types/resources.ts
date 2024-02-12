@@ -6,6 +6,7 @@ const {
     headerFooter,
     seatLayout,
     tripDetails,
+    passengerDetails,
     actionBarTab,
     actionBar,
     pnrSearch,
@@ -23,6 +24,7 @@ const resources = {
     pnrSearch,
     filterSort,
     tripDetails,
+    passengerDetails,
 } as const;
 
 export default resources;

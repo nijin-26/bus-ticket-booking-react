@@ -77,5 +77,34 @@
         "arrival": "Arrival",
         "duration": "Duration",
         "busType": "Bus Type"
+    },
+    "passengerDetails": {
+        "passengerDetailsFormHeading": "Passenger Details",
+        "passenger": "Passenger",
+        "seat": "seat",
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "genderValues": [
+            {
+                "value": "male",
+                "label": "Male"
+            },
+            {
+                "value": "female",
+                "label": "Female"
+            },
+            {
+                "value": "other",
+                "label": "Other"
+            }
+        ],
+        "checkout": "Checkout",
+        "fullNameRequired": "Full Name is a required field",
+        "ageRequired": "Age is a required field",
+        "genderRequired": "Gender is a required field",
+        "fullNameLength": "Full Name must be 3 to 60 characters long",
+        "AgeNumberCheck": "Age must be a valid number",
+        "AgeRangeCheck": "Age must be between 1 and 130"
     }
 }

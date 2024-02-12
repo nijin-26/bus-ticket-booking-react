@@ -14,7 +14,15 @@ import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 
 let borderDesignClass: string;
 
-export const TripCardAccordion = ({ data }: { data: ITrip }) => {
+interface ITripCardAccordionProps {
+    data: ITrip;
+    defaultExpanded?: boolean;
+}
+
+export const TripCardAccordion = ({
+    data,
+    defaultExpanded = false,
+}: ITripCardAccordionProps) => {
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
     } else if (data.availableSeats > 0) {
@@ -32,7 +40,10 @@ export const TripCardAccordion = ({ data }: { data: ITrip }) => {
     } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
 
     return (
-        <TripAccordionWrapper className={`summary ${borderDesignClass}`}>
+        <TripAccordionWrapper
+            className={`summary ${borderDesignClass}`}
+            defaultExpanded={defaultExpanded}
+        >
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
