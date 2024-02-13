@@ -65,8 +65,5 @@ export enum IBusType {
 export enum ISeatStatus {
     BOOKED = 'BOOKED',
     AVAILABLE = 'AVAILABLE',
-}
-
-export interface ITripById extends ITrip{
-    seats: ISeat[];
+    SELECTED = 'SELECTED'
 }

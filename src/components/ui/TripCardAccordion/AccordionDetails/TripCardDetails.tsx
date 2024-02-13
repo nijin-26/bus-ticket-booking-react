@@ -12,8 +12,14 @@ import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
-import { ITrip, ITripById } from '../../../../api/types/trip';
+import { ISeat, ISeatStatus, ITrip } from '../../../../api/types/trip';
+import { convertTimeStamp, filterSelectedSeats } from '../../../../utils';
+import { useAppSelector, useAppDispatch } from '../../../../app/hooks';
+import { setTripDetailsData } from '../../../../app/features/tripdetailsSlice';
 
+interface ITripCardAccordionProps extends ITrip {
+    seats?: ISeat[];
+}
 interface ITripCardDetailsProps {
     formattedDepartureTime: string;
     formattedDepartureDate: string;
@@ -21,16 +27,50 @@ interface ITripCardDetailsProps {
     formattedArrivalDate: string;
     formattedDuration: string;
 }
+
 export const TripCardDetails = ({
     data,
-    dates,
 }: {
-    data: ITrip;
-    dates: ITripCardDetailsProps;
+    data: ITripCardAccordionProps;
 }) => {
+    const state = useAppSelector((state) => state.tripDetails);
+    const dispatch = useAppDispatch();
 
-    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+    const { t } = useTranslation('tripDetails');
+    const navigate = useNavigate();
 
+    const dates: ITripCardDetailsProps = convertTimeStamp(
+        data.departureTimestamp,
+        data.arrivalTimestamp
+    );
+    const tripDetails = {
+        departureTime: dates.formattedDepartureTime,
+        departureDate: dates.formattedDepartureDate,
+        arrivalTime: dates.formattedArrivalTime,
+        arrivalDate: dates.formattedArrivalDate,
+        duration: dates.formattedDuration,
+        origin: data.origin,
+        destination: data.destination,
+        seatType: data.seatType,
+        busType: data.busType,
+    };
+
+    /*
+    if data has an undefined seats[], fetch call happens such that it gets the 
+    seats, else takes the seats list from the data recieved.
+    */
+    const seatsData = !data.seats
+        ? generateSeats(data.availableSeats, data.totalSeats)
+        : data.seats;
+
+    const currentUrl = useLocation();
+    const seatsInStore =
+        currentUrl.pathname === paths.tripBooking
+            ? filterSelectedSeats(state.seats)
+            : [];
+
+    //selectign seats
+    const [selectedSeats, setSelectedSeats] = useState<number[]>(seatsInStore);
     const updateSelectedSeats = (newSeat: number) => {
         if (selectedSeats.includes(newSeat)) {
             setSelectedSeats((prev) =>
@@ -41,29 +81,6 @@ export const TripCardDetails = ({
     const clearSelectedSeats = () => {
         setSelectedSeats([]);
     };
-
-    const { t } = useTranslation('tripDetails');
-    const currentUrl = useLocation();
-    const navigate = useNavigate();
-
-const tripDetails = {
-    departureTime: dates.formattedDepartureTime,
-    departureDate: dates.formattedDepartureDate,
-    arrivalTime: dates.formattedArrivalTime,
-    arrivalDate: dates.formattedArrivalDate,
-    duration: dates.formattedDuration,
-    origin: data.origin,
-    destination: data.destination,
-    seatType: data.seatType,
-    busType: data.busType,
-};
-
-
-  const tripSpecificData: ITripById = {
-      ...data,
-      seats: generateSeats(data.availableSeats, data.totalSeats),
-  };
-
 
     return (
         <TripCardDetailsWrapper>
@@ -106,12 +123,12 @@ const tripDetails = {
                     </Stack>
                     <SeatLayout
                         layoutName={layoutNames.volvo25}
-                        seats={tripSpecificData.seats}
+                        seats={seatsData}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
                     />
                 </Stack>
-                {currentUrl.pathname !== paths.tripBooking && (
+                {currentUrl.pathname === paths.tripsListing && (
                     <Stack
                         direction={{ xs: 'column', sm: 'row' }}
                         justifyContent={'space-between'}
@@ -134,6 +151,23 @@ const tripDetails = {
                                 )
                             }
                             onClick={() => {
+                                //update store with tripdetails
+                                seatsData.forEach((seat) => {
+                                    if (
+                                        selectedSeats.includes(
+                                            seat.seatNumber
+                                        )
+                                    ) {
+                                        seat.status = ISeatStatus.SELECTED;
+                                    }
+                                });
+
+                                dispatch(
+                                    setTripDetailsData({
+                                        ...data,
+                                        seats: seatsData,
+                                    })
+                                );
                                 navigate('/trips/bookings');
                             }}
                         >
