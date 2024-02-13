@@ -14,10 +14,9 @@ seatType:SLEEPER
 busType:AC
 passengerCount:2 */
 
-export const getTrips = async (
-    params: ITripsQueryRequest
-): Promise<ITrip[]> => {
-    const response: ITripsQueryResponse = await apiClient.get('/trip', {
+export const getTrips = async (params
+: ITripsQueryRequest): Promise<ITrip[]> => {
+    const response: ITripsQueryResponse = await apiClient.get('trip', {
         params,
     });
     return response.trips;

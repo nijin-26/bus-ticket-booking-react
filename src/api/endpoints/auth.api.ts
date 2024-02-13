@@ -1,26 +1,23 @@
 import apiClient from '../axios';
-import { ISignInResponse } from '../types/signIn';
+import { ISignInRequest, ISignInResponse } from '../types/signIn';
+import { ISignUpRequest, ISignUpResponse } from '../types/signUp';
 
 export const signIn = async (
-    username: string,
-    password: string
+    body: ISignInRequest
 ): Promise<ISignInResponse> => {
-    const body = {
-        username,
-        password,
-    };
-    const response: ISignInResponse = await apiClient.post('/sign-in', body);
+    const response: ISignInResponse = await apiClient.post(
+        'auth/sign-in',
+        body
+    );
     return response;
 };
 
 export const signUp = async (
-    username: string,
-    password: string
-): Promise<ISignInResponse> => {
-    const body = {
-        username,
-        password,
-    };
-    const response: ISignInResponse = await apiClient.post('/sign-up', body);
+    body: ISignUpRequest
+): Promise<ISignUpResponse> => {
+    const response: ISignUpResponse = await apiClient.post(
+        'auth/sign-up',
+        body
+    );
     return response;
-}
+};

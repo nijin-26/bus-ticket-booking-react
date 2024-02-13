@@ -21,6 +21,13 @@ import { ILocationOptions } from '../types';
 import { locationOptions } from '../../../config';
 import { useTranslation } from 'react-i18next';
 import { getLocations } from '../../../api/endpoints/locations.api';
+import { getTrips, signIn, signUp } from '../../../api';
+import {
+    IBusType,
+    ISeatType,
+    ISortOrder,
+    ITripsSortKey,
+} from '../../../api/types/trip';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -70,12 +77,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
         // api call to get listing data
         // apply loading states
     };
-
-    useEffect(() => {
-        getLocations().then((locations) => {
-            console.log(locations);
-        });
-    }, []);
 
     return (
         <Wrapper>
