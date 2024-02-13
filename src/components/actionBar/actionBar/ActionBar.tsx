@@ -14,20 +14,12 @@ import {
     TripOrigin,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { locationOptions } from '../../../config';
 import { useTranslation } from 'react-i18next';
-import { getLocations } from '../../../api/endpoints/locations.api';
-import { getTrips, signIn, signUp } from '../../../api';
-import {
-    IBusType,
-    ISeatType,
-    ISortOrder,
-    ITripsSortKey,
-} from '../../../api/types/trip';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
