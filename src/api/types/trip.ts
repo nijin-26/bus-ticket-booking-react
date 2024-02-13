@@ -65,4 +65,5 @@ export enum IBusType {
 export enum ISeatStatus {
     BOOKED = 'BOOKED',
     AVAILABLE = 'AVAILABLE',
+    SELECTED = 'SELECTED',
 }

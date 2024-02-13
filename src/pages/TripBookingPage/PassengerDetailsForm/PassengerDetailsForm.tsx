@@ -3,12 +3,12 @@ import { Box, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
-import { FareDetails } from '../../../components/FareDetails/FareDetails';
-import { StyledButton } from '../../../components/Button/Button.styled';
-import { useState, useEffect, useRef } from 'react';
+// import { FareDetails } from '../../../components/FareDetails/FareDetails';
+// import { StyledButton } from '../../../components/Button/Button.styled';
+import { useState, useEffect, RefObject } from 'react';
 import { useTheme } from '@emotion/react';
 
-interface IPassengerDetails {
+export interface IPassengerDetails {
     passengers: {
         seatNumber: number;
         fullName: string;
@@ -16,23 +16,29 @@ interface IPassengerDetails {
         gender: string;
     }[];
 }
+interface IPassengerDetailsFormProps {
+    selectedSeats: number[];
+    formikRef: RefObject<FormikProps<IPassengerDetails>>;
+}
 
-const PassengerDetailsForm = () => {
+const PassengerDetailsForm = ({
+    selectedSeats,
+    formikRef,
+}: IPassengerDetailsFormProps) => {
     const { t } = useTranslation('passengerDetails');
     const theme = useTheme();
 
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
-    const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
 
     useEffect(() => {
         // Incrementing languageChangeKey to force re-render when language changes
         setLanguageChangeKey((prevKey) => prevKey + 1);
         void formikRef.current?.validateForm();
-    }, [t]);
+    }, [t, formikRef]);
 
     const generateInitialValues = () => {
-        const selectedSeatCount = 2;
-        const seatNumber = [1, 2];
+        const selectedSeatCount = selectedSeats.length;
+        const seatNumber = selectedSeats;
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -145,17 +151,6 @@ const PassengerDetailsForm = () => {
                             ))
                         }
                     </FieldArray>
-
-                    <Grid container alignItems="center" mb={6} spacing={1.5}>
-                        <Grid item xs={12} sm={9}>
-                            <FareDetails noOfSeats={3} farePerSeat={1200} />
-                        </Grid>
-                        <Grid item xs={12} sm={3} ml="auto">
-                            <StyledButton type="submit" fullWidth>
-                                {t('checkout')}
-                            </StyledButton>
-                        </Grid>
-                    </Grid>
                 </Form>
             )}
         </Formik>

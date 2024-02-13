@@ -16,7 +16,7 @@ import { SeatLegend } from './components/SeatLegend/SeatLegend';
 export const TripCardDetails = () => {
     const farePerSeat: number = 1200;
 
-    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+    const [selectedSeats, setSelectedSeats] = useState<number[]>([2, 6, 10]);
 
     const updateSelectedSeats = (newSeat: number) => {
         if (selectedSeats.includes(newSeat)) {
