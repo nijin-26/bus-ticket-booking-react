@@ -7,14 +7,14 @@ const apiClient = axios.create({
     timeout: 30000,
 });
 
-// apiClient.interceptors.request.use(
-//     onRequest as unknown as <TConfig>(
-//         value: InternalAxiosRequestConfig<TConfig>
-//     ) =>
-//         | InternalAxiosRequestConfig<TConfig>
-//         | Promise<InternalAxiosRequestConfig<TConfig>>,
-//     onRequestError
-// );
+apiClient.interceptors.request.use(
+    onRequest as unknown as <TConfig>(
+        value: InternalAxiosRequestConfig<TConfig>
+    ) =>
+        | InternalAxiosRequestConfig<TConfig>
+        | Promise<InternalAxiosRequestConfig<TConfig>>,
+    onRequestError
+);
 
 apiClient.interceptors.response.use(
     onResponse as unknown as <TResponse, TConfig>(
