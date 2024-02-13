@@ -1,9 +1,10 @@
-import { Menu } from '@mui/icons-material';
+import { Filter, FilterAlt, Menu } from '@mui/icons-material';
 import { Box, IconButton, SwipeableDrawer } from '@mui/material';
 import { useState } from 'react';
 import SortGroup from '../sortFilterRadioGroups/SortGroup';
 import BusTypeGroup from '../sortFilterRadioGroups/BusTypeGroup';
 import SeatTypeGroup from '../sortFilterRadioGroups/SeatTypeGroup';
+import { FilterSortHeading, FilterSubHeading } from './ActionBarDrawerStyled';
 
 export default function ActionBarDrawer() {
     const [drawer, setDrawer] = useState(false);
@@ -20,8 +21,11 @@ export default function ActionBarDrawer() {
 
     return (
         <Box>
-            <IconButton onClick={toggleDrawer}>
-                <Menu />
+            <IconButton
+                onClick={toggleDrawer}
+                sx={{ padding: '1rem', margin: '2rem' }}
+            >
+                <FilterAlt sx={{ width: '4rem', height: '4rem' }} />
             </IconButton>
             <SwipeableDrawer
                 anchor="left"
@@ -34,13 +38,13 @@ export default function ActionBarDrawer() {
                     sx: { width: '100%', p: '2rem' },
                 }}
             >
-                <h3>Filter</h3>
-                <p>Bus type</p>
+                <FilterSortHeading>Filter</FilterSortHeading>
+                <FilterSubHeading>Bus type</FilterSubHeading>
                 <BusTypeGroup />
-                <p>Seat type</p>
+                <FilterSubHeading>Seat type</FilterSubHeading>
                 <SeatTypeGroup />
 
-                <h3>Sort</h3>
+                <FilterSortHeading>Sort</FilterSortHeading>
                 <SortGroup />
             </SwipeableDrawer>
         </Box>
