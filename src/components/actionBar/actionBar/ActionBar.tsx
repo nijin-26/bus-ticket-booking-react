@@ -5,12 +5,14 @@ import {
     IconButton,
     Grid,
 } from '@mui/material';
+
 import {
     FmdGood,
     Today,
     Search,
     SwapHoriz,
     TripOrigin,
+    // People,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
@@ -176,7 +178,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 </Grid>
             </Grid>
 
-            {showFilterSort ? <FilterSort /> : null}
+            {showFilterSort && <FilterSort />}
 
             <CenteredButton
                 variant="contained"
