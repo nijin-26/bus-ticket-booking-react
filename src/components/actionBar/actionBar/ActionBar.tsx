@@ -14,12 +14,13 @@ import {
     TripOrigin,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { locationOptions } from '../../../config';
 import { useTranslation } from 'react-i18next';
+import { getLocations } from '../../../api/endpoints/locations.api';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -69,6 +70,12 @@ const ActionBar: React.FC<IActionBarProps> = ({
         // api call to get listing data
         // apply loading states
     };
+
+    useEffect(() => {
+        getLocations().then((locations) => {
+            console.log(locations);
+        });
+    }, []);
 
     return (
         <Wrapper>
