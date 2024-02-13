@@ -54,5 +54,12 @@
         "arrival": "Llegada",
         "duration": "Duración",
         "busType": "Tipo de autobús"
+    },
+    "tripListing": {
+        "busTypeAC": "Tipo de Autobús - Aire Acondicionado",
+        "busTypeNonAC": "Tipo de Autobús - Sin Aire Acondicionado",
+        "SeatTypeSeater": "Tipo de Asiento - Asiento",
+        "SeatTypeSleeper": "Tipo de Autobús - Litera"
     }
+
 }

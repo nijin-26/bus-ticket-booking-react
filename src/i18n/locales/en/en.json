@@ -54,5 +54,12 @@
         "arrival": "Arrival",
         "duration": "Duration",
         "busType": "Bus Type"
+    },
+    "tripListing": {
+        "busTypeAC": "Bus Type - AC",
+        "busTypeNonAC": "Bus Type - Non-AC",
+        "SeatTypeSeater": "Seat Type - Seater",
+        "SeatTypeSleeper": "Bus Type - Sleeper"
     }
+
 }
