@@ -1,6 +1,6 @@
-const apiRoutes = {
+export const apiRoutes = {
     signIn: 'auth/sign-in',
     signUp: 'auth/sign-up',
-    locations: 'locations',
+    location: 'location',
     trip: 'trip',
 };

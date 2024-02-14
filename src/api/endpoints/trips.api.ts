@@ -1,4 +1,4 @@
-import { API } from '..';
+import { API, apiRoutes } from '..';
 import { ITrip, ITripsQueryRequest, ITripsQueryResponse } from '../types/trip';
 
 export const getTrips = async (

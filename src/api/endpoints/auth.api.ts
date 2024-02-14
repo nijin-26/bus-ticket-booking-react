@@ -1,4 +1,4 @@
-import { API } from '..';
+import { API, apiRoutes } from '..';
 import { ISignInRequest, ISignInResponse } from '../types/signIn';
 import { ISignUpRequest, ISignUpResponse } from '../types/signUp';
 
