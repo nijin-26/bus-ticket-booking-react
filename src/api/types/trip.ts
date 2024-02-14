@@ -1,10 +1,10 @@
 export interface ITripsQueryRequest {
-    origin: string;
-    destination: string;
-    departureDate: string;
+    originId: string;
+    destinationId: string;
+    tripDate: string;
     sortBy: ITripsSortKey;
     sortOrder: ISortOrder;
-    pageNumber: number;
+    page: number;
     pageSize: number;
     seatType?: ISeatType;
     busType?: IBusType;
