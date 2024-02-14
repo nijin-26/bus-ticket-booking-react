@@ -17,3 +17,4 @@
 -   [86cuhfyvp] Implemented functionality of Trip listing card using dummy data
 -   [86cugqgpt] Implemented filters and sort for action bar
 -   [86cueubmz] Implemented trip booking page and booking details form UI
+-   [86cukqvct] Implemented API layer
