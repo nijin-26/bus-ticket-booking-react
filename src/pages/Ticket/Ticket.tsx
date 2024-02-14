@@ -193,10 +193,6 @@ export const Ticket = () => {
                 <Box
                     component="div"
                     className="rotated-barcode-container"
-                    sx={{
-                        height: 300,
-                        minWidth: 350,
-                    }}
                 >
                     <Barcode value={'123456789'} format="CODE128" />
                     {/* high-density linear barcode. supports all 128 ASCII characters */}

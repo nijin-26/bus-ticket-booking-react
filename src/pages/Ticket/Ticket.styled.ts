@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const TicketWrapper = styled('div')(({ theme }) => ({
-    backgroundColor: theme.color.cardWhite,
+    backgroundColor: theme.color.background,
     borderRadius: '2.5rem',
     border: '1px solid black',
     width: '100%', // Set width to make it responsive
@@ -32,7 +32,7 @@ export const TicketWrapper = styled('div')(({ theme }) => ({
             top: '-15px', // Adjust the position to place it on top of the dotted line
             left: '50%', // Center the icon horizontally
             transform: 'translateX(-50%)', // Adjust to center the icon exactly above the line
-            background: theme.color.cardWhite,
+            background: theme.color.background,
         },
         '& .location-short-name': {
             fontSize: '5rem',
@@ -59,10 +59,12 @@ export const TicketWrapper = styled('div')(({ theme }) => ({
         },
 
         '& .rotated-barcode-container': {
-            transform: 'rotate(270deg)',
             marginLeft: '0',
+            display: 'flex',
+            alignItems:'center',
 
             '& >svg': {
+                rotate:'270deg',
                 maxHeight: '10rem',
                 width: '100%',
                 objectFit: 'cover', // Ensure the image covers the entire box
