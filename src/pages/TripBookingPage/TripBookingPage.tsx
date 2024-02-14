@@ -28,20 +28,12 @@ const dummyTripData: ITrip = {
 export const TripBookingPage = () => {
     const [showDialog, setShowDialog] = useState(false);
     const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
+
     const handleFormSubmit = () => {
         if (formikRef.current?.isValid) {
             setShowDialog(true);
-            console.log('valid');
         } else {
-            formikRef.current
-                ?.validateForm()
-                .then(() => {
-                    console.log('validated');
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-            console.log('not validated');
+            formikRef.current?.handleSubmit(); // to retrigger validation of the form
         }
     };
 
@@ -57,7 +49,10 @@ export const TripBookingPage = () => {
                 </Typography>
             </Stack>
             <TripCardAccordion defaultExpanded={true} data={dummyTripData} />
-            <PassengerDetailsForm formikRef={formikRef} selectedSeats={[1]} />
+            <PassengerDetailsForm
+                formikRef={formikRef}
+                selectedSeats={[1, 2, 3]}
+            />
 
             <Grid container alignItems="center" mb={6} spacing={1.5}>
                 <Grid item xs={12} sm={9}>
