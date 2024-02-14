@@ -1,5 +1,5 @@
-import { AppBar, Button, Menu, MenuItem, Typography } from '@mui/material';
-import { StyledToolBar } from './Footer.styled';
+import { AppBar, Menu, MenuItem, Typography } from '@mui/material';
+import { StyledButton, StyledToolBar } from './Footer.styled';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import { useMemo, useState } from 'react';
 import { LANGUAGES } from '../../config';
@@ -48,15 +48,14 @@ export const Footer = () => {
     };
     return (
         <>
-            <AppBar position="static" color="primary">
+            <AppBar component={'footer'} position="static" color="primary">
                 <StyledToolBar>
                     <Typography variant="caption" color="inherit">
                         {t('copyRight')}
                     </Typography>
 
-                    <Button
+                    <StyledButton
                         variant="outlined"
-                        color="secondary"
                         startIcon={
                             <LanguageRoundedIcon
                                 fontSize="small"
@@ -68,10 +67,12 @@ export const Footer = () => {
                         <span className="language-span">
                             {selectedLanguage}
                         </span>
-                    </Button>
+                    </StyledButton>
                     <Menu
                         id="language-appbar"
-                        sx={{ marginTop: '-35px' }}
+                        sx={{
+                            marginTop: '-35px',
+                        }}
                         anchorEl={anchorElUser}
                         keepMounted
                         open={Boolean(anchorElUser)}

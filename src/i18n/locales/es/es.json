@@ -6,8 +6,31 @@
         "hello": "hola"
     },
     "headerFooter": {
+        "myBooking": "Mis Reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
-        "Login": "Iniciar sesión"
+        "Login": "Iniciar sesión",
+        "Logout": "Cerrar sesión"
+    },
+    "auth": {
+        "signIn": "INICIAR SESIÓN",
+        "signUp": "REGISTRARSE",
+        "email": "Correo Electrónico",
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar Contraseña",
+        "phone": "Teléfono",
+        "fullName": "Nombre Completo",
+        "cancel": "Cancelar",
+        "minNameMsg": "El nombre completo debe tener al menos 3 caracteres.",
+        "maxNameMsg": "El nombre completo debe tener como máximo 50 caracteres.",
+        "nameRequired": "Se requiere el nombre completo",
+        "invalidEmailMsg": "Dirección de correo electrónico inválida.",
+        "emailRequired": "Se requiere el correo electrónico.",
+        "invalidPhone": "Número de teléfono inválido.",
+        "phoneRequired": "Se requiere el número de teléfono.",
+        "passwordValidationMsg": "La contraseña debe tener al menos 6 caracteres.",
+        "passwordRequired": "Se requiere la contraseña.",
+        "passwordMatch": "Las contraseñas deben coincidir.",
+        "confirmPasswordRequired": "Se requiere confirmar la contraseña."
     },
     "seatLayout": {
         "available": "Disponible",
@@ -57,5 +80,34 @@
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
+    },
+    "passengerDetails": {
+        "passengerDetailsFormHeading": "Detalles del Pasajero",
+        "passenger": "Pasajero",
+        "seat": "Asiento",
+        "fullName": "Nombre Completo",
+        "age": "Edad",
+        "gender": "Género",
+        "genderValues": [
+            {
+                "value": "male",
+                "label": "Hombre"
+            },
+            {
+                "value": "female",
+                "label": "Mujer"
+            },
+            {
+                "value": "other",
+                "label": "Otro"
+            }
+        ],
+        "checkout": "Pagar",
+        "fullNameRequired": "El Nombre Completo es un campo requerido",
+        "ageRequired": "La Edad es un campo requerido",
+        "genderRequired": "El Género es un campo requerido",
+        "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
+        "AgeNumberCheck": "La edad debe ser un número válido",
+        "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
     }
 }
