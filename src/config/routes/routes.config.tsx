@@ -1,5 +1,4 @@
 import { RouteObject } from 'react-router-dom';
-import { LandingPage, TripsListingPage } from '../../pages';
 import { LandingPage, TripsListingPage, TripBookingPage } from '../../pages';
 import { ErrorPage } from '../../pages/ErrorPage/ErrorPage';
 import { Layout } from '../../layout';
