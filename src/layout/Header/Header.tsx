@@ -19,24 +19,18 @@ import testProfile from '../../assets/person1.jpeg';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
-import { AuthModal } from '../../components';
+import { showAuthModal } from '../../app/features/authSlice';
 
 export const Header = () => {
-    const { t } = useTranslation('headerFooter'); // mention "ns2" to include values from ns2.json
+    const { t } = useTranslation('headerFooter');
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
+    const user = useAppSelector((state) => state.auth.user);
     const dispatch = useAppDispatch();
 
-    const [isLoginClicked, setLoginClick] = useState(false);
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [menuAnchorElement, setMenuAnchorElement] =
         useState<null | HTMLElement>(null);
 
     const settings = [t('myBooking'), t('Logout')];
-
-    const handleLoginClick = () => {
-        setLoginClick(true);
-        setIsLoginModalOpen(true);
-    };
 
     const handleThemeClick = () => {
         dispatch(toggleTheme());
@@ -50,7 +44,6 @@ export const Header = () => {
         setMenuAnchorElement(null);
         if (setting === t('Logout')) {
             setLoginClick(false);
-            setIsLoginModalOpen(false);
         }
     };
 
@@ -87,16 +80,7 @@ export const Header = () => {
                                 <DarkModeRoundedIcon />
                             )}
                         </IconButton>
-                        {!isLoginClicked ? (
-                            <Button
-                                onClick={handleLoginClick}
-                                variant="contained"
-                                color="secondary"
-                                size="small"
-                            >
-                                {t('Login')}
-                            </Button>
-                        ) : (
+                        {user ? (
                             <>
                                 <IconButton
                                     onClick={handleOpenUserMenu}
@@ -140,16 +124,19 @@ export const Header = () => {
                                     ))}
                                 </Menu>
                             </>
+                        ) : (
+                            <Button
+                                onClick={() => dispatch(showAuthModal())}
+                                variant="contained"
+                                color="secondary"
+                                size="small"
+                            >
+                                {t('Login')}
+                            </Button>
                         )}
                     </Box>
                 </StyledToolBar>
             </AppBar>
-            <AuthModal
-                isOpen={isLoginModalOpen}
-                closeModal={() => {
-                    setIsLoginModalOpen(false);
-                }}
-            />
         </>
     );
 };
