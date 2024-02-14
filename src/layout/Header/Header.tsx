@@ -1,25 +1,25 @@
 import { useTranslation } from 'react-i18next';
-// import { LANGUAGES } from '../../config/constants';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import { StyledToolBar } from './Header.styled';
-import IconButton from '@mui/material/IconButton';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { toggleTheme } from '../../app/features/themeSlice';
+import { logout, showAuthModal } from '../../app/features/authSlice';
 import {
+    Box,
+    AppBar,
     Avatar,
     Button,
     Link,
     Menu,
     MenuItem,
     Typography,
+    IconButton,
 } from '@mui/material';
+import { StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import testProfile from '../../assets/person1.jpeg';
-import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { toggleTheme } from '../../app/features/themeSlice';
-import { showAuthModal } from '../../app/features/authSlice';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
     const { t } = useTranslation('headerFooter');
@@ -30,21 +30,23 @@ export const Header = () => {
     const [menuAnchorElement, setMenuAnchorElement] =
         useState<null | HTMLElement>(null);
 
-    const settings = [t('myBooking'), t('Logout')];
-
-    const handleThemeClick = () => {
-        dispatch(toggleTheme());
-    };
+    const isMenuOpen = Boolean(menuAnchorElement);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setMenuAnchorElement(event.currentTarget);
     };
 
-    const handleCloseUserMenu = (setting: string) => {
+    const handleCloseUserMenu = () => {
         setMenuAnchorElement(null);
-        if (setting === t('Logout')) {
-            setLoginClick(false);
-        }
+    };
+
+    const handleThemeClick = () => {
+        dispatch(toggleTheme());
+    };
+
+    const handleLogoutClick = () => {
+        dispatch(logout());
+        handleCloseUserMenu();
     };
 
     return (
@@ -83,6 +85,14 @@ export const Header = () => {
                         {user ? (
                             <>
                                 <IconButton
+                                    id="profile-button"
+                                    aria-controls={
+                                        isMenuOpen ? 'profile-menu' : undefined
+                                    }
+                                    aria-haspopup="true"
+                                    aria-expanded={
+                                        isMenuOpen ? 'true' : undefined
+                                    }
                                     onClick={handleOpenUserMenu}
                                     className="profile-avatar"
                                 >
@@ -92,36 +102,40 @@ export const Header = () => {
                                     />
                                 </IconButton>
                                 <Menu
-                                    sx={{ mt: '45px' }}
-                                    id="menu-appbar"
+                                    id="profile-menu"
+                                    keepMounted
                                     anchorEl={menuAnchorElement}
                                     anchorOrigin={{
-                                        vertical: 'top',
+                                        vertical: 'bottom',
                                         horizontal: 'right',
                                     }}
-                                    keepMounted
                                     transformOrigin={{
                                         vertical: 'top',
                                         horizontal: 'right',
                                     }}
                                     open={Boolean(menuAnchorElement)}
                                     onClose={handleCloseUserMenu}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'profile-button',
+                                    }}
+                                    sx={{ mt: '5px' }}
                                 >
-                                    {settings.map((setting) => (
-                                        <MenuItem
-                                            key={setting}
-                                            onClick={() => {
-                                                handleCloseUserMenu(setting);
-                                            }}
+                                    <MenuItem component={NavLink} to="/users">
+                                        <Typography
+                                            variant="body2"
+                                            textAlign="center"
                                         >
-                                            <Typography
-                                                variant="body2"
-                                                textAlign="center"
-                                            >
-                                                {setting}
-                                            </Typography>
-                                        </MenuItem>
-                                    ))}
+                                            {t('myBookings')}
+                                        </Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleLogoutClick}>
+                                        <Typography
+                                            variant="body2"
+                                            textAlign="center"
+                                        >
+                                            {t('logout')}
+                                        </Typography>
+                                    </MenuItem>
                                 </Menu>
                             </>
                         ) : (
@@ -131,7 +145,7 @@ export const Header = () => {
                                 color="secondary"
                                 size="small"
                             >
-                                {t('Login')}
+                                {t('login')}
                             </Button>
                         )}
                     </Box>

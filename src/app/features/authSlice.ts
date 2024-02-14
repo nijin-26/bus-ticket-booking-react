@@ -1,8 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ISignInResponse } from '../../api/types/signIn';
+import storage from '../../utils/storageUtils';
 
 interface IUser {
     firstName: string;
     email: string;
+    role: null;
 }
 
 interface IAuthState {
@@ -10,18 +13,19 @@ interface IAuthState {
     user: IUser | null;
 }
 
-const initialState: IAuthState = {
-    isAuthModalDisplayed: false,
-    user: {
-        firstName: 'abhib',
-        email: 'abhib@gmail.com',
-    },
-};
-
 // const initialState: IAuthState = {
 //     isAuthModalDisplayed: false,
-//     user: null,
+//     user: {
+//         firstName: 'abhib',
+//         email: 'abhib@gmail.com',
+//         role: null,
+//     },
 // };
+
+const initialState: IAuthState = {
+    isAuthModalDisplayed: false,
+    user: null,
+};
 
 const authSlice = createSlice({
     name: 'auth',
@@ -33,9 +37,19 @@ const authSlice = createSlice({
         hideAuthModal: (state) => {
             state.isAuthModalDisplayed = false;
         },
+        setCredentials: (state, action: PayloadAction<ISignInResponse>) => {
+            const { accessToken, ...rest } = action.payload;
+            storage.setItem('accessToken', accessToken);
+            state.user = rest;
+        },
+        logout: (state) => {
+            storage.removeItem('accessToken');
+            state.user = null;
+        },
     },
 });
 
-export const { showAuthModal, hideAuthModal } = authSlice.actions;
+export const { showAuthModal, hideAuthModal, setCredentials, logout } =
+    authSlice.actions;
 
 export default authSlice.reducer;

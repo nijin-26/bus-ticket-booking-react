@@ -16,7 +16,7 @@ export const onResponse = (response: AxiosResponse) => {
         response.status >= HTTP_STATUS.SUCCESS &&
         response.status <= HTTP_STATUS.INFORMATION
     ) {
-        return Promise.resolve(response.data.data);
+        return Promise.resolve(response.data);
     }
 };
 

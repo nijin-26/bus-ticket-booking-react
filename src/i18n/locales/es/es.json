@@ -8,8 +8,8 @@
     "headerFooter": {
         "myBooking": "Mis Reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
-        "Login": "Iniciar sesión",
-        "Logout": "Cerrar sesión"
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",

@@ -1,52 +1,60 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import getValidationSchema from './validationSchema';
+import { TextField } from 'formik-mui';
+import { signIn } from '../../../../api';
+import { setCredentials } from '../../../../app/features/authSlice';
+import { useAppDispatch } from '../../../../app/hooks';
 
 type TSignInProps = {
     closeModal: () => void;
 };
 
 const initialValues = {
-    email: '',
-    password: '',
+    email: 'johng@gmail.com',
+    password: 'John@123',
 };
 
 const SignIn = ({ closeModal }: TSignInProps) => {
     const { t } = useTranslation('auth');
-
-    const handleSubmit = () => {};
+    const dispatch = useAppDispatch();
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={getValidationSchema(t)}
-            onSubmit={handleSubmit}
+            onSubmit={async (values, { setSubmitting }) => {
+                try {
+                    const userData = await signIn(values);
+                    dispatch(setCredentials(userData));
+                } catch (error) {
+                    console.log(error);
+                }
+
+                setSubmitting(false);
+            }}
         >
-            {({ errors, touched }) => {
+            {() => {
                 return (
-                    <Form>
+                    <Form noValidate>
                         <Stack gap={4}>
                             <Field
-                                as={TextField}
+                                fullWidth
+                                component={TextField}
                                 label={t('email')}
                                 type="email"
                                 name="email"
                                 required
-                                fullWidth
-                                error={errors.email && touched.email}
-                                helperText={<ErrorMessage name="email" />}
                             />
 
                             <Field
-                                as={TextField}
+                                fullWidth
+                                component={TextField}
                                 label={t('password')}
                                 type="password"
                                 name="password"
                                 required
-                                fullWidth
-                                error={errors.password && touched.password}
-                                helperText={<ErrorMessage name="password" />}
                             />
                             <Stack
                                 direction={'row'}
