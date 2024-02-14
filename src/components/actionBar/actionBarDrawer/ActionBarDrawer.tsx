@@ -1,4 +1,4 @@
-import { Filter, FilterAlt, Menu } from '@mui/icons-material';
+import { FilterAlt } from '@mui/icons-material';
 import { Box, IconButton, SwipeableDrawer } from '@mui/material';
 import { useState } from 'react';
 import SortGroup from '../sortFilterRadioGroups/SortGroup';
