@@ -1,5 +1,9 @@
 import { AxiosError, AxiosResponse } from 'axios';
 
+interface ResponseData {
+    data: unknown;
+}
+
 const HTTP_STATUS = {
     SUCCESS: 200,
     INFORMATION: 300,
@@ -16,7 +20,8 @@ export const onResponse = (response: AxiosResponse) => {
         response.status >= HTTP_STATUS.SUCCESS &&
         response.status <= HTTP_STATUS.INFORMATION
     ) {
-        return Promise.resolve(response.data.data);
+        const responseData = response.data as ResponseData;
+        return Promise.resolve(responseData.data);
     }
 };
 
