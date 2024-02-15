@@ -1,3 +1,8 @@
+import { IBusType, ISeat, ISeatType, ITrip, ITripDetailed } from '../../types';
+
+// TODO: Remove this export after migrating rest of the code
+export type { IBusType, ISeat, ISeatType, ITrip };
+
 export interface ITripsQueryRequest {
     originId: string;
     destinationId: string;
@@ -30,39 +35,4 @@ export interface ITripDetailRequest {
     id: string;
 }
 
-export interface ITripDetailResponse extends ITrip {
-    seats: ISeat[];
-}
-
-export interface ITrip {
-    id: string;
-    origin: string;
-    destination: string;
-    departureTimestamp: string;
-    arrivalTimestamp: string;
-    seatType: ISeatType;
-    busType: IBusType;
-    farePerSeat: number;
-    availableSeats: number;
-    totalSeats: number;
-}
-
-export interface ISeat {
-    seatNumber: number;
-    status: ISeatStatus;
-}
-
-export enum ISeatType {
-    SLEEPER = 'SLEEPER',
-    SEATER = 'SEATER',
-}
-
-export enum IBusType {
-    AC = 'AC',
-    NON_AC = 'NON_AC',
-}
-
-export enum ISeatStatus {
-    BOOKED = 'BOOKED',
-    AVAILABLE = 'AVAILABLE',
-}
+export interface ITripDetailResponse extends ITripDetailed {}
