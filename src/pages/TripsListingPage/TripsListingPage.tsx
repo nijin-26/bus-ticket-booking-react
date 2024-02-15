@@ -1,8 +1,8 @@
-import { IBusType, ISeatType } from '../../api/types/trip';
 import { setTripListingData } from '../../app/features/tripListingSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TripCardAccordion } from '../../components';
 import LoadMore from '../../components/loadMore/LoadMore';
+import { ISeatType, IBusType } from '../../types';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 
 const dummyData = [
