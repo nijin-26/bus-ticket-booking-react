@@ -47,6 +47,7 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
             try {
                 const response = await getTrip('1');
                 if (response) {
+                    console.log(response)
                     setTripSpecificData(response);
                 } else {
                     console.log('Trip data not available');
@@ -65,6 +66,7 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
             setLoading(false);
         }
     }, [currentUrl.pathname, data]);
+
 
     const {
         seats,
