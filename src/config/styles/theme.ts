@@ -29,7 +29,7 @@ const lightTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
-    cardWhite: colors.cardWhite
+    cardWhite: colors.cardWhite,
     green: colors.green,
 };
 
@@ -46,7 +46,7 @@ const darkTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
-    cardWhite: colors.cardWhite
+    cardWhite: colors.cardWhite,
     green: colors.green,
 };
 
