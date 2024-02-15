@@ -23,9 +23,9 @@ export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
 }: ITripCardAccordionProps) => {
-    if (data.availableSeats >= 20) {
+    if (data.totalSeats >= 20) {
         borderDesignClass = 'more-seats';
-    } else if (data.availableSeats > 0) {
+    } else if (data.totalSeats > 0) {
         borderDesignClass = 'less-seats';
     } else {
         borderDesignClass = 'no-seats';
@@ -37,7 +37,7 @@ export const TripCardAccordion = ({
         formattedArrivalTime: string;
         formattedArrivalDate: string;
         formattedDuration: string;
-    } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
+    } = convertTimeStamp(data.departure, data.arrival);
 
     return (
         <TripAccordionWrapper
@@ -48,9 +48,13 @@ export const TripCardAccordion = ({
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
                 id="panel-header"
-                disabled={data.availableSeats == 0}
+                disabled={data.totalSeats == 0}
             >
-                <Stack direction={'row'} spacing={12} className="details">
+                <Stack
+                    className="details"
+                    direction={{ xs: 'column', sm: 'column', md: 'row' }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                >
                     <Stack className="trip-card-icons">
                         <Tooltip
                             title={
@@ -108,7 +112,7 @@ export const TripCardAccordion = ({
                         <p className="duration">{dates.formattedDuration}</p>
                     </Tooltip>
                     <p className={`seats ${borderDesignClass}`}>
-                        {data.availableSeats} seats available
+                        {data.totalSeats} seats available
                     </p>
                     <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>

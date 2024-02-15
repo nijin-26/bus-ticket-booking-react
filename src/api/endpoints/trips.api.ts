@@ -2,7 +2,6 @@ import { API, apiRoutes } from '..';
 import {
     ISeatStatus,
     ITrip,
-    ITripDetailRequest,
     ITripDetailResponse,
     ITripsQueryRequest,
     ITripsQueryResponse,
@@ -10,11 +9,11 @@ import {
 
 export const getTrips = async (
     params: ITripsQueryRequest
-): Promise<ITrip[]> => {
-    const response: ITripsQueryResponse = await API.get(apiRoutes.trip, {
+): Promise<{ trips: ITrip[]; resultCount: number }> => {
+    const response: ITripsQueryResponse = await API.get(apiRoutes.tripSearch, {
         params,
     });
-    return response.trips;
+    return { trips: response.trips, resultCount: response.resultCount };
 };
 
 export const getTrip = async (

@@ -23,6 +23,7 @@ export enum ISortOrder {
 }
 
 export interface ITripsQueryResponse {
+    resultCount: number;
     trips: ITrip[];
 }
 
@@ -38,8 +39,8 @@ export interface ITrip {
     id: string;
     origin: string;
     destination: string;
-    departureTimestamp: string;
-    arrivalTimestamp: string;
+    departure: string;
+    arrival: string;
     seatType: ISeatType;
     busType: IBusType;
     farePerSeat: number;

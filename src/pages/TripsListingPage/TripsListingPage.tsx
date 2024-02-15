@@ -1,90 +1,74 @@
-import { IBusType, ISeatType } from '../../api/types/trip';
-import { setTripListingData } from '../../app/features/tripListingSlice';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useCallback, useEffect, useState } from 'react';
+import {
+    ISortOrder,
+    ITrip,
+    ITripsQueryRequest,
+    ITripsSortKey,
+} from '../../api/types/trip';
 import { TripCardAccordion } from '../../components';
 import ActionBarDrawer from '../../components/actionBar/actionBarDrawer/ActionBarDrawer';
 import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import LoadMore from '../../components/loadMore/LoadMore';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSearchParams } from 'react-router-dom';
+import { getTrips } from '../../api';
 
-const dummyData = [
-    {
-        id: '1',
-        origin: 'Trivandrum',
-        destination: 'Kochi',
-        departureTimestamp: '2024-02-01T08:00:00Z',
-        arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: ISeatType.SLEEPER,
-        busType: IBusType.AC,
-        farePerSeat: 50,
-        availableSeats: 20,
-        totalSeats: 30,
-    },
-    {
-        id: '2',
-        origin: 'Trivandrum',
-        destination: 'Kochi',
-        departureTimestamp: '2024-02-01T08:00:00Z',
-        arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: ISeatType.SEATER,
-        busType: IBusType.AC,
-        farePerSeat: 2350,
-        availableSeats: 5,
-        totalSeats: 30,
-    },
-    {
-        id: '3',
-        origin: 'Trivandrum',
-        destination: 'Kochi',
-        departureTimestamp: '2024-02-01T08:00:00Z',
-        arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: ISeatType.SLEEPER,
-        busType: IBusType.NON_AC,
-        farePerSeat: 150,
-        availableSeats: 0,
-        totalSeats: 30,
-    },
-    {
-        id: '4',
-        origin: 'Trivandrum',
-        destination: 'Kochi',
-        departureTimestamp: '2024-02-01T08:00:00Z',
-        arrivalTimestamp: '2024-02-03T12:10:20Z',
-        seatType: ISeatType.SEATER,
-        busType: IBusType.AC,
-        farePerSeat: 23150,
-        availableSeats: 2,
-        totalSeats: 30,
-    },
-    {
-        id: '5',
-        origin: 'Trivandrum',
-        destination: 'Kochi',
-        departureTimestamp: '2024-02-01T08:00:00Z',
-        arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: ISeatType.SLEEPER,
-        busType: IBusType.AC,
-        farePerSeat: 150,
-        availableSeats: 23,
-        totalSeats: 30,
-    },
-];
 
 export const TripsListingPage = () => {
-    const state = useAppSelector((state) => state.tripListing);
-    const dispatch = useAppDispatch();
-    const matches = useMediaQuery('(min-width:600px)');
+    const [tripData, setTripData] = useState<ITrip[]>([]);
+    const [resultLength, setResultLength] = useState<number>(0);
+    const [searchParams] = useSearchParams();
+    // setSearchParams({ page: '1' });
+    console.log(searchParams);
+    const fetchTripData = useCallback(async () => {
+        const originId = searchParams.get('originId') ?? '8';
+        const destinationId = searchParams.get('destinationId') ?? '9';
+        const tripDate = searchParams.get('tripDate') ?? '2024-05-14';
+        const sortByParam = searchParams.get('sortBy') as ITripsSortKey | null;
+        const sortBy: ITripsSortKey =
+            sortByParam ?? ITripsSortKey.DEPARTURE_TIMESTAMP;
+        const sortOrderParam = searchParams.get(
+            'sortOrder'
+        ) as ISortOrder | null;
+        const sortOrder: ISortOrder = sortOrderParam ?? ISortOrder.ASC;
+        const page = searchParams.get('page') ?? '1';
+        const pageSize = searchParams.get('pageSize') ?? '3';
+        const passengerCount = searchParams.get('passengerCount') ?? '1';
+        try {
+            const params: ITripsQueryRequest = {
+                originId: originId,
+                destinationId: destinationId,
+                tripDate: tripDate,
+                sortBy: sortBy,
+                sortOrder: sortOrder,
+                page: Number(page),
+                pageSize: Number(pageSize),
+                passengerCount: Number(passengerCount),
+            };
+            const response = await getTrips(params);
+            console.log('resposne', response);
+            setTripData(response.trips);
+            setResultLength(response.resultCount);
+        } catch (error) {
+            console.error('Error fetching trip data:', error);
+        }
+    }, [searchParams]);
+    useEffect(() => {
+        fetchTripData().catch((error) => {
+            console.error('Error in useEffect:', error);
+        });
+    }, [fetchTripData, searchParams]);
 
-    dispatch(setTripListingData(dummyData));
-
+    console.log(tripData);
     return (
         <TripsListingPageWrapper>
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
-            {state.map((indData) => (
-                <TripCardAccordion key={indData.id} data={indData} />
-            ))}
-            <LoadMore />
+            {tripData.map((indData) => {
+                // console.log('inddata', indData);
+                return <TripCardAccordion key={indData.id} data={indData} />;
+            })}
+            {resultLength > 5 && <LoadMore />}
         </TripsListingPageWrapper>
     );
 };
