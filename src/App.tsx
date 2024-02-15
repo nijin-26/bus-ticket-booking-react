@@ -12,7 +12,8 @@ import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
-import { getTrip } from './api';
+import { bookTicket } from './api/endpoints/ticket.api';
+import { IGender } from './types';
 
 const basename = '/';
 
@@ -25,7 +26,16 @@ function App() {
     const mode = useAppSelector((state) => state.theme.currentTheme);
 
     useEffect(() => {
-        getTrip('1')
+        bookTicket('1', [
+            {
+                seatNumber: 1,
+                passenger: {
+                    fullName: 'John Doe',
+                    age: 25,
+                    gender: IGender.MALE,
+                },
+            },
+        ])
             .then((res) => {
                 console.log(res);
             })

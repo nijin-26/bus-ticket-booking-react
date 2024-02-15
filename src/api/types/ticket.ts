@@ -1,4 +1,6 @@
-import { ITicket, IPassengerSeat } from '../../types/ticket';
+import { ITrip } from '../../types';
+import { ITicket } from '../../types/ticket';
+import { IUserExternal } from './user';
 
 export interface ITicketRequest {
     pnrNumber: string;
@@ -6,9 +8,29 @@ export interface ITicketRequest {
 
 export interface ITicketResponse extends ITicket {}
 
-export interface IBookingRequest {
-    tripId: string;
-    seats: IPassengerSeat[];
+export interface IBookingExternal {
+    seatNumber: string;
+    passengerName: string;
+    passengerAge: string;
+    passengerGender: string;
 }
 
-export interface IBookingResponse extends ITicket {}
+export interface ITicketExternal extends IBookingExternal {
+    trip: ITrip;
+    seatNumber: string;
+    fare: string;
+    bookedBy: IUserExternal;
+    status: string;
+    pnrNumber: string;
+    tripId: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface IBookingRequest {
+    tripId: string;
+    bookings: IBookingExternal[];
+}
+
+export type IBookingResponse = ITicketExternal[];
