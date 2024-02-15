@@ -48,105 +48,97 @@ export default function FilterSort() {
     };
 
     return (
-        <>
-            <Wrapper>
-                <Stack spacing={2} direction="row">
-                    <Stack
-                        spacing={2}
-                        width="120rem"
-                        direction="row"
-                        sx={{ displayPrint: 'flex', alignItems: 'center' }}
+        <Wrapper>
+            <Stack spacing={2} direction="row">
+                <Stack
+                    spacing={2}
+                    width="120rem"
+                    direction="row"
+                    sx={{ displayPrint: 'flex', alignItems: 'center' }}
+                >
+                    <Button
+                        variant="outlined"
+                        id="bus-type-button"
+                        onClick={busTypeHandler}
+                        aria-describedby="bus-type-menu"
+                        aria-controls={
+                            openBusTypeFilter ? 'bus-type-menu' : undefined
+                        }
+                        aria-haspopup="true"
+                        aria-expanded={openBusTypeFilter ? 'true' : undefined}
                     >
-                        <Button
-                            variant="outlined"
-                            id="bus-type-button"
-                            onClick={busTypeHandler}
-                            aria-describedby="bus-type-menu"
-                            aria-controls={
-                                openBusTypeFilter ? 'bus-type-menu' : undefined
-                            }
-                            aria-haspopup="true"
-                            aria-expanded={
-                                openBusTypeFilter ? 'true' : undefined
-                            }
-                        >
-                            {t('busType')}
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            id="seat-type-button"
-                            onClick={seatTypeHandler}
-                            aria-controls={
-                                openSeatTypeFilter
-                                    ? 'seat-type-menu'
-                                    : undefined
-                            }
-                            aria-haspopup="true"
-                            aria-expanded={
-                                openSeatTypeFilter ? 'true' : undefined
-                            }
-                        >
-                            {t('seatType')}
-                        </Button>
-                        <Button
-                            onClick={() => {
-                                //setBusTypeFilter(null);
-                                //setSeatTypeFilter(null);
-                            }}
-                        >
-                            {t('clearAll')}
-                        </Button>
+                        {t('busType')}
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        id="seat-type-button"
+                        onClick={seatTypeHandler}
+                        aria-controls={
+                            openSeatTypeFilter ? 'seat-type-menu' : undefined
+                        }
+                        aria-haspopup="true"
+                        aria-expanded={openSeatTypeFilter ? 'true' : undefined}
+                    >
+                        {t('seatType')}
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            //setBusTypeFilter(null);
+                            //setSeatTypeFilter(null);
+                        }}
+                    >
+                        {t('clearAll')}
+                    </Button>
 
-                        {/* <FilterChip
+                    {/* <FilterChip
                             busTypeFilter={busTypeFilter}
                             busFilterHandler={busFilterHandler}
                             seatTypeFilter={seatTypeFilter}
                             seatFilterHandler={seatFilterHandler}
                         /> */}
-                    </Stack>
-                    <Badge
-                        //invisible={Boolean(!sortBy)}
-                        color="primary"
-                        badgeContent=" "
-                        variant="dot"
-                    >
-                        <Button variant="outlined" onClick={sortTypeHandler}>
-                            {t('sort')}
-                        </Button>
-                    </Badge>
                 </Stack>
+                <Badge
+                    //invisible={Boolean(!sortBy)}
+                    color="primary"
+                    badgeContent=" "
+                    variant="dot"
+                >
+                    <Button variant="outlined" onClick={sortTypeHandler}>
+                        {t('sort')}
+                    </Button>
+                </Badge>
+            </Stack>
 
-                {/* Filters menu */}
-                <Menu
-                    id="bus-type-menu"
-                    anchorEl={busMenu}
-                    open={openBusTypeFilter}
-                    MenuListProps={{ 'aria-labelledby': 'bus-type-button' }}
-                    onClose={handleMenuClose}
-                >
-                    <BusTypeGroup />
-                </Menu>
-                <Menu
-                    id="seat-type-menu"
-                    anchorEl={seatMenu}
-                    open={openSeatTypeFilter}
-                    MenuListProps={{ 'aria-labelledby': 'seat-type-button' }}
-                    onClose={handleMenuClose}
-                >
-                    <SeatTypeGroup />
-                </Menu>
+            {/* Filters menu */}
+            <Menu
+                id="bus-type-menu"
+                anchorEl={busMenu}
+                open={openBusTypeFilter}
+                MenuListProps={{ 'aria-labelledby': 'bus-type-button' }}
+                onClose={handleMenuClose}
+            >
+                <BusTypeGroup />
+            </Menu>
+            <Menu
+                id="seat-type-menu"
+                anchorEl={seatMenu}
+                open={openSeatTypeFilter}
+                MenuListProps={{ 'aria-labelledby': 'seat-type-button' }}
+                onClose={handleMenuClose}
+            >
+                <SeatTypeGroup />
+            </Menu>
 
-                {/* Sort menu */}
-                <Menu
-                    id="sort-menu"
-                    anchorEl={sortMenu}
-                    open={openSort}
-                    MenuListProps={{ 'aria-labelledby': 'sort-button' }}
-                    onClose={handleMenuClose}
-                >
-                    <SortGroup />
-                </Menu>
-            </Wrapper>
-        </>
+            {/* Sort menu */}
+            <Menu
+                id="sort-menu"
+                anchorEl={sortMenu}
+                open={openSort}
+                MenuListProps={{ 'aria-labelledby': 'sort-button' }}
+                onClose={handleMenuClose}
+            >
+                <SortGroup />
+            </Menu>
+        </Wrapper>
     );
 }

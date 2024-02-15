@@ -12,16 +12,16 @@ import {
     Search,
     SwapHoriz,
     TripOrigin,
-    // People,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { locationOptions, paths } from '../../../config';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getLocations } from '../../../api';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -40,6 +40,31 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
 
+    //let locOptions: ILocationOptions[] = [];
+    const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
+
+    useEffect(() => {
+        getLocOptions().catch(() => {
+            console.log('couldnt fetch location into locOptions');
+        });
+    }, []);
+
+    const getLocOptions = async () => {
+        try {
+            const loc = await getLocations();
+            const converterLoc = loc.map((locObj) => {
+                return { id: Number(locObj.id), label: locObj.name };
+            });
+            setLocOptions(converterLoc);
+            console.log(locOptions);
+            console.log(locationOptions);
+        } catch (err) {
+            // show error
+            console.log('There is an error', err);
+        }
+    };
+
+    console.log(locOptions);
     // setting start location
     const handleStartSelect = (
         _: React.SyntheticEvent,
@@ -74,6 +99,11 @@ const ActionBar: React.FC<IActionBarProps> = ({
         // apply loading states
     };
 
+    //display date
+    function displayDate(value: Date | null) {
+        console.log(value);
+    }
+
     return (
         <Wrapper>
             <Grid container spacing={2}>
@@ -88,7 +118,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={locationOptions.filter((loc) => {
+                            options={locOptions.filter((loc) => {
                                 return loc != stopLocation;
                             })}
                             value={startLocation}
@@ -132,7 +162,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={locationOptions.filter((loc) => {
+                            options={locOptions.filter((loc) => {
                                 return loc != startLocation;
                             })}
                             value={stopLocation}
@@ -174,6 +204,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             },
                         }}
                         sx={{ width: '100%' }}
+                        onChange={displayDate}
                     />
                 </Grid>
             </Grid>

@@ -2,11 +2,12 @@ import { TextField, Stack, InputAdornment } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { Wrapper, CenteredButton } from './PnrSearch.styled';
 import { useTranslation } from 'react-i18next';
+import { getLocations } from '../../../api';
 
 export default function PnrSearch() {
     const { t } = useTranslation('pnrSearch');
 
-    const searchPnrHandler = () => {
+    const searchPnrHandler = async () => {
         // handler function
     };
 
