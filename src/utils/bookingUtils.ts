@@ -16,19 +16,23 @@ export interface IPassengersInput {
 //     passenger: Ipdetails;
 // }
 
-//  interface ITripDetailPayload {
+// export interface ITripDetailPayload {
 //     tripId: number;
 //     seats: Iseats;
 // }
 
-export const converterFun = (obj: IPassengersInput) => {
+export const converterFun = (obj: IPassengersInput, tripId: number) => {
     const passengersArray = obj.passengers;
     const convertedPassengersArray = passengersArray.map((each) => {
-        {
-            each.seatNumber, { ...each };
-        }
+        const { seatNumber, fullName, age, gender } = each;
+        return {
+            seatNumber,
+            passengerName: fullName,
+            passengerAge: age,
+            passengerGender: gender,
+        };
     });
-    return { tripId: 1, convertedPassengersArray };
+    return { tripId: tripId, bookings: convertedPassengersArray };
 };
 
 export const filterSelectedSeats = (arr: ISeat[]) => {

@@ -11,6 +11,7 @@ import { FareDetails } from '../../components/FareDetails/FareDetails';
 import { useRef, useState } from 'react';
 import { FormikProps } from 'formik';
 import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
+// import FullScreenLoader from './FullScreenLoader';
 
 const dummyTripData: ITrip = {
     id: '1',
@@ -26,7 +27,33 @@ const dummyTripData: ITrip = {
 };
 
 export const TripBookingPage = () => {
+    // const testObj: IPassengersInput = {
+    //     passengers: [
+    //         {
+    //             seatNumber: 1,
+    //             fullName: 'vsav',
+    //             age: '12',
+    //             gender: 'female',
+    //         },
+    //         {
+    //             seatNumber: 2,
+    //             fullName: 'fsvsv',
+    //             age: '12',
+    //             gender: 'female',
+    //         },
+    //         {
+    //             seatNumber: 3,
+    //             fullName: 'vsdvsdv',
+    //             age: '43',
+    //             gender: 'male',
+    //         },
+    //     ],
+    // };
+
+    // const testAns = converterFun(testObj, 1);
+    // console.log(testAns);
     const [showDialog, setShowDialog] = useState(false);
+    // const [showLoader, setShowLoader] = useState(false);
     const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
 
     const handleFormSubmit = () => {
@@ -49,17 +76,20 @@ export const TripBookingPage = () => {
                 </Typography>
             </Stack>
             <TripCardAccordion defaultExpanded={true} data={dummyTripData} />
-            <PassengerDetailsForm
-                formikRef={formikRef}
-                selectedSeats={[1, 2, 3]}
-            />
+            <PassengerDetailsForm formikRef={formikRef} selectedSeats={[1]} />
 
             <Grid container alignItems="center" mb={6} spacing={1.5}>
                 <Grid item xs={12} sm={9}>
                     <FareDetails noOfSeats={3} farePerSeat={1200} />
                 </Grid>
                 <Grid item xs={12} sm={3} ml="auto">
-                    <StyledButton onClick={handleFormSubmit} fullWidth>
+                    <StyledButton
+                        onClick={() => {
+                            handleFormSubmit();
+                            // setShowLoader(true);
+                        }}
+                        fullWidth
+                    >
                         {t('checkout')}
                     </StyledButton>
                 </Grid>
@@ -78,6 +108,7 @@ export const TripBookingPage = () => {
             >
                 Are you sure you want to confirm
             </ConfirmDialog>
+            {/* <FullScreenLoader open={showLoader}  /> */}
         </>
     );
 };
