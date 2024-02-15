@@ -1,4 +1,4 @@
-import { IBusType, ISeat, ISeatType } from '../../types';
+import { IBusType, ISeatType } from '../../types';
 import { ILocationExternal } from './location';
 
 export interface ITripExternal {
@@ -23,8 +23,30 @@ export interface ITripExternal {
     creator: unknown;
 }
 
-export interface ITripDetailedExternal extends ITripExternal {
-    seats: ISeat[];
+// export interface ITripDetailedExternal extends ITripExternal {
+//     seats: ISeat[];
+// }
+
+export interface ITripDetailedExternal {
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    originId: number;
+    destinationId: number;
+    tripDate: string;
+    departure: string;
+    arrival: string;
+    durationInHours: string;
+    busId: string;
+    busType: IBusType;
+    seatType: ISeatType;
+    totalSeats: number;
+    farePerSeat: string;
+    publish: boolean;
+    creatorId: string;
+    origin: ILocationExternal;
+    destination: ILocationExternal;
+    creator: unknown;
 }
 
 export interface ITripsQueryRequest {
@@ -48,7 +70,9 @@ export interface ITripDetailRequest {
     id: string;
 }
 
-export interface ITripDetailResponse extends ITripDetailedExternal {}
+export interface ITripDetailResponse {
+    trip: ITripDetailedExternal;
+}
 
 export enum ITripsSortKey {
     DEPARTURE_TIMESTAMP = 'departureTimestamp',

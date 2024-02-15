@@ -1,6 +1,6 @@
 export * from './endpoints/auth.api';
 export * from './endpoints/location.api';
-export * from './endpoints/trips.api';
+export * from './endpoints/trip.api';
 
 export * from './services/apiRoutes.constants';
 
