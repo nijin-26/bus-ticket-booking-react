@@ -9,8 +9,8 @@ import LongArrow from '../../icons/LongArrow';
 import Tooltip from '@mui/material/Tooltip';
 import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
-import { IBusType, ISeat, ISeatType, ITrip } from '../../../api/types/trip';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
+import { ITrip, IBusType, ISeatType } from '../../../types';
 
 let borderDesignClass: string;
 interface ITripCardAccordionData extends ITrip {
