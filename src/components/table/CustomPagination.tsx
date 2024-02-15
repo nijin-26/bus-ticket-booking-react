@@ -6,16 +6,19 @@ import {
     useGridSelector,
 } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';
+import resources from '../../i18n/types/resources';
 
 const CustomPagination = ({
     totalBookings,
     updateSearchParams,
+    languageNamespace,
 }: {
     totalBookings: number;
     updateSearchParams: (newPage: string) => void;
+    languageNamespace: keyof typeof resources;
 }) => {
     const apiRef = useGridApiContext();
-    const { t } = useTranslation('bookingsList');
+    const { t } = useTranslation(languageNamespace);
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageSize = useGridSelector(apiRef, gridPageSizeSelector);
     return (

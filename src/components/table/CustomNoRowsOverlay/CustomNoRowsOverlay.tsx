@@ -1,7 +1,9 @@
 import { Box } from '@mui/material';
 import StyledGridOverlay from './CustomNoRowsOverlay.styled';
+import { useTranslation } from 'react-i18next';
 
 const CustomNoRowsOverlay = () => {
+    const { t } = useTranslation('tableNoRowsOverlay');
     return (
         <StyledGridOverlay>
             <svg
@@ -46,7 +48,7 @@ const CustomNoRowsOverlay = () => {
                     </g>
                 </g>
             </svg>
-            <Box sx={{ mt: 1 }}>No Rows</Box>
+            <Box sx={{ mt: 1 }}>{t('noRows')}</Box>
         </StyledGridOverlay>
     );
 };

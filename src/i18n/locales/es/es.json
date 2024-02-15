@@ -55,6 +55,9 @@
         "duration": "Duración",
         "busType": "Tipo de autobús"
     },
+    "tableNoRowsOverlay": {
+        "noRows": "Sin filas"
+    },
     "bookingsList": {
         "totalUsers": "Total de usuarios",
         "totalBookings": "Total de reservas",
@@ -69,5 +72,17 @@
         "exportPrint": "Imprimir",
         "total": "Total",
         "booking": "reserva"
+    },
+    "usersList": {
+        "totalUsers": "Usuarios totales",
+        "totalBookings": "Reservas totales",
+        "fullName": "Nombre completo",
+        "email": "Correo electrónico",
+        "phone": "Teléfono",
+        "export": "Exportar",
+        "exportAsCsv": "Descargar como CSV",
+        "exportPrint": "Imprimir",
+        "total": "Total",
+        "user": "usuario"
     }
 }

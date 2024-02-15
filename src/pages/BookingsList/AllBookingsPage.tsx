@@ -5,9 +5,9 @@ import { AllBookingsPageWrapper } from './AllBookingsPage.styled';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
-import bookingsListTableColumns from './bookingsListConfig';
 import { CustomTable } from '../../components/table/CustomTable';
 import { useTranslation } from 'react-i18next';
+import useGetBookingsTableColumns from './useGetBookingsTableColumns';
 
 export const AllBookingsPage = () => {
     //Mock data
@@ -686,13 +686,13 @@ export const AllBookingsPage = () => {
     };
     const { t } = useTranslation('bookingsList');
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
-
+    const columns = useGetBookingsTableColumns();
     const updateSearchParams = (newPage: string) => {
         searchParams.set('page', String(newPage));
         setSearchParams(searchParams);
     };
 
-    const [pageState, setPageState] = useState<IPagination>({
+    const [pageState, setPageState] = useState<IPagination<IBooking>>({
         loading: true,
         page: Number(searchParams.get('page')) - 1 || 0,
         pageSize: 10,
@@ -700,7 +700,7 @@ export const AllBookingsPage = () => {
         data: [],
     });
 
-    const updatePageState = (newPageState: Partial<IPagination>) => {
+    const updatePageState = (newPageState: Partial<IPagination<IBooking>>) => {
         setPageState((prev) => ({ ...prev, ...newPageState }));
     };
 
@@ -802,8 +802,9 @@ export const AllBookingsPage = () => {
                 pageState={pageState}
                 updatePageState={updatePageState}
                 updateSearchParams={updateSearchParams}
-                columns={bookingsListTableColumns}
+                columns={columns}
                 rowId={'pnrNumber'}
+                languageNamespace={'bookingsList'}
             />
         </AllBookingsPageWrapper>
     );

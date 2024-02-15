@@ -55,6 +55,9 @@
         "duration": "Duration",
         "busType": "Bus Type"
     },
+    "tableNoRowsOverlay": {
+        "noRows": "No rows"
+    },
     "bookingsList": {
         "totalUsers": "Total users",
         "totalBookings": "Total bookings",
@@ -69,5 +72,17 @@
         "exportPrint": "Print",
         "total": "Total",
         "booking": "booking"
+    },
+    "usersList": {
+        "totalUsers": "Total users",
+        "totalBookings": "Total bookings",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "export": "Export",
+        "exportAsCsv": "Download as CSV",
+        "exportPrint": "Print",
+        "total": "Total",
+        "users": "users"
     }
 }

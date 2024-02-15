@@ -5,25 +5,27 @@ import { CustomTableWrapper } from './CustomTable.styled';
 import CustomToolbar from './CustomToolbar';
 import CustomPagination from './CustomPagination';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay/CustomNoRowsOverlay';
-import { IBooking } from '../../api/types/bookings';
 import { useTranslation } from 'react-i18next';
+import resources from '../../i18n/types/resources';
 
-export interface ICustomTable {
-    pageState: IPagination;
-    updatePageState: (pageState: Partial<IPagination>) => void;
+export interface ICustomTable<T> {
+    pageState: IPagination<T>;
+    updatePageState: (pageState: Partial<IPagination<T>>) => void;
     updateSearchParams: (newPage: string) => void;
+    rowId: keyof T;
     columns: GridColDef[];
-    rowId: keyof IBooking;
+    languageNamespace: keyof typeof resources;
 }
 
-export const CustomTable = ({
+export const CustomTable = <T,>({
     pageState,
     updatePageState,
     updateSearchParams,
     columns,
     rowId,
-}: ICustomTable) => {
-    const { t } = useTranslation('bookingsList');
+    languageNamespace,
+}: ICustomTable<T>) => {
+    const { t } = useTranslation(languageNamespace);
     return (
         <CustomTableWrapper>
             <DataGrid
@@ -35,10 +37,10 @@ export const CustomTable = ({
                 }}
                 rows={pageState.data}
                 rowCount={pageState.totalNumberOfData}
-                getRowId={(row: IBooking) => String(row[rowId])}
+                getRowId={(row: T) => String(row[rowId])}
                 columns={columns.map((column) => ({
                     ...column,
-                    headerName: t(column.field as 'pnrNumber'),
+                    headerName: column.field,
                     headerClassName: 'custom-header',
                     flex: 1,
                     sortable: false,
@@ -77,6 +79,7 @@ export const CustomTable = ({
                         <CustomPagination
                             totalBookings={pageState.totalNumberOfData}
                             updateSearchParams={updateSearchParams}
+                            languageNamespace={languageNamespace}
                         />
                     ),
                     loadingOverlay: LinearProgress,

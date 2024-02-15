@@ -1,9 +1,7 @@
-import { IBooking } from '../api/types/bookings';
-
-export interface IPagination {
+export interface IPagination<T> {
     loading: boolean;
     page: number;
     pageSize: number;
     totalNumberOfData: number;
-    data: IBooking[] | [];
+    data: T[];
 }

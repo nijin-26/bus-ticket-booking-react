@@ -11,7 +11,10 @@ const {
     pnrSearch,
     filterSort,
     bookingsList,
+    usersList,
+    tableNoRowsOverlay,
 } = data;
+
 const resources = {
     ns1,
     ns2,
@@ -23,6 +26,8 @@ const resources = {
     filterSort,
     tripDetails,
     bookingsList,
+    usersList,
+    tableNoRowsOverlay,
 } as const;
 
 export default resources;
