@@ -2,8 +2,11 @@ import { IBusType, ISeatType } from '../../api/types/trip';
 import { setTripListingData } from '../../app/features/tripListingSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TripCardAccordion } from '../../components';
+import ActionBarDrawer from '../../components/actionBar/actionBarDrawer/ActionBarDrawer';
+import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import LoadMore from '../../components/loadMore/LoadMore';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const dummyData = [
     {
@@ -67,14 +70,17 @@ const dummyData = [
         totalSeats: 30,
     },
 ];
+
 export const TripsListingPage = () => {
     const state = useAppSelector((state) => state.tripListing);
     const dispatch = useAppDispatch();
+    const matches = useMediaQuery('(min-width:600px)');
+
     dispatch(setTripListingData(dummyData));
 
     return (
         <TripsListingPageWrapper>
-            <h1>TripsListingPage</h1>
+            {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
             {state.map((indData) => (
                 <TripCardAccordion key={indData.id} data={indData} />
             ))}
