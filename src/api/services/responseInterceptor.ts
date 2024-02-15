@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 
-interface ResponseData {
+interface IResponseData {
     data: unknown;
 }
 
@@ -20,7 +20,7 @@ export const onResponse = (response: AxiosResponse) => {
         response.status >= HTTP_STATUS.SUCCESS &&
         response.status <= HTTP_STATUS.INFORMATION
     ) {
-        const responseData = response.data as ResponseData;
+        const responseData = response.data as IResponseData;
         return Promise.resolve(responseData.data);
     }
 };
