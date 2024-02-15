@@ -150,8 +150,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
                         <IconButton
                             sx={{
                                 rotate: { xs: '90deg', sm: '0deg' },
-                                height: '40px',
-                                width: '40px',
+                                height: '4rem',
+                                width: '4rem',
                             }}
                             onClick={swapLocationOptions}
                         >
