@@ -78,6 +78,9 @@
         "duration": "Duración",
         "busType": "Tipo de autobús"
     },
+    "landingPage": {
+        "busWithUs": "Autobús con nosotras."
+    },
     "passengerDetails": {
         "passengerDetailsFormHeading": "Detalles del Pasajero",
         "passenger": "Pasajero",
