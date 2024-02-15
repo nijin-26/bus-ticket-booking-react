@@ -8,7 +8,7 @@ export const bookTicket = async (
     seats: IPassengerSeat[]
 ): Promise<ITicket> => {
     const body: IBookingRequest = {
-        tripId: tripId,
+        tripId: Number(tripId),
         bookings: seats.map((seat) => ({
             seatNumber: seat.seatNumber.toString(),
             passengerName: seat.passenger.fullName,
