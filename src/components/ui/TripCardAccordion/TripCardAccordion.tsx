@@ -13,11 +13,19 @@ import { IBusType, ISeat, ISeatType, ITrip } from '../../../api/types/trip';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 
 let borderDesignClass: string;
-interface ITripCardAccordionProps extends ITrip {
+interface ITripCardAccordionData extends ITrip {
     seats?: ISeat[];
 }
 
-export const TripCardAccordion = ({ data }: { data: ITripCardAccordionProps }) => {
+interface ITripCardAccordionProps {
+    data: ITripCardAccordionData;
+    defaultExpanded?: boolean;
+}
+
+export const TripCardAccordion = ({
+    data,
+    defaultExpanded = false,
+}: ITripCardAccordionProps) => {
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
     } else if (data.availableSeats > 0) {
@@ -35,7 +43,10 @@ export const TripCardAccordion = ({ data }: { data: ITripCardAccordionProps }) =
     } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
 
     return (
-        <TripAccordionWrapper className={`summary ${borderDesignClass}`}>
+        <TripAccordionWrapper
+            className={`summary ${borderDesignClass}`}
+            defaultExpanded={defaultExpanded}
+        >
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"

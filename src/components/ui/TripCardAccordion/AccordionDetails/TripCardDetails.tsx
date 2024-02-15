@@ -4,7 +4,7 @@ import SeatLayout from '../../../SeatLayout/SeatLayout';
 import { useState } from 'react';
 import { generateSeats, layoutNames } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
-import { FareDetails } from '../../../fairDetails/FareDetails';
+import { FareDetails } from '../../../FareDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
