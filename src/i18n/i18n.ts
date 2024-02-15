@@ -80,7 +80,7 @@ void i18n.use(initReactI18next).init({
         'actionBar',
         'pnrSearch',
         'filterSort',
-        'tripListing'
+        'tripListing',
         'auth',
     ],
     interpolation: {
