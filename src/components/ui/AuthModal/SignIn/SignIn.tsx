@@ -4,7 +4,10 @@ import { Formik, Form, Field } from 'formik';
 import getValidationSchema from './validationSchema';
 import { TextField } from 'formik-mui';
 import { signIn } from '../../../../api';
-import { setCredentials } from '../../../../app/features/authSlice';
+import {
+    hideAuthModal,
+    setCredentials,
+} from '../../../../app/features/authSlice';
 import { useAppDispatch } from '../../../../app/hooks';
 
 type TSignInProps = {
@@ -33,6 +36,7 @@ const SignIn = ({ closeModal }: TSignInProps) => {
                 }
 
                 setSubmitting(false);
+                dispatch(hideAuthModal());
             }}
         >
             {() => {

@@ -13,15 +13,6 @@ interface IAuthState {
     user: IUser | null;
 }
 
-// const initialState: IAuthState = {
-//     isAuthModalDisplayed: false,
-//     user: {
-//         firstName: 'abhib',
-//         email: 'abhib@gmail.com',
-//         role: null,
-//     },
-// };
-
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
     user: null,
