@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './features/themeSlice';
 import languageReducer from './features/languageSlice';
 import tripListingReducer from './features/tripListingSlice';
+
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
