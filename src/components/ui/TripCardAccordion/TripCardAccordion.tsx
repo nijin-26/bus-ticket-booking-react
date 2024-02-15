@@ -46,6 +46,7 @@ export const TripCardAccordion = ({
         <TripAccordionWrapper
             className={`summary ${borderDesignClass}`}
             defaultExpanded={defaultExpanded}
+            slotProps={{ transition: { unmountOnExit: true } }}
         >
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}

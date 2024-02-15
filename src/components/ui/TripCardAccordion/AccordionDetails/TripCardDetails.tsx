@@ -1,8 +1,8 @@
 import { IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
 import SeatLayout from '../../../SeatLayout/SeatLayout';
-import { useState } from 'react';
-import { generateSeats, layoutNames } from '../../../SeatLayout/seatConfig';
+import { useEffect, useState } from 'react';
+import { layoutNames } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../FareDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -12,10 +12,16 @@ import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
-import { ISeat, ISeatStatus, ITrip } from '../../../../api/types/trip';
+import {
+    ISeat,
+    ISeatStatus,
+    ITrip,
+    ITripDetailResponse,
+} from '../../../../api/types/trip';
 import { convertTimeStamp, filterSelectedSeats } from '../../../../utils';
-import { useAppSelector, useAppDispatch } from '../../../../app/hooks';
+import { useAppDispatch } from '../../../../app/hooks';
 import { setTripDetailsData } from '../../../../app/features/tripdetailsSlice';
+import { getTrip } from '../../../../api';
 
 interface ITripCardAccordionProps extends ITrip {
     seats?: ISeat[];
@@ -33,54 +39,89 @@ export const TripCardDetails = ({
 }: {
     data: ITripCardAccordionProps;
 }) => {
-    const state = useAppSelector((state) => state.tripDetails);
-    const dispatch = useAppDispatch();
-
     const { t } = useTranslation('tripDetails');
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const currentUrl = useLocation();
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [tripSpecificData, setTripSpecificData] =
+        useState<ITripDetailResponse>({ ...data, seats: [] });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await getTrip('1');
+                if (response) {
+                    setTripSpecificData(response);
+                } else {
+                    console.log('Trip data not available');
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (currentUrl.pathname === paths.tripsListing || !data.seats) {
+            void fetchData();
+        } else {
+            setTripSpecificData({ ...data, seats: data.seats });
+            setLoading(false);
+        }
+    }, [currentUrl.pathname, data]);
+
+    const {
+        seats,
+        departureTimestamp,
+        arrivalTimestamp,
+        origin,
+        destination,
+        seatType,
+        busType,
+    } = tripSpecificData;
 
     const dates: ITripCardDetailsProps = convertTimeStamp(
-        data.departureTimestamp,
-        data.arrivalTimestamp
+        departureTimestamp,
+        arrivalTimestamp
     );
+
     const tripDetails = {
         departureTime: dates.formattedDepartureTime,
         departureDate: dates.formattedDepartureDate,
         arrivalTime: dates.formattedArrivalTime,
         arrivalDate: dates.formattedArrivalDate,
         duration: dates.formattedDuration,
-        origin: data.origin,
-        destination: data.destination,
-        seatType: data.seatType,
-        busType: data.busType,
+        origin,
+        destination,
+        seatType,
+        busType,
     };
 
-    /*
-    if data has an undefined seats[], fetch call happens such that it gets the 
-    seats, else takes the seats list from the data recieved.
-    */
-    const seatsData = !data.seats
-        ? generateSeats(data.availableSeats, data.totalSeats)
-        : data.seats;
-
-    const currentUrl = useLocation();
     const seatsInStore =
         currentUrl.pathname === paths.tripBooking
-            ? filterSelectedSeats(state.seats)
+            ? filterSelectedSeats(seats)
             : [];
 
-    //selectign seats
+    // Selecting seats
     const [selectedSeats, setSelectedSeats] = useState<number[]>(seatsInStore);
+
     const updateSelectedSeats = (newSeat: number) => {
-        if (selectedSeats.includes(newSeat)) {
-            setSelectedSeats((prev) =>
-                prev.filter((selectedSeat) => selectedSeat != newSeat)
-            );
-        } else setSelectedSeats((prev) => [...prev, newSeat]);
+        setSelectedSeats((prev) =>
+            prev.includes(newSeat)
+                ? prev.filter((selectedSeat) => selectedSeat !== newSeat)
+                : [...prev, newSeat]
+        );
     };
+
     const clearSelectedSeats = () => {
         setSelectedSeats([]);
     };
+
+    if (loading) {
+        return <>Loading...</>; // Display loader while loading is true
+    }
 
     return (
         <TripCardDetailsWrapper>
@@ -123,7 +164,7 @@ export const TripCardDetails = ({
                     </Stack>
                     <SeatLayout
                         layoutName={layoutNames.volvo25}
-                        seats={seatsData}
+                        seats={seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
                     />
@@ -152,11 +193,9 @@ export const TripCardDetails = ({
                             }
                             onClick={() => {
                                 //update store with tripdetails
-                                seatsData.forEach((seat) => {
+                                seats.forEach((seat) => {
                                     if (
-                                        selectedSeats.includes(
-                                            seat.seatNumber
-                                        )
+                                        selectedSeats.includes(seat.seatNumber)
                                     ) {
                                         seat.status = ISeatStatus.SELECTED;
                                     }
@@ -165,10 +204,10 @@ export const TripCardDetails = ({
                                 dispatch(
                                     setTripDetailsData({
                                         ...data,
-                                        seats: seatsData,
+                                        seats
                                     })
                                 );
-                                navigate('/trips/bookings');
+                                navigate(paths.tripBooking);
                             }}
                         >
                             {t('checkoutBtnTxt')}

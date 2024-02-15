@@ -2,7 +2,6 @@ import { API, apiRoutes } from '..';
 import {
     ISeatStatus,
     ITrip,
-    ITripDetailRequest,
     ITripDetailResponse,
     ITripsQueryRequest,
     ITripsQueryResponse,
