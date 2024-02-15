@@ -4,7 +4,7 @@ import PassengerDetailsForm, {
 } from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
 import { TripCardAccordion } from '../../components';
-import { IBusType, ISeatType, ITrip } from '../../api/types/trip';
+import { ITrip, ISeatType, IBusType } from '../../types';
 import { t } from 'i18next';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
@@ -15,10 +15,18 @@ import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
 
 const dummyTripData: ITrip = {
     id: '1',
-    origin: 'Trivandrum',
-    destination: 'Bangalore',
-    departureTimestamp: '2024-02-01T08:00:00Z',
-    arrivalTimestamp: '2024-02-01T12:00:00Z',
+    origin: {
+        name: 'Chennai',
+        id: '1',
+        shortCode: 'MAA',
+    },
+    destination: {
+        name: 'Bangalore',
+        id: '2',
+        shortCode: 'BLR',
+    },
+    departureTimestamp: new Date('2024-02-01T06:00:00Z'),
+    arrivalTimestamp: new Date('2024-02-01T12:00:00Z'),
     seatType: ISeatType.SLEEPER,
     busType: IBusType.AC,
     farePerSeat: 50,
@@ -68,11 +76,11 @@ export const TripBookingPage = () => {
         <>
             <Stack direction="row" alignItems="center" mt={4} mb={3} gap="2rem">
                 <Typography component="h1" variant="h4">
-                    {dummyTripData.origin}
+                    {dummyTripData.origin.name}
                 </Typography>
                 <LongArrow width="8rem" height="100%" />
                 <Typography component="h1" variant="h4">
-                    {dummyTripData.destination}
+                    {dummyTripData.destination.name}
                 </Typography>
             </Stack>
             <TripCardAccordion defaultExpanded={true} data={dummyTripData} />

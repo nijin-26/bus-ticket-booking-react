@@ -4,7 +4,8 @@ import styled from '@emotion/styled';
 
 export const WrapperPaper = styled(Paper)`
     position: relative;
-    margin: 5rem 0;
+    margin: 2rem 0 5rem 0;
+    width: 100%;
 `;
 
 export const Panel = styled(TabPanel)`
