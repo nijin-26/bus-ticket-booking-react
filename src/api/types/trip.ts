@@ -44,6 +44,11 @@ export interface ITripsQueryRequest {
 
 export interface ITripsQueryResponse {
     trips: ITripExternal[];
+    resultCount: number;
+}
+
+export interface IAllTripsResponse {
+    trips: ITripExternal[];
 }
 
 export interface ITripDetailRequest {

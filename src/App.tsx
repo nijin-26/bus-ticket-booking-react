@@ -14,6 +14,8 @@ import { createTheme } from '@mui/material';
 import { useAppSelector } from './app/hooks';
 import { bookTicket } from './api/endpoints/ticket.api';
 import { IGender } from './types';
+import { getAllTrips, getTrip, getTrips } from './api';
+import { ISortOrder, ITripsSortKey } from './api/types/trip';
 
 const basename = '/';
 
@@ -26,22 +28,37 @@ function App() {
     const mode = useAppSelector((state) => state.theme.currentTheme);
 
     useEffect(() => {
-        bookTicket('1', [
-            {
-                seatNumber: 1,
-                passenger: {
-                    fullName: 'John Doe',
-                    age: 25,
-                    gender: IGender.MALE,
+        async function test() {
+            // const trip = await getTrip('1');
+            // console.log(trip);
+
+            // const trips = await getAllTrips();
+            // console.log(trips);
+
+            // const tripsQuery = await getTrips({
+            //     originId: '8',
+            //     destinationId: '9',
+            //     tripDate: '2024-05-14',
+            //     sortBy: ITripsSortKey.ARRIVAL_TIMESTAMP,
+            //     sortOrder: ISortOrder.ASC,
+            //     page: 1,
+            //     pageSize: 10,
+            // });
+            // console.log(tripsQuery);
+
+            const ticket = await bookTicket('1', [
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'John Doe',
+                        age: 25,
+                        gender: IGender.MALE,
+                    },
                 },
-            },
-        ])
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            ]);
+            console.log(ticket);
+        }
+        test().catch(console.error);
     }, []);
 
     return (
