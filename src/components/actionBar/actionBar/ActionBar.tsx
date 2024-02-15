@@ -12,7 +12,6 @@ import {
     Search,
     SwapHoriz,
     TripOrigin,
-    // People,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
