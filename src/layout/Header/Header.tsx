@@ -19,7 +19,7 @@ import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import testProfile from '../../assets/person1.jpeg';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
     const { t } = useTranslation('headerFooter');
@@ -120,14 +120,14 @@ export const Header = () => {
                                     }}
                                     sx={{ mt: '5px' }}
                                 >
-                                    <MenuItem component={NavLink} to="/users">
+                                    {/* <MenuItem component={NavLink} to="/users">
                                         <Typography
                                             variant="body2"
                                             textAlign="center"
                                         >
                                             {t('myBookings')}
                                         </Typography>
-                                    </MenuItem>
+                                    </MenuItem> */}
                                     <MenuItem onClick={handleLogoutClick}>
                                         <Typography
                                             variant="body2"

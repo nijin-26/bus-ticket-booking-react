@@ -15,7 +15,7 @@ interface IAuthState {
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
-    user: null,
+    user: storage.getItem<IUser>('userData'),
 };
 
 const authSlice = createSlice({
@@ -31,6 +31,7 @@ const authSlice = createSlice({
         setCredentials: (state, action: PayloadAction<ISignInResponse>) => {
             const { accessToken, ...rest } = action.payload;
             storage.setItem('accessToken', accessToken);
+            storage.setItem('userData', rest);
             state.user = rest;
         },
         logout: (state) => {
