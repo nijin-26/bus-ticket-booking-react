@@ -149,18 +149,6 @@ const dummyData: ITrip[] = [
         availableSeats: 2,
         totalSeats: 46,
     },
-    {
-        id: '5',
-        origin: 'Trivandrum',
-        destination: 'Kochi',
-        departureTimestamp: '2024-02-01T08:00:00Z',
-        arrivalTimestamp: '2024-02-01T12:00:00Z',
-        seatType: ISeatType.SLEEPER,
-        busType: IBusType.AC,
-        farePerSeat: 150,
-        availableSeats: 23,
-        totalSeats: 46,
-    },
 ];
 export const TripsListingPage = () => {
     const state = useAppSelector((state) => state.tripListing);

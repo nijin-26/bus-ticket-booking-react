@@ -10,7 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
-import { ITrip, IBusType, ISeatType } from '../../../types';
+import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 
 let borderDesignClass: string;
 interface ITripCardAccordionData extends ITrip {

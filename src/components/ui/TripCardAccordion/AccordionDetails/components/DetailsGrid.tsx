@@ -5,7 +5,7 @@ import { BusDepartureIcon } from '../../../../../assets/accordianDetails/BusDepa
 import { BusArrivalIcon } from '../../../../../assets/accordianDetails/BusArrivalIcon';
 import { StopwatchIcon } from '../../../../../assets/accordianDetails/StopwatchIcon';
 import { BusIcon } from '../../../../../assets/accordianDetails/BusIcon';
-import { IBusType, ISeatType } from '../../../../../api/types/trip';
+import { ISeatType, IBusType, ILocation } from '../../../../../types';
 
 export interface IDetailsGridProps {
     departureTime: string;
@@ -13,11 +13,12 @@ export interface IDetailsGridProps {
     arrivalTime: string;
     arrivalDate: string;
     duration: string;
-    origin: string;
-    destination: string;
+    origin: ILocation;
+    destination: ILocation;
     seatType: ISeatType;
     busType: IBusType;
 }
+
 export const DetailsGrid = ({
     tripDetails,
 }: {
@@ -28,12 +29,12 @@ export const DetailsGrid = ({
     const detailsData = [
         {
             title: t('departure'),
-            value: `${tripDetails.origin} ${tripDetails.departureDate}, ${tripDetails.departureTime}`,
+            value: `${tripDetails.origin.name} ${tripDetails.departureDate}, ${tripDetails.departureTime}`,
             icon: <BusDepartureIcon />,
         },
         {
             title: t('arrival'),
-            value: `${tripDetails.destination} ${tripDetails.arrivalDate}, ${tripDetails.arrivalTime}`,
+            value: `${tripDetails.destination.name} ${tripDetails.arrivalDate}, ${tripDetails.arrivalTime}`,
             icon: <BusArrivalIcon />,
         },
         {

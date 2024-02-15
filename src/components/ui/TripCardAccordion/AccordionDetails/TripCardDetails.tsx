@@ -12,20 +12,16 @@ import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
-import {
-    ISeat,
-    ISeatStatus,
-    ITrip,
-    ITripDetailResponse,
-} from '../../../../api/types/trip';
 import { convertTimeStamp, filterSelectedSeats } from '../../../../utils';
 import { useAppDispatch } from '../../../../app/hooks';
 import { setTripDetailsData } from '../../../../app/features/tripdetailsSlice';
 import { getTrip } from '../../../../api';
+import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
 
-interface ITripCardAccordionProps extends ITrip {
+interface ITripCardAccordionData extends ITrip {
     seats?: ISeat[];
 }
+
 interface ITripCardDetailsProps {
     formattedDepartureTime: string;
     formattedDepartureDate: string;
@@ -34,19 +30,17 @@ interface ITripCardDetailsProps {
     formattedDuration: string;
 }
 
-export const TripCardDetails = ({
-    data,
-}: {
-    data: ITripCardAccordionProps;
-}) => {
+export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
     const { t } = useTranslation('tripDetails');
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const currentUrl = useLocation();
 
     const [loading, setLoading] = useState<boolean>(true);
-    const [tripSpecificData, setTripSpecificData] =
-        useState<ITripDetailResponse>({ ...data, seats: [] });
+    const [tripSpecificData, setTripSpecificData] = useState<ITripDetailed>({
+        ...data,
+        seats: [],
+    });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -204,7 +198,7 @@ export const TripCardDetails = ({
                                 dispatch(
                                     setTripDetailsData({
                                         ...data,
-                                        seats
+                                        seats,
                                     })
                                 );
                                 navigate(paths.tripBooking);
