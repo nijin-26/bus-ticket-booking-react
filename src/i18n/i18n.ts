@@ -14,6 +14,7 @@ const {
     filterSort: enFilterSort,
     tripDetails: enTripDetails,
     tripListing: enTripListing,
+    landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
 } = en;
@@ -29,6 +30,7 @@ const {
     filterSort: esFilterSort,
     tripDetails: esTripDetails,
     tripListing: esTripListing,
+    landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
 } = es;
 
@@ -49,6 +51,7 @@ void i18n.use(initReactI18next).init({
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
             tripListing: enTripListing,
+            landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
         },
         es: {
@@ -63,6 +66,7 @@ void i18n.use(initReactI18next).init({
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
             tripListing: esTripListing,
+            landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
         },
     },
@@ -81,6 +85,7 @@ void i18n.use(initReactI18next).init({
         'pnrSearch',
         'filterSort',
         'tripListing',
+        'landingPage',
         'auth',
     ],
     interpolation: {

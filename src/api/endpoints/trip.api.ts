@@ -1,5 +1,5 @@
 import { API, apiRoutes } from '..';
-import { ISeatStatus, ITrip, ITripDetailed } from '../../types';
+import { ITrip, ITripDetailed } from '../../types';
 import {
     getTripDetailedFromTripDetailedExternal,
     getTripFromTripExternal,

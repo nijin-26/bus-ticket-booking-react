@@ -12,7 +12,8 @@ const {
     pnrSearch,
     filterSort,
     tripListing,
-    auth
+    auth,
+    landingPage,
 } = data;
 const resources = {
     ns1,
@@ -26,6 +27,7 @@ const resources = {
     filterSort,
     tripDetails,
     tripListing,
+    landingPage,
     passengerDetails,
 } as const;
 

@@ -29,7 +29,7 @@ export interface ITicketExternal extends IBookingExternal {
 }
 
 export interface IBookingRequest {
-    tripId: string;
+    tripId: number;
     bookings: IBookingExternal[];
 }
 
