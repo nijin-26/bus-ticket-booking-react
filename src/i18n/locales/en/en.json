@@ -1,0 +1,113 @@
+{
+    "ns1": {
+        "home": "home"
+    },
+    "ns2": {
+        "hello": "hello"
+    },
+    "headerFooter": {
+        "myBooking": "My Booking",
+        "copyRight": "© 2024 All rights reserved",
+        "Login": "Login",
+        "Logout": "Logout"
+    },
+    "auth": {
+        "signIn": "SIGN IN",
+        "signUp": "SIGN UP",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "phone": "Phone",
+        "fullName": "Full Name",
+        "cancel": "Cancel",
+        "minNameMsg": "Full Name must be at least 3 characters.",
+        "maxNameMsg": "Full Name must be at most 50 characters.",
+        "nameRequired": "Full Name is required",
+        "invalidEmailMsg": "Invalid email address.",
+        "emailRequired": "Email is required.",
+        "invalidPhone": "Invalid phone number.",
+        "phoneRequired": "Phone number is required.",
+        "passwordValidationMsg": "Password must be at least 6 characters.",
+        "passwordRequired": "Password is required.",
+        "passwordMatch": "Passwords must match.",
+        "confirmPasswordRequired": "Confirm Password is required."
+    },
+    "seatLayout": {
+        "available": "Available",
+        "unavailable": "Unavailable",
+        "selected": "Selected"
+    },
+    "actionBarTab": {
+        "findBuses": "Find buses",
+        "findTicket": "Find my ticket"
+    },
+    "actionBar": {
+        "from": "From",
+        "to": "To",
+        "date": "Date",
+        "passengers": "Passengers",
+        "explore": "Explore"
+    },
+    "pnrSearch": {
+        "searchForTicketByPNR": "Search for your ticket by PNR number",
+        "findMyTicket": "Find my ticket"
+    },
+    "filterSort": {
+        "busType": " Bus type",
+        "AC": "AC",
+        "nonAC": "Non-AC",
+        "seatType": "Seat type",
+        "seater": "Seater",
+        "sleeper": "Sleeper",
+        "sort": "Sort",
+        "startDate": "Start date",
+        "seatsAvailable": "Seats available",
+        "priceHighToLow": "Price: high to low",
+        "priceLowToHigh": "Price: low to high",
+        "clearAll": "Clear all",
+        "clear": "Clear"
+    },
+    "tripDetails": {
+        "info": "Click on an available seat to proceed with your transaction.",
+        "selectAlertTitle": "Seat",
+        "selectAlertMsg": "are selected.",
+        "checkoutTitle": "Total Amount",
+        "checkoutBtnTxt": "Book now",
+        "departure": "Departure",
+        "arrival": "Arrival",
+        "duration": "Duration",
+        "busType": "Bus Type"
+    },
+    "landingPage": {
+        "busWithUs": "Bus with us."
+    },
+    "passengerDetails": {
+        "passengerDetailsFormHeading": "Passenger Details",
+        "passenger": "Passenger",
+        "seat": "seat",
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "genderValues": [
+            {
+                "value": "male",
+                "label": "Male"
+            },
+            {
+                "value": "female",
+                "label": "Female"
+            },
+            {
+                "value": "other",
+                "label": "Other"
+            }
+        ],
+        "checkout": "Checkout",
+        "fullNameRequired": "Full Name is a required field",
+        "ageRequired": "Age is a required field",
+        "genderRequired": "Gender is a required field",
+        "fullNameLength": "Full Name must be 3 to 60 characters long",
+        "AgeNumberCheck": "Age must be a valid number",
+        "AgeRangeCheck": "Age must be between 1 and 130"
+    }
+}
