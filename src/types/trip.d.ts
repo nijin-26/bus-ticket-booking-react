@@ -1,9 +1,11 @@
+import { ILocation } from './location';
+
 export interface ITrip {
     id: string;
-    origin: string;
-    destination: string;
-    departureTimestamp: string;
-    arrivalTimestamp: string;
+    origin: ILocation;
+    destination: ILocation;
+    departureTimestamp: Date;
+    arrivalTimestamp: Date;
     seatType: ISeatType;
     busType: IBusType;
     farePerSeat: number;

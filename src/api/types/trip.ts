@@ -1,10 +1,6 @@
-import { IBusType, ISeat, ISeatType, ITrip } from '../../types';
-import { ILocation } from './location';
+import { IBusType, ILocation, ISeat, ISeatType } from '../../types';
 
-// TODO: Remove this export after migrating rest of the code
-export type { IBusType, ISeat, ISeatType, ITrip };
-
-interface ITripExternal {
+export interface ITripExternal {
     id: number;
     createdAt: string;
     updatedAt: string;
@@ -15,8 +11,8 @@ interface ITripExternal {
     arrival: string;
     durationInHours: string;
     busId: string;
-    busType: string;
-    seatType: string;
+    busType: IBusType;
+    seatType: ISeatType;
     totalSeats: number;
     farePerSeat: string;
     publish: boolean;
@@ -26,7 +22,7 @@ interface ITripExternal {
     creator: unknown;
 }
 
-interface ITripDetailExternal extends ITripExternal {
+export interface ITripDetailedExternal extends ITripExternal {
     seats: ISeat[];
 }
 
@@ -51,7 +47,7 @@ export interface ITripDetailRequest {
     id: string;
 }
 
-export interface ITripDetailResponse extends ITripDetailExternal {}
+export interface ITripDetailResponse extends ITripDetailedExternal {}
 
 export enum ITripsSortKey {
     DEPARTURE_TIMESTAMP = 'departureTimestamp',
