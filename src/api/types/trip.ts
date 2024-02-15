@@ -1,4 +1,5 @@
-import { IBusType, ILocation, ISeat, ISeatType } from '../../types';
+import { IBusType, ISeat, ISeatType } from '../../types';
+import { ILocationExternal } from './location';
 
 export interface ITripExternal {
     id: number;
@@ -17,8 +18,8 @@ export interface ITripExternal {
     farePerSeat: string;
     publish: boolean;
     creatorId: string;
-    origin: ILocation;
-    destination: ILocation;
+    origin: ILocationExternal;
+    destination: ILocationExternal;
     creator: unknown;
 }
 

@@ -1,11 +1,12 @@
 import { ITrip, ITripDetailed } from '../../types';
 import { ITripExternal, ITripDetailedExternal } from '../types/trip';
+import { getLocationFromLocationExternal } from './location.converter';
 
 export const getTripFromTripExternal = (tripExternal: ITripExternal): ITrip => {
     const trip: ITrip = {
         id: tripExternal.id.toString(),
-        origin: tripExternal.origin,
-        destination: tripExternal.destination,
+        origin: getLocationFromLocationExternal(tripExternal.origin),
+        destination: getLocationFromLocationExternal(tripExternal.destination),
         departureTimestamp: new Date(tripExternal.departure),
         arrivalTimestamp: new Date(tripExternal.arrival),
         farePerSeat: parseFloat(tripExternal.farePerSeat),

@@ -1,6 +1,7 @@
 import { API, apiRoutes } from '..';
+import { ITrip } from '../../types';
+import { getTripFromTripExternal } from '../converters/trip.converter';
 import {
-    ITrip,
     ITripDetailResponse,
     ITripsQueryRequest,
     ITripsQueryResponse,
@@ -12,7 +13,8 @@ export const getTrips = async (
     const response: ITripsQueryResponse = await API.get(apiRoutes.trip, {
         params,
     });
-    return response.trips;
+    const trips = response.trips.map((trip) => getTripFromTripExternal(trip));
+    return trips;
 };
 
 export const getTrip = async (
