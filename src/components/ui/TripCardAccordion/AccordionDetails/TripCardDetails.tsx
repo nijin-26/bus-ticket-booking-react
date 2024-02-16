@@ -160,6 +160,7 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
                         seats={seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
+                        mode={'edit'}
                     />
                 </Stack>
                 {!data.seats && (
