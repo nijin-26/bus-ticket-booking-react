@@ -11,12 +11,21 @@ import { useTranslation } from 'react-i18next';
 import SortGroup from '../sortFilterRadioGroups/SortGroup';
 import BusTypeGroup from '../sortFilterRadioGroups/BusTypeGroup';
 import SeatTypeGroup from '../sortFilterRadioGroups/SeatTypeGroup';
+import FilterChip from './FilterChip';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {
+    removeBusFilter,
+    removeSeatFilter,
+} from '../../../app/features/busSearchSlice';
 
 // filter chip to be incorporated after setting filter state in store
 // import FilterChip from './FilterChip';
 
 export default function FilterSort() {
     const { t } = useTranslation('filterSort');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const dispatch = useDispatch();
 
     // anchor state
     const [busMenu, setBusMenu] = useState<null | HTMLElement>(null);
@@ -85,17 +94,18 @@ export default function FilterSort() {
                         onClick={() => {
                             //setBusTypeFilter(null);
                             //setSeatTypeFilter(null);
+                            searchParams.delete('seatType');
+                            setSearchParams(searchParams);
+                            searchParams.delete('busType');
+                            setSearchParams(searchParams);
+                            dispatch(removeSeatFilter());
+                            dispatch(removeBusFilter());
                         }}
                     >
                         {t('clearAll')}
                     </Button>
 
-                    {/* <FilterChip
-                            busTypeFilter={busTypeFilter}
-                            busFilterHandler={busFilterHandler}
-                            seatTypeFilter={seatTypeFilter}
-                            seatFilterHandler={seatFilterHandler}
-                        /> */}
+                    <FilterChip />
                 </Stack>
                 <Badge
                     //invisible={Boolean(!sortBy)}

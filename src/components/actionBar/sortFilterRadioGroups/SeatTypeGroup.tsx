@@ -3,23 +3,30 @@ import { StyledFormControlLabel } from '../filterSort/FilterSort.styled';
 import { filterValues } from '../../../config';
 import { AirlineSeatReclineNormal, Hotel } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {
+    addSeatFilter,
+    removeSeatFilter,
+} from '../../../app/features/busSearchSlice';
 
 export default function SeatTypeGroup() {
     const { t } = useTranslation('filterSort');
-    const [seatTypeFilter, setSeatTypeFilter] = useState<string | null>(null);
+    const dispatch = useDispatch();
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const seatFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (seatTypeFilter === event.target.value) {
-            setSeatTypeFilter(null);
-        } else {
-            setSeatTypeFilter(event.target.value);
-        }
+        dispatch(addSeatFilter(event.target.value));
+        searchParams.set('seatType', event.target.value);
+        setSearchParams(searchParams);
     };
+
+    const seatTypeParam = searchParams.get('seatType');
 
     return (
         <>
-            <RadioGroup onChange={seatFilterHandler} value={seatTypeFilter}>
+            <RadioGroup onChange={seatFilterHandler} value={seatTypeParam}>
                 <StyledFormControlLabel
                     label={t('seater')}
                     control={
@@ -38,7 +45,9 @@ export default function SeatTypeGroup() {
             </RadioGroup>
             <Button
                 onClick={() => {
-                    setSeatTypeFilter(null);
+                    searchParams.delete('seatType');
+                    setSearchParams(searchParams);
+                    dispatch(removeSeatFilter());
                 }}
                 sx={{ width: '8rem' }}
             >

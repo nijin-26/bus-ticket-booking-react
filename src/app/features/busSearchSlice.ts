@@ -7,10 +7,10 @@ interface IBusSearchParams {
     tripDate?: Date;
     sortBy?: string;
     sortOrder?: string;
-    seatType?: string;
-    busType?: string;
+    seatType?: string | null;
+    busType?: string | null;
     page?: number;
-    pageSize: number;
+    pageSize?: number;
     // passengerCount: number;
 }
 
@@ -30,13 +30,39 @@ export const busSearchSlice = createSlice({
             state.originID = action.payload.originID;
             state.destinationID = action.payload.destinationID;
             state.tripDate = action.payload.tripDate;
-            state.seatType = action.payload.seatType;
-            state.busType = action.payload.busType;
+        },
+
+        // sort reducer
+        setSort: (state, action: PayloadAction<IsortObject>) => {
             state.sortBy = action.payload.sortBy;
             state.sortOrder = action.payload.sortOrder;
+        },
+
+        // filter reducers
+        addBusFilter: (state, action: PayloadAction<string>) => {
+            state.busType = action.payload;
+        },
+
+        addSeatFilter: (state, action: PayloadAction<string>) => {
+            state.seatType = action.payload;
+        },
+
+        removeBusFilter: (state) => {
+            state.busType = undefined;
+        },
+
+        removeSeatFilter: (state) => {
+            state.seatType = undefined;
         },
     },
 });
 
-export const { setBusSearchParams } = busSearchSlice.actions;
+export const {
+    setBusSearchParams,
+    addBusFilter,
+    addSeatFilter,
+    removeBusFilter,
+    removeSeatFilter,
+} = busSearchSlice.actions;
+
 export default busSearchSlice.reducer;

@@ -1,25 +1,35 @@
 import { Button, Radio, RadioGroup } from '@mui/material';
 import { StyledFormControlLabel } from '../filterSort/FilterSort.styled';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 import { filterValues } from '../../../config';
 import { AcUnit, Air } from '@mui/icons-material';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {
+    addBusFilter,
+    removeBusFilter,
+} from '../../../app/features/busSearchSlice';
 
 export default function BusTypeGroup() {
     const { t } = useTranslation('filterSort');
-    const [busTypeFilter, setBusTypeFilter] = useState<string | null>(null);
+    const dispatch = useDispatch();
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const busFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (busTypeFilter === event.target.value) {
-            setBusTypeFilter(null);
-        } else {
-            setBusTypeFilter(event.target.value);
-        }
+        //dispatch(setBusSearchParams({ busType: event.target.value }));
+        dispatch(addBusFilter(event.target.value));
+        searchParams.set('busType', event.target.value);
+        setSearchParams(searchParams);
     };
+
+    const busTypeParam = searchParams.get('busType');
+
+    console.log('busTypeParam', busTypeParam);
 
     return (
         <>
-            <RadioGroup onChange={busFilterHandler} value={busTypeFilter}>
+            <RadioGroup onChange={busFilterHandler} value={busTypeParam}>
                 <StyledFormControlLabel
                     label={t('AC')}
                     control={
@@ -35,7 +45,9 @@ export default function BusTypeGroup() {
             </RadioGroup>
             <Button
                 onClick={() => {
-                    setBusTypeFilter(null);
+                    searchParams.delete('busType');
+                    setSearchParams(searchParams);
+                    dispatch(removeBusFilter());
                 }}
                 sx={{ width: '8rem' }}
             >

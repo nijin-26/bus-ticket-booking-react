@@ -73,6 +73,11 @@ const dummyData = [
 
 export const TripsListingPage = () => {
     const state = useAppSelector((state) => state.tripListing);
+
+    //testing store updating
+    const paramsFromStore = useAppSelector((state) => state.busSearch);
+    console.log('paramsFromStore', paramsFromStore);
+
     const dispatch = useAppDispatch();
     const matches = useMediaQuery('(min-width:600px)');
 
