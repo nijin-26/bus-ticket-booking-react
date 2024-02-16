@@ -1,7 +1,7 @@
 import { Stack, Box, Typography, CircularProgress } from '@mui/material';
 import { IBooking } from '../../api/types/bookings';
 import { Gender } from '../../types/ticket';
-import { AllBookingsPageWrapper } from './AllBookingsPage.styled';
+import { ListingPageWrapper } from './AllBookingsPage.styled';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
@@ -744,7 +744,7 @@ export const AllBookingsPage = () => {
     }, [searchParams]);
 
     return (
-        <AllBookingsPageWrapper>
+        <ListingPageWrapper>
             <Stack direction={'row'} spacing={5}>
                 <Box
                     component="div"
@@ -798,6 +798,7 @@ export const AllBookingsPage = () => {
                     </Stack>
                 </Box>
             </Stack>
+            <h2>{t('bookingsList')}</h2>
             <CustomTable
                 pageState={pageState}
                 updatePageState={updatePageState}
@@ -806,6 +807,6 @@ export const AllBookingsPage = () => {
                 rowId={'pnrNumber'}
                 languageNamespace={'bookingsList'}
             />
-        </AllBookingsPageWrapper>
+        </ListingPageWrapper>
     );
 };

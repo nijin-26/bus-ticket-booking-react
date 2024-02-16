@@ -1,5 +1,4 @@
 import { Stack, Box, Typography, CircularProgress } from '@mui/material';
-import { UsersListingPageWrapper } from './UsersListingPage.styled';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
@@ -8,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import users from '../../data/sampleUsers.json';
 import { IUser } from '../../api/types/users';
 import useGetUsersTableColumns from './useGetUsersTableColumns';
+import { ListingPageWrapper } from '../BookingsList';
 
 interface IAllUsers {
     count: number;
@@ -78,7 +78,7 @@ export const UsersListingPage = () => {
     }, [searchParams]);
 
     return (
-        <UsersListingPageWrapper>
+        <ListingPageWrapper>
             <Stack direction={'row'} spacing={5}>
                 <Box
                     component="div"
@@ -131,6 +131,7 @@ export const UsersListingPage = () => {
                     </Stack>
                 </Box>
             </Stack>
+            <h2>{t('usersList')}</h2>
             <CustomTable
                 pageState={pageState}
                 updatePageState={updatePageState}
@@ -139,6 +140,6 @@ export const UsersListingPage = () => {
                 rowId={'email'}
                 languageNamespace={'usersList'}
             />
-        </UsersListingPageWrapper>
+        </ListingPageWrapper>
     );
 };

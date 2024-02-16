@@ -40,7 +40,7 @@ export const CustomTable = <T,>({
                 getRowId={(row: T) => String(row[rowId])}
                 columns={columns.map((column) => ({
                     ...column,
-                    headerName: column.field,
+                    headerName: column.headerName,
                     headerClassName: 'custom-header',
                     flex: 1,
                     sortable: false,

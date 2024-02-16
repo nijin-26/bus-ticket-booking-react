@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 
-export const AllBookingsPageWrapper = styled(Box)(({ theme }) => ({
+export const ListingPageWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',

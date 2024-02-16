@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 export const CustomTableWrapper = styled(Box)(({ theme }) => ({
     background: theme.color.background,
-    marginTop: '3rem',
+    marginTop: '0',
     width: '100%',
 
     '& .custom-header': {

@@ -33,7 +33,8 @@ const CustomPagination = ({
         >
             {/* Total rows text */}
             <div>
-                {t('total')} {totalBookings} {t('booking')}
+                {t('tableFooterTotal')} {totalBookings}{' '}
+                {t('tableFooterSubject')}
                 {totalBookings > 1 ? 's' : ''}
             </div>
 

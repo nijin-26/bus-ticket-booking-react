@@ -59,6 +59,7 @@
         "noRows": "Sin filas"
     },
     "bookingsList": {
+        "bookingsList": "Lista de Reservas",
         "totalUsers": "Total de usuarios",
         "totalBookings": "Total de reservas",
         "pnrNumber": "Número de PNR",
@@ -70,10 +71,11 @@
         "export": "Exportar",
         "exportAsCsv": "Descargar como CSV",
         "exportPrint": "Imprimir",
-        "total": "Total",
-        "booking": "reserva"
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "reservas"
     },
     "usersList": {
+        "usersList": "Lista de Usuarios",
         "totalUsers": "Usuarios totales",
         "totalBookings": "Reservas totales",
         "fullName": "Nombre completo",
@@ -82,7 +84,7 @@
         "export": "Exportar",
         "exportAsCsv": "Descargar como CSV",
         "exportPrint": "Imprimir",
-        "total": "Total",
-        "user": "usuario"
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "usuario"
     }
 }
