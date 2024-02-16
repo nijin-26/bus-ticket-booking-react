@@ -5,6 +5,13 @@ import {
     ITripsQueryRequest,
     ITripsSortKey,
 } from '../../api/types/trip';
+import { useCallback, useEffect, useState } from 'react';
+import {
+    ISortOrder,
+    ITrip,
+    ITripsQueryRequest,
+    ITripsSortKey,
+} from '../../api/types/trip';
 import { TripCardAccordion } from '../../components';
 import ActionBarDrawer from '../../components/actionBar/actionBarDrawer/ActionBarDrawer';
 import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
@@ -15,11 +22,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSearchParams } from 'react-router-dom';
 import { getTrips } from '../../api';
 
-
 export const TripsListingPage = () => {
     const [tripData, setTripData] = useState<ITrip[]>([]);
     const [resultLength, setResultLength] = useState<number>(0);
     const [searchParams] = useSearchParams();
+    const matches = useMediaQuery('(min-width:600px)');
     // setSearchParams({ page: '1' });
     console.log(searchParams);
     const fetchTripData = useCallback(async () => {
@@ -34,7 +41,7 @@ export const TripsListingPage = () => {
         ) as ISortOrder | null;
         const sortOrder: ISortOrder = sortOrderParam ?? ISortOrder.ASC;
         const page = searchParams.get('page') ?? '1';
-        const pageSize = searchParams.get('pageSize') ?? '3';
+        const pageSize = searchParams.get('pageSize') ?? '5';
         const passengerCount = searchParams.get('passengerCount') ?? '1';
         try {
             const params: ITripsQueryRequest = {
@@ -48,7 +55,7 @@ export const TripsListingPage = () => {
                 passengerCount: Number(passengerCount),
             };
             const response = await getTrips(params);
-            console.log('resposne', response);
+            console.log('response', response);
             setTripData(response.trips);
             setResultLength(response.resultCount);
         } catch (error) {
@@ -69,7 +76,9 @@ export const TripsListingPage = () => {
                 // console.log('inddata', indData);
                 return <TripCardAccordion key={indData.id} data={indData} />;
             })}
-            {resultLength > 5 && <LoadMore />}
+            {resultLength > 5 && tripData.length != resultLength && (
+                <LoadMore />
+            )}
         </TripsListingPageWrapper>
     );
 };
