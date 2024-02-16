@@ -2,8 +2,9 @@ import { berthLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
 import steeringWheel from '../../assets/tabler_steering-wheel.svg';
 import { useEffect, useState } from 'react';
+import { ISeat } from '../../types';
+import getSeatStatus from './utils/getSeatStatus';
 import Seat from './Seat/Seat';
-import { ISeat, ISeatStatus } from '../../types';
 
 const SeatLayout = ({
     layoutName,
@@ -48,24 +49,10 @@ const SeatLayout = ({
                             {row.map((seat: number, index: number) => {
                                 if (seat === 1) {
                                     const currentSeat = seats[seatIndex];
-                                    const seatStatus = (() => {
-                                        switch (currentSeat.status) {
-                                            case ISeatStatus.AVAILABLE:
-                                                if (
-                                                    selectedSeats.includes(
-                                                        currentSeat.seatNumber
-                                                    )
-                                                ) {
-                                                    return 'selected';
-                                                } else {
-                                                    return 'available';
-                                                }
-                                            case ISeatStatus.SELECTED:
-                                                return 'selected';
-                                            case ISeatStatus.BOOKED:
-                                                return 'unavailable';
-                                        }
-                                    })();
+                                    const seatStatus = getSeatStatus(
+                                        currentSeat,
+                                        selectedSeats
+                                    );
                                     seatIndex++;
                                     return (
                                         <Seat
