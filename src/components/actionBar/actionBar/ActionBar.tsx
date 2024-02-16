@@ -19,7 +19,7 @@ import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { locationOptions, paths } from '../../../config';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getLocations } from '../../../api';
 
@@ -39,6 +39,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     //let locOptions: ILocationOptions[] = [];
     const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
