@@ -3,7 +3,10 @@ import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
 import { TripCardAccordion } from '../../components';
 import { ITrip, ISeatType, IBusType } from '../../types';
+import { useAppSelector } from '../../app/hooks';
 
+
+// TODO: fetch data from store 
 const dummyTripData: ITrip = {
     id: '1',
     origin: {
@@ -26,6 +29,7 @@ const dummyTripData: ITrip = {
 };
 
 export const TripBookingPage = () => {
+    const state = useAppSelector((state) => state.tripDetails);
     return (
         <>
             <Stack direction="row" alignItems="center" mt={4} mb={3} gap="2rem">
@@ -37,7 +41,7 @@ export const TripBookingPage = () => {
                     {dummyTripData.destination.name}
                 </Typography>
             </Stack>
-            <TripCardAccordion defaultExpanded={true} data={dummyTripData} />
+            <TripCardAccordion defaultExpanded={true} data={state} />
             <PassengerDetailsForm />
         </>
     );

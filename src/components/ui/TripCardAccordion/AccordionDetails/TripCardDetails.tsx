@@ -7,7 +7,7 @@ import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../FareDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
@@ -34,7 +34,6 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
     const { t } = useTranslation('tripDetails');
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const currentUrl = useLocation();
 
     const [loading, setLoading] = useState<boolean>(true);
     const [tripSpecificData, setTripSpecificData] = useState<ITripDetailed>({
@@ -45,9 +44,8 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getTrip('1');
+                const response = await getTrip(data.id);
                 if (response) {
-                    console.log(response)
                     setTripSpecificData(response);
                 } else {
                     console.log('Trip data not available');
@@ -59,13 +57,13 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
             }
         };
 
-        if (currentUrl.pathname === paths.tripsListing || !data.seats) {
+        if (!data.seats) {
             void fetchData();
         } else {
             setTripSpecificData({ ...data, seats: data.seats });
             setLoading(false);
         }
-    }, [currentUrl.pathname, data]);
+    }, [data]);
 
 
     const {
@@ -95,13 +93,10 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
         busType,
     };
 
-    const seatsInStore =
-        currentUrl.pathname === paths.tripBooking
-            ? filterSelectedSeats(seats)
-            : [];
+    const initialSelectedStore = filterSelectedSeats(seats);
 
     // Selecting seats
-    const [selectedSeats, setSelectedSeats] = useState<number[]>(seatsInStore);
+    const [selectedSeats, setSelectedSeats] = useState<number[]>(initialSelectedStore);
 
     const updateSelectedSeats = (newSeat: number) => {
         setSelectedSeats((prev) =>
@@ -118,7 +113,9 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
     if (loading) {
         return <>Loading...</>; // Display loader while loading is true
     }
-
+    console.log('tripcard');
+    console.log("initial selected states",initialSelectedStore)
+    console.log("selected states", selectedSeats);
     return (
         <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
@@ -165,7 +162,7 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
                         updateSelectedSeats={updateSelectedSeats}
                     />
                 </Stack>
-                {currentUrl.pathname === paths.tripsListing && (
+                {!data.seats && (
                     <Stack
                         direction={{ xs: 'column', sm: 'row' }}
                         justifyContent={'space-between'}
@@ -199,7 +196,7 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
 
                                 dispatch(
                                     setTripDetailsData({
-                                        ...data,
+                                        ...tripSpecificData,
                                         seats,
                                     })
                                 );
