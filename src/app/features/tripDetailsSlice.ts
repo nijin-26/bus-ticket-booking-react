@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IBusType, ISeatType, ITripDetailed } from '../../types';
+import { IBusType, ISeatType, ITripDetailedSerializable } from '../../types';
 
-const initialState: ITripDetailed = {
+const initialState: ITripDetailedSerializable = {
     id: '',
     origin: {
         id: '',
@@ -13,8 +13,8 @@ const initialState: ITripDetailed = {
         name: '',
         shortCode: '',
     },
-    departureTimestamp: new Date(),
-    arrivalTimestamp: new Date(),
+    departureTimestamp: new Date().toISOString(),
+    arrivalTimestamp: new Date().toISOString(),
     seatType: ISeatType.SEATER,
     busType: IBusType.AC,
     farePerSeat: 0,
@@ -27,9 +27,11 @@ const tripDetailsSlice = createSlice({
     name: 'tripDetails',
     initialState,
     reducers: {
-        setTripDetailsData: (state, action: PayloadAction<ITripDetailed>) => {
-            state = action.payload;
-            return state;
+        setTripDetailsData: (
+            state,
+            action: PayloadAction<ITripDetailedSerializable>
+        ) => {
+            return action.payload
         },
         resetTripDetailsData: () => {
             return initialState;

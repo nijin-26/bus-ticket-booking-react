@@ -17,6 +17,7 @@ import { useAppDispatch } from '../../../../app/hooks';
 import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
+import { toSerializable } from '../../../../app/features/utils/tripDetailsHelperFns';
 
 interface ITripCardAccordionData extends ITrip {
     seats?: ISeat[];
@@ -46,12 +47,15 @@ export const TripCardDetails = ({
         ...data,
         seats: [],
     });
+    // Selecting seats
+    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await getTrip(data.id);
                 if (response) {
+                    console.log(response)
                     setTripSpecificData(response);
                 } else {
                     console.log('Trip data not available');
@@ -67,6 +71,7 @@ export const TripCardDetails = ({
             void fetchData();
         } else {
             setTripSpecificData({ ...data, seats: data.seats });
+            setSelectedSeats(filterSelectedSeats(data.seats));
             setLoading(false);
         }
     }, [data]);
@@ -98,12 +103,6 @@ export const TripCardDetails = ({
         busType,
     };
 
-    const initialSelectedStore = filterSelectedSeats(seats);
-
-    // Selecting seats
-    const [selectedSeats, setSelectedSeats] =
-        useState<number[]>(initialSelectedStore);
-
     const updateSelectedSeats = (newSeat: number) => {
         setSelectedSeats((prev) =>
             prev.includes(newSeat)
@@ -119,9 +118,6 @@ export const TripCardDetails = ({
     if (loading) {
         return <>Loading...</>; // Display loader while loading is true
     }
-    console.log('tripcard');
-    console.log('initial selected states', initialSelectedStore);
-    console.log('selected states', selectedSeats);
     return (
         <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
@@ -140,18 +136,22 @@ export const TripCardDetails = ({
                         ) : (
                             <StyledAlert
                                 action={
-                                    <Tooltip title="Delete selection" arrow>
-                                        <IconButton
-                                            aria-label="delete"
-                                            color="inherit"
-                                            size="small"
-                                            onClick={() => {
-                                                clearSelectedSeats();
-                                            }}
-                                        >
-                                            <DeleteForeverIcon fontSize="inherit" />
-                                        </IconButton>
-                                    </Tooltip>
+                                    data.seats ? (
+                                        <></>
+                                    ) : (
+                                        <Tooltip title="Delete selection" arrow>
+                                            <IconButton
+                                                aria-label="delete"
+                                                color="inherit"
+                                                size="small"
+                                                onClick={() => {
+                                                    clearSelectedSeats();
+                                                }}
+                                            >
+                                                <DeleteForeverIcon fontSize="inherit" />
+                                            </IconButton>
+                                        </Tooltip>
+                                    )
                                 }
                                 sx={{ mb: 2 }}
                             >
@@ -202,10 +202,10 @@ export const TripCardDetails = ({
                                 });
 
                                 dispatch(
-                                    setTripDetailsData({
+                                    setTripDetailsData(toSerializable({
                                         ...tripSpecificData,
                                         seats,
-                                    })
+                                    }))
                                 );
                                 navigate(paths.tripBooking);
                             }}

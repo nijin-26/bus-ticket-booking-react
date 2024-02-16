@@ -51,7 +51,7 @@ export const DetailsGrid = ({
 
     return (
         <Box sx={{ width: '100%' }} mt={3}>
-            <Grid container rowSpacing={2} columnSpacing={30}>
+            <Grid container rowSpacing={2} columnSpacing={10}>
                 {detailsData.map((detail, index) => (
                     <Grid item key={index} xs={12} sm={12} md={6} lg={6}>
                         {/* 

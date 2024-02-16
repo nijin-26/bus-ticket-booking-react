@@ -4,6 +4,7 @@ import LongArrow from '../../components/icons/LongArrow';
 import { TripCardAccordion } from '../../components';
 import { ITrip, ISeatType, IBusType } from '../../types';
 import { useAppSelector } from '../../app/hooks';
+import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
 
 
 // TODO: fetch data from store 
@@ -29,7 +30,7 @@ const dummyTripData: ITrip = {
 };
 
 export const TripBookingPage = () => {
-    const state = useAppSelector((state) => state.tripDetails);
+    const state = useAppSelector((state) => fromSerializable(state.tripDetails));
     return (
         <>
             <Stack direction="row" alignItems="center" mt={4} mb={3} gap="2rem">
