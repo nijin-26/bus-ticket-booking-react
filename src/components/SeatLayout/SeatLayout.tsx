@@ -1,9 +1,9 @@
 import { berthLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
 import steeringWheel from '../../assets/tabler_steering-wheel.svg';
-import { ISeat, ISeatStatus } from '../../api/types/trip';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Seat from './Seat';
+import { ISeat, ISeatStatus } from '../../types';
 
 const SeatLayout = ({
     layoutName,
