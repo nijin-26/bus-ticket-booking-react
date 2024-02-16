@@ -6,7 +6,7 @@ export const getTicketFromBookingResponse = (
 ): ITicket => {
     const ticket: ITicket = {
         pnrNumber: response[0].pnrNumber,
-        tripId: response[0].tripId,
+        trip: response[0].trip,
         seats: response.map((booking) => ({
             seatNumber: parseInt(booking.seatNumber),
             passenger: {

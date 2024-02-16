@@ -1,6 +1,6 @@
 export interface ITicket {
     pnrNumber: string;
-    tripId: string;
+    trip: ITrip;
     seats: IPassengerSeat[];
 }
 
