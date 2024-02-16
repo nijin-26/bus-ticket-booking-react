@@ -23,9 +23,9 @@ export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
 }: ITripCardAccordionProps) => {
-    if (data.totalSeats >= 20) {
+    if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
-    } else if (data.totalSeats > 0) {
+    } else if (data.availableSeats > 0) {
         borderDesignClass = 'less-seats';
     } else {
         borderDesignClass = 'no-seats';
@@ -37,7 +37,7 @@ export const TripCardAccordion = ({
         formattedArrivalTime: string;
         formattedArrivalDate: string;
         formattedDuration: string;
-    } = convertTimeStamp(data.departure, data.arrival);
+    } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
 
     return (
         <TripAccordionWrapper
@@ -112,7 +112,7 @@ export const TripCardAccordion = ({
                         <p className="duration">{dates.formattedDuration}</p>
                     </Tooltip>
                     <p className={`seats ${borderDesignClass}`}>
-                        {data.totalSeats} seats available
+                        {data.availableSeats} seats available
                     </p>
                     <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>
