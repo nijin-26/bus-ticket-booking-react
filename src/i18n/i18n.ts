@@ -16,6 +16,9 @@ const {
     bookingsList: enBookingsList,
     usersList: enUsersList,
     tableNoRowsOverlay: enTableNoRowsOverlay,
+    landingPage: enLandingPage,
+    auth: enAuth,
+    passengerDetails: enPassengerDetails,
 } = en;
 
 const {
@@ -23,6 +26,7 @@ const {
     ns2: esNs2,
     headerFooter: esHeaderFooter,
     seatLayout: esSeatLayout,
+    auth: esAuth,
     actionBarTab: esActionBarTab,
     actionBar: esActionBar,
     pnrSearch: esPnrSearch,
@@ -31,6 +35,8 @@ const {
     bookingsList: esBookingsList,
     usersList: esUsersList,
     tableNoRowsOverlay: esTableNoRowsOverlay,
+    landingPage: eslandingPage,
+    passengerDetails: esPassengerDetails,
 } = es;
 
 export const defaultNS = 'ns1';
@@ -41,6 +47,7 @@ void i18n.use(initReactI18next).init({
         en: {
             ns1: enNs1,
             ns2: enNs2,
+            auth: enAuth,
             headerFooter: enHeaderFooter,
             seatLayout: enSeatLayout,
             actionBarTab: enActionBarTab,
@@ -51,10 +58,13 @@ void i18n.use(initReactI18next).init({
             bookingsList: enBookingsList,
             usersList: enUsersList,
             tableNoRowsOverlay: enTableNoRowsOverlay,
+            landingPage: enLandingPage,
+            passengerDetails: enPassengerDetails,
         },
         es: {
             ns1: esNs1,
             ns2: esNs2,
+            auth: esAuth,
             headerFooter: esHeaderFooter,
             seatLayout: esSeatLayout,
             actionBarTab: esActionBarTab,
@@ -65,6 +75,8 @@ void i18n.use(initReactI18next).init({
             bookingsList: esBookingsList,
             usersList: esUsersList,
             tableNoRowsOverlay: esTableNoRowsOverlay,
+            landingPage: eslandingPage,
+            passengerDetails: esPassengerDetails,
         },
     },
     lng: 'en',
@@ -76,6 +88,7 @@ void i18n.use(initReactI18next).init({
         'headerFooter',
         'seatLayout',
         'tripDetails',
+        'passengerDetails',
         'actionBarTab',
         'actionBar',
         'pnrSearch',
@@ -83,6 +96,8 @@ void i18n.use(initReactI18next).init({
         'bookingsList',
         'usersList',
         'tableNoRowsOverlay',
+        'landingPage',
+        'auth',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

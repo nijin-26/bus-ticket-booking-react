@@ -6,8 +6,31 @@
         "hello": "hello"
     },
     "headerFooter": {
+        "myBooking": "My Booking",
         "copyRight": "© 2024 All rights reserved",
-        "Login": "Login"
+        "Login": "Login",
+        "Logout": "Logout"
+    },
+    "auth": {
+        "signIn": "SIGN IN",
+        "signUp": "SIGN UP",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "phone": "Phone",
+        "fullName": "Full Name",
+        "cancel": "Cancel",
+        "minNameMsg": "Full Name must be at least 3 characters.",
+        "maxNameMsg": "Full Name must be at most 50 characters.",
+        "nameRequired": "Full Name is required",
+        "invalidEmailMsg": "Invalid email address.",
+        "emailRequired": "Email is required.",
+        "invalidPhone": "Invalid phone number.",
+        "phoneRequired": "Phone number is required.",
+        "passwordValidationMsg": "Password must be at least 6 characters.",
+        "passwordRequired": "Password is required.",
+        "passwordMatch": "Passwords must match.",
+        "confirmPasswordRequired": "Confirm Password is required."
     },
     "seatLayout": {
         "available": "Available",
@@ -86,5 +109,37 @@
         "exportPrint": "Print",
         "tableFooterTotal": "Total",
         "tableFooterSubject": "user"
+    },
+    "landingPage": {
+        "busWithUs": "Bus with us."
+    },
+    "passengerDetails": {
+        "passengerDetailsFormHeading": "Passenger Details",
+        "passenger": "Passenger",
+        "seat": "seat",
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "genderValues": [
+            {
+                "value": "male",
+                "label": "Male"
+            },
+            {
+                "value": "female",
+                "label": "Female"
+            },
+            {
+                "value": "other",
+                "label": "Other"
+            }
+        ],
+        "checkout": "Checkout",
+        "fullNameRequired": "Full Name is a required field",
+        "ageRequired": "Age is a required field",
+        "genderRequired": "Gender is a required field",
+        "fullNameLength": "Full Name must be 3 to 60 characters long",
+        "AgeNumberCheck": "Age must be a valid number",
+        "AgeRangeCheck": "Age must be between 1 and 130"
     }
 }
