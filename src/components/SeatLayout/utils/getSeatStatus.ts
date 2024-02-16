@@ -1,4 +1,4 @@
-import { ISeatStatus } from '../../../api/types/trip';
+import { ISeatStatus } from "../../../types";
 
 const getSeatStatus = (
     currentSeat: { seatNumber: number; status: ISeatStatus },
