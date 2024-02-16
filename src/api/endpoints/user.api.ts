@@ -1,12 +1,12 @@
 import { API, apiRoutes } from '..';
-import { ILocation } from '../../types';
-import { getLocationFromLocationExternal } from '../converters/location.converter';
-import { ILocationResponse } from '../types/location';
+import { IUser } from '../../types';
+import { getUserFromUserExternal } from '../converters/user.converter';
+import { IUsersResponse } from '../types/user';
 
-export const getAllUsers = async (): Promise<ILocation[]> => {
-    const response: ILocationResponse = await API.get(apiRoutes.location);
-    const locations: ILocation[] = response.locations.map((location) =>
-        getLocationFromLocationExternal(location)
+export const getAllUsers = async (): Promise<IUser[]> => {
+    const response: IUsersResponse = await API.get(apiRoutes.user);
+    const users: IUser[] = response.map((user) =>
+        getUserFromUserExternal(user)
     );
-    return locations;
+    return users;
 };
