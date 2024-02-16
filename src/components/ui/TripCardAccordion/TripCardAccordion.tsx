@@ -52,9 +52,13 @@ export const TripCardAccordion = ({
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
                 id="panel-header"
-                disabled={data.availableSeats == 0}
+                disabled={data.totalSeats == 0}
             >
-                <Stack direction={'row'} spacing={12} className="details">
+                <Stack
+                    className="details"
+                    direction={{ xs: 'column', sm: 'column', md: 'row' }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                >
                     <Stack className="trip-card-icons">
                         <Tooltip
                             title={
