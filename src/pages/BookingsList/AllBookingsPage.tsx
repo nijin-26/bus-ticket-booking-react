@@ -705,22 +705,22 @@ export const AllBookingsPage = () => {
     };
 
     // Function to mimic API call
-    const getAllBookings = () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const pageNumber = searchParams.get('page');
-                resolve({
-                    count: mockBookings.count,
-                    data: mockBookings.data.slice(
-                        (Number(pageNumber) - 1) * 10,
-                        Number(pageNumber) * 10
-                    ),
-                });
-            }, 2000);
-        });
-    };
 
     useEffect(() => {
+        const getAllBookings = () => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const pageNumber = searchParams.get('page');
+                    resolve({
+                        count: mockBookings.count,
+                        data: mockBookings.data.slice(
+                            (Number(pageNumber) - 1) * 10,
+                            Number(pageNumber) * 10
+                        ),
+                    });
+                }, 2000);
+            });
+        };
         //Fething data
         const getBookings = async () => {
             try {
