@@ -3,5 +3,7 @@ export const apiRoutes = {
     signUp: 'auth/sign-up',
     location: 'location',
     trip: 'trip',
-    tripSearch:'trip/search'
+    tripSearch: 'trip/search',
+    booking: 'booking',
+    user: 'user',
 };

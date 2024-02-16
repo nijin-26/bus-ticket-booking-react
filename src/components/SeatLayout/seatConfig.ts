@@ -1,4 +1,4 @@
-import { ISeat, ISeatStatus } from '../../api/types/trip';
+import { ISeat, ISeatStatus } from '../../types';
 import { IBerthLayout, ILayoutConfig } from './types';
 
 export const layoutNames = {

@@ -23,6 +23,8 @@ function App() {
     const [loading] = useState(false);
     const mode = useAppSelector((state) => state.theme.currentTheme);
 
+
+
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>

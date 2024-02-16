@@ -9,6 +9,7 @@ import { TripCardAccordion } from '../../components';
 import ActionBarDrawer from '../../components/actionBar/actionBarDrawer/ActionBarDrawer';
 import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import LoadMore from '../../components/loadMore/LoadMore';
+import { ISeatType, IBusType, ITrip } from '../../types';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSearchParams } from 'react-router-dom';
