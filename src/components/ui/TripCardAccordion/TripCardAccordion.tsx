@@ -20,11 +20,13 @@ interface ITripCardAccordionData extends ITrip {
 interface ITripCardAccordionProps {
     data: ITripCardAccordionData;
     defaultExpanded?: boolean;
+    mode: 'view' | 'edit';
 }
 
 export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
+    mode,
 }: ITripCardAccordionProps) => {
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
@@ -121,7 +123,7 @@ export const TripCardAccordion = ({
                     <p className="price">₹ {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
-            <TripCardDetails data={data} />
+            <TripCardDetails data={data} mode={mode} />
         </TripAccordionWrapper>
     );
 };

@@ -41,7 +41,7 @@ export const TripBookingPage = () => {
                     {dummyTripData.destination.name}
                 </Typography>
             </Stack>
-            <TripCardAccordion defaultExpanded={true} data={state} />
+            <TripCardAccordion defaultExpanded={true} data={state} mode='view'/>
             <PassengerDetailsForm />
         </>
     );

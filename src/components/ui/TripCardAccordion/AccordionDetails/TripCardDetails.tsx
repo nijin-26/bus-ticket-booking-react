@@ -14,7 +14,7 @@ import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
 import { convertTimeStamp, filterSelectedSeats } from '../../../../utils';
 import { useAppDispatch } from '../../../../app/hooks';
-import { setTripDetailsData } from '../../../../app/features/tripdetailsSlice';
+import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
 
@@ -30,7 +30,13 @@ interface ITripCardDetailsProps {
     formattedDuration: string;
 }
 
-export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
+export const TripCardDetails = ({
+    data,
+    mode,
+}: {
+    data: ITripCardAccordionData;
+    mode: 'view' | 'edit';
+}) => {
     const { t } = useTranslation('tripDetails');
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -65,7 +71,6 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
         }
     }, [data]);
 
-
     const {
         seats,
         departureTimestamp,
@@ -96,7 +101,8 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
     const initialSelectedStore = filterSelectedSeats(seats);
 
     // Selecting seats
-    const [selectedSeats, setSelectedSeats] = useState<number[]>(initialSelectedStore);
+    const [selectedSeats, setSelectedSeats] =
+        useState<number[]>(initialSelectedStore);
 
     const updateSelectedSeats = (newSeat: number) => {
         setSelectedSeats((prev) =>
@@ -114,8 +120,8 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
         return <>Loading...</>; // Display loader while loading is true
     }
     console.log('tripcard');
-    console.log("initial selected states",initialSelectedStore)
-    console.log("selected states", selectedSeats);
+    console.log('initial selected states', initialSelectedStore);
+    console.log('selected states', selectedSeats);
     return (
         <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
@@ -160,7 +166,7 @@ export const TripCardDetails = ({ data }: { data: ITripCardAccordionData }) => {
                         seats={seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
-                        mode={'edit'}
+                        mode={mode}
                     />
                 </Stack>
                 {!data.seats && (
