@@ -1,21 +1,21 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ISignInResponse } from '../../api/types/signIn';
 import storage from '../../utils/storageUtils';
+import { IAuthData } from '../../types';
 
-interface IUser {
-    firstName: string;
+interface IAuthUser {
+    fullName: string;
     email: string;
     role: null;
 }
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;
-    user: IUser | null;
+    user: IAuthUser | null;
 }
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
-    user: storage.getItem<IUser>('userData'),
+    user: storage.getItem<IAuthUser>('userData'),
 };
 
 const authSlice = createSlice({
@@ -28,7 +28,7 @@ const authSlice = createSlice({
         hideAuthModal: (state) => {
             state.isAuthModalDisplayed = false;
         },
-        setCredentials: (state, action: PayloadAction<ISignInResponse>) => {
+        setCredentials: (state, action: PayloadAction<IAuthData>) => {
             const { accessToken, ...rest } = action.payload;
             storage.setItem('accessToken', accessToken);
             storage.setItem('userData', rest);
