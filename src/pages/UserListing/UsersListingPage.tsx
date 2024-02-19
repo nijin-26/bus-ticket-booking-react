@@ -10,14 +10,12 @@ import useGetUsersTableColumns from './useGetUsersTableColumns';
 import { ListingPageWrapper } from '../BookingsList';
 
 interface IAllUsers {
-    count: number;
     data: IUser[];
 }
 
 export const UsersListingPage = () => {
     //Mock data
     const mockData = {
-        count: 20,
         data: users,
     };
     const { t } = useTranslation('usersList');
@@ -47,7 +45,6 @@ export const UsersListingPage = () => {
             setTimeout(() => {
                 const pageNumber = searchParams.get('page');
                 resolve({
-                    count: mockData.count,
                     data: mockData.data.slice(
                         (Number(pageNumber) - 1) * 10,
                         Number(pageNumber) * 10
@@ -65,8 +62,8 @@ export const UsersListingPage = () => {
                 const allUsersResponse = (await getAllUsers()) as IAllUsers;
                 setPageState((prev) => ({
                     ...prev,
-                    totalNumberOfData: allUsersResponse.count,
                     data: allUsersResponse.data,
+                    totalNumberOfData: allUsersResponse.data.length,
                 }));
             } catch (error) {
                 console.error(error);

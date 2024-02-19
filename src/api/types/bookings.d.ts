@@ -13,16 +13,3 @@ export interface IPassengerSeat {
     seatNumber: number;
     passenger: IPassenger;
 }
-
-export interface IBooking {
-    pnrNumber: string;
-    tripId: string;
-    origin: string;
-    destination: string;
-    departureTimestamp: string;
-    arrivalTimestamp: string;
-    seatType: string;
-    busType: string;
-    farePerSeat: number;
-    seats: IPassengerSeat[];
-}

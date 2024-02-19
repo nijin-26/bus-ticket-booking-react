@@ -95,7 +95,8 @@
         "exportAsCsv": "Descargar como CSV",
         "exportPrint": "Imprimir",
         "tableFooterTotal": "Total",
-        "tableFooterSubject": "reservas"
+        "tableFooterSubject": "reservas",
+        "date": "fecha"
     },
     "usersList": {
         "usersList": "Lista de Usuarios",

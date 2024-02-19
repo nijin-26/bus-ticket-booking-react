@@ -40,7 +40,6 @@ export const CustomTable = <T,>({
                 getRowId={(row: T) => String(row[rowId])}
                 columns={columns.map((column) => ({
                     ...column,
-                    headerName: column.headerName,
                     headerClassName: 'custom-header',
                     flex: 1,
                     sortable: false,
@@ -59,7 +58,6 @@ export const CustomTable = <T,>({
                     page: pageState.page,
                     pageSize: pageState.pageSize,
                 }}
-                paginationMode="server"
                 loading={pageState.loading}
                 disableRowSelectionOnClick
                 disableColumnFilter

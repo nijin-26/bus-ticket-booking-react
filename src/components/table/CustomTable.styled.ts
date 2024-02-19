@@ -21,7 +21,6 @@ export const CustomTableWrapper = styled(Box)(({ theme }) => ({
     },
 
     '& .MuiDataGrid-root': {
-        fontSize: '1.15rem',
         border: 'none',
         userSelect: 'none',
         '&:focus': {
