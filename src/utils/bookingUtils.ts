@@ -1,4 +1,5 @@
 import { ISeat, ISeatStatus } from '../api/types/trip';
+import { IGender, IPassengerSeat } from '../types';
 
 interface Ipdetails {
     fullName: string;
@@ -34,6 +35,57 @@ export const converterFun = (obj: IPassengersInput, tripId: number) => {
     });
     return { tripId: tripId, bookings: convertedPassengersArray };
 };
+
+//input
+// {
+//     "passengers": [
+//       {
+//         "seatNumber": 1,
+//         "fullName": "dfadf",
+//         "age": "23",
+//         "gender": "female"
+//       }
+//     ]
+//   }
+
+//output
+// [
+//     {
+//         seatNumber:23,
+//         passenger:{
+//             fullName:"assdg",
+//             age:12,
+//             gender:IGender.MALE
+//         }
+//     }
+// ]
+
+export const conv = (obj: IPassengersInput): IPassengerSeat[] => {
+    return obj.passengers.map((each) => ({
+        seatNumber: each.seatNumber,
+        passenger: {
+            fullName: each.fullName,
+            age: Number(each.age),
+            gender:
+                each.gender.toUpperCase() === 'MALE'
+                    ? IGender.MALE
+                    : IGender.FEMALE,
+        },
+    }));
+};
+
+// export function convertDataToPassengerSeats(
+//     data: IPassengersInput
+// ): IPassengerSeat[] {
+//     return data.passengers.map((passenger) => ({
+//         seatNumber: passenger.seatNumber,
+//         passenger: {
+//             fullName: passenger.fullName,
+//             age: passenger.age,
+//             gender: IGender[passenger.gender.toUpperCase()], // Map to the IGender enum
+//         },
+//     }));
+// }
 
 export const filterSelectedSeats = (arr: ISeat[]) => {
     const filteredSelectedSeats: number[] = arr

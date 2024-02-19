@@ -11,6 +11,8 @@ import { FareDetails } from '../../components/FareDetails/FareDetails';
 import { useRef, useState } from 'react';
 import { FormikProps } from 'formik';
 import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
+// import { conv } from '../../utils';
+// import { bookTicket } from '../../api/endpoints/ticket.api';
 // import FullScreenLoader from './FullScreenLoader';
 
 const dummyTripData: ITrip = {
@@ -35,28 +37,31 @@ const dummyTripData: ITrip = {
 };
 
 export const TripBookingPage = () => {
-    // const testObj: IPassengersInput = {
+    // const testObj = {
     //     passengers: [
     //         {
-    //             seatNumber: 1,
-    //             fullName: 'vsav',
+    //             seatNumber: 12,
+    //             fullName: 'asasas',
     //             age: '12',
-    //             gender: 'female',
+    //             gender: 'male',
     //         },
     //         {
-    //             seatNumber: 2,
-    //             fullName: 'fsvsv',
-    //             age: '12',
-    //             gender: 'female',
-    //         },
-    //         {
-    //             seatNumber: 3,
-    //             fullName: 'vsdvsdv',
-    //             age: '43',
+    //             seatNumber: 22,
+    //             fullName: 'sdadsd',
+    //             age: '23',
     //             gender: 'male',
     //         },
     //     ],
     // };
+
+    // const inputObj = conv(testObj);
+    // console.log(inputObj, 'this is the input obj for api');
+    // try {
+    //     const responseBook = bookTicket('2', inputObj);
+    //     console.log(responseBook, 'response after booking');
+    // } catch (err) {
+    //     console.log(err, 'error from api');
+    // }
 
     // const testAns = converterFun(testObj, 1);
     // console.log(testAns);
