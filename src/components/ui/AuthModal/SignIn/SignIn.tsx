@@ -1,22 +1,17 @@
-import { Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field } from 'formik';
-import getValidationSchema from './validationSchema';
-import { TextField } from 'formik-mui';
-import { signIn } from '../../../../api';
-import {
-    hideAuthModal,
-    setCredentials,
-} from '../../../../app/features/authSlice';
 import { useAppDispatch } from '../../../../app/hooks';
-import axios from 'axios';
-import { IAuthResponseError } from '../../../../types';
+import { Button, Stack } from '@mui/material';
+import { Formik, Form, Field } from 'formik';
+import { TextField } from 'formik-mui';
+import signInSubmitHandler from './submitHandler';
+import getValidationSchema from './validationSchema';
+import { ISignInForm } from '../../../../types';
 
 type TSignInProps = {
     closeModal: () => void;
 };
 
-const initialValues = {
+const initialValues: ISignInForm = {
     email: 'johng@gmail.com',
     password: 'John@123',
 };
@@ -29,31 +24,8 @@ const SignIn = ({ closeModal }: TSignInProps) => {
         <Formik
             initialValues={initialValues}
             validationSchema={getValidationSchema(t)}
-            onSubmit={async (values, { setSubmitting, setFieldError }) => {
-                try {
-                    const userData = await signIn(values);
-                    dispatch(setCredentials(userData));
-                    dispatch(hideAuthModal());
-                } catch (error) {
-                    if (
-                        axios.isAxiosError<IAuthResponseError>(error) &&
-                        error.response?.status === 401
-                    ) {
-                        const errorMessage = error.response.data.message;
-                        if (errorMessage === 'Invalid credentials.') {
-                            setFieldError(
-                                'password',
-                                t('invalidPasswordErrorMessage')
-                            );
-                        } else if (errorMessage === 'User not found.') {
-                            setFieldError(
-                                'email',
-                                t('userNotFoundErrorMessage')
-                            );
-                        }
-                    }
-                }
-                setSubmitting(false);
+            onSubmit={async (values, formikHelpers) => {
+                await signInSubmitHandler(values, formikHelpers, dispatch, t);
             }}
         >
             {() => {

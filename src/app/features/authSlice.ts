@@ -1,12 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import storage from '../../utils/storageUtils';
-import { IAuthData } from '../../types';
-
-interface IAuthUser {
-    fullName: string;
-    email: string;
-    role: null;
-}
+import { IAuthData, IAuthUser } from '../../types';
+import { getUserDataFromStorage } from '../../utils/authUtils';
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;
@@ -15,7 +10,7 @@ interface IAuthState {
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
-    user: storage.getItem<IAuthUser>('userData'),
+    user: getUserDataFromStorage(),
 };
 
 const authSlice = createSlice({
@@ -36,6 +31,7 @@ const authSlice = createSlice({
         },
         logout: (state) => {
             storage.removeItem('accessToken');
+            storage.removeItem('userData');
             state.user = null;
         },
     },
