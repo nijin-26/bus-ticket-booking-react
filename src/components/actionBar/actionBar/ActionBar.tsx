@@ -18,7 +18,7 @@ import React, { useEffect, useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
-import { locationOptions, paths } from '../../../config';
+import { paths } from '../../../config';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getLocations } from '../../../api';
@@ -30,42 +30,58 @@ interface IActionBarProps {
 const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
     );
+    const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
 
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
-
-    //let locOptions: ILocationOptions[] = [];
-    const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
 
     useEffect(() => {
+        const originParam = searchParams.get('originID');
+        const destinationParam = searchParams.get('destinationID');
+
+        const getLocOptions = async () => {
+            try {
+                const loc = await getLocations();
+                const converterLoc = loc.map((locObj) => {
+                    return { id: Number(locObj.id), label: locObj.name };
+                });
+                setLocOptions(converterLoc);
+                setParamOptions();
+            } catch (err) {
+                // show error
+                console.log('There is an error', err);
+            }
+        };
+
+        // setting origin and destination from query params
+        const setParamOptions = () => {
+            const originlocation = locOptions.find((opt) => {
+                return opt.id === Number(originParam);
+            });
+            const destinationlocation = locOptions.find((opt) => {
+                return opt.id === Number(destinationParam);
+            });
+
+            if (originlocation) {
+                setStartLocation(originlocation);
+            }
+            if (destinationlocation) {
+                setStopLocation(destinationlocation);
+            }
+        };
+
         getLocOptions().catch(() => {
             console.log('couldnt fetch location into locOptions');
         });
-    }, []);
+    }, [locOptions]);
 
-    const getLocOptions = async () => {
-        try {
-            const loc = await getLocations();
-            const converterLoc = loc.map((locObj) => {
-                return { id: Number(locObj.id), label: locObj.name };
-            });
-            setLocOptions(converterLoc);
-            console.log(locOptions);
-            console.log(locationOptions);
-        } catch (err) {
-            // show error
-            console.log('There is an error', err);
-        }
-    };
-
-    console.log(locOptions);
     // setting start location
     const handleStartSelect = (
         _: React.SyntheticEvent,
@@ -73,6 +89,10 @@ const ActionBar: React.FC<IActionBarProps> = ({
     ) => {
         if (selectedValue) {
             setStartLocation(selectedValue);
+            searchParams.delete('originID');
+            setSearchParams(searchParams);
+            // searchParams.set('originID', selectedValue.id.toString());
+            // setSearchParams(searchParams);
         }
     };
 
@@ -83,14 +103,21 @@ const ActionBar: React.FC<IActionBarProps> = ({
     ) => {
         if (selectedValue) {
             setStopLocation(selectedValue);
+            searchParams.delete('destinationID');
+            setSearchParams(searchParams);
+            // searchParams.set('destinationID', selectedValue.id.toString());
+            // setSearchParams(searchParams);
         }
     };
 
     // swap to and from locations
     const swapLocationOptions = () => {
-        const tempTo = stopLocation;
-        setStopLocation(startLocation);
-        setStartLocation(tempTo);
+        if (startLocation && stopLocation) {
+            const tempTo = stopLocation;
+
+            setStopLocation(startLocation);
+            setStartLocation(tempTo);
+        }
     };
 
     // submit handler
@@ -124,6 +151,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             })}
                             value={startLocation}
                             onChange={handleStartSelect}
+                            isOptionEqualToValue={(option, value) =>
+                                option.id === value.id
+                            }
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -168,6 +198,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             })}
                             value={stopLocation}
                             onChange={handleStopSelect}
+                            isOptionEqualToValue={(option, value) =>
+                                option.id === value.id
+                            }
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
