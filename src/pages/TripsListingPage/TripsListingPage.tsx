@@ -14,11 +14,13 @@ import { useSearchParams } from 'react-router-dom';
 import { getTrips } from '../../api';
 import { ITrip } from '../../types';
 import { rowsPerPage } from '../../config';
+import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 
 export const TripsListingPage = () => {
-    const hasMounted = useRef(false);
+    const hasMounted = useRef(true);
     const [tripData, setTripData] = useState<ITrip[]>([]);
     const [resultLength, setResultLength] = useState<number>(0);
+    const [btnLoading, setBtnLoading] = useState(false);
     const [searchParams] = useSearchParams();
     const matches = useMediaQuery('(min-width:600px)');
     // setSearchParams({ page: '1' });
@@ -26,7 +28,9 @@ export const TripsListingPage = () => {
     const [page, setPage] = useState('1');
 
     useEffect(() => {
+        console.log('Mount');
         const fetchTripData = async () => {
+            setBtnLoading(true);
             const originId = searchParams.get('originId') ?? '8';
             const destinationId = searchParams.get('destinationId') ?? '9';
             const tripDate = searchParams.get('tripDate') ?? '2024-05-14';
@@ -54,16 +58,17 @@ export const TripsListingPage = () => {
                 const response = await getTrips(params);
                 setTripData((prev) => [...prev, ...response.trips]);
                 setResultLength(response.resultCount);
+                setBtnLoading(false);
             } catch (error) {
                 console.error('Error fetching trip data:', error);
             }
         };
         if (hasMounted.current) {
+            console.log(hasMounted.current);
+            hasMounted.current = false;
             fetchTripData().catch((error) => {
                 console.error('Error in useEffect:', error);
             });
-        } else {
-            hasMounted.current = true;
         }
     }, [page, searchParams]);
 
@@ -71,17 +76,22 @@ export const TripsListingPage = () => {
     return (
         <TripsListingPageWrapper>
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
-            {tripData.map((indData) => {
-                // console.log('inddata', indData);
-                return <TripCardAccordion key={indData.id} data={indData} />;
-            })}
+            <div className="accordions">
+                {tripData.map((indData) => (
+                    <TripCardAccordion key={indData.id} data={indData} />
+                ))}
+            </div>
             {resultLength > 5 && tripData.length != resultLength && (
                 <LoadMore
                     resultLength={resultLength}
                     setPage={setPage}
                     page={page}
+                    btnLoading={btnLoading}
+                    setBtnLoading={setBtnLoading}
+                    hasMounted={hasMounted}
                 />
             )}
+            <FullScreenLoader open={btnLoading} />
         </TripsListingPageWrapper>
     );
 };

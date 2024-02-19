@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const LoadMoreWrapper = styled('div')(({ theme }) => ({
-    marginTop: '5rem',
     marginBottom: '4rem',
     position: 'relative',
 

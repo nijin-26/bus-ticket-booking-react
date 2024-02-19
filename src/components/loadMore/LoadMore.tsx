@@ -3,14 +3,30 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // import { useSearchParams } from 'react-router-dom';
 import { rowsPerPage } from '../../config';
-import { useState } from 'react';
+import { useTheme } from '@emotion/react';
+import { MutableRefObject } from 'react';
 
-const LoadMore = ({ resultLength, page, setPage }: { resultLength: number,page: string, setPage: (arg: string) => void }) => {
+const LoadMore = ({
+    resultLength,
+    page,
+    setPage,
+    btnLoading,
+    setBtnLoading,
+    hasMounted,
+}: {
+    resultLength: number;
+    page: string;
+    setPage: (arg: string) => void;
+    btnLoading: boolean;
+    setBtnLoading: (arg: boolean) => void;
+    hasMounted: MutableRefObject<boolean>;
+}) => {
     // const [searchParams, setSearchParams] = useSearchParams();
-    const [btnLoading, setBtnLoading] = useState(false);
+
+    const theme = useTheme();
 
     const handleLoadMore = () => {
-        console.log('btnclicked');
+        hasMounted.current = true;
         setBtnLoading(true);
         const totalPages = String(Math.ceil(resultLength / rowsPerPage));
         // let page = searchParams.get('page') ?? '1';
@@ -19,7 +35,6 @@ const LoadMore = ({ resultLength, page, setPage }: { resultLength: number,page: 
         }
         // searchParams.set('page', page);
         // setSearchParams(searchParams);
-        setBtnLoading(false);
         setPage(page);
     };
     return (
@@ -31,6 +46,11 @@ const LoadMore = ({ resultLength, page, setPage }: { resultLength: number,page: 
                 variant="outlined"
                 className="load-more-btn"
                 onClick={handleLoadMore}
+                sx={{
+                    '& .MuiLoadingButton-loadingIndicator': {
+                        color: theme.color.secondary,
+                    },
+                }}
             >
                 Load More
             </LoadingButton>

@@ -1,3 +1,7 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-export const TripsListingPageWrapper = styled.section``;
+export const TripsListingPageWrapper = styled('div')(() => ({
+    '.accordions': {
+        marginBottom: '5rem',
+    },
+}));
