@@ -30,7 +30,9 @@
         "passwordValidationMsg": "Password must be at least 6 characters.",
         "passwordRequired": "Password is required.",
         "passwordMatch": "Passwords must match.",
-        "confirmPasswordRequired": "Confirm Password is required."
+        "confirmPasswordRequired": "Confirm Password is required.",
+        "invalidPasswordErrorMessage": "Incorrect Password",
+        "userNotFoundErrorMessage": "User does not exist"
     },
     "seatLayout": {
         "available": "Available",

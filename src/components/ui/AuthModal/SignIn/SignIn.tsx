@@ -9,6 +9,8 @@ import {
     setCredentials,
 } from '../../../../app/features/authSlice';
 import { useAppDispatch } from '../../../../app/hooks';
+import axios from 'axios';
+import { IAuthResponseError } from '../../../../types';
 
 type TSignInProps = {
     closeModal: () => void;
@@ -27,16 +29,31 @@ const SignIn = ({ closeModal }: TSignInProps) => {
         <Formik
             initialValues={initialValues}
             validationSchema={getValidationSchema(t)}
-            onSubmit={async (values, { setSubmitting }) => {
+            onSubmit={async (values, { setSubmitting, setFieldError }) => {
                 try {
                     const userData = await signIn(values);
                     dispatch(setCredentials(userData));
+                    dispatch(hideAuthModal());
                 } catch (error) {
-                    console.log(error);
+                    if (
+                        axios.isAxiosError<IAuthResponseError>(error) &&
+                        error.response?.status === 401
+                    ) {
+                        const errorMessage = error.response.data.message;
+                        if (errorMessage === 'Invalid credentials.') {
+                            setFieldError(
+                                'password',
+                                t('invalidPasswordErrorMessage')
+                            );
+                        } else if (errorMessage === 'User not found.') {
+                            setFieldError(
+                                'email',
+                                t('userNotFoundErrorMessage')
+                            );
+                        }
+                    }
                 }
-
                 setSubmitting(false);
-                dispatch(hideAuthModal());
             }}
         >
             {() => {

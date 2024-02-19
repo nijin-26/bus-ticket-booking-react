@@ -4,3 +4,9 @@ export interface IAuthData {
     email: string;
     role: null;
 }
+
+export interface IAuthResponseError {
+    success: false;
+    message: string;
+    errorDetail: unknown;
+}
