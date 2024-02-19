@@ -1,10 +1,7 @@
 import { Grid, Stack, Typography } from '@mui/material';
-import PassengerDetailsForm, {
-    IPassengerDetails,
-} from './PassengerDetailsForm/PassengerDetailsForm';
+import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
 import { TripCardAccordion } from '../../components';
-import { ITrip, ISeatType, IBusType } from '../../types';
 import { useAppSelector } from '../../app/hooks';
 import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
 
@@ -14,67 +11,23 @@ import { FareDetails } from '../../components/FareDetails/FareDetails';
 import { useRef, useState } from 'react';
 import { FormikProps } from 'formik';
 import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
-// import { conv } from '../../utils';
-// import { bookTicket } from '../../api/endpoints/ticket.api';
-// import FullScreenLoader from './FullScreenLoader';
+import { IPassengersInputFromFormik, filterSelectedSeats } from '../../utils';
 
-// TODO: fetch data from store
-const dummyTripData: ITrip = {
-    id: '1',
-    origin: {
-        name: 'Chennai',
-        id: '1',
-        shortCode: 'MAA',
-    },
-    destination: {
-        name: 'Bangalore',
-        id: '2',
-        shortCode: 'BLR',
-    },
-    departureTimestamp: new Date('2024-02-01T06:00:00Z'),
-    arrivalTimestamp: new Date('2024-02-01T12:00:00Z'),
-    seatType: ISeatType.SLEEPER,
-    busType: IBusType.AC,
-    farePerSeat: 50,
-    availableSeats: 20,
-    totalSeats: 30,
-};
+import FullScreenLoader from './FullScreenLoader';
 
 export const TripBookingPage = () => {
     const state = useAppSelector((state) =>
         fromSerializable(state.tripDetails)
     );
-    // const testObj = {
-    //     passengers: [
-    //         {
-    //             seatNumber: 12,
-    //             fullName: 'asasas',
-    //             age: '12',
-    //             gender: 'male',
-    //         },
-    //         {
-    //             seatNumber: 22,
-    //             fullName: 'sdadsd',
-    //             age: '23',
-    //             gender: 'male',
-    //         },
-    //     ],
-    // };
+    console.log(state, 'this is the state');
+    const selectedSeats = filterSelectedSeats(state.seats);
 
-    // const inputObj = conv(testObj);
-    // console.log(inputObj, 'this is the input obj for api');
-    // try {
-    //     const responseBook = bookTicket('2', inputObj);
-    //     console.log(responseBook, 'response after booking');
-    // } catch (err) {
-    //     console.log(err, 'error from api');
-    // }
-
-    // const testAns = converterFun(testObj, 1);
-    // console.log(testAns);
     const [showDialog, setShowDialog] = useState(false);
-    // const [showLoader, setShowLoader] = useState(false);
-    const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
+    const [showLoader, setShowLoader] = useState(false);
+    const setShowLoaderFun = (bool: boolean) => {
+        setShowLoader(bool);
+    };
+    const formikRef = useRef<FormikProps<IPassengersInputFromFormik>>(null);
 
     const handleFormSubmit = () => {
         if (formikRef.current?.isValid) {
@@ -88,11 +41,11 @@ export const TripBookingPage = () => {
         <>
             <Stack direction="row" alignItems="center" mt={4} mb={3} gap="2rem">
                 <Typography component="h1" variant="h4">
-                    {dummyTripData.origin.name}
+                    {state.origin.name}
                 </Typography>
                 <LongArrow width="8rem" height="100%" />
                 <Typography component="h1" variant="h4">
-                    {dummyTripData.destination.name}
+                    {state.destination.name}
                 </Typography>
             </Stack>
             <TripCardAccordion
@@ -100,7 +53,12 @@ export const TripBookingPage = () => {
                 data={state}
                 mode="view"
             />
-            <PassengerDetailsForm formikRef={formikRef} selectedSeats={[1]} />
+            <PassengerDetailsForm
+                formikRef={formikRef}
+                selectedSeats={selectedSeats}
+                loaderFun={setShowLoaderFun}
+                tripId={state.id}
+            />
 
             <Grid container alignItems="center" mb={6} spacing={1.5}>
                 <Grid item xs={12} sm={9}>
@@ -110,7 +68,6 @@ export const TripBookingPage = () => {
                     <StyledButton
                         onClick={() => {
                             handleFormSubmit();
-                            // setShowLoader(true);
                         }}
                         fullWidth
                     >
@@ -127,12 +84,13 @@ export const TripBookingPage = () => {
                 agreeText="Confirm"
                 disagreeText="Decline"
                 handleAgreeFunction={() => {
+                    setShowLoader(true);
                     formikRef.current?.handleSubmit();
                 }}
             >
                 Are you sure you want to confirm
             </ConfirmDialog>
-            {/* <FullScreenLoader open={showLoader}  /> */}
+            <FullScreenLoader open={showLoader} />
         </>
     );
 };

@@ -5,28 +5,42 @@ import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect, RefObject } from 'react';
 import { useTheme } from '@emotion/react';
+import { IPassengersInputFromFormik, conv } from '../../../utils';
+import { bookTicket } from '../../../api/endpoints/ticket.api';
 
-export interface IPassengerDetails {
-    passengers: {
-        seatNumber: number;
-        fullName: string;
-        age: string;
-        gender: string;
-    }[];
-}
 interface IPassengerDetailsFormProps {
     selectedSeats: number[];
-    formikRef: RefObject<FormikProps<IPassengerDetails>>;
+    formikRef: RefObject<FormikProps<IPassengersInputFromFormik>>;
+    loaderFun: (bool: boolean) => void;
+    tripId: string;
 }
 
 const PassengerDetailsForm = ({
     selectedSeats,
     formikRef,
+    loaderFun,
+    tripId,
 }: IPassengerDetailsFormProps) => {
     const { t } = useTranslation('passengerDetails');
     const theme = useTheme();
 
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
+
+    const postBookingData = async (obj: IPassengersInputFromFormik) => {
+        const inputObj = conv(obj);
+        console.log(inputObj, 'this is the input obj for api');
+        try {
+            const responseBook = await bookTicket(tripId, inputObj);
+            console.log(
+                responseBook,
+                'response after booking hahahahahahahahahahahahha'
+            );
+        } catch (err) {
+            console.log('error from api hahahahahahahahahahahahahahahahaha');
+        } finally {
+            loaderFun(false);
+        }
+    };
 
     useEffect(() => {
         // Incrementing languageChangeKey to force re-render when language changes
@@ -55,8 +69,8 @@ const PassengerDetailsForm = ({
             validationSchema={getValidationSchema(t)}
             validateOnChange={false}
             onSubmit={(values, { setSubmitting }) => {
+                void postBookingData(values);
                 setSubmitting(false);
-                alert(JSON.stringify(values, null, 2));
             }}
         >
             {({ values }) => (

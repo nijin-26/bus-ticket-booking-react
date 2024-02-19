@@ -9,7 +9,7 @@ interface Ipdetails {
 interface IPassengers extends Ipdetails {
     seatNumber: number;
 }
-export interface IPassengersInput {
+export interface IPassengersInputFromFormik {
     passengers: IPassengers[];
 }
 // interface Iseats {
@@ -22,7 +22,10 @@ export interface IPassengersInput {
 //     seats: Iseats;
 // }
 
-export const converterFun = (obj: IPassengersInput, tripId: number) => {
+export const converterFun = (
+    obj: IPassengersInputFromFormik,
+    tripId: number
+) => {
     const passengersArray = obj.passengers;
     const convertedPassengersArray = passengersArray.map((each) => {
         const { seatNumber, fullName, age, gender } = each;
@@ -60,7 +63,7 @@ export const converterFun = (obj: IPassengersInput, tripId: number) => {
 //     }
 // ]
 
-export const conv = (obj: IPassengersInput): IPassengerSeat[] => {
+export const conv = (obj: IPassengersInputFromFormik): IPassengerSeat[] => {
     return obj.passengers.map((each) => ({
         seatNumber: each.seatNumber,
         passenger: {
@@ -75,7 +78,7 @@ export const conv = (obj: IPassengersInput): IPassengerSeat[] => {
 };
 
 // export function convertDataToPassengerSeats(
-//     data: IPassengersInput
+//     data: IPassengersInputFromFormik
 // ): IPassengerSeat[] {
 //     return data.passengers.map((passenger) => ({
 //         seatNumber: passenger.seatNumber,
