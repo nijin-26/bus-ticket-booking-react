@@ -10,18 +10,23 @@ import Tooltip from '@mui/material/Tooltip';
 import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
-import { ITrip, IBusType, ISeatType } from '../../../types';
+import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 
 let borderDesignClass: string;
+interface ITripCardAccordionData extends ITrip {
+    seats?: ISeat[];
+}
 
 interface ITripCardAccordionProps {
-    data: ITrip;
+    data: ITripCardAccordionData;
     defaultExpanded?: boolean;
+    mode: 'view' | 'edit';
 }
 
 export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
+    mode,
 }: ITripCardAccordionProps) => {
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
@@ -43,14 +48,19 @@ export const TripCardAccordion = ({
         <TripAccordionWrapper
             className={`summary ${borderDesignClass}`}
             defaultExpanded={defaultExpanded}
+            slotProps={{ transition: { unmountOnExit: true } }}
         >
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
                 id="panel-header"
-                disabled={data.availableSeats == 0}
+                disabled={data.totalSeats == 0}
             >
-                <Stack direction={'row'} spacing={12} className="details">
+                <Stack
+                    className="details"
+                    direction={{ xs: 'column', sm: 'column', md: 'row' }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                >
                     <Stack className="trip-card-icons">
                         <Tooltip
                             title={
@@ -110,10 +120,10 @@ export const TripCardAccordion = ({
                     <p className={`seats ${borderDesignClass}`}>
                         {data.availableSeats} seats available
                     </p>
-                    <p className="price">Rs. {data.farePerSeat}/-</p>
+                    <p className="price">₹ {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
-            <TripCardDetails />
+            <TripCardDetails data={data} mode={mode} />
         </TripAccordionWrapper>
     );
 };

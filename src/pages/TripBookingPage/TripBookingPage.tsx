@@ -5,6 +5,9 @@ import PassengerDetailsForm, {
 import LongArrow from '../../components/icons/LongArrow';
 import { TripCardAccordion } from '../../components';
 import { ITrip, ISeatType, IBusType } from '../../types';
+import { useAppSelector } from '../../app/hooks';
+import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
+
 import { t } from 'i18next';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
@@ -15,6 +18,7 @@ import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
 // import { bookTicket } from '../../api/endpoints/ticket.api';
 // import FullScreenLoader from './FullScreenLoader';
 
+// TODO: fetch data from store
 const dummyTripData: ITrip = {
     id: '1',
     origin: {
@@ -37,6 +41,9 @@ const dummyTripData: ITrip = {
 };
 
 export const TripBookingPage = () => {
+    const state = useAppSelector((state) =>
+        fromSerializable(state.tripDetails)
+    );
     // const testObj = {
     //     passengers: [
     //         {
@@ -88,7 +95,11 @@ export const TripBookingPage = () => {
                     {dummyTripData.destination.name}
                 </Typography>
             </Stack>
-            <TripCardAccordion defaultExpanded={true} data={dummyTripData} />
+            <TripCardAccordion
+                defaultExpanded={true}
+                data={state}
+                mode="view"
+            />
             <PassengerDetailsForm formikRef={formikRef} selectedSeats={[1]} />
 
             <Grid container alignItems="center" mb={6} spacing={1.5}>

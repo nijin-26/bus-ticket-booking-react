@@ -1,37 +1,123 @@
 import { IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
 import SeatLayout from '../../../SeatLayout/SeatLayout';
-import { useState } from 'react';
-import { layoutNames, seats } from '../../../SeatLayout/seatConfig';
+import { useEffect, useState } from 'react';
+import { layoutNames } from '../../../SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../FareDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StyledButton } from '../../../Button/Button.styled';
 import { paths } from '../../../../config';
 import { TripCardDetailsWrapper } from './TripCardDetails.styled';
 import { SeatLegend } from './components/SeatLegend/SeatLegend';
+import { convertTimeStamp, filterSelectedSeats } from '../../../../utils';
+import { useAppDispatch } from '../../../../app/hooks';
+import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
+import { getTrip } from '../../../../api';
+import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
+import { toSerializable } from '../../../../app/features/utils/tripDetailsHelperFns';
 
-export const TripCardDetails = () => {
-    const farePerSeat: number = 1200;
+interface ITripCardAccordionData extends ITrip {
+    seats?: ISeat[];
+}
 
-    const [selectedSeats, setSelectedSeats] = useState<number[]>([2, 6, 10]);
+interface ITripCardDetailsProps {
+    formattedDepartureTime: string;
+    formattedDepartureDate: string;
+    formattedArrivalTime: string;
+    formattedArrivalDate: string;
+    formattedDuration: string;
+}
+
+export const TripCardDetails = ({
+    data,
+    mode,
+}: {
+    data: ITripCardAccordionData;
+    mode: 'view' | 'edit';
+}) => {
+    const { t } = useTranslation('tripDetails');
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [tripSpecificData, setTripSpecificData] = useState<ITripDetailed>({
+        ...data,
+        seats: [],
+    });
+    // Selecting seats
+    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await getTrip(data.id);
+                if (response) {
+                    console.log(response);
+                    setTripSpecificData(response);
+                } else {
+                    console.log('Trip data not available');
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (!data.seats) {
+            void fetchData();
+        } else {
+            setTripSpecificData({ ...data, seats: data.seats });
+            setSelectedSeats(filterSelectedSeats(data.seats));
+            setLoading(false);
+        }
+    }, [data]);
+
+    const {
+        seats,
+        departureTimestamp,
+        arrivalTimestamp,
+        origin,
+        destination,
+        seatType,
+        busType,
+    } = tripSpecificData;
+
+    const dates: ITripCardDetailsProps = convertTimeStamp(
+        departureTimestamp,
+        arrivalTimestamp
+    );
+
+    const tripDetails = {
+        departureTime: dates.formattedDepartureTime,
+        departureDate: dates.formattedDepartureDate,
+        arrivalTime: dates.formattedArrivalTime,
+        arrivalDate: dates.formattedArrivalDate,
+        duration: dates.formattedDuration,
+        origin,
+        destination,
+        seatType,
+        busType,
+    };
 
     const updateSelectedSeats = (newSeat: number) => {
-        if (selectedSeats.includes(newSeat)) {
-            setSelectedSeats((prev) =>
-                prev.filter((selectedSeat) => selectedSeat != newSeat)
-            );
-        } else setSelectedSeats((prev) => [...prev, newSeat]);
+        setSelectedSeats((prev) =>
+            prev.includes(newSeat)
+                ? prev.filter((selectedSeat) => selectedSeat !== newSeat)
+                : [...prev, newSeat]
+        );
     };
+
     const clearSelectedSeats = () => {
         setSelectedSeats([]);
     };
 
-    const { t } = useTranslation('tripDetails');
-    const currentUrl = useLocation();
-
+    if (loading) {
+        return <>Loading...</>; // Display loader while loading is true
+    }
     return (
         <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
@@ -50,18 +136,22 @@ export const TripCardDetails = () => {
                         ) : (
                             <StyledAlert
                                 action={
-                                    <Tooltip title="Delete selection" arrow>
-                                        <IconButton
-                                            aria-label="delete"
-                                            color="inherit"
-                                            size="small"
-                                            onClick={() => {
-                                                clearSelectedSeats();
-                                            }}
-                                        >
-                                            <DeleteForeverIcon fontSize="inherit" />
-                                        </IconButton>
-                                    </Tooltip>
+                                    data.seats ? (
+                                        <></>
+                                    ) : (
+                                        <Tooltip title="Delete selection" arrow>
+                                            <IconButton
+                                                aria-label="delete"
+                                                color="inherit"
+                                                size="small"
+                                                onClick={() => {
+                                                    clearSelectedSeats();
+                                                }}
+                                            >
+                                                <DeleteForeverIcon fontSize="inherit" />
+                                            </IconButton>
+                                        </Tooltip>
+                                    )
                                 }
                                 sx={{ mb: 2 }}
                             >
@@ -76,9 +166,10 @@ export const TripCardDetails = () => {
                         seats={seats}
                         selectedSeats={selectedSeats}
                         updateSelectedSeats={updateSelectedSeats}
+                        mode={mode}
                     />
                 </Stack>
-                {currentUrl.pathname !== paths.tripBooking && (
+                {!data.seats && (
                     <Stack
                         direction={{ xs: 'column', sm: 'row' }}
                         justifyContent={'space-between'}
@@ -86,23 +177,46 @@ export const TripCardDetails = () => {
                         mt={5}
                         className="checkout-section"
                     >
-                        {selectedSeats.length > 0 && farePerSeat > 0 && (
+                        {selectedSeats.length > 0 && data.farePerSeat > 0 && (
                             <FareDetails
                                 noOfSeats={selectedSeats.length}
-                                farePerSeat={farePerSeat}
+                                farePerSeat={data.farePerSeat}
                             />
                         )}
                         <StyledButton
                             variant="contained"
                             disabled={
-                                !(selectedSeats.length > 0 && farePerSeat > 0)
+                                !(
+                                    selectedSeats.length > 0 &&
+                                    data.farePerSeat > 0
+                                )
                             }
+                            onClick={() => {
+                                //update store with tripdetails
+                                seats.forEach((seat) => {
+                                    if (
+                                        selectedSeats.includes(seat.seatNumber)
+                                    ) {
+                                        seat.status = ISeatStatus.SELECTED;
+                                    }
+                                });
+
+                                dispatch(
+                                    setTripDetailsData(
+                                        toSerializable({
+                                            ...tripSpecificData,
+                                            seats,
+                                        })
+                                    )
+                                );
+                                navigate(paths.tripBooking);
+                            }}
                         >
                             {t('checkoutBtnTxt')}
                         </StyledButton>
                     </Stack>
                 )}
-                <DetailsGrid />
+                <DetailsGrid tripDetails={tripDetails} />
             </Stack>
         </TripCardDetailsWrapper>
     );

@@ -11,8 +11,9 @@ const {
     actionBar,
     pnrSearch,
     filterSort,
-    landingPage,
+    tripListing,
     auth,
+    landingPage,
 } = data;
 const resources = {
     ns1,
@@ -25,6 +26,7 @@ const resources = {
     pnrSearch,
     filterSort,
     tripDetails,
+    tripListing,
     landingPage,
     passengerDetails,
 } as const;
