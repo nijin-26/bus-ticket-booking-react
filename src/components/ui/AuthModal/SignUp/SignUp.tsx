@@ -1,93 +1,81 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { useAppDispatch } from '../../../../app/hooks';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Button, Stack } from '@mui/material';
+import { Formik, Form, Field } from 'formik';
+import { TextField } from 'formik-mui';
 import getValidationSchema from './validationSchema';
+import signUpSubmitHandler from './submitHandler';
+import { ISignUpForm } from '../../../../types';
 
 type TSignUpProps = {
     closeModal: () => void;
 };
 
-const initialValues = {
-    fullName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
+const initialValues: ISignUpForm = {
+    fullName: 'Johny',
+    email: 'johng@gmail.com',
+    phone: '6123456789',
+    password: 'John@123',
+    confirmPassword: 'John@123',
 };
 
 const SignUp = ({ closeModal }: TSignUpProps) => {
     const { t } = useTranslation('auth');
-
-    const handleSubmit = () => {};
+    const dispatch = useAppDispatch();
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={getValidationSchema(t)}
-            onSubmit={handleSubmit}
+            onSubmit={async (values, formikHelpers) => {
+                await signUpSubmitHandler(values, formikHelpers, dispatch, t);
+            }}
         >
-            {({ errors, touched }) => (
-                <Form>
+            {({ isSubmitting }) => (
+                <Form noValidate>
                     <Stack gap={4}>
                         <Field
-                            as={TextField}
+                            fullWidth
+                            component={TextField}
                             label={t('fullName')}
-                            type="text"
                             name="fullName"
                             required
-                            fullWidth
-                            error={errors.fullName && touched.fullName}
-                            helperText={<ErrorMessage name="fullName" />}
                         />
 
                         <Field
-                            as={TextField}
+                            fullWidth
+                            component={TextField}
                             label={t('email')}
                             type="email"
                             name="email"
                             required
-                            fullWidth
-                            error={errors.email && touched.email}
-                            helperText={<ErrorMessage name="email" />}
                         />
 
                         <Field
-                            as={TextField}
+                            fullWidth
+                            component={TextField}
                             label={t('phone')}
-                            type=""
                             name="phone"
                             required
-                            fullWidth
-                            error={errors.phone && touched.phone}
-                            helperText={<ErrorMessage name="phone" />}
                         />
 
                         <Stack direction={'row'} gap={2}>
                             <Field
-                                as={TextField}
+                                fullWidth
+                                component={TextField}
                                 label={t('password')}
                                 type="password"
                                 name="password"
                                 required
-                                fullWidth
-                                error={errors.password && touched.password}
-                                helperText={<ErrorMessage name="password" />}
                             />
 
                             <Field
-                                as={TextField}
+                                fullWidth
+                                component={TextField}
                                 label={t('confirmPassword')}
                                 type="password"
                                 name="confirmPassword"
                                 required
-                                fullWidth
-                                error={
-                                    errors.confirmPassword &&
-                                    touched.confirmPassword
-                                }
-                                helperText={
-                                    <ErrorMessage name="confirmPassword" />
-                                }
                             />
                         </Stack>
 
@@ -103,7 +91,12 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
                             >
                                 {t('cancel')}
                             </Button>
-                            <Button type="submit" variant="contained" fullWidth>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                fullWidth
+                                disabled={isSubmitting}
+                            >
                                 {t('signUp')}
                             </Button>
                         </Stack>

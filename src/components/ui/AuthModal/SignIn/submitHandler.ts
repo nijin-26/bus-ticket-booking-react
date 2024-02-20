@@ -8,7 +8,6 @@ import { TFunction } from 'i18next';
 import { FormikHelpers } from 'formik';
 import { IAuthResponseError, ISignInForm } from '../../../../types';
 import { AppDispatch } from '../../../../app/store';
-import { ISignInRequest } from '../../../../api/types/signIn';
 
 const signInSubmitHandler = async (
     values: ISignInForm,
@@ -17,7 +16,7 @@ const signInSubmitHandler = async (
     t: TFunction<'auth'>
 ) => {
     try {
-        const userData = await signIn(values as ISignInRequest);
+        const userData = await signIn(values);
         dispatch(setCredentials(userData));
         formikHelpers.resetForm();
         dispatch(hideAuthModal());
@@ -38,10 +37,10 @@ const signInSubmitHandler = async (
                     t('userNotFoundErrorMessage')
                 );
             } else {
-                console.log(error.response.data);
+                console.error(error.response.data);
             }
         } else {
-            console.log(error);
+            console.error(error);
         }
     }
     formikHelpers.setSubmitting(false);

@@ -32,7 +32,8 @@
         "passwordMatch": "Las contraseñas deben coincidir.",
         "confirmPasswordRequired": "Se requiere confirmar la contraseña.",
         "invalidPasswordErrorMessage": "Contraseña incorrecta",
-        "userNotFoundErrorMessage": "El usuario no existe"
+        "userNotFoundErrorMessage": "El usuario no existe",
+        "userAlreadyExistsErrorMessage": "El usuario ya existe"
     },
     "seatLayout": {
         "available": "Disponible",

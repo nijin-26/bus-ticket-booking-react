@@ -28,7 +28,7 @@ const SignIn = ({ closeModal }: TSignInProps) => {
                 await signInSubmitHandler(values, formikHelpers, dispatch, t);
             }}
         >
-            {() => {
+            {({ isSubmitting }) => {
                 return (
                     <Form noValidate>
                         <Stack gap={4}>
@@ -65,6 +65,7 @@ const SignIn = ({ closeModal }: TSignInProps) => {
                                     type="submit"
                                     variant="contained"
                                     fullWidth
+                                    disabled={isSubmitting}
                                 >
                                     {t('signIn')}
                                 </Button>

@@ -12,6 +12,7 @@ export interface ISignUpProps {
 }
 
 export const signIn = async (body: ISignInRequest): Promise<IAuthData> => {
+    // throw new Error('Error');
     const response: ISignInResponse = await API.post(apiRoutes.signIn, body);
     const authData = getAuthDataFromSignInResponse(response);
     return authData;
