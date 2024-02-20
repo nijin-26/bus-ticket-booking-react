@@ -4,9 +4,9 @@ const useGetUsersTableColumns = () => {
     const { t } = useTranslation('usersList');
 
     return [
-        { field: 'fullName', headerName: t('fullName'), flex: 1 },
-        { field: 'email', headerName: t('email'), flex: 1 },
-        { field: 'phone', headerName: t('phone'), flex: 1 },
+        { field: 'fullName', headerName: t('fullName') },
+        { field: 'email', headerName: t('email') },
+        { field: 'phone', headerName: t('phone') },
     ];
 };
 

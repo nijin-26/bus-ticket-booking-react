@@ -96,7 +96,10 @@
         "exportPrint": "Print",
         "tableFooterTotal": "Total",
         "tableFooterSubject": "booking",
-        "date":"Date"
+        "date": "Date",
+        "tripId": "Trip ID",
+        "pax": "Pax",
+        "download":"Download"
     },
     "usersList": {
         "usersList": "Users List",

@@ -10,18 +10,21 @@ export const ListingPageWrapper = styled(Box)(({ theme }) => ({
     padding: '1rem',
     margin: '1rem',
 
+    '& .box-bg': {
+        backgroundColor: theme.color.busLayoutBg,
+    },
+
     '& .boxes': {
         height: '100px',
         marginTop: '1rem',
         flex: '1',
-        backgroundColor:theme.color.busLayoutBg,
 
         '& .box-col': {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent:'center',
+            justifyContent: 'center',
             alignItems: 'center',
-            height:'100%'
+            height: '100%',
         },
         '& .title': {
             color: theme.color.textPrimary,

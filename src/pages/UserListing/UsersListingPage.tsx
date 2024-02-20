@@ -5,9 +5,9 @@ import { IPagination } from '../../types/pagination';
 import { CustomTable } from '../../components/table/CustomTable';
 import { useTranslation } from 'react-i18next';
 import users from '../../data/sampleUsers.json';
-import { IUser } from '../../api/types/users';
 import useGetUsersTableColumns from './useGetUsersTableColumns';
 import { ListingPageWrapper } from '../BookingsList';
+import { IUser } from '../../types';
 
 interface IAllUsers {
     data: IUser[];
@@ -17,6 +17,7 @@ export const UsersListingPage = () => {
     //Mock data
     const mockData = {
         data: users,
+        count: 20,
     };
     const { t } = useTranslation('usersList');
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
@@ -49,6 +50,7 @@ export const UsersListingPage = () => {
                         (Number(pageNumber) - 1) * 10,
                         Number(pageNumber) * 10
                     ),
+                    count: mockData.count,
                 });
             }, 2000);
         });
@@ -76,10 +78,17 @@ export const UsersListingPage = () => {
 
     return (
         <ListingPageWrapper>
-            <Stack direction={'row'} spacing={5}>
+            <Stack
+                sx={{ mt: '3rem', mb: '3rem' }}
+                direction={'row'}
+                spacing={5}
+            >
+                <Box component="div" className="boxes">
+                    <h2>{t('usersList')}</h2>
+                </Box>
                 <Box
                     component="div"
-                    className="boxes"
+                    className="boxes box-bg"
                     boxShadow={3}
                     borderRadius={2}
                 >
@@ -104,31 +113,7 @@ export const UsersListingPage = () => {
                         </Typography>
                     </Stack>
                 </Box>
-                <Box
-                    component="div"
-                    className="boxes"
-                    boxShadow={3}
-                    borderRadius={2}
-                >
-                    <Stack direction={'column'} className="box-col">
-                        <Typography
-                            variant="body2"
-                            className="title"
-                            textAlign={'left'}
-                        >
-                            {t('totalBookings')}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            className="value"
-                            textAlign={'center'}
-                        >
-                            124
-                        </Typography>
-                    </Stack>
-                </Box>
             </Stack>
-            <h2>{t('usersList')}</h2>
             <CustomTable
                 pageState={pageState}
                 updatePageState={updatePageState}

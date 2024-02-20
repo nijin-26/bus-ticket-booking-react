@@ -21,25 +21,9 @@ export const AllBookingsPage = () => {
                 departureDate: '03-02-2024',
                 departure: '09:15',
                 arrival: '14:30',
-                durationInHours: '3',
                 busType: 'AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '5',
-                        passengerName: 'Charlie Brown',
-                        passengerAge: 32,
-                        passengerGender: 'male',
-                        fare: '55.00',
-                    },
-                    {
-                        seatNumber: '6',
-                        passengerName: 'Daisy Johnson',
-                        passengerAge: 28,
-                        passengerGender: 'female',
-                        fare: '55.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs2s',
@@ -48,25 +32,9 @@ export const AllBookingsPage = () => {
                 destinationId: 3,
                 departure: '2024-02-04T11:45:00Z',
                 arrival: '2024-02-04T17:00:00Z',
-                durationInHours: '3',
                 busType: 'AC',
                 seatType: 'SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '7',
-                        passengerName: 'David Miller',
-                        passengerAge: 40,
-                        passengerGender: 'male',
-                        fare: '60.00',
-                    },
-                    {
-                        seatNumber: '8',
-                        passengerName: 'Emily White',
-                        passengerAge: 35,
-                        passengerGender: 'female',
-                        fare: '60.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs3s',
@@ -75,25 +43,9 @@ export const AllBookingsPage = () => {
                 destinationId: 4,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs4s',
@@ -102,25 +54,9 @@ export const AllBookingsPage = () => {
                 destinationId: 5,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs5s',
@@ -129,25 +65,9 @@ export const AllBookingsPage = () => {
                 destinationId: 6,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs6s',
@@ -156,25 +76,9 @@ export const AllBookingsPage = () => {
                 destinationId: 7,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs7s',
@@ -183,25 +87,9 @@ export const AllBookingsPage = () => {
                 destinationId: 8,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs8s',
@@ -210,25 +98,9 @@ export const AllBookingsPage = () => {
                 destinationId: 9,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs9s',
@@ -237,25 +109,9 @@ export const AllBookingsPage = () => {
                 destinationId: 10,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
             {
                 pnrNumber: '20bs10s',
@@ -264,25 +120,9 @@ export const AllBookingsPage = () => {
                 destinationId: 11,
                 departure: '2024-02-05T13:00:00Z',
                 arrival: '2024-02-05T19:30:00Z',
-                durationInHours: '3',
                 busType: 'NON-AC',
                 seatType: 'SEMI-SLEEPER',
-                passengers: [
-                    {
-                        seatNumber: '9',
-                        passengerName: 'Frank Johnson',
-                        passengerAge: 22,
-                        passengerGender: 'male',
-                        fare: '45.00',
-                    },
-                    {
-                        seatNumber: '10',
-                        passengerName: 'Grace Davis',
-                        passengerAge: 25,
-                        passengerGender: 'female',
-                        fare: '45.00',
-                    },
-                ],
+                passengerCount: 2,
             },
         ],
     };
@@ -348,37 +188,20 @@ export const AllBookingsPage = () => {
 
     return (
         <ListingPageWrapper>
-            <Stack direction={'row'} spacing={5}>
-                <Box
-                    component="div"
-                    className="boxes"
-                    boxShadow={3}
-                    borderRadius={2}
-                >
-                    <Stack direction={'column'} className="box-col">
-                        <Typography
-                            variant="body2"
-                            className="title"
-                            textAlign={'left'}
-                        >
-                            {t('totalUsers')}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            className="value"
-                            textAlign={'center'}
-                        >
-                            124
-                        </Typography>
-                    </Stack>
+            <Stack
+                sx={{ mt: '3rem', mb: '3rem' }}
+                direction={'row'}
+                spacing={5}
+            >
+                <Box component="div" className="boxes">
+                    <h2>{t('bookingsList')}</h2>
                 </Box>
                 <Box
                     component="div"
-                    className="boxes"
+                    className="boxes box-bg"
                     boxShadow={3}
                     borderRadius={2}
                 >
-                    {' '}
                     <Stack direction={'column'} className="box-col">
                         <Typography
                             variant="body2"
@@ -401,7 +224,6 @@ export const AllBookingsPage = () => {
                     </Stack>
                 </Box>
             </Stack>
-            <h2>{t('bookingsList')}</h2>
             <CustomTable
                 pageState={pageState}
                 updatePageState={updatePageState}

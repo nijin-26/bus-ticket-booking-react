@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ITrip } from '../../api/types/trip';
+import { ITrip } from '../../types';
 
 const initialState: ITrip[] = [];
 

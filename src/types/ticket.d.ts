@@ -1,6 +1,6 @@
 export interface ITicket {
     pnrNumber: string;
-    tripId: string;
+    trip: ITrip;
     seats: IPassengerSeat[];
 }
 
@@ -12,10 +12,10 @@ export interface IPassengerSeat {
 export interface IPassenger {
     fullName: string;
     age: number;
-    gender: Gender;
+    gender: IGender;
 }
 
-export enum Gender {
-    MALE = 'MALE',
-    FEMALE = 'FEMALE',
+export enum IGender {
+    MALE = 'male',
+    FEMALE = 'female',
 }

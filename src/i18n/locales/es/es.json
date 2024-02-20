@@ -96,7 +96,10 @@
         "exportPrint": "Imprimir",
         "tableFooterTotal": "Total",
         "tableFooterSubject": "reservas",
-        "date": "fecha"
+        "date": "Fecha",
+        "tripId": "ID de viaje",
+        "pax": "Pasajero",
+        "download": "Descargar"
     },
     "usersList": {
         "usersList": "Lista de Usuarios",
