@@ -1,8 +1,9 @@
-import { IGender, ITicket } from '../../types';
+import { IGender, ITicket, ITripTicket } from '../../types';
 import {
     IBookingListingResponse,
     IBookingResponse,
     ITicketExternal,
+    ITripTicketExternal,
 } from '../types/ticket';
 
 const getTicketFromTicketExternals = (
@@ -10,7 +11,7 @@ const getTicketFromTicketExternals = (
 ): ITicket => {
     const ticket: ITicket = {
         pnrNumber: ticketExternals[0].pnrNumber,
-        trip: ticketExternals[0].trip,
+        trip: getTripTicketFromTripTicketExternal(ticketExternals[0].trip),
         seats: ticketExternals.map((booking) => ({
             seatNumber: parseInt(booking.seatNumber),
             passenger: {
@@ -45,4 +46,22 @@ export const getTicketsFromBookingListingResponse = (
         getTicketFromTicketExternals(ticket)
     );
     return tickets;
+};
+
+export const getTripTicketFromTripTicketExternal = (
+    tripExternal: ITripTicketExternal
+): ITripTicket => {
+    const trip: ITripTicket = {
+        id: tripExternal.id.toString(),
+        originId: tripExternal.originId.toString(),
+        destinationId: tripExternal.destinationId.toString(),
+        departureTimestamp: new Date(tripExternal.departure),
+        arrivalTimestamp: new Date(tripExternal.arrival),
+        farePerSeat: parseFloat(tripExternal.farePerSeat),
+        totalSeats: 46,
+        busType: tripExternal.busType,
+        seatType: tripExternal.seatType,
+        availableSeats: tripExternal.totalSeats,
+    };
+    return trip;
 };
