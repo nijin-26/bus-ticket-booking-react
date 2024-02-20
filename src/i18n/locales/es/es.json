@@ -33,7 +33,11 @@
         "confirmPasswordRequired": "Se requiere confirmar la contraseña.",
         "invalidPasswordErrorMessage": "Contraseña incorrecta",
         "userNotFoundErrorMessage": "El usuario no existe",
-        "userAlreadyExistsErrorMessage": "El usuario ya existe"
+        "userAlreadyExistsErrorMessage": "El usuario ya existe",
+        "signInSuccessToastMessage": "Inicio de sesión exitoso. ¡Feliz de tenerte aquí!",
+        "signInErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
+        "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada.",
+        "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde."
     },
     "seatLayout": {
         "available": "Disponible",

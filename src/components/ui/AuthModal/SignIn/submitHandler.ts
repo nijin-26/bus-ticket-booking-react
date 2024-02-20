@@ -8,6 +8,7 @@ import { TFunction } from 'i18next';
 import { FormikHelpers } from 'formik';
 import { IAuthResponseError, ISignInForm } from '../../../../types';
 import { AppDispatch } from '../../../../app/store';
+import { toast } from 'react-toastify';
 
 const signInSubmitHandler = async (
     values: ISignInForm,
@@ -20,6 +21,7 @@ const signInSubmitHandler = async (
         dispatch(setCredentials(userData));
         formikHelpers.resetForm();
         dispatch(hideAuthModal());
+        toast.success(t('signInSuccessToastMessage'));
     } catch (error) {
         if (
             axios.isAxiosError<IAuthResponseError>(error) &&
@@ -36,12 +38,10 @@ const signInSubmitHandler = async (
                     'email',
                     t('userNotFoundErrorMessage')
                 );
-            } else {
-                console.error(error.response.data);
             }
-        } else {
-            console.error(error);
+            return;
         }
+        toast.error(t('signInErrorToastMessage'));
     }
     formikHelpers.setSubmitting(false);
 };

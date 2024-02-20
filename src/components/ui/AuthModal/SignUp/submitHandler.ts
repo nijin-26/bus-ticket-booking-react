@@ -8,6 +8,7 @@ import { AppDispatch } from '../../../../app/store';
 import { TFunction } from 'i18next';
 import { FormikHelpers } from 'formik';
 import { IAuthResponseError, ISignUpForm } from '../../../../types';
+import { toast } from 'react-toastify';
 
 const signUpSubmitHandler = async (
     values: ISignUpForm,
@@ -20,6 +21,7 @@ const signUpSubmitHandler = async (
         const { email, password } = signUpProps;
 
         await signUp(signUpProps as ISignUpProps);
+        toast.success(t('signUpSuccessToastMessage'));
         const userData = await signIn({ email, password });
 
         dispatch(setCredentials(userData));
@@ -38,13 +40,12 @@ const signUpSubmitHandler = async (
                 }
                 console.error('error during signUp');
             } else if (error.config?.url === apiRoutes.signIn) {
+                //TODO : code to display signIn Tab
                 console.error('error during signIn after signUp');
-            } else {
-                console.error(error.response?.data);
             }
-        } else {
-            console.error(error);
+            return;
         }
+        toast.error(t('signUpErrorToastMessage'));
     }
     formikHelpers.setSubmitting(false);
 };
