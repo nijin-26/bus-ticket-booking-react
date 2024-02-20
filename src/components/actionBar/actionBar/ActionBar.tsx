@@ -25,6 +25,7 @@ import { getLocations } from '../../../api';
 import { addDays } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { setBusSearchParams } from '../../../app/features/busSearchSlice';
+import { ToggleButton } from './ActionBar.styled';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -46,6 +47,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [toggle, setToggle] = useState(false);
+    console.log('toglle state:', toggle);
 
     useEffect(() => {
         const originParam = searchParams.get('originID');
@@ -120,6 +124,12 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
             setStopLocation(startLocation);
             setStartLocation(tempTo);
+
+            if (toggle) {
+                setToggle(false);
+            } else {
+                setToggle(true);
+            }
         }
     };
 
@@ -130,14 +140,16 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // submit handler
     const searchBusHandler = () => {
-        dispatch(
-            setBusSearchParams({
-                originID: startLocation?.id,
-                destinationID: stopLocation?.id,
-                tripDate: tripDate,
-            })
-        );
-        navigate(paths.tripsListing);
+        if (startLocation && stopLocation) {
+            dispatch(
+                setBusSearchParams({
+                    originID: startLocation.id,
+                    destinationID: stopLocation.id,
+                    tripDate: tripDate,
+                })
+            );
+            navigate(paths.tripsListing);
+        }
     };
 
     return (
@@ -192,7 +204,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     </Grid>
 
                     <Grid item xs={12} sm="auto" textAlign="center">
-                        <IconButton
+                        <ToggleButton
+                            className={toggle ? 'toggle' : 'reverse'}
                             sx={{
                                 rotate: { xs: '90deg', sm: '0deg' },
                                 height: '4rem',
@@ -201,7 +214,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             onClick={swapLocationOptions}
                         >
                             <SwapHoriz style={{ minWidth: '4rem' }} />
-                        </IconButton>
+                        </ToggleButton>
                     </Grid>
 
                     <Grid item xs={12} sm>

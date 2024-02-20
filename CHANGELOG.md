@@ -21,3 +21,4 @@
 -   # [86cugexhf] Landing page illustration, action bar incorporated and routing to trip listing page.
 -   [86cukqvct] Implemented API layer
     > > > > > > > > > Temporary merge branch 2
+-   [86cumak5j] Enhanced API layer and added converters for requests and responses

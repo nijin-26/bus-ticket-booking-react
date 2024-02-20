@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface IBusSearchParams {
-    originID?: number;
-    destinationID?: number;
-    tripDate?: Date | null;
+    originID: number;
+    destinationID: number;
+    tripDate: Date | null;
     sortBy?: string;
     sortOrder?: string;
     seatType?: string | null;
