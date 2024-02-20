@@ -4,21 +4,12 @@ import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
 import { CustomTable } from '../../components/table/CustomTable';
 import { useTranslation } from 'react-i18next';
-import users from '../../data/sampleUsers.json';
 import useGetUsersTableColumns from './useGetUsersTableColumns';
 import { ListingPageWrapper } from '../BookingsList';
 import { IUser } from '../../types';
-
-interface IAllUsers {
-    data: IUser[];
-}
+import { getAllUsers } from '../../api/endpoints/user.api';
 
 export const UsersListingPage = () => {
-    //Mock data
-    const mockData = {
-        data: users,
-        count: 20,
-    };
     const { t } = useTranslation('usersList');
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
@@ -40,41 +31,24 @@ export const UsersListingPage = () => {
         setPageState((prev) => ({ ...prev, ...newPageState }));
     };
 
-    // Function to mimic API call
-    const getAllUsers = () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const pageNumber = searchParams.get('page');
-                resolve({
-                    data: mockData.data.slice(
-                        (Number(pageNumber) - 1) * 10,
-                        Number(pageNumber) * 10
-                    ),
-                    count: mockData.count,
-                });
-            }, 2000);
-        });
-    };
-
     useEffect(() => {
         //Fething data
-        const getBookings = async () => {
+        void (async () => {
             try {
                 setPageState((prev) => ({ ...prev, loading: true }));
-                const allUsersResponse = (await getAllUsers()) as IAllUsers;
+                const usersResponse = await getAllUsers();
                 setPageState((prev) => ({
                     ...prev,
-                    data: allUsersResponse.data,
-                    totalNumberOfData: allUsersResponse.data.length,
+                    data: usersResponse,
+                    totalNumberOfData: usersResponse.length,
                 }));
             } catch (error) {
                 console.error(error);
             } finally {
                 setPageState((prev) => ({ ...prev, loading: false }));
             }
-        };
-        void getBookings();
-    }, [searchParams]);
+        })();
+    }, []);
 
     return (
         <ListingPageWrapper>
@@ -119,7 +93,7 @@ export const UsersListingPage = () => {
                 updatePageState={updatePageState}
                 updateSearchParams={updateSearchParams}
                 columns={columns}
-                rowId={'email'}
+                rowId={'id'}
                 languageNamespace={'usersList'}
             />
         </ListingPageWrapper>

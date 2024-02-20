@@ -1,14 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { IBooking } from '../../types/bookingsList';
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { Download } from '@mui/icons-material';
+import { GridColDef } from '@mui/x-data-grid';
+import { ITicket } from '../../types';
+import { convertTimeStamp } from '../../utils';
 
 interface GridValueGetterParams {
-    row: IBooking;
+    row: ITicket;
 }
 
-const useGetBookingsTableColumns = () => {
+const useGetBookingsTableColumns = (): GridColDef[] => {
     const { t } = useTranslation('bookingsList');
     return [
         {
@@ -21,46 +23,71 @@ const useGetBookingsTableColumns = () => {
                     </>
                 );
             },
+            headerAlign: 'center',
         },
         {
             field: 'passengerCount',
             headerName: t('pax'),
             maxWidth: 50,
             align: 'right',
+            renderCell: (params: GridValueGetterParams): JSX.Element => {
+                return <p>{params.row.seats.length}</p>;
+            },
+            headerAlign: 'center',
         },
         {
             field: 'tripId',
             headerName: t('tripId'),
             maxWidth: 80,
             align: 'right',
+            renderCell: (params: GridValueGetterParams): JSX.Element => {
+                return <p>{params.row.trip.id}</p>;
+            },
+            headerAlign: 'center',
         },
         {
             field: 'departureDate',
             headerName: t('date'),
             maxWidth: 100,
-            align: 'right',
+            renderCell: (params: GridValueGetterParams): JSX.Element => {
+                const { formattedDepartureDate } = convertTimeStamp(
+                    params.row.trip.departureTimestamp
+                );
+                return <p>{formattedDepartureDate}</p>;
+            },
+            headerAlign: 'center',
         },
         {
             field: 'origin',
             headerName: t('origin'),
             renderCell: (params: GridValueGetterParams): JSX.Element => {
+                console.log(params);
+                const { formattedDepartureTime } = convertTimeStamp(
+                    params.row.trip.departureTimestamp
+                );
                 return (
                     <p>
-                        {params.row.origin} ({params.row.departure})
+                        {params.row.trip.originId} ({formattedDepartureTime})
                     </p>
                 );
             },
+            headerAlign: 'center',
         },
         {
             field: 'destination',
             headerName: t('destination'),
             renderCell: (params: GridValueGetterParams): JSX.Element => {
+                const { formattedArrivalTime } = convertTimeStamp(
+                    undefined,
+                    params.row.trip.arrivalTimestamp
+                );
                 return (
                     <p>
-                        {params.row.destination} ({params.row.arrival})
+                        {params.row.trip.destinationId} ({formattedArrivalTime})
                     </p>
                 );
             },
+            headerAlign: 'center',
         },
         {
             field: 'busType',
@@ -68,10 +95,11 @@ const useGetBookingsTableColumns = () => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <p>
-                        {params.row.busType}/{params.row.seatType}
+                        {params.row.trip.busType}/{params.row.trip.seatType}
                     </p>
                 );
             },
+            headerAlign: 'center',
         },
         {
             field: 'download',
@@ -86,6 +114,7 @@ const useGetBookingsTableColumns = () => {
                     </p>
                 );
             },
+            headerAlign: 'center',
         },
     ];
 };

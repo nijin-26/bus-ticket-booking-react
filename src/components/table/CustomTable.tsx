@@ -43,7 +43,6 @@ export const CustomTable = <T,>({
                     headerClassName: 'custom-header',
                     flex: 1,
                     sortable: false,
-                    headerAlign: 'center',
                 }))}
                 autoHeight={true}
                 initialState={{

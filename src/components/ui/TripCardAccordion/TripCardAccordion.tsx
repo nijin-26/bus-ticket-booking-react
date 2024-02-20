@@ -32,11 +32,11 @@ export const TripCardAccordion = ({
     }
 
     const dates: {
-        formattedDepartureTime: string;
-        formattedDepartureDate: string;
-        formattedArrivalTime: string;
-        formattedArrivalDate: string;
-        formattedDuration: string;
+        formattedDepartureTime?: string;
+        formattedDepartureDate?: string;
+        formattedArrivalTime?: string;
+        formattedArrivalDate?: string;
+        formattedDuration?: string;
     } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
 
     return (
