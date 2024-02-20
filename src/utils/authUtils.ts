@@ -10,12 +10,16 @@ export const getUserDataFromStorage = () => {
     const userData = storage.getItem<IAuthUser>('userData');
 
     if (accessToken && userData) {
-        const decodedToken = jwtDecode<IDecodedAccessToken>(accessToken);
-        const expirationTime = decodedToken.exp * 1000;
+        try {
+            const decodedToken = jwtDecode<IDecodedAccessToken>(accessToken);
+            const expirationTime = decodedToken.exp * 1000;
 
-        //check if token has NOT expired
-        if (expirationTime <= Date.now()) {
-            return userData;
+            //check if token has NOT expired
+            if (expirationTime >= Date.now()) {
+                return userData;
+            }
+        } catch (error) {
+            console.log('Invalid accessToken');
         }
     }
     storage.removeItem('userData');
