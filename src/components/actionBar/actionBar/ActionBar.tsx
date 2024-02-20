@@ -22,6 +22,9 @@ import { paths } from '../../../config';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getLocations } from '../../../api';
+import { addDays } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { setBusSearchParams } from '../../../app/features/busSearchSlice';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -30,6 +33,7 @@ interface IActionBarProps {
 const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
+    const tomorrow = addDays(new Date(), 1);
     const [searchParams, setSearchParams] = useSearchParams();
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
@@ -37,14 +41,16 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
     );
+    const [tripDate, setTripDate] = useState<Date | null>(tomorrow);
     const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
-
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const originParam = searchParams.get('originID');
         const destinationParam = searchParams.get('destinationID');
+        const tripDateParam = searchParams.get('tripDate');
 
         const getLocOptions = async () => {
             try {
@@ -75,12 +81,17 @@ const ActionBar: React.FC<IActionBarProps> = ({
             if (destinationlocation) {
                 setStopLocation(destinationlocation);
             }
+            if (tripDate && tripDateParam) {
+                const date = tripDate.toUTCString();
+                const convDate = new Date(date);
+                setTripDate(convDate);
+            }
         };
 
         getLocOptions().catch(() => {
             console.log('couldnt fetch location into locOptions');
         });
-    }, [locOptions]);
+    }, []);
 
     // setting start location
     const handleStartSelect = (
@@ -89,10 +100,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
     ) => {
         if (selectedValue) {
             setStartLocation(selectedValue);
-            searchParams.delete('originID');
-            setSearchParams(searchParams);
-            // searchParams.set('originID', selectedValue.id.toString());
-            // setSearchParams(searchParams);
         }
     };
 
@@ -103,10 +110,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
     ) => {
         if (selectedValue) {
             setStopLocation(selectedValue);
-            searchParams.delete('destinationID');
-            setSearchParams(searchParams);
-            // searchParams.set('destinationID', selectedValue.id.toString());
-            // setSearchParams(searchParams);
         }
     };
 
@@ -120,17 +123,22 @@ const ActionBar: React.FC<IActionBarProps> = ({
         }
     };
 
+    // setting date
+    function handleJourneyDate(value: Date | null) {
+        setTripDate(value);
+    }
+
     // submit handler
     const searchBusHandler = () => {
+        dispatch(
+            setBusSearchParams({
+                originID: startLocation?.id,
+                destinationID: stopLocation?.id,
+                tripDate: tripDate,
+            })
+        );
         navigate(paths.tripsListing);
-        // api call to get listing data
-        // apply loading states
     };
-
-    //display date
-    function displayDate(value: Date | null) {
-        console.log(value);
-    }
 
     return (
         <Wrapper>
@@ -146,9 +154,15 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={locOptions.filter((loc) => {
-                                return loc != stopLocation;
-                            })}
+                            options={
+                                stopLocation
+                                    ? locOptions.filter(
+                                          (loc) =>
+                                              loc.id != stopLocation.id ||
+                                              loc.label != stopLocation.label
+                                      )
+                                    : locOptions
+                            }
                             value={startLocation}
                             onChange={handleStartSelect}
                             isOptionEqualToValue={(option, value) =>
@@ -193,9 +207,15 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={locOptions.filter((loc) => {
-                                return loc != startLocation;
-                            })}
+                            options={
+                                startLocation
+                                    ? locOptions.filter(
+                                          (loc) =>
+                                              loc.id != startLocation.id ||
+                                              loc.label != startLocation.label
+                                      )
+                                    : locOptions
+                            }
                             value={stopLocation}
                             onChange={handleStopSelect}
                             isOptionEqualToValue={(option, value) =>
@@ -228,6 +248,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 <Grid item xs={12} md={3}>
                     <DatePicker
                         label={t('date')}
+                        disablePast
+                        defaultValue={tripDate}
+                        minDate={tomorrow}
                         slots={{
                             openPickerIcon: Today,
                         }}
@@ -238,7 +261,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             },
                         }}
                         sx={{ width: '100%' }}
-                        onChange={displayDate}
+                        onChange={handleJourneyDate}
                     />
                 </Grid>
             </Grid>
@@ -247,6 +270,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
             <CenteredButton
                 variant="contained"
+                disabled={
+                    startLocation && stopLocation && tripDate ? false : true
+                }
                 onClick={searchBusHandler}
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
