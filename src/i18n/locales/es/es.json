@@ -108,13 +108,22 @@
         "genderRequired": "El Género es un campo requerido",
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
-        "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+        "AgeRangeCheck": "La Edad debe estar entre 1 y 130",
+        "apiSuccessMessage": "Reserva exitosa",
+        "apiErrorMessage": "Error al realizar la reserva"
     },
     "tripListing": {
         "busTypeAC": "Tipo de Autobús - Aire Acondicionado",
         "busTypeNonAC": "Tipo de Autobús - Sin Aire Acondicionado",
         "SeatTypeSeater": "Tipo de Asiento - Asiento",
         "SeatTypeSleeper": "Tipo de Autobús - Litera"
+    },
+    "bookingPageConfirmation": {
+        "confirmationTitle": "Confirmar Reserva",
+        "agreeText": "Confirmar",
+        "DisagreeText": "Rechazar",
+        "dialogContent": "¿Está seguro de que desea confirmar?",
+        "checkout": "Finalizar compra",
+        "absentStateError": "No se pudo recuperar la información de la reserva"
     }
-
 }

@@ -108,13 +108,22 @@
         "genderRequired": "Gender is a required field",
         "fullNameLength": "Full Name must be 3 to 60 characters long",
         "AgeNumberCheck": "Age must be a valid number",
-        "AgeRangeCheck": "Age must be between 1 and 130"
+        "AgeRangeCheck": "Age must be between 1 and 130",
+        "apiSuccessMessage": "Booking success",
+        "apiErrorMessage": "Error while Booking"
     },
     "tripListing": {
         "busTypeAC": "Bus Type - AC",
         "busTypeNonAC": "Bus Type - Non-AC",
         "SeatTypeSeater": "Seat Type - Seater",
         "SeatTypeSleeper": "Bus Type - Sleeper"
+    },
+    "bookingPageConfirmation": {
+        "confirmationTitle": "Confirm Booking",
+        "agreeText": "Confirm",
+        "DisagreeText": "Decline",
+        "dialogContent": "Are you sure you want to confirm",
+        "checkout": "Checkout",
+        "absentStateError": "Error while fetching booking data"
     }
-
 }

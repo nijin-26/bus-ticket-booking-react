@@ -17,6 +17,7 @@ const {
     landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
+    bookingPageConfirmation: enBookingPageConfirmation,
 } = en;
 const {
     ns1: esNs1,
@@ -32,12 +33,13 @@ const {
     tripListing: esTripListing,
     landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
+    bookingPageConfirmation: esBookingPageConfirmation,
 } = es;
 
 export const defaultNS = 'ns1';
+const language = localStorage.getItem('language')?.toString();
 
 void i18n.use(initReactI18next).init({
-    debug: true, // for debugging
     resources: {
         en: {
             ns1: enNs1,
@@ -53,6 +55,7 @@ void i18n.use(initReactI18next).init({
             tripListing: enTripListing,
             landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
+            bookingPageConfirmation: enBookingPageConfirmation,
         },
         es: {
             ns1: esNs1,
@@ -68,9 +71,10 @@ void i18n.use(initReactI18next).init({
             tripListing: esTripListing,
             landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
+            bookingPageConfirmation: esBookingPageConfirmation,
         },
     },
-    lng: 'en',
+    lng: language,
     fallbackLng: 'en',
     defaultNS,
     ns: [
@@ -87,6 +91,7 @@ void i18n.use(initReactI18next).init({
         'tripListing',
         'landingPage',
         'auth',
+        'bookingPageConfirmation',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

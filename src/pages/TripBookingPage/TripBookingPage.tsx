@@ -5,22 +5,27 @@ import { TripCardAccordion } from '../../components';
 import { useAppSelector } from '../../app/hooks';
 import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
 
-import { t } from 'i18next';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FormikProps } from 'formik';
 import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
 import { IPassengersInputFromFormik, filterSelectedSeats } from '../../utils';
 
 import FullScreenLoader from './FullScreenLoader';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export const TripBookingPage = () => {
+    const { t } = useTranslation('bookingPageConfirmation');
+    const navigate = useNavigate();
     const state = useAppSelector((state) =>
         fromSerializable(state.tripDetails)
     );
-    console.log(state, 'this is the state');
+
     const selectedSeats = filterSelectedSeats(state.seats);
+    const selectedSeatsCount = selectedSeats.length;
 
     const [showDialog, setShowDialog] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
@@ -36,6 +41,12 @@ export const TripBookingPage = () => {
             formikRef.current?.handleSubmit(); // to retrigger validation of the form
         }
     };
+    useEffect(() => {
+        if (state.seats.length === 0) {
+            navigate('/trips');
+            toast.error(t('absentStateError'));
+        }
+    }, [navigate, state, t]);
 
     return (
         <>
@@ -62,7 +73,10 @@ export const TripBookingPage = () => {
 
             <Grid container alignItems="center" mb={6} spacing={1.5}>
                 <Grid item xs={12} sm={9}>
-                    <FareDetails noOfSeats={3} farePerSeat={1200} />
+                    <FareDetails
+                        noOfSeats={selectedSeatsCount}
+                        farePerSeat={state.farePerSeat}
+                    />
                 </Grid>
                 <Grid item xs={12} sm={3} ml="auto">
                     <StyledButton
@@ -76,19 +90,19 @@ export const TripBookingPage = () => {
                 </Grid>
             </Grid>
             <ConfirmDialog
-                title="Confirm Booking"
+                title={t('confirmationTitle')}
                 open={showDialog}
                 handleClose={() => {
                     setShowDialog(false);
                 }}
-                agreeText="Confirm"
-                disagreeText="Decline"
+                agreeText={t('agreeText')}
+                disagreeText={t('DisagreeText')}
                 handleAgreeFunction={() => {
                     setShowLoader(true);
                     formikRef.current?.handleSubmit();
                 }}
             >
-                Are you sure you want to confirm
+                {t('dialogContent')}
             </ConfirmDialog>
             <FullScreenLoader open={showLoader} />
         </>

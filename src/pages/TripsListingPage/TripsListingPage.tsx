@@ -66,7 +66,13 @@ export const TripsListingPage = () => {
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
             {tripData.map((indData) => {
                 // console.log('inddata', indData);
-                return <TripCardAccordion key={indData.id} data={indData} mode='edit'/>;
+                return (
+                    <TripCardAccordion
+                        key={indData.id}
+                        data={indData}
+                        mode="edit"
+                    />
+                );
             })}
             {resultLength > 5 && tripData.length != resultLength && (
                 <LoadMore />

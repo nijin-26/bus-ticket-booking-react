@@ -14,6 +14,7 @@ const {
     tripListing,
     auth,
     landingPage,
+    bookingPageConfirmation,
 } = data;
 const resources = {
     ns1,
@@ -29,6 +30,7 @@ const resources = {
     tripListing,
     landingPage,
     passengerDetails,
+    bookingPageConfirmation,
 } as const;
 
 export default resources;

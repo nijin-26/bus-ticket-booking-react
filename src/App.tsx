@@ -12,6 +12,8 @@ import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const basename = '/';
 
@@ -23,22 +25,23 @@ function App() {
     const [loading] = useState(false);
     const mode = useAppSelector((state) => state.theme.currentTheme);
 
-
-
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
-                <CustomThemeProvider theme={getCustomTheme(mode)}>
-                    <GlobalStyle />
-                    <CssBaseline />
-                    {loading ? (
-                        <div>loading</div>
-                    ) : (
-                        <RouterProvider router={router} />
-                    )}
-                </CustomThemeProvider>
-            </MuiThemeProvider>
-        </LocalizationProvider>
+        <>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
+                    <CustomThemeProvider theme={getCustomTheme(mode)}>
+                        <GlobalStyle />
+                        <CssBaseline />
+                        {loading ? (
+                            <div>loading</div>
+                        ) : (
+                            <RouterProvider router={router} />
+                        )}
+                    </CustomThemeProvider>
+                </MuiThemeProvider>
+            </LocalizationProvider>
+            <ToastContainer theme={mode} />
+        </>
     );
 }
 

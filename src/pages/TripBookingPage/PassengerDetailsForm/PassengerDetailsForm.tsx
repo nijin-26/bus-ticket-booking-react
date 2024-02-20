@@ -7,6 +7,7 @@ import { useState, useEffect, RefObject } from 'react';
 import { useTheme } from '@emotion/react';
 import { IPassengersInputFromFormik, conv } from '../../../utils';
 import { bookTicket } from '../../../api/endpoints/ticket.api';
+import { toast } from 'react-toastify';
 
 interface IPassengerDetailsFormProps {
     selectedSeats: number[];
@@ -35,8 +36,13 @@ const PassengerDetailsForm = ({
                 responseBook,
                 'response after booking hahahahahahahahahahahahha'
             );
+            toast.success(t('apiSuccessMessage'));
         } catch (err) {
-            console.log('error from api hahahahahahahahahahahahahahahahaha');
+            console.log(
+                err,
+                'error from api hahahahahahahahahahahahahahahahaha'
+            );
+            toast.error(t('apiErrorMessage'));
         } finally {
             loaderFun(false);
         }
