@@ -34,3 +34,7 @@ export interface IBookingRequest {
 }
 
 export type IBookingResponse = ITicketExternal[];
+
+export interface IBookingListingResponse {
+    bookings: ITicketExternal[];
+}
