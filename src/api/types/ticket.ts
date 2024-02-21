@@ -1,6 +1,5 @@
 import { IBusType, ISeatType } from '../../types';
 import { ITicket } from '../../types/ticket';
-import { ITripExternal } from './trip';
 import { IUserExternal } from './user';
 
 export interface ITicketRequest {

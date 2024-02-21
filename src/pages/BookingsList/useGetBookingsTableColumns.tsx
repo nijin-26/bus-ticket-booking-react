@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import { Download } from '@mui/icons-material';
 import { GridColDef } from '@mui/x-data-grid';
 import { ITicket } from '../../types';
-import { convertTimeStamp } from '../../utils';
+import { getDateFromTimestamp } from '../../utils';
 
 interface GridValueGetterParams {
     row: ITicket;
@@ -50,10 +50,10 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
             headerName: t('date'),
             maxWidth: 100,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
-                const { formattedDepartureDate } = convertTimeStamp(
+                const { formattedDate } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp
                 );
-                return <p>{formattedDepartureDate}</p>;
+                return <p>{formattedDate}</p>;
             },
             headerAlign: 'center',
         },
@@ -61,13 +61,12 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
             field: 'origin',
             headerName: t('origin'),
             renderCell: (params: GridValueGetterParams): JSX.Element => {
-                console.log(params);
-                const { formattedDepartureTime } = convertTimeStamp(
+                const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp
                 );
                 return (
                     <p>
-                        {params.row.trip.originId} ({formattedDepartureTime})
+                        {params.row.trip.originId} ({formattedTime})
                     </p>
                 );
             },
@@ -77,13 +76,12 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
             field: 'destination',
             headerName: t('destination'),
             renderCell: (params: GridValueGetterParams): JSX.Element => {
-                const { formattedArrivalTime } = convertTimeStamp(
-                    undefined,
+                const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.arrivalTimestamp
                 );
                 return (
                     <p>
-                        {params.row.trip.destinationId} ({formattedArrivalTime})
+                        {params.row.trip.destinationId} ({formattedTime})
                     </p>
                 );
             },
@@ -108,7 +106,11 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <p>
-                        <IconButton>
+                        <IconButton
+                            onClick={() => {
+                                console.log(params);
+                            }}
+                        >
                             <Download />
                         </IconButton>
                     </p>
