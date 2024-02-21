@@ -14,6 +14,9 @@ import {
     IconButton,
     ListItemIcon,
 } from '@mui/material';
+// import { NavLink } from 'react-router-dom';
+import { StyledButton } from '../Footer/Footer.styled';
+import { ConfirmDialog } from '../../components';
 import { StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
@@ -21,14 +24,14 @@ import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { NavLink } from 'react-router-dom';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
-import { StyledButton } from '../Footer/Footer.styled';
+// import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 
 export const Header = () => {
-    const { t } = useTranslation('headerFooter');
+    const { t } = useTranslation(['headerFooter', 'logoutModal']);
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
+    const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] =
+        useState<boolean>(false);
     const dispatch = useAppDispatch();
 
     const [menuAnchorElement, setMenuAnchorElement] =
@@ -126,9 +129,8 @@ export const Header = () => {
                                     }}
                                     sx={{ mt: '5px' }}
                                 >
-                                    {/*To be included after myBookings page has been included*/}
-
-                                    <MenuItem component={NavLink} to="/users">
+                                    {/*To be included after myBookings page has been added*/}
+                                    {/* <MenuItem component={NavLink} to="/users">
                                         <ListItemIcon>
                                             <PermContactCalendarIcon fontSize="small" />
                                         </ListItemIcon>
@@ -138,8 +140,12 @@ export const Header = () => {
                                         >
                                             {t('myBookings')}
                                         </Typography>
-                                    </MenuItem>
-                                    <MenuItem onClick={handleLogoutClick}>
+                                    </MenuItem> */}
+                                    <MenuItem
+                                        onClick={() => {
+                                            setIsLogoutModalDisplayed(true);
+                                        }}
+                                    >
                                         <ListItemIcon>
                                             <ExitToAppIcon fontSize="small" />
                                         </ListItemIcon>
@@ -165,6 +171,18 @@ export const Header = () => {
                     </Box>
                 </StyledToolBar>
             </AppBar>
+            <ConfirmDialog
+                title={t('logoutModal:title')}
+                open={isLogoutModalDisplayed}
+                handleClose={() => {
+                    setIsLogoutModalDisplayed(false);
+                }}
+                agreeText={t('logoutModal:confirmText')}
+                disagreeText={t('logoutModal:cancelText')}
+                handleAgreeFunction={handleLogoutClick}
+            >
+                {t('logoutModal:message')}
+            </ConfirmDialog>
         </>
     );
 };

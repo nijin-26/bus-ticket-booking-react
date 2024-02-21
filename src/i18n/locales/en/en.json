@@ -116,5 +116,11 @@
         "fullNameLength": "Full Name must be 3 to 60 characters long",
         "AgeNumberCheck": "Age must be a valid number",
         "AgeRangeCheck": "Age must be between 1 and 130"
+    },
+    "logoutModal": {
+        "title": "Are you sure?",
+        "message": "All your unsaved data will be lost.",
+        "confirmText": "Yes",
+        "cancelText": "Cancel"
     }
 }

@@ -116,5 +116,11 @@
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+    },
+    "logoutModal": {
+        "title": "¿Estás seguro?",
+        "message": "Se perderán todos tus datos no guardados.",
+        "confirmText": "Sí",
+        "cancelText": "Cancelar"
     }
 }
