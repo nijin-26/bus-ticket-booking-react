@@ -1,10 +1,10 @@
 import { LoadMoreWrapper } from './LoadMoreWrapper';
 import LoadingButton from '@mui/lab/LoadingButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import { useSearchParams } from 'react-router-dom';
 import { rowsPerPage } from '../../config';
 import { useTheme } from '@emotion/react';
 import { MutableRefObject } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const LoadMore = ({
     resultLength,
@@ -21,20 +21,16 @@ const LoadMore = ({
     setBtnLoading: (arg: boolean) => void;
     hasMounted: MutableRefObject<boolean>;
 }) => {
-    // const [searchParams, setSearchParams] = useSearchParams();
-
     const theme = useTheme();
+    const { t } = useTranslation('tripListing');
 
     const handleLoadMore = () => {
         hasMounted.current = true;
         setBtnLoading(true);
         const totalPages = String(Math.ceil(resultLength / rowsPerPage));
-        // let page = searchParams.get('page') ?? '1';
         if (totalPages > page) {
             page = String(Number(page) + 1);
         }
-        // searchParams.set('page', page);
-        // setSearchParams(searchParams);
         setPage(page);
     };
     return (
@@ -52,7 +48,7 @@ const LoadMore = ({
                     },
                 }}
             >
-                Load More
+                {t('loadMore')}
             </LoadingButton>
         </LoadMoreWrapper>
     );

@@ -6,6 +6,7 @@ const {
     headerFooter,
     seatLayout,
     tripDetails,
+    tripListing,
     passengerDetails,
     actionBarTab,
     actionBar,
@@ -13,6 +14,7 @@ const {
     filterSort,
     landingPage,
     auth,
+    error,
 } = data;
 const resources = {
     ns1,
@@ -25,8 +27,10 @@ const resources = {
     pnrSearch,
     filterSort,
     tripDetails,
+    tripListing,
     landingPage,
     passengerDetails,
+    error,
 } as const;
 
 export default resources;

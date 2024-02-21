@@ -15,17 +15,20 @@ import { getTrips } from '../../api';
 import { ITrip } from '../../types';
 import { rowsPerPage } from '../../config';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export const TripsListingPage = () => {
     const hasMounted = useRef(true);
     const [tripData, setTripData] = useState<ITrip[]>([]);
     const [resultLength, setResultLength] = useState<number>(0);
     const [btnLoading, setBtnLoading] = useState(false);
+    const [fullScreenLoading, setFullScreenLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const matches = useMediaQuery('(min-width:600px)');
-    // setSearchParams({ page: '1' });
     console.log(searchParams);
     const [page, setPage] = useState('1');
+    const { t } = useTranslation('error');
 
     useEffect(() => {
         console.log('Mount');
@@ -58,9 +61,13 @@ export const TripsListingPage = () => {
                 const response = await getTrips(params);
                 setTripData((prev) => [...prev, ...response.trips]);
                 setResultLength(response.resultCount);
+                setFullScreenLoading(false);
                 setBtnLoading(false);
             } catch (error) {
+                toast.error(t('unexpected'));
                 console.error('Error fetching trip data:', error);
+                setFullScreenLoading(false);
+                setBtnLoading(false);
             }
         };
         if (hasMounted.current) {
@@ -70,7 +77,7 @@ export const TripsListingPage = () => {
                 console.error('Error in useEffect:', error);
             });
         }
-    }, [page, searchParams]);
+    }, [page, searchParams, t]);
 
     console.log(tripData);
     return (
@@ -91,7 +98,7 @@ export const TripsListingPage = () => {
                     hasMounted={hasMounted}
                 />
             )}
-            <FullScreenLoader open={btnLoading} />
+            <FullScreenLoader open={fullScreenLoading} />
         </TripsListingPageWrapper>
     );
 };

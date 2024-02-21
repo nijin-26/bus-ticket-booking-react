@@ -13,9 +13,11 @@ const {
     pnrSearch: enPnrSearch,
     filterSort: enFilterSort,
     tripDetails: enTripDetails,
+    tripListing: enTripListing,
     landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
+    error: enError,
 } = en;
 const {
     ns1: esNs1,
@@ -28,8 +30,10 @@ const {
     pnrSearch: esPnrSearch,
     filterSort: esFilterSort,
     tripDetails: esTripDetails,
+    tripListing: esTripListing,
     landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
+    error: esError,
 } = es;
 
 export const defaultNS = 'ns1';
@@ -48,8 +52,10 @@ void i18n.use(initReactI18next).init({
             pnrSearch: enPnrSearch,
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
+            tripListing: enTripListing,
             landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
+            error: enError,
         },
         es: {
             ns1: esNs1,
@@ -62,8 +68,10 @@ void i18n.use(initReactI18next).init({
             pnrSearch: esPnrSearch,
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
+            tripListing: esTripListing,
             landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
+            error: esError,
         },
     },
     lng: 'en',

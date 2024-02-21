@@ -78,6 +78,14 @@
         "duration": "Duration",
         "busType": "Bus Type"
     },
+    "tripListing": {
+        "busTypeAC": "Bus Type - AC",
+        "busTypeNonAC": "Bus Type - Non-AC",
+        "SeatTypeSeater": "Seat Type - Seater",
+        "SeatTypeSleeper": "Bus Type - Sleeper",
+        "seatsAvailable": "seats available",
+        "loadMore": "Load More"
+    },
     "landingPage": {
         "busWithUs": "Bus with us."
     },
@@ -109,5 +117,8 @@
         "fullNameLength": "Full Name must be 3 to 60 characters long",
         "AgeNumberCheck": "Age must be a valid number",
         "AgeRangeCheck": "Age must be between 1 and 130"
+    },
+    "error": {
+        "unexpected": "Some unexpected error has occurred"
     }
 }

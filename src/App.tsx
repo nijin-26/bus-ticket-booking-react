@@ -10,8 +10,9 @@ import { ThemeProvider as CustomThemeProvider } from '@emotion/react';
 // MUI Theme
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
-
 import { useAppSelector } from './app/hooks';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const basename = '/';
 
@@ -22,8 +23,6 @@ const router = createBrowserRouter(routesConfig, {
 function App() {
     const [loading] = useState(false);
     const mode = useAppSelector((state) => state.theme.currentTheme);
-
-
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -36,6 +35,7 @@ function App() {
                     ) : (
                         <RouterProvider router={router} />
                     )}
+                    <ToastContainer autoClose={2000} />
                 </CustomThemeProvider>
             </MuiThemeProvider>
         </LocalizationProvider>

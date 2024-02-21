@@ -11,6 +11,7 @@ import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 import { ITrip, IBusType, ISeatType } from '../../../types';
+import { useTranslation } from 'react-i18next';
 
 let borderDesignClass: string;
 
@@ -23,6 +24,8 @@ export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
 }: ITripCardAccordionProps) => {
+    const { t } = useTranslation('tripListing');
+
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
     } else if (data.availableSeats > 0) {
@@ -59,8 +62,8 @@ export const TripCardAccordion = ({
                         <Tooltip
                             title={
                                 data.busType == IBusType.AC
-                                    ? 'Bus Type - AC'
-                                    : 'Bus Type - Non-AC'
+                                    ? t('busTypeAC')
+                                    : t('busTypeNonAC')
                             }
                             arrow
                         >
@@ -76,8 +79,8 @@ export const TripCardAccordion = ({
                         <Tooltip
                             title={
                                 data.seatType == ISeatType.SLEEPER
-                                    ? 'Seat Type - Sleeper'
-                                    : 'Seat Type - Seater'
+                                    ? t('SeatTypeSleeper')
+                                    : t('SeatTypeSeater')
                             }
                             arrow
                         >
@@ -112,7 +115,7 @@ export const TripCardAccordion = ({
                         <p className="duration">{dates.formattedDuration}</p>
                     </Tooltip>
                     <p className={`seats ${borderDesignClass}`}>
-                        {data.availableSeats} seats available
+                        {data.availableSeats} {t('seatsAvailable')}
                     </p>
                     <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>

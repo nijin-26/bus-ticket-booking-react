@@ -78,6 +78,14 @@
         "duration": "Duración",
         "busType": "Tipo de autobús"
     },
+    "tripListing": {
+        "busTypeAC": "Tipo de Autobús - Aire Acondicionado",
+        "busTypeNonAC": "Tipo de Autobús - Sin Aire Acondicionado",
+        "SeatTypeSeater": "Tipo de Asiento - Asiento",
+        "SeatTypeSleeper": "Tipo de Autobús - Litera",
+        "seatsAvailable": "asientos disponibles",
+        "loadMore": "Cargar más"
+    },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
     },
@@ -109,5 +117,8 @@
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+    },
+    "error": {
+        "unexpected": "Se ha producido un error inesperado."
     }
 }
