@@ -6,20 +6,24 @@ import { logout, showAuthModal } from '../../app/features/authSlice';
 import {
     Box,
     AppBar,
-    Avatar,
     Button,
     Link,
     Menu,
     MenuItem,
     Typography,
     IconButton,
+    ListItemIcon,
 } from '@mui/material';
 import { StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
-import testProfile from '../../assets/person1.jpeg';
-// import { NavLink } from 'react-router-dom';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import PersonIcon from '@mui/icons-material/Person';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { NavLink } from 'react-router-dom';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import { StyledButton } from '../Footer/Footer.styled';
 
 export const Header = () => {
     const { t } = useTranslation('headerFooter');
@@ -84,7 +88,7 @@ export const Header = () => {
                         </IconButton>
                         {user ? (
                             <>
-                                <IconButton
+                                <StyledButton
                                     id="profile-button"
                                     aria-controls={
                                         isMenuOpen ? 'profile-menu' : undefined
@@ -94,13 +98,15 @@ export const Header = () => {
                                         isMenuOpen ? 'true' : undefined
                                     }
                                     onClick={handleOpenUserMenu}
-                                    className="profile-avatar"
+                                    sx={{ textTransform: 'none' }}
+                                    startIcon={<PersonIcon />}
+                                    endIcon={<KeyboardArrowDownIcon />}
+                                    variant="outlined"
                                 >
-                                    <Avatar
-                                        alt="profile-Picture"
-                                        src={testProfile}
-                                    />
-                                </IconButton>
+                                    <Typography variant="body2">
+                                        {user.fullName}
+                                    </Typography>
+                                </StyledButton>
                                 <Menu
                                     id="profile-menu"
                                     keepMounted
@@ -120,15 +126,23 @@ export const Header = () => {
                                     }}
                                     sx={{ mt: '5px' }}
                                 >
-                                    {/* <MenuItem component={NavLink} to="/users">
+                                    {/*To be included after myBookings page has been included*/}
+
+                                    <MenuItem component={NavLink} to="/users">
+                                        <ListItemIcon>
+                                            <PermContactCalendarIcon fontSize="small" />
+                                        </ListItemIcon>
                                         <Typography
                                             variant="body2"
                                             textAlign="center"
                                         >
                                             {t('myBookings')}
                                         </Typography>
-                                    </MenuItem> */}
+                                    </MenuItem>
                                     <MenuItem onClick={handleLogoutClick}>
+                                        <ListItemIcon>
+                                            <ExitToAppIcon fontSize="small" />
+                                        </ListItemIcon>
                                         <Typography
                                             variant="body2"
                                             textAlign="center"

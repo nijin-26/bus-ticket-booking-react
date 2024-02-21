@@ -15,7 +15,4 @@ export const StyledToolBar = styled(Toolbar)`
     .theme-button {
         margin-right: 2rem;
     }
-    .profile-avatar {
-        padding: 0;
-    }
 `;
