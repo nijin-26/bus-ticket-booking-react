@@ -34,7 +34,7 @@ export const SeatLegend = () => {
                         <Typography
                             variant="body2"
                             className="title"
-                            style={{ marginLeft: '15px' }}
+                            style={{ marginLeft: '1.5rem' }}
                         >
                             {t('selected')}
                         </Typography>

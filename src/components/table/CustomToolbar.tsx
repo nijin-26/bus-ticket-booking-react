@@ -4,7 +4,6 @@ const CustomToolbar = () => {
     return (
         <GridToolbarContainer
             sx={{
-                display: 'flex',
                 justifyContent: 'flex-end',
             }}
         >

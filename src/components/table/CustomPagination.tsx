@@ -5,37 +5,34 @@ import {
     useGridApiContext,
     useGridSelector,
 } from '@mui/x-data-grid';
-import { useTranslation } from 'react-i18next';
-import resources from '../../i18n/types/resources';
+import { TFunction } from 'i18next';
 
 const CustomPagination = ({
-    totalBookings,
+    totalRows,
     updateSearchParams,
-    languageNamespace,
+    t,
 }: {
-    totalBookings: number;
+    totalRows: number;
     updateSearchParams: (newPage: string) => void;
-    languageNamespace: keyof typeof resources;
+    t: TFunction;
 }) => {
     const apiRef = useGridApiContext();
-    const { t } = useTranslation(languageNamespace);
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageSize = useGridSelector(apiRef, gridPageSizeSelector);
-    return (
+    return totalRows ? (
         <div
             style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '16px',
+                padding: '1.6rem',
                 width: '100%',
             }}
         >
             {/* Total rows text */}
             <div>
-                {t('tableFooterTotal')} {totalBookings}{' '}
-                {t('tableFooterSubject')}
-                {totalBookings > 1 ? 's' : ''}
+                {t('tableFooterTotal')} {totalRows} {t('tableFooterSubject')}
+                {totalRows > 1 ? 's' : ''}
             </div>
 
             {/* Pagination */}
@@ -44,7 +41,7 @@ const CustomPagination = ({
                 variant="outlined"
                 shape="rounded"
                 page={page + 1}
-                count={Math.ceil(totalBookings / pageSize)}
+                count={Math.ceil(totalRows / pageSize)}
                 renderItem={(props) => <PaginationItem {...props} />}
                 onChange={(_event, value) => {
                     updateSearchParams(String(value));
@@ -52,7 +49,7 @@ const CustomPagination = ({
                 }}
             />
         </div>
-    );
+    ) : null;
 };
 
 export default CustomPagination;

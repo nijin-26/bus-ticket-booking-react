@@ -14,6 +14,7 @@ const {
     bookingsList,
     usersList,
     tableNoRowsOverlay,
+    tableExportOptions,
     landingPage,
     auth,
 } = data;
@@ -31,6 +32,7 @@ const resources = {
     tripDetails,
     bookingsList,
     usersList,
+    tableExportOptions,
     tableNoRowsOverlay,
     landingPage,
     passengerDetails,

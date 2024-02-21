@@ -1,18 +1,16 @@
 import { GridColDef } from '@mui/x-data-grid';
-import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
-const useGetUsersTableColumns = (): GridColDef[] => {
-    const { t } = useTranslation('usersList');
-
+const getUsersTableColumns = (t: TFunction): GridColDef[] => {
     return [
         { field: 'fullName', headerName: t('fullName') },
         { field: 'email', headerName: t('email') },
         {
             field: 'phone',
             headerName: t('phone'),
-            align: 'right',
+            type: 'number',
         },
     ];
 };
 
-export default useGetUsersTableColumns;
+export default getUsersTableColumns;

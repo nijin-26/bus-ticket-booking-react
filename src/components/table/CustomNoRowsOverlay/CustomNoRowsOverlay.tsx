@@ -48,7 +48,7 @@ const CustomNoRowsOverlay = () => {
                     </g>
                 </g>
             </svg>
-            <Box sx={{ mt: 1 }}>{t('noRows')}</Box>
+            <Box sx={{ mt: 1 }}>{t('noData')}</Box>
         </StyledGridOverlay>
     );
 };

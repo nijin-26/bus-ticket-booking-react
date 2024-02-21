@@ -1,21 +1,21 @@
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { Download } from '@mui/icons-material';
 import { GridColDef } from '@mui/x-data-grid';
 import { ITicket } from '../../types';
 import { getDateFromTimestamp } from '../../utils';
+import { TFunction } from 'i18next';
 
 interface GridValueGetterParams {
     row: ITicket;
 }
 
-const useGetBookingsTableColumns = (): GridColDef[] => {
-    const { t } = useTranslation('bookingsList');
+const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
     return [
         {
             field: 'pnrNumber',
             headerName: t('pnrNumber'),
+            maxWidth: 150,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <>
@@ -23,7 +23,6 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
                     </>
                 );
             },
-            headerAlign: 'center',
         },
         {
             field: 'passengerCount',
@@ -33,7 +32,6 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return <p>{params.row.seats.length}</p>;
             },
-            headerAlign: 'center',
         },
         {
             field: 'tripId',
@@ -43,26 +41,27 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return <p>{params.row.trip.id}</p>;
             },
-            headerAlign: 'center',
         },
         {
             field: 'departureDate',
             headerName: t('date'),
-            maxWidth: 100,
+            align: 'right',
+            maxWidth: 110,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedDate } = getDateFromTimestamp(
-                    params.row.trip.departureTimestamp
+                    params.row.trip.departureTimestamp,
+                    'dd-mm-yyyy'
                 );
                 return <p>{formattedDate}</p>;
             },
-            headerAlign: 'center',
         },
         {
             field: 'origin',
             headerName: t('origin'),
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedTime } = getDateFromTimestamp(
-                    params.row.trip.departureTimestamp
+                    params.row.trip.departureTimestamp,
+                    'dd-mm-yyyy'
                 );
                 return (
                     <p>
@@ -70,14 +69,14 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
                     </p>
                 );
             },
-            headerAlign: 'center',
         },
         {
             field: 'destination',
             headerName: t('destination'),
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedTime } = getDateFromTimestamp(
-                    params.row.trip.arrivalTimestamp
+                    params.row.trip.arrivalTimestamp,
+                    'dd-mm-yyyy'
                 );
                 return (
                     <p>
@@ -85,7 +84,6 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
                     </p>
                 );
             },
-            headerAlign: 'center',
         },
         {
             field: 'busType',
@@ -97,12 +95,12 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
                     </p>
                 );
             },
-            headerAlign: 'center',
         },
         {
             field: 'download',
-            headerName: t('download'),
+            headerName: '',
             align: 'center',
+            maxWidth: 50,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <p>
@@ -116,8 +114,7 @@ const useGetBookingsTableColumns = (): GridColDef[] => {
                     </p>
                 );
             },
-            headerAlign: 'center',
         },
     ];
 };
-export default useGetBookingsTableColumns;
+export default getBookingsTableColumns;

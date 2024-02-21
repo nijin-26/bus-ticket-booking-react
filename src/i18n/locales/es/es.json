@@ -79,21 +79,17 @@
         "busType": "Tipo de autobús"
     },
     "tableNoRowsOverlay": {
-        "noRows": "Sin filas"
+        "noRows": "Sin datos"
     },
     "bookingsList": {
-        "bookingsList": "Lista de Reservas",
-        "totalUsers": "Total de usuarios",
-        "totalBookings": "Total de reservas",
+        "pageTitle": "Lista de Reservas",
+        "cardTitle": "Total de reservas",
         "pnrNumber": "Número de PNR",
         "username": "Nombre de usuario",
         "origin": "Origen",
         "destination": "Destino",
         "busType": "Tipo de autobús",
         "seatType": "Tipo de asiento",
-        "export": "Exportar",
-        "exportAsCsv": "Descargar como CSV",
-        "exportPrint": "Imprimir",
         "tableFooterTotal": "Total",
         "tableFooterSubject": "reservas",
         "date": "Fecha",
@@ -102,17 +98,18 @@
         "download": "Descargar"
     },
     "usersList": {
-        "usersList": "Lista de Usuarios",
-        "totalUsers": "Usuarios totales",
-        "totalBookings": "Reservas totales",
+        "pageTitle": "Lista de Usuarios",
+        "cardTitle": "Usuarios totales",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "usuario",
         "fullName": "Nombre completo",
         "email": "Correo electrónico",
-        "phone": "Teléfono",
+        "phone": "Teléfono"
+    },
+    "tableExportOptions": {
         "export": "Exportar",
         "exportAsCsv": "Descargar como CSV",
-        "exportPrint": "Imprimir",
-        "tableFooterTotal": "Total",
-        "tableFooterSubject": "usuario"
+        "exportPrint": "Imprimir"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."

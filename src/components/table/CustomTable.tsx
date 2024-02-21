@@ -5,8 +5,8 @@ import { CustomTableWrapper } from './CustomTable.styled';
 import CustomToolbar from './CustomToolbar';
 import CustomPagination from './CustomPagination';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay/CustomNoRowsOverlay';
+import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
-import resources from '../../i18n/types/resources';
 
 export interface ICustomTable<T> {
     pageState: IPagination<T>;
@@ -14,7 +14,7 @@ export interface ICustomTable<T> {
     updateSearchParams: (newPage: string) => void;
     rowId: keyof T;
     columns: GridColDef[];
-    languageNamespace: keyof typeof resources;
+    t: TFunction;
 }
 
 export const CustomTable = <T,>({
@@ -23,17 +23,16 @@ export const CustomTable = <T,>({
     updateSearchParams,
     columns,
     rowId,
-    languageNamespace,
+    t,
 }: ICustomTable<T>) => {
-    const { t } = useTranslation(languageNamespace);
+    const { t: tExport } = useTranslation('tableExportOptions');
     return (
         <CustomTableWrapper>
             <DataGrid
                 sx={{
                     borderRadius: 2,
                     boxShadow: 3,
-                    pl: '5rem',
-                    pr: '5rem',
+                    px: '3rem',
                 }}
                 rows={pageState.data}
                 rowCount={pageState.totalNumberOfData}
@@ -67,17 +66,17 @@ export const CustomTable = <T,>({
                     updatePageState(newPaginationModel);
                 }}
                 localeText={{
-                    toolbarExport: t('export'),
-                    toolbarExportCSV: t('exportAsCsv'),
-                    toolbarExportPrint: t('exportPrint'),
+                    toolbarExport: tExport('export'),
+                    toolbarExportCSV: tExport('exportAsCsv'),
+                    toolbarExportPrint: tExport('exportPrint'),
                 }}
                 slots={{
                     toolbar: CustomToolbar,
                     pagination: () => (
                         <CustomPagination
-                            totalBookings={pageState.totalNumberOfData}
+                            totalRows={pageState.totalNumberOfData}
                             updateSearchParams={updateSearchParams}
-                            languageNamespace={languageNamespace}
+                            t={t}
                         />
                     ),
                     loadingOverlay: LinearProgress,

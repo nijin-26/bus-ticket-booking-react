@@ -33,9 +33,9 @@ export const convertTimeStamp = (
     };
 };
 
-export const getDateFromTimestamp = (date: Date) => {
+export const getDateFromTimestamp = (date: Date, dateFormat: string) => {
     return {
-        formattedDate: format(date, 'dd-MMM-yyyy'),
+        formattedDate: format(date, dateFormat),
         formattedTime: format(date, 'p'),
     };
 };

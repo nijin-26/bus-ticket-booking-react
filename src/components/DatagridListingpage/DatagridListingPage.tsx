@@ -1,0 +1,108 @@
+import { Stack, Box, Typography, CircularProgress } from '@mui/material';
+import { DatagridListingPageWrapper } from './DatagridListingPage.styled';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { IPagination } from '../../types/pagination';
+import { CustomTable } from '../table/CustomTable';
+import { GridColDef } from '@mui/x-data-grid';
+import { TFunction } from 'i18next';
+
+export const DatagridListingPage = <T,>({
+    columns,
+    t,
+    getData,
+    rowId,
+}: {
+    columns: GridColDef[];
+    t: TFunction;
+    getData: () => Promise<T[]>;
+    rowId: keyof T;
+}) => {
+    const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
+    const updateSearchParams = (newPage: string) => {
+        searchParams.set('page', String(newPage));
+        setSearchParams(searchParams);
+    };
+
+    const [pageState, setPageState] = useState<IPagination<T>>({
+        loading: true,
+        page: Number(searchParams.get('page')) - 1 || 0,
+        pageSize: 10,
+        totalNumberOfData: 0,
+        data: [],
+    });
+
+    const updatePageState = (newPageState: Partial<IPagination<T>>) => {
+        setPageState((prev) => ({ ...prev, ...newPageState }));
+    };
+
+    useEffect(() => {
+        //Fething data
+        void (async () => {
+            try {
+                setPageState((prev) => ({ ...prev, loading: true }));
+                const ticketsResponse = await getData();
+                setPageState((prev) => ({
+                    ...prev,
+                    data: ticketsResponse,
+                    totalNumberOfData: ticketsResponse.length,
+                }));
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setPageState((prev) => ({ ...prev, loading: false }));
+            }
+        })();
+    }, [getData]);
+
+    return (
+        <DatagridListingPageWrapper>
+            <Stack direction={'row'} spacing={5}>
+                <Box component="div" className="boxes">
+                    <Typography
+                        variant="h4"
+                        component="h2"
+                        sx={{ lineHeight: '10rem' }}
+                    >
+                        {t('pageTitle')}
+                    </Typography>
+                </Box>
+                <Box
+                    component="div"
+                    className="boxes box-bg"
+                    boxShadow={3}
+                    borderRadius={2}
+                >
+                    <Stack direction={'column'} className="box-col">
+                        <Typography
+                            variant="body2"
+                            className="title"
+                            textAlign={'left'}
+                        >
+                            {t('cardTitle')}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            className="value"
+                            textAlign={'center'}
+                        >
+                            {pageState.loading ? (
+                                <CircularProgress />
+                            ) : (
+                                pageState.totalNumberOfData
+                            )}
+                        </Typography>
+                    </Stack>
+                </Box>
+            </Stack>
+            <CustomTable<T>
+                pageState={pageState}
+                updatePageState={updatePageState}
+                updateSearchParams={updateSearchParams}
+                columns={columns}
+                rowId={rowId}
+                t={t}
+            />
+        </DatagridListingPageWrapper>
+    );
+};

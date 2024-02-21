@@ -79,40 +79,37 @@
         "busType": "Bus Type"
     },
     "tableNoRowsOverlay": {
-        "noRows": "No rows"
+        "noData": "No data"
     },
     "bookingsList": {
-        "bookingsList": "Bookings List",
-        "totalUsers": "Total users",
-        "totalBookings": "Total bookings",
+        "pageTitle": "Bookings List",
+        "cardTitle": "Total bookings",
         "pnrNumber": "PNR Number",
         "username": "User Name",
         "origin": "Origin",
         "destination": "Destination",
         "busType": "Bus Type",
         "seatType": "Seat Type",
-        "export": "Export",
-        "exportAsCsv": "Download as CSV",
-        "exportPrint": "Print",
         "tableFooterTotal": "Total",
         "tableFooterSubject": "booking",
         "date": "Date",
         "tripId": "Trip ID",
         "pax": "Pax",
-        "download":"Download"
+        "download": "Download"
     },
-    "usersList": {
-        "usersList": "Users List",
-        "totalUsers": "Total users",
-        "totalBookings": "Total bookings",
-        "fullName": "Full name",
-        "email": "Email",
-        "phone": "Phone",
+    "tableExportOptions": {
         "export": "Export",
         "exportAsCsv": "Download as CSV",
-        "exportPrint": "Print",
+        "exportPrint": "Print"
+    },
+    "usersList": {
+        "pageTitle": "Users List",
+        "cardTitle": "Total users",
         "tableFooterTotal": "Total",
-        "tableFooterSubject": "user"
+        "tableFooterSubject": "user",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone"
     },
     "landingPage": {
         "busWithUs": "Bus with us."

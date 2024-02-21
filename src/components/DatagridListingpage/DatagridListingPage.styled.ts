@@ -1,22 +1,18 @@
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 
-export const ListingPageWrapper = styled(Box)(({ theme }) => ({
+export const DatagridListingPageWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
-    overflow: 'hidden',
-    width: '100%',
-    padding: '1rem',
-    margin: '1rem',
+    gap: '2rem',
+    margin: '3rem 0',
 
     '& .box-bg': {
         backgroundColor: theme.color.busLayoutBg,
     },
 
     '& .boxes': {
-        height: '100px',
-        marginTop: '1rem',
+        height: '10rem',
         flex: '1',
 
         '& .box-col': {
