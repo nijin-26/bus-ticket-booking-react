@@ -5,7 +5,10 @@ import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect, RefObject } from 'react';
 import { useTheme } from '@emotion/react';
-import { IPassengersInputFromFormik, conv } from '../../../utils';
+import {
+    IPassengersInputFromFormik,
+    convertFormikDataToApiData,
+} from '../../../utils';
 import { bookTicket } from '../../../api/endpoints/ticket.api';
 import { toast } from 'react-toastify';
 
@@ -28,26 +31,17 @@ const PassengerDetailsForm = ({
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
 
     const postBookingData = async (obj: IPassengersInputFromFormik) => {
-        const inputObj = conv(obj);
-        console.log(inputObj, 'this is the input obj for api');
+        const inputObj = convertFormikDataToApiData(obj);
         try {
             const responseBook = await bookTicket(tripId, inputObj);
-            console.log(
-                responseBook,
-                'response after booking hahahahahahahahahahahahha'
-            );
+            console.log(responseBook);
             toast.success(t('apiSuccessMessage'));
         } catch (err) {
-            console.log(
-                err,
-                'error from api hahahahahahahahahahahahahahahahaha'
-            );
             toast.error(t('apiErrorMessage'));
         } finally {
             loaderFun(false);
         }
     };
-
     useEffect(() => {
         // Incrementing languageChangeKey to force re-render when language changes
         setLanguageChangeKey((prevKey) => prevKey + 1);

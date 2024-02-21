@@ -12,58 +12,10 @@ interface IPassengers extends Ipdetails {
 export interface IPassengersInputFromFormik {
     passengers: IPassengers[];
 }
-// interface Iseats {
-//     seatNumber: number;
-//     passenger: Ipdetails;
-// }
 
-// export interface ITripDetailPayload {
-//     tripId: number;
-//     seats: Iseats;
-// }
-
-export const converterFun = (
-    obj: IPassengersInputFromFormik,
-    tripId: number
-) => {
-    const passengersArray = obj.passengers;
-    const convertedPassengersArray = passengersArray.map((each) => {
-        const { seatNumber, fullName, age, gender } = each;
-        return {
-            seatNumber,
-            passengerName: fullName,
-            passengerAge: age,
-            passengerGender: gender,
-        };
-    });
-    return { tripId: tripId, bookings: convertedPassengersArray };
-};
-
-//input
-// {
-//     "passengers": [
-//       {
-//         "seatNumber": 1,
-//         "fullName": "dfadf",
-//         "age": "23",
-//         "gender": "female"
-//       }
-//     ]
-//   }
-
-//output
-// [
-//     {
-//         seatNumber:23,
-//         passenger:{
-//             fullName:"assdg",
-//             age:12,
-//             gender:IGender.MALE
-//         }
-//     }
-// ]
-
-export const conv = (obj: IPassengersInputFromFormik): IPassengerSeat[] => {
+export const convertFormikDataToApiData = (
+    obj: IPassengersInputFromFormik
+): IPassengerSeat[] => {
     return obj.passengers.map((each) => ({
         seatNumber: each.seatNumber,
         passenger: {
@@ -76,19 +28,6 @@ export const conv = (obj: IPassengersInputFromFormik): IPassengerSeat[] => {
         },
     }));
 };
-
-// export function convertDataToPassengerSeats(
-//     data: IPassengersInputFromFormik
-// ): IPassengerSeat[] {
-//     return data.passengers.map((passenger) => ({
-//         seatNumber: passenger.seatNumber,
-//         passenger: {
-//             fullName: passenger.fullName,
-//             age: passenger.age,
-//             gender: IGender[passenger.gender.toUpperCase()], // Map to the IGender enum
-//         },
-//     }));
-// }
 
 export const filterSelectedSeats = (arr: ISeat[]) => {
     const filteredSelectedSeats: number[] = arr

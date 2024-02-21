@@ -4,18 +4,16 @@ import LongArrow from '../../components/icons/LongArrow';
 import { TripCardAccordion } from '../../components';
 import { useAppSelector } from '../../app/hooks';
 import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
-
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
 import { useEffect, useRef, useState } from 'react';
 import { FormikProps } from 'formik';
 import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
 import { IPassengersInputFromFormik, filterSelectedSeats } from '../../utils';
-
-import FullScreenLoader from './FullScreenLoader';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 
 export const TripBookingPage = () => {
     const { t } = useTranslation('bookingPageConfirmation');

@@ -76,7 +76,8 @@
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",
-        "busType": "Bus Type"
+        "busType": "Bus Type",
+        "seat": "seat"
     },
     "landingPage": {
         "busWithUs": "Bus with us."
