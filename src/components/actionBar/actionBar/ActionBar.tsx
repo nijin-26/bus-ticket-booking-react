@@ -1,10 +1,4 @@
-import {
-    Autocomplete,
-    TextField,
-    InputAdornment,
-    IconButton,
-    Grid,
-} from '@mui/material';
+import { Autocomplete, TextField, InputAdornment, Grid } from '@mui/material';
 
 import {
     FmdGood,
@@ -49,7 +43,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const dispatch = useDispatch();
 
     const [toggle, setToggle] = useState(false);
-    console.log('toglle state:', toggle);
 
     useEffect(() => {
         const originParam = searchParams.get('originID');
@@ -140,7 +133,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // submit handler
     const searchBusHandler = () => {
-        if (startLocation && stopLocation) {
+        if (startLocation && stopLocation && tripDate) {
             dispatch(
                 setBusSearchParams({
                     originID: startLocation.id,
@@ -148,6 +141,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     tripDate: tripDate,
                 })
             );
+
             navigate(paths.tripsListing);
         }
     };

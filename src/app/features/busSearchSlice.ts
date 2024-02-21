@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { IBusType, ISeatType } from '../../types';
 
 interface IBusSearchParams {
     originID: number;
     destinationID: number;
-    tripDate: Date | null;
+    tripDate: Date;
     sortBy?: string;
     sortOrder?: string;
-    seatType?: string | null;
-    busType?: string | null;
+    seatType?: ISeatType | null;
+    busType?: IBusType | null;
     page?: number;
     pageSize?: number;
     // passengerCount: number;
@@ -39,11 +40,11 @@ export const busSearchSlice = createSlice({
         // },
 
         // filter reducers
-        addBusFilter: (state, action: PayloadAction<string>) => {
+        addBusFilter: (state, action: PayloadAction<IBusType>) => {
             state.busType = action.payload;
         },
 
-        addSeatFilter: (state, action: PayloadAction<string>) => {
+        addSeatFilter: (state, action: PayloadAction<ISeatType>) => {
             state.seatType = action.payload;
         },
 

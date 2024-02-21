@@ -9,6 +9,7 @@ import { ISeatType, IBusType, ITrip } from '../../types';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { getTrips } from '../../api';
+import { useSearchParams } from 'react-router-dom';
 
 // const dummyData = [
 //     {
@@ -165,20 +166,89 @@ export const TripsListingPage = () => {
 
     const dispatch = useAppDispatch();
     const matches = useMediaQuery('(min-width:600px)');
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        const start = searchParams.get('originID');
+        const dest = searchParams.get('destinationID');
+        const date = searchParams.get('tripDate');
+
+        if (start && dest && date) {
+            getTrips({
+                originId: start,
+                destinationId: dest,
+                tripDate: date,
+                page: 1,
+                pageSize: 5,
+            })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else {
+            getTrips({
+                originId: paramsFromStore.originID.toString(),
+                destinationId: paramsFromStore.destinationID.toString(),
+                tripDate: paramsFromStore.tripDate.toDateString(),
+                page: 1,
+                pageSize: 5,
+            })
+                .then(() => {
+                    searchParams.set(
+                        'originID',
+                        paramsFromStore.originID.toString()
+                    );
+                    setSearchParams(searchParams);
+                    searchParams.set(
+                        'destinationID',
+                        paramsFromStore.destinationID.toString()
+                    );
+                    setSearchParams(searchParams);
+                    searchParams.set(
+                        'tripDate',
+                        paramsFromStore.tripDate.toDateString()
+                    );
+                })
+                .catch((err) => {
+                    console.log('error occured', err);
+                });
+        }
+    }, []);
 
     useEffect(() => {
         getTrips({
             originId: paramsFromStore.originID.toString(),
             destinationId: paramsFromStore.destinationID.toString(),
-            tripDate: '01-01-2001',
+            tripDate: paramsFromStore.tripDate.toDateString(),
+            //sortBy:paramsFromStore.sortBy ;
+            //sortOrder: string;
+            seatType: paramsFromStore.seatType ?? undefined,
+            busType: paramsFromStore.busType ?? undefined,
+            page: 1,
+            pageSize: 5,
         })
-            .then((res) => {
-                console.log(res);
+            .then(() => {
+                searchParams.set(
+                    'originID',
+                    paramsFromStore.originID.toString()
+                );
+                setSearchParams(searchParams);
+                searchParams.set(
+                    'destinationID',
+                    paramsFromStore.destinationID.toString()
+                );
+                setSearchParams(searchParams);
+                searchParams.set(
+                    'tripDate',
+                    paramsFromStore.tripDate.toDateString()
+                );
             })
             .catch((err) => {
                 console.log('error occured', err);
             });
-    }, [paramsFromStore]);
+    }, [paramsFromStore.seatType, paramsFromStore.busType]);
 
     dispatch(setTripListingData(dummyData));
 
