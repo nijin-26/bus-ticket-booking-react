@@ -3,20 +3,29 @@ import { StyledFormControlLabel } from '../filterSort/FilterSort.styled';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setBusSearchParams } from '../../../app/features/busSearchSlice';
-import { useAppSelector } from '../../../app/hooks';
+import { setSort } from '../../../app/features/busSearchSlice';
 
 export default function SortGroup() {
     const { t } = useTranslation('filterSort');
     const dispatch = useDispatch();
-    // const sortParam = useAppSelector((state) => state.busSearch.sortBy);
 
     const [searchParams, setSearchParams] = useSearchParams();
 
     // upon mount the query param is set to store?
 
     const sortHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setBusSearchParams({ sortBy: event.target.value }));
+        if (event.target.value === 'PriceHighToLow') {
+            dispatch(setSort({ sortBy: 'fare', sortOrder: 'DESC' }));
+        } else if (event.target.value === 'PriceLowToHigh') {
+            dispatch(setSort({ sortBy: 'fare', sortOrder: 'ASC' }));
+        } else if (event.target.value === 'SeatsAvailable') {
+            dispatch(setSort({ sortBy: 'seatsAvailable', sortOrder: 'ASC' }));
+        } else if (event.target.value === 'StartDate') {
+            dispatch(
+                setSort({ sortBy: 'departureTimestamp', sortOrder: 'ASC' })
+            );
+        }
+
         searchParams.set('sortBy', event.target.value);
         setSearchParams(searchParams);
     };

@@ -107,16 +107,10 @@ export default function FilterSort() {
 
                     <FilterChip />
                 </Stack>
-                <Badge
-                    //invisible={Boolean(!sortBy)}
-                    color="primary"
-                    badgeContent=" "
-                    variant="dot"
-                >
-                    <Button variant="outlined" onClick={sortTypeHandler}>
-                        {t('sort')}
-                    </Button>
-                </Badge>
+
+                <Button variant="outlined" onClick={sortTypeHandler}>
+                    {t('sort')}
+                </Button>
             </Stack>
 
             {/* Filters menu */}

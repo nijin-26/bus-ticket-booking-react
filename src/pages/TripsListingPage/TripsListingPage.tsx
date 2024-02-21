@@ -169,6 +169,10 @@ export const TripsListingPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
+        // if params are present, get fetch params from query params
+        // else get fetch params from store
+        // when filters and sort states in store change, a fetch must me called
+
         const start = searchParams.get('originID');
         const dest = searchParams.get('destinationID');
         const date = searchParams.get('tripDate');
@@ -216,39 +220,6 @@ export const TripsListingPage = () => {
                 });
         }
     }, []);
-
-    useEffect(() => {
-        getTrips({
-            originId: paramsFromStore.originID.toString(),
-            destinationId: paramsFromStore.destinationID.toString(),
-            tripDate: paramsFromStore.tripDate.toDateString(),
-            //sortBy:paramsFromStore.sortBy ;
-            //sortOrder: string;
-            seatType: paramsFromStore.seatType ?? undefined,
-            busType: paramsFromStore.busType ?? undefined,
-            page: 1,
-            pageSize: 5,
-        })
-            .then(() => {
-                searchParams.set(
-                    'originID',
-                    paramsFromStore.originID.toString()
-                );
-                setSearchParams(searchParams);
-                searchParams.set(
-                    'destinationID',
-                    paramsFromStore.destinationID.toString()
-                );
-                setSearchParams(searchParams);
-                searchParams.set(
-                    'tripDate',
-                    paramsFromStore.tripDate.toDateString()
-                );
-            })
-            .catch((err) => {
-                console.log('error occured', err);
-            });
-    }, [paramsFromStore.seatType, paramsFromStore.busType]);
 
     dispatch(setTripListingData(dummyData));
 

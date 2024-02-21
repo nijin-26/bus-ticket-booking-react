@@ -34,10 +34,10 @@ export const busSearchSlice = createSlice({
         },
 
         // sort reducer
-        // setSort: (state, action: PayloadAction<IsortObject>) => {
-        //     state.sortBy = action.payload.sortBy;
-        //     state.sortOrder = action.payload.sortOrder;
-        // },
+        setSort: (state, action: PayloadAction<IsortObject>) => {
+            state.sortBy = action.payload.sortBy;
+            state.sortOrder = action.payload.sortOrder;
+        },
 
         // filter reducers
         addBusFilter: (state, action: PayloadAction<IBusType>) => {
@@ -64,6 +64,7 @@ export const {
     addSeatFilter,
     removeBusFilter,
     removeSeatFilter,
+    setSort,
 } = busSearchSlice.actions;
 
 export default busSearchSlice.reducer;

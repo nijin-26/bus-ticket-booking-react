@@ -33,6 +33,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
+    console.log('start loc', startLocation);
+
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
     );
@@ -44,33 +46,40 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     const [toggle, setToggle] = useState(false);
 
+    const getLocOptions = async () => {
+        try {
+            const loc = await getLocations();
+            const converterLoc = loc.map((locObj) => {
+                return { id: Number(locObj.id), label: locObj.name };
+            });
+            setLocOptions(() => converterLoc);
+            console.log('BLEHHHHHH', locOptions);
+        } catch (err) {
+            // show error
+            console.log('There is an error', err);
+        }
+    };
+
     useEffect(() => {
         const originParam = searchParams.get('originID');
         const destinationParam = searchParams.get('destinationID');
         const tripDateParam = searchParams.get('tripDate');
 
-        const getLocOptions = async () => {
-            try {
-                const loc = await getLocations();
-                const converterLoc = loc.map((locObj) => {
-                    return { id: Number(locObj.id), label: locObj.name };
-                });
-                setLocOptions(converterLoc);
-                setParamOptions();
-            } catch (err) {
-                // show error
-                console.log('There is an error', err);
-            }
-        };
+        console.log('originParam', originParam);
 
         // setting origin and destination from query params
         const setParamOptions = () => {
+            console.log('im inside hekwvf%%%%%%%%%%%%%');
+            console.log('locOptions', locOptions);
+
             const originlocation = locOptions.find((opt) => {
-                return opt.id === Number(originParam);
+                return opt.id == Number(originParam);
             });
             const destinationlocation = locOptions.find((opt) => {
                 return opt.id === Number(destinationParam);
             });
+
+            console.log('originlocation', originlocation);
 
             if (originlocation) {
                 setStartLocation(originlocation);
@@ -85,10 +94,14 @@ const ActionBar: React.FC<IActionBarProps> = ({
             }
         };
 
-        getLocOptions().catch(() => {
-            console.log('couldnt fetch location into locOptions');
-        });
-    }, []);
+        getLocOptions()
+            .then(() => {
+                setParamOptions();
+            })
+            .catch(() => {
+                console.log('couldnt fetch location into locOptions');
+            });
+    }, [searchParams]);
 
     // setting start location
     const handleStartSelect = (
@@ -142,7 +155,13 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 })
             );
 
-            navigate(paths.tripsListing);
+            navigate(
+                `${paths.tripsListing}?originID=${
+                    startLocation.id
+                }&destinationID=${
+                    stopLocation.id
+                }&tripDate=${tripDate.toString()}`
+            );
         }
     };
 
