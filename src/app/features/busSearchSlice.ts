@@ -8,8 +8,8 @@ interface IBusSearchParams {
     tripDate?: string;
     sortBy?: string;
     sortOrder?: string;
-    seatType?: ISeatType | null;
-    busType?: IBusType | null;
+    seatType?: ISeatType;
+    busType?: IBusType;
 }
 
 const initialState: IBusSearchParams = {};

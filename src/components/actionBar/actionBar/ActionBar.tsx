@@ -92,7 +92,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
         });
     }, []);
 
-    // sstart, start and date set once locations are loaded
+    // start, stop and date set once locations are loaded
     useEffect(() => {
         setParamOptions();
     }, [locOptions]);
@@ -157,6 +157,17 @@ const ActionBar: React.FC<IActionBarProps> = ({
         }
     };
 
+    // filters selected location option
+    const filterLocationOptions = (
+        filter: ILocationOptions | null
+    ): ILocationOptions[] => {
+        return filter
+            ? locOptions.filter(
+                  (loc) => loc.id != filter.id || loc.label != filter.label
+              )
+            : locOptions;
+    };
+
     return (
         <Wrapper>
             <Grid container spacing={2}>
@@ -171,15 +182,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={
-                                stopLocation
-                                    ? locOptions.filter(
-                                          (loc) =>
-                                              loc.id != stopLocation.id ||
-                                              loc.label != stopLocation.label
-                                      )
-                                    : locOptions
-                            }
+                            options={filterLocationOptions(stopLocation)}
                             value={startLocation}
                             onChange={handleStartSelect}
                             isOptionEqualToValue={(option, value) =>
@@ -225,15 +228,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={
-                                startLocation
-                                    ? locOptions.filter(
-                                          (loc) =>
-                                              loc.id != startLocation.id ||
-                                              loc.label != startLocation.label
-                                      )
-                                    : locOptions
-                            }
+                            options={filterLocationOptions(startLocation)}
                             value={stopLocation}
                             onChange={handleStopSelect}
                             isOptionEqualToValue={(option, value) =>
