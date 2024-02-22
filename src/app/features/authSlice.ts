@@ -6,11 +6,18 @@ import { getUserDataFromStorage } from '../../utils/authUtils';
 interface IAuthState {
     isAuthModalDisplayed: boolean;
     user: IAuthUser | null;
+    redirectState: IRedirectState | null;
+}
+
+interface IRedirectState {
+    from: string;
+    message: string;
 }
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
     user: getUserDataFromStorage(),
+    redirectState: null,
 };
 
 const authSlice = createSlice({
@@ -29,6 +36,12 @@ const authSlice = createSlice({
             storage.setItem('userData', rest);
             state.user = rest;
         },
+        setRedirectState: (state, action: PayloadAction<IRedirectState>) => {
+            state.redirectState = action.payload;
+        },
+        clearRedirectState: (state) => {
+            state.redirectState = null;
+        },
         logout: (state) => {
             storage.removeItem('accessToken');
             storage.removeItem('userData');
@@ -37,7 +50,13 @@ const authSlice = createSlice({
     },
 });
 
-export const { showAuthModal, hideAuthModal, setCredentials, logout } =
-    authSlice.actions;
+export const {
+    showAuthModal,
+    hideAuthModal,
+    setCredentials,
+    setRedirectState,
+    clearRedirectState,
+    logout,
+} = authSlice.actions;
 
 export default authSlice.reducer;

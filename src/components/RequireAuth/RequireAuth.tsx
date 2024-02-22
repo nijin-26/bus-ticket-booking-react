@@ -1,18 +1,22 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { paths } from '../../config';
-import { showAuthModal } from '../../app/features/authSlice';
-import { toast } from 'react-toastify';
+import { setRedirectState, showAuthModal } from '../../app/features/authSlice';
+import { useTranslation } from 'react-i18next';
 
 export const RequireAuth = () => {
-    const user = useAppSelector((state) => state.auth.user);
+    const { t } = useTranslation('auth');
+    const location = useLocation();
     const dispatch = useAppDispatch();
 
+    const user = useAppSelector((state) => state.auth.user);
+
     if (!user) {
-        //setTimeout used to make sure that the toast is displayed
-        //after the page navigation occurs
-        setTimeout(() =>
-            toast.error('Please login to valid account to view this page')
+        dispatch(
+            setRedirectState({
+                from: location.pathname,
+                message: t('unauthorizedErrorMessage'),
+            })
         );
         dispatch(showAuthModal());
     }
