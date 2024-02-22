@@ -12,28 +12,26 @@ import { TripsListingPageWrapper } from './TripsListingPage.styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSearchParams } from 'react-router-dom';
 import { getTrips } from '../../api';
-import { ITrip } from '../../types';
+import { IBusType, ISeatType, ITrip } from '../../types';
 import { rowsPerPage } from '../../config';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-
+import bus from '../../assets/bus.svg';
 export const TripsListingPage = () => {
     const hasMounted = useRef(true);
     const [tripData, setTripData] = useState<ITrip[]>([]);
     const [resultLength, setResultLength] = useState<number>(0);
-    const [btnLoading, setBtnLoading] = useState(false);
-    const [fullScreenLoading, setFullScreenLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [hasError, setHasError] = useState(false); //this state is used to not show no data section if there is an error in fetch
+    const [page, setPage] = useState('1');
     const [searchParams] = useSearchParams();
     const matches = useMediaQuery('(min-width:600px)');
-    console.log(searchParams);
-    const [page, setPage] = useState('1');
-    const { t } = useTranslation('error');
+    const { t } = useTranslation(['error', 'tripListing']);
 
     useEffect(() => {
-        console.log('Mount');
         const fetchTripData = async () => {
-            setBtnLoading(true);
+            setLoading(true);
             const originId = searchParams.get('originId') ?? '8';
             const destinationId = searchParams.get('destinationId') ?? '9';
             const tripDate = searchParams.get('tripDate') ?? '2024-05-14';
@@ -41,11 +39,15 @@ export const TripsListingPage = () => {
                 'sortBy'
             ) as ITripsSortKey | null;
             const sortBy: ITripsSortKey =
-                sortByParam ?? ITripsSortKey.DEPARTURE_TIMESTAMP;
+                sortByParam ?? ITripsSortKey.SEATS_AVAILABLE;
             const sortOrderParam = searchParams.get(
                 'sortOrder'
             ) as ISortOrder | null;
-            const sortOrder: ISortOrder = sortOrderParam ?? ISortOrder.ASC;
+            const sortOrder: ISortOrder = sortOrderParam ?? ISortOrder.DESC;
+            const seatTypeParam = searchParams.get('seatType') as ISeatType;
+            const seatType: ISeatType = seatTypeParam;
+            const busTypeParam = searchParams.get('busType') as IBusType;
+            const busType: IBusType = busTypeParam;
             const passengerCount = searchParams.get('passengerCount') ?? '1';
             try {
                 const params: ITripsQueryRequest = {
@@ -54,6 +56,8 @@ export const TripsListingPage = () => {
                     tripDate: tripDate,
                     sortBy: sortBy,
                     sortOrder: sortOrder,
+                    busType: busType,
+                    seatType: seatType,
                     page: Number(page),
                     pageSize: rowsPerPage,
                     passengerCount: Number(passengerCount),
@@ -61,44 +65,53 @@ export const TripsListingPage = () => {
                 const response = await getTrips(params);
                 setTripData((prev) => [...prev, ...response.trips]);
                 setResultLength(response.resultCount);
-                setFullScreenLoading(false);
-                setBtnLoading(false);
+                setLoading(false);
             } catch (error) {
                 toast.error(t('unexpected'));
                 console.error('Error fetching trip data:', error);
-                setFullScreenLoading(false);
-                setBtnLoading(false);
+                setHasError(true);
+            } finally {
+                setLoading(false);
             }
         };
         if (hasMounted.current) {
-            console.log(hasMounted.current);
             hasMounted.current = false;
             fetchTripData().catch((error) => {
                 console.error('Error in useEffect:', error);
+                setHasError(true);
             });
         }
     }, [page, searchParams, t]);
 
-    console.log(tripData);
+    console.log(tripData); //remove
     return (
         <TripsListingPageWrapper>
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
-            <div className="accordions">
-                {tripData.map((indData) => (
-                    <TripCardAccordion key={indData.id} data={indData} />
-                ))}
-            </div>
+            <section className="accordions">
+                {tripData.length !== 0
+                    ? tripData.map((indData) => (
+                          <TripCardAccordion key={indData.id} data={indData} />
+                      ))
+                    : !loading &&
+                      !hasError && (
+                          <section className="no-data">
+                              <h2>{t('tripListing:noOptions')}</h2>
+                              <p>{t('tripListing:change')}</p>
+                              <img src={bus} alt="bus-icon" />
+                          </section>
+                      )}
+            </section>
             {resultLength > 5 && tripData.length != resultLength && (
                 <LoadMore
                     resultLength={resultLength}
                     setPage={setPage}
                     page={page}
-                    btnLoading={btnLoading}
-                    setBtnLoading={setBtnLoading}
+                    btnLoading={loading}
+                    setBtnLoading={setLoading}
                     hasMounted={hasMounted}
                 />
             )}
-            <FullScreenLoader open={fullScreenLoading} />
+            <FullScreenLoader open={loading && tripData.length === 0} />
         </TripsListingPageWrapper>
     );
 };

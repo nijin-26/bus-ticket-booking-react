@@ -84,7 +84,9 @@
         "SeatTypeSeater": "Tipo de Asiento - Asiento",
         "SeatTypeSleeper": "Tipo de Autobús - Litera",
         "seatsAvailable": "asientos disponibles",
-        "loadMore": "Cargar más"
+        "loadMore": "Cargar más",
+        "noOptions": "No hay opciones que coincidan con tu búsqueda",
+        "change": "Prueba a cambiar las fechas o el destino para ver resultados"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."

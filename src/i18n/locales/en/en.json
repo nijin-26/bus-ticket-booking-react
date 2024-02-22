@@ -84,7 +84,9 @@
         "SeatTypeSeater": "Seat Type - Seater",
         "SeatTypeSleeper": "Bus Type - Sleeper",
         "seatsAvailable": "seats available",
-        "loadMore": "Load More"
+        "loadMore": "Load More",
+        "noOptions": "No options matching your search",
+        "change": "Try changing your dates or destination to see results"
     },
     "landingPage": {
         "busWithUs": "Bus with us."
