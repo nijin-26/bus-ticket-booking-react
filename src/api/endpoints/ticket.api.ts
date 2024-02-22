@@ -8,6 +8,7 @@ import {
     IBookingListingResponse,
     IBookingRequest,
     IBookingResponse,
+    IMyBookingResponse,
 } from '../types/ticket';
 
 export const bookTicket = async (
@@ -31,30 +32,18 @@ export const bookTicket = async (
     return ticket;
 };
 
-export const getAllBookings = async (
-    page: string,
-    pageSize: string
-): Promise<ITicket[]> => {
-    const response: IBookingListingResponse = await API.get(
-        apiRoutes.allBookings,
-        {
-            params: { page, pageSize },
-        }
-    );
+export const getAllBookings = async (): Promise<ITicket[]> => {
+    const response: IBookingListingResponse = await API.get(apiRoutes.booking, {
+        params: {
+            page: 1,
+            pageSize: 1000,
+        },
+    });
     const tickets = getTicketsFromBookingListingResponse(response);
     return tickets;
 };
 
-export const getMyBookings = async (
-    page: string,
-    pageSize: string
-): Promise<ITicket[]> => {
-    const response: IBookingListingResponse = await API.get(
-        apiRoutes.myBookings,
-        {
-            params: { page, pageSize },
-        }
-    );
-    const tickets = getTicketsFromBookingListingResponse(response);
+export const getMyBookings = async (): Promise<ITicket[]> => {
+    const tickets = await getAllBookings();
     return tickets;
 };

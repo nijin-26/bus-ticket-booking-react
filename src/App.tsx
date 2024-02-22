@@ -12,6 +12,7 @@ import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
+import { getAllBookings, getMyBookings } from './api/endpoints/ticket.api';
 
 const basename = '/';
 
@@ -22,6 +23,17 @@ const router = createBrowserRouter(routesConfig, {
 function App() {
     const [loading] = useState(false);
     const mode = useAppSelector((state) => state.theme.currentTheme);
+
+    const test = async () => {
+        const res = await getMyBookings();
+        console.log(res);
+    };
+
+    useEffect(() => {
+        test().catch((e) => {
+            console.error(e);
+        });
+    }, []);
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>

@@ -2,7 +2,7 @@ import { ITrip } from ".";
 
 export interface ITicket {
     pnrNumber: string;
-    trip: ITripTicket;
+    trip: ITrip;
     seats: IPassengerSeat[];
 }
 
@@ -20,17 +20,4 @@ export interface IPassenger {
 export enum IGender {
     MALE = 'male',
     FEMALE = 'female',
-}
-
-export interface ITripTicket {
-    id: string;
-    originId: string;
-    destinationId: string;
-    departureTimestamp: Date;
-    arrivalTimestamp: Date;
-    seatType: ISeatType;
-    busType: IBusType;
-    farePerSeat: number;
-    availableSeats: number;
-    totalSeats: number;
 }
