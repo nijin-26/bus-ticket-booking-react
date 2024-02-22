@@ -20,6 +20,7 @@ import { addDays } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { setBusSearchParams } from '../../../app/features/busSearchSlice';
 import { ToggleButton } from './ActionBar.styled';
+import { toast } from 'react-toastify';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -82,7 +83,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     useEffect(() => {
         getLocOptions().catch(() => {
-            console.log('couldnt fetch location into locOptions');
+            toast.error('Failed to get locations');
         });
     }, []);
 
