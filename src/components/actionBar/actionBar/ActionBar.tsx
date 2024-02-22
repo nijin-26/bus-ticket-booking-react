@@ -1,4 +1,10 @@
-import { Autocomplete, TextField, InputAdornment, Grid } from '@mui/material';
+import {
+    Autocomplete,
+    TextField,
+    InputAdornment,
+    Grid,
+    CircularProgress,
+} from '@mui/material';
 
 import {
     FmdGood,
@@ -39,6 +45,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
     );
     const [tripDate, setTripDate] = useState<Date | null>(tomorrow);
     const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
+    const [loadingState, setLoadingState] = useState<boolean>(false);
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -50,7 +57,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const tripDateParam = searchParams.get('tripDate');
 
     // setting origin and destination from query params
-    const setParamOptions = () => {
+    const setParamOptions = (): void => {
         const originlocation = locOptions.find((opt) => {
             return opt.id == Number(originParam);
         });
@@ -65,24 +72,18 @@ const ActionBar: React.FC<IActionBarProps> = ({
             setStopLocation(destinationlocation);
         }
         if (tripDate && tripDateParam) {
-            const date = tripDate.toUTCString();
-            const convDate = new Date(date);
+            const convDate = new Date(tripDate.toUTCString());
             setTripDate(convDate);
         }
     };
 
     // querying the locations
     const getLocOptions = async () => {
-        try {
-            const loc = await getLocations();
-            const converterLoc = loc.map((locObj) => {
-                return { id: Number(locObj.id), label: locObj.name };
-            });
-            setLocOptions(() => converterLoc);
-        } catch (err) {
-            // show error
-            console.log('There is an error', err);
-        }
+        const loc = await getLocations();
+        const converterLoc = loc.map((locObj) => {
+            return { id: Number(locObj.id), label: locObj.name };
+        });
+        setLocOptions(() => converterLoc);
     };
 
     useEffect(() => {
@@ -124,11 +125,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
             setStopLocation(startLocation);
             setStartLocation(tempTo);
 
-            if (toggle) {
-                setToggle(false);
-            } else {
-                setToggle(true);
-            }
+            setToggle(!toggle);
         }
     };
 
@@ -140,6 +137,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
     // submit handler
     const searchBusHandler = () => {
         if (startLocation && stopLocation && tripDate) {
+            setLoadingState(true);
             dispatch(
                 setBusSearchParams({
                     originID: startLocation.id,
@@ -155,6 +153,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     stopLocation.id
                 }&tripDate=${tripDate.toString()}`
             );
+            setLoadingState(false);
         }
     };
 
@@ -290,6 +289,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
             <CenteredButton
                 variant="contained"
                 disabled={!(startLocation && stopLocation && tripDate)}
+                loading={loadingState}
                 onClick={searchBusHandler}
                 sx={{ mt: 2 }}
                 startIcon={<Search />}
