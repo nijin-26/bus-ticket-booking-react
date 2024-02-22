@@ -8,7 +8,6 @@ import {
     IBookingListingResponse,
     IBookingRequest,
     IBookingResponse,
-    IMyBookingResponse,
 } from '../types/ticket';
 
 export const bookTicket = async (

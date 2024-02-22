@@ -1,7 +1,7 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { getCustomTheme, getMuiTheme, routesConfig } from './config';
 import { GlobalStyle } from './config';
@@ -12,7 +12,7 @@ import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
-import { getAllBookings, getMyBookings } from './api/endpoints/ticket.api';
+import { getMyBookings } from './api/endpoints/ticket.api';
 
 const basename = '/';
 
