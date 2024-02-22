@@ -26,8 +26,6 @@ export default function BusTypeGroup() {
 
     const busTypeParam = searchParams.get('busType');
 
-    console.log('busTypeParam', busTypeParam);
-
     return (
         <>
             <RadioGroup onChange={busFilterHandler} value={busTypeParam}>

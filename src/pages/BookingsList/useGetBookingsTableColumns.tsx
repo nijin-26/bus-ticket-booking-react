@@ -4,7 +4,6 @@ import { IconButton } from '@mui/material';
 import { Download } from '@mui/icons-material';
 import { GridColDef } from '@mui/x-data-grid';
 import { ITicket } from '../../types';
-import { getDateFromTimestamp } from '../../utils';
 
 interface GridValueGetterParams {
     row: ITicket;

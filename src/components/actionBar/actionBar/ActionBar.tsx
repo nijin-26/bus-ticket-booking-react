@@ -86,7 +86,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
     };
 
     useEffect(() => {
-        console.log('originParam', originParam);
         getLocOptions().catch(() => {
             console.log('couldnt fetch location into locOptions');
         });
