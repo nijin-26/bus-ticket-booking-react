@@ -22,3 +22,4 @@
 -   [86cukqvct] Implemented API layer
     > > > > > > > > > Temporary merge branch 2
 -   [86cumak5j] Enhanced API layer and added converters for requests and responses
+-   [86cueujxt] Implemented bus search functionality for action bar and action bar filters, handling query params, corresponding reducer busSearchSlice and toggle animation

@@ -35,8 +35,8 @@ export interface ITripsQueryRequest {
     tripDate: string;
     sortBy?: ITripsSortKey;
     sortOrder?: ISortOrder;
-    page?: number;
-    pageSize?: number;
+    page: number;
+    pageSize: number;
     seatType?: ISeatType;
     busType?: IBusType;
     passengerCount?: number;
