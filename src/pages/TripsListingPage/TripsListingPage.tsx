@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { setTripListingData } from '../../app/features/tripListingSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TripCardAccordion } from '../../components';
@@ -7,6 +8,8 @@ import LoadMore from '../../components/loadMore/LoadMore';
 import { ISeatType, IBusType, ITrip } from '../../types';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { getTrips } from '../../api';
+import { useSearchParams } from 'react-router-dom';
 
 // const dummyData = [
 //     {
@@ -156,8 +159,37 @@ const dummyData: ITrip[] = [
 
 export const TripsListingPage = () => {
     const state = useAppSelector((state) => state.tripListing);
+
+    //testing store updating
+    const paramsFromStore = useAppSelector((state) => state.busSearch);
+    console.log('paramsFromStore', paramsFromStore);
+
     const dispatch = useAppDispatch();
     const matches = useMediaQuery('(min-width:600px)');
+    const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        // when filters and sort states in store change, a fetch must me called
+        const start = searchParams.get('originID');
+        const dest = searchParams.get('destinationID');
+        const date = searchParams.get('tripDate');
+
+        if (start && dest && date) {
+            getTrips({
+                originId: start,
+                destinationId: dest,
+                tripDate: date,
+                page: 1,
+                pageSize: 5,
+            })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, []);
 
     dispatch(setTripListingData(dummyData));
 

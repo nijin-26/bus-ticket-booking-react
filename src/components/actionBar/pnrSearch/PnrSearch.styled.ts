@@ -6,10 +6,14 @@ export const Wrapper = styled('div')`
     padding: 2.4rem 2.4rem 4rem 2.4rem;
 `;
 
-export const CenteredButton = styled(LoadingButton)`
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateY(50%) translateX(-50%);
-    border-radius: 2rem;
-`;
+export const CenteredButton = styled(LoadingButton)(({ theme }) => ({
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    transform: 'translateY(50%) translateX(-50%)',
+    borderRadius: '2rem',
+
+    '&.Mui-disabled': {
+        backgroundColor: theme.color.secondary,
+    },
+}));
