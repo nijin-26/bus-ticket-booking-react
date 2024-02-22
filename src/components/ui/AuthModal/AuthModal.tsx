@@ -11,12 +11,27 @@ type TAuthModalProps = {
     closeModal: () => void;
 };
 
+enum ESelectedAuthTab {
+    SIGN_IN,
+    SIGN_UP,
+}
+
 export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
-    const [selectedTab, setSelectedTab] = useState(0);
+    const [selectedTab, setSelectedTab] = useState<ESelectedAuthTab>(
+        ESelectedAuthTab.SIGN_IN
+    );
     const { t } = useTranslation('auth');
 
-    const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
+    const handleTabChange = (
+        _: React.SyntheticEvent,
+        newValue: ESelectedAuthTab
+    ) => {
         setSelectedTab(newValue);
+    };
+
+    //used to display sign-in form after signing up
+    const setSignInAsSelectedTab = () => {
+        setSelectedTab(ESelectedAuthTab.SIGN_IN);
     };
 
     return (
@@ -31,14 +46,23 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                     <StyledTab label={t('signUp')} />
                 </Tabs>
                 <Box px={2}>
-                    <Collapse in={selectedTab === 0} timeout={300}>
+                    <Collapse
+                        in={selectedTab === ESelectedAuthTab.SIGN_IN}
+                        timeout={300}
+                    >
                         <Box py={4}>
                             <SignIn closeModal={closeModal} />
                         </Box>
                     </Collapse>
-                    <Collapse in={selectedTab === 1} timeout={300}>
+                    <Collapse
+                        in={selectedTab === ESelectedAuthTab.SIGN_UP}
+                        timeout={300}
+                    >
                         <Box py={4}>
-                            <SignUp closeModal={closeModal} />
+                            <SignUp
+                                closeModal={closeModal}
+                                setSignInAsSelectedTab={setSignInAsSelectedTab}
+                            />
                         </Box>
                     </Collapse>
                 </Box>

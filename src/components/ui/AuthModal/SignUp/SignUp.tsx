@@ -1,4 +1,3 @@
-import { useAppDispatch } from '../../../../app/hooks';
 import { useTranslation } from 'react-i18next';
 import { Button, Stack } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
@@ -11,6 +10,7 @@ import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 
 type TSignUpProps = {
     closeModal: () => void;
+    setSignInAsSelectedTab: () => void;
 };
 
 const initialValues: ISignUpForm = {
@@ -21,10 +21,9 @@ const initialValues: ISignUpForm = {
     confirmPassword: '',
 };
 
-const SignUp = ({ closeModal }: TSignUpProps) => {
+const SignUp = ({ closeModal, setSignInAsSelectedTab }: TSignUpProps) => {
     const { t } = useTranslation('auth');
     const [loading, setLoading] = useState(false);
-    const dispatch = useAppDispatch();
 
     return (
         <>
@@ -36,7 +35,7 @@ const SignUp = ({ closeModal }: TSignUpProps) => {
                     await signUpSubmitHandler(
                         values,
                         formikHelpers,
-                        dispatch,
+                        setSignInAsSelectedTab,
                         t
                     );
                     setLoading(false);
