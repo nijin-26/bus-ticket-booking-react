@@ -18,6 +18,7 @@ import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
 import { toSerializable } from '../../../../app/features/utils/tripDetailsHelperFns';
+import { TripCardDetailsLoader } from './components/Loader/Loader';
 
 interface ITripCardAccordionData extends ITrip {
     seats?: ISeat[];
@@ -55,7 +56,7 @@ export const TripCardDetails = ({
             try {
                 const response = await getTrip(data.id);
                 if (response) {
-                    console.log(response)
+                    console.log(response);
                     setTripSpecificData(response);
                 } else {
                     console.log('Trip data not available');
@@ -115,106 +116,128 @@ export const TripCardDetails = ({
         setSelectedSeats([]);
     };
 
-    if (loading) {
-        return <>Loading...</>; // Display loader while loading is true
-    }
     return (
         <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
-                <Stack direction={'column'} spacing={2}>
-                    <Stack
-                        direction={{ sm: 'column', md: 'row' }}
-                        justifyContent={'space-between'}
-                        alignItems={{ sm: 'space-between', md: 'center' }}
-                        spacing={3}
-                    >
-                        <SeatLegend />
-                        {selectedSeats.length <= 0 ? (
-                            <StyledAlert variant="filled" severity="info">
-                                {t('info')}
-                            </StyledAlert>
-                        ) : (
-                            <StyledAlert
-                                action={
-                                    data.seats ? (
-                                        <></>
-                                    ) : (
-                                        <Tooltip title="Delete selection" arrow>
-                                            <IconButton
-                                                aria-label="delete"
-                                                color="inherit"
-                                                size="small"
-                                                onClick={() => {
-                                                    clearSelectedSeats();
-                                                }}
-                                            >
-                                                <DeleteForeverIcon fontSize="inherit" />
-                                            </IconButton>
-                                        </Tooltip>
-                                    )
-                                }
-                                sx={{ mb: 2 }}
+                {loading ? (
+                    <TripCardDetailsLoader />
+                ) : (
+                    <>
+                        {' '}
+                        <Stack direction={'column'} spacing={2}>
+                            <Stack
+                                direction={{ sm: 'column', md: 'row' }}
+                                justifyContent={'space-between'}
+                                alignItems={{
+                                    sm: 'space-between',
+                                    md: 'center',
+                                }}
+                                spacing={3}
                             >
-                                {t('selectAlertTitle')}
-                                {selectedSeats.length > 1 ? 's' : ''}{' '}
-                                {selectedSeats.join(', ')} {t('selectAlertMsg')}
-                            </StyledAlert>
-                        )}
-                    </Stack>
-                    <SeatLayout
-                        layoutName={layoutNames.volvo25}
-                        seats={seats}
-                        selectedSeats={selectedSeats}
-                        updateSelectedSeats={updateSelectedSeats}
-                        mode={mode}
-                    />
-                </Stack>
-                {!data.seats && (
-                    <Stack
-                        direction={{ xs: 'column', sm: 'row' }}
-                        justifyContent={'space-between'}
-                        spacing={{ xs: 1, sm: 10 }}
-                        mt={5}
-                        className="checkout-section"
-                    >
-                        {selectedSeats.length > 0 && data.farePerSeat > 0 && (
-                            <FareDetails
-                                noOfSeats={selectedSeats.length}
-                                farePerSeat={data.farePerSeat}
+                                <SeatLegend />
+                                {selectedSeats.length <= 0 ? (
+                                    <StyledAlert
+                                        variant="filled"
+                                        severity="info"
+                                    >
+                                        {t('info')}
+                                    </StyledAlert>
+                                ) : (
+                                    <StyledAlert
+                                        action={
+                                            data.seats ? (
+                                                <></>
+                                            ) : (
+                                                <Tooltip
+                                                    title="Delete selection"
+                                                    arrow
+                                                >
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        color="inherit"
+                                                        size="small"
+                                                        onClick={() => {
+                                                            clearSelectedSeats();
+                                                        }}
+                                                    >
+                                                        <DeleteForeverIcon fontSize="inherit" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            )
+                                        }
+                                        sx={{ mb: 2 }}
+                                    >
+                                        {t('selectAlertTitle')}
+                                        {selectedSeats.length > 1
+                                            ? 's'
+                                            : ''}{' '}
+                                        {selectedSeats.join(', ')}{' '}
+                                        {t('selectAlertMsg')}
+                                    </StyledAlert>
+                                )}
+                            </Stack>
+                            <SeatLayout
+                                layoutName={layoutNames.volvo25}
+                                seats={seats}
+                                selectedSeats={selectedSeats}
+                                updateSelectedSeats={updateSelectedSeats}
+                                mode={mode}
                             />
-                        )}
-                        <StyledButton
-                            variant="contained"
-                            disabled={
-                                !(
-                                    selectedSeats.length > 0 &&
-                                    data.farePerSeat > 0
-                                )
-                            }
-                            onClick={() => {
-                                //update store with tripdetails
-                                seats.forEach((seat) => {
-                                    if (
-                                        selectedSeats.includes(seat.seatNumber)
-                                    ) {
-                                        seat.status = ISeatStatus.SELECTED;
+                        </Stack>
+                        {!data.seats && (
+                            <Stack
+                                direction={{ xs: 'column', sm: 'row' }}
+                                justifyContent={'space-between'}
+                                spacing={{ xs: 1, sm: 10 }}
+                                mt={5}
+                                className="checkout-section"
+                            >
+                                {selectedSeats.length > 0 &&
+                                    data.farePerSeat > 0 && (
+                                        <FareDetails
+                                            noOfSeats={selectedSeats.length}
+                                            farePerSeat={data.farePerSeat}
+                                        />
+                                    )}
+                                <StyledButton
+                                    variant="contained"
+                                    disabled={
+                                        !(
+                                            selectedSeats.length > 0 &&
+                                            data.farePerSeat > 0
+                                        )
                                     }
-                                });
+                                    onClick={() => {
+                                        //update store with tripdetails
+                                        seats.forEach((seat) => {
+                                            if (
+                                                selectedSeats.includes(
+                                                    seat.seatNumber
+                                                )
+                                            ) {
+                                                seat.status =
+                                                    ISeatStatus.SELECTED;
+                                            }
+                                        });
 
-                                dispatch(
-                                    setTripDetailsData(toSerializable({
-                                        ...tripSpecificData,
-                                        seats,
-                                    }))
-                                );
-                                navigate(paths.tripBooking);
-                            }}
-                        >
-                            {t('checkoutBtnTxt')}
-                        </StyledButton>
-                    </Stack>
+                                        dispatch(
+                                            setTripDetailsData(
+                                                toSerializable({
+                                                    ...tripSpecificData,
+                                                    seats,
+                                                })
+                                            )
+                                        );
+                                        navigate(paths.tripBooking);
+                                    }}
+                                >
+                                    {t('checkoutBtnTxt')}
+                                </StyledButton>
+                            </Stack>
+                        )}
+                        <DetailsGrid tripDetails={tripDetails} />
+                    </>
                 )}
-                <DetailsGrid tripDetails={tripDetails} />
             </Stack>
         </TripCardDetailsWrapper>
     );
