@@ -5,10 +5,17 @@ import {
     getTicketsFromBookingListingResponse,
 } from '../converters/ticket.converter';
 import {
+    IBookingListingRequest,
     IBookingListingResponse,
     IBookingRequest,
     IBookingResponse,
+    IMyBookingListingResponse,
 } from '../types/ticket';
+
+export interface IGetBookingsReturn {
+    bookings: ITicket[];
+    resultCount: number;
+}
 
 export const bookTicket = async (
     tripId: string,
@@ -28,8 +35,32 @@ export const bookTicket = async (
     return ticket;
 };
 
-export const getAllBookings = async (): Promise<ITicket[]> => {
-    const response: IBookingListingResponse = await API.get(apiRoutes.booking);
+export const getBookings = async (
+    params: IBookingListingRequest
+): Promise<IGetBookingsReturn> => {
+    const response: IBookingListingResponse = await API.get(apiRoutes.booking, {
+        params,
+    });
     const tickets = getTicketsFromBookingListingResponse(response);
-    return tickets;
+    return {
+        bookings: tickets,
+        // TODO: uncomment this line when backend is ready
+        // resultCount: response.resultCount,
+        resultCount: tickets.length,
+    };
+};
+
+export const getMyBookings = async (
+    params: IBookingListingRequest
+): Promise<IGetBookingsReturn> => {
+    const response: IMyBookingListingResponse = await API.get(apiRoutes.userBooking, {
+        params,
+    });
+    const tickets = getTicketsFromBookingListingResponse(response);
+    return {
+        bookings: tickets,
+        // TODO: uncomment this line when backend is ready
+        // resultCount: response.resultCount,
+        resultCount: tickets.length,
+    };
 };

@@ -1,17 +1,18 @@
-import { IGender, ITicket, ITripTicket } from '../../types';
+import { IGender, ITicket } from '../../types';
 import {
     IBookingListingResponse,
     IBookingResponse,
+    IMyBookingListingResponse,
     ITicketExternal,
-    ITripTicketExternal,
 } from '../types/ticket';
+import { getTripFromTripExternal } from './trip.converter';
 
 const getTicketFromTicketExternals = (
     ticketExternals: ITicketExternal[]
 ): ITicket => {
     const ticket: ITicket = {
         pnrNumber: ticketExternals[0].pnrNumber,
-        trip: getTripTicketFromTripTicketExternal(ticketExternals[0].trip),
+        trip: getTripFromTripExternal(ticketExternals[0].trip),
         seats: ticketExternals.map((booking) => ({
             seatNumber: parseInt(booking.seatNumber),
             passenger: {
@@ -48,20 +49,25 @@ export const getTicketsFromBookingListingResponse = (
     return tickets;
 };
 
-export const getTripTicketFromTripTicketExternal = (
-    tripExternal: ITripTicketExternal
-): ITripTicket => {
-    const trip: ITripTicket = {
-        id: tripExternal.id.toString(),
-        originId: tripExternal.originId.toString(),
-        destinationId: tripExternal.destinationId.toString(),
-        departureTimestamp: new Date(tripExternal.departure),
-        arrivalTimestamp: new Date(tripExternal.arrival),
-        farePerSeat: parseFloat(tripExternal.farePerSeat),
-        totalSeats: 46,
-        busType: tripExternal.busType,
-        seatType: tripExternal.seatType,
-        availableSeats: tripExternal.totalSeats,
-    };
-    return trip;
+export const getTicketsFromMyBookingListingResponse = (
+    response: IMyBookingListingResponse
+): ITicket[] => {
+    const ticketExternal = new Map<string, ITicketExternal[]>();
+    for (const trip of response) {
+        for (const booking of trip.bookings) {
+            const ticket = {
+                ...booking,
+                trip: trip,
+            };
+            if (ticketExternal.has(booking.pnrNumber)) {
+                ticketExternal.get(booking.pnrNumber)?.push(ticket);
+            } else {
+                ticketExternal.set(booking.pnrNumber, [ticket]);
+            }
+        }
+    }
+    const tickets = Array.from(ticketExternal.values()).map((ticket) =>
+        getTicketFromTicketExternals(ticket)
+    );
+    return tickets;
 };
