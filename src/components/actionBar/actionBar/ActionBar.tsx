@@ -1,10 +1,4 @@
-import {
-    Autocomplete,
-    TextField,
-    InputAdornment,
-    Grid,
-    CircularProgress,
-} from '@mui/material';
+import { Autocomplete, TextField, InputAdornment, Grid } from '@mui/material';
 
 import {
     FmdGood,

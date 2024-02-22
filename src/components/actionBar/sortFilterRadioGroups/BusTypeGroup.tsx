@@ -18,7 +18,6 @@ export default function BusTypeGroup() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const busFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        //dispatch(setBusSearchParams({ busType: event.target.value }));
         dispatch(addBusFilter(event.target.value as IBusType));
         searchParams.set('busType', event.target.value);
         setSearchParams(searchParams);

@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { IBusType, ISeatType } from '../../types';
+import { ISortOrder, ITripsSortKey } from '../../api/types/trip';
 
 interface IBusSearchParams {
     originID?: number;
     destinationID?: number;
     tripDate?: string;
-    sortBy?: string;
-    sortOrder?: string;
+    sortBy?: ITripsSortKey;
+    sortOrder?: ISortOrder;
     seatType?: ISeatType;
     busType?: IBusType;
 }
@@ -30,7 +31,10 @@ export const busSearchSlice = createSlice({
         // sort reducer
         setSort: (
             state,
-            action: PayloadAction<{ sortBy: string; sortOrder: string }>
+            action: PayloadAction<{
+                sortBy: ITripsSortKey;
+                sortOrder: ISortOrder;
+            }>
         ) => {
             state.sortBy = action.payload.sortBy;
             state.sortOrder = action.payload.sortOrder;

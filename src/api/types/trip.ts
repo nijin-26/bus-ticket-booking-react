@@ -63,6 +63,7 @@ export enum ITripsSortKey {
     DEPARTURE_TIMESTAMP = 'departureTimestamp',
     ARRIVAL_TIMESTAMP = 'arrivalTimestamp',
     FARE = 'fare',
+    SEATS_AVAILABLE = 'seatsAvailable',
 }
 
 export enum ISortOrder {
