@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { DatagridListingPage } from '../../components/DatagridListingpage/DatagridListingPage';
-import getBookingsTableColumns from './getBookingsTableColumns';
-import { getAllBookings } from '../../api/endpoints/ticket.api';
-import { ITicket } from '../../types';
+import { DatagridListingPage } from '../../../components/DatagridListingpage/DatagridListingPage';
+import getBookingsTableColumns from '../getBookingsTableColumns';
+import { getAllBookings } from '../../../api/endpoints/ticket.api';
+import { ITicket } from '../../../types';
 
 export const AllBookingsPage = () => {
     const { t } = useTranslation('bookingsList');

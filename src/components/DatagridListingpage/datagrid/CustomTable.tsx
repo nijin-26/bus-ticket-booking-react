@@ -1,12 +1,12 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { LinearProgress } from '@mui/material';
-import { IPagination } from '../../types/pagination';
 import { CustomTableWrapper } from './CustomTable.styled';
 import CustomToolbar from './CustomToolbar';
-import CustomPagination from './CustomPagination';
+import CustomPagination from './CustomPagination/CustomPagination';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay/CustomNoRowsOverlay';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { IPagination } from '../../../types';
 
 export interface ICustomTable<T> {
     pageState: IPagination<T>;
@@ -62,6 +62,7 @@ export const CustomTable = <T,>({
                 disableColumnFilter
                 disableColumnSelector
                 disableColumnMenu
+                paginationMode="server"
                 onPaginationModelChange={(newPaginationModel) => {
                     updatePageState(newPaginationModel);
                 }}

@@ -6,6 +6,7 @@ import {
     useGridSelector,
 } from '@mui/x-data-grid';
 import { TFunction } from 'i18next';
+import { CustomPaginationWrapper } from './CustomPagination.styled';
 
 const CustomPagination = ({
     totalRows,
@@ -20,20 +21,12 @@ const CustomPagination = ({
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageSize = useGridSelector(apiRef, gridPageSizeSelector);
     return totalRows ? (
-        <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '1.6rem',
-                width: '100%',
-            }}
-        >
+        <CustomPaginationWrapper>
             {/* Total rows text */}
-            <div>
+            <p>
                 {t('tableFooterTotal')} {totalRows} {t('tableFooterSubject')}
                 {totalRows > 1 ? 's' : ''}
-            </div>
+            </p>
 
             {/* Pagination */}
             <Pagination
@@ -48,7 +41,7 @@ const CustomPagination = ({
                     apiRef.current.setPage(value - 1);
                 }}
             />
-        </div>
+        </CustomPaginationWrapper>
     ) : null;
 };
 

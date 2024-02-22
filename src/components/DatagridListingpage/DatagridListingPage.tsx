@@ -3,9 +3,9 @@ import { DatagridListingPageWrapper } from './DatagridListingPage.styled';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
-import { CustomTable } from '../table/CustomTable';
 import { GridColDef } from '@mui/x-data-grid';
 import { TFunction } from 'i18next';
+import { CustomTable } from './datagrid/CustomTable';
 
 export const DatagridListingPage = <T,>({
     columns,
@@ -15,7 +15,7 @@ export const DatagridListingPage = <T,>({
 }: {
     columns: GridColDef[];
     t: TFunction;
-    getData: () => Promise<T[]>;
+    getData: (page: string, pageSize: string) => Promise<T[]>;
     rowId: keyof T;
 }) => {
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
@@ -33,27 +33,29 @@ export const DatagridListingPage = <T,>({
     });
 
     const updatePageState = (newPageState: Partial<IPagination<T>>) => {
-        setPageState((prev) => ({ ...prev, ...newPageState }));
+        setPageState({ ...pageState, ...newPageState });
     };
 
     useEffect(() => {
         //Fething data
         void (async () => {
+            updatePageState({ loading: true });
             try {
-                setPageState((prev) => ({ ...prev, loading: true }));
-                const ticketsResponse = await getData();
-                setPageState((prev) => ({
-                    ...prev,
+                const ticketsResponse = await getData(
+                    searchParams.get('page') || '1',
+                    String(pageState.pageSize)
+                );
+                updatePageState({
                     data: ticketsResponse,
                     totalNumberOfData: ticketsResponse.length,
-                }));
+                });
             } catch (error) {
                 console.error(error);
             } finally {
                 setPageState((prev) => ({ ...prev, loading: false }));
             }
         })();
-    }, [getData]);
+    }, [getData, searchParams]);
 
     return (
         <DatagridListingPageWrapper>
@@ -86,7 +88,8 @@ export const DatagridListingPage = <T,>({
                             className="value"
                             textAlign={'center'}
                         >
-                            {pageState.loading ? (
+                            {pageState.loading &&
+                            !pageState.totalNumberOfData ? (
                                 <CircularProgress />
                             ) : (
                                 pageState.totalNumberOfData

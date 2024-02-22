@@ -23,13 +23,38 @@ export const bookTicket = async (
             passengerGender: seat.passenger.gender,
         })),
     };
-    const response: IBookingResponse = await API.post(apiRoutes.booking, body);
+    const response: IBookingResponse = await API.post(
+        apiRoutes.allBookings,
+        body
+    );
     const ticket = getTicketFromBookingResponse(response);
     return ticket;
 };
 
-export const getAllBookings = async (): Promise<ITicket[]> => {
-    const response: IBookingListingResponse = await API.get(apiRoutes.booking);
+export const getAllBookings = async (
+    page: string,
+    pageSize: string
+): Promise<ITicket[]> => {
+    const response: IBookingListingResponse = await API.get(
+        apiRoutes.allBookings,
+        {
+            params: { page, pageSize },
+        }
+    );
+    const tickets = getTicketsFromBookingListingResponse(response);
+    return tickets;
+};
+
+export const getMyBookings = async (
+    page: string,
+    pageSize: string
+): Promise<ITicket[]> => {
+    const response: IBookingListingResponse = await API.get(
+        apiRoutes.myBookings,
+        {
+            params: { page, pageSize },
+        }
+    );
     const tickets = getTicketsFromBookingListingResponse(response);
     return tickets;
 };

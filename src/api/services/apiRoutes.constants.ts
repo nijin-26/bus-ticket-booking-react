@@ -4,6 +4,7 @@ export const apiRoutes = {
     location: 'location',
     trip: 'trip',
     tripSearch: 'trip/search',
-    booking: 'booking',
+    allBookings: 'booking',
     user: 'user',
+    myBookings: 'booking/user/all',
 };
