@@ -53,10 +53,9 @@ export interface ITripDetailResponse {
 }
 
 export enum ITripsSortKey {
-    DEPARTURE_TIMESTAMP = 'departureTimestamp',
-    ARRIVAL_TIMESTAMP = 'arrivalTimestamp',
-    FARE = 'fare',
-    SEATS_AVAILABLE = 'seatsAvailable',
+    DEPARTURE_TIMESTAMP = 'departure',
+    FARE = 'farePerSeat',
+    SEATS_AVAILABLE = 'totalSeats',
 }
 
 export enum ISortOrder {
