@@ -18,7 +18,12 @@ export default function SeatTypeGroup() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const seatFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(addSeatFilter(event.target.value as ISeatType));
+        if (event.target.value === filterValues.seater) {
+            dispatch(addSeatFilter(ISeatType.SEATER));
+        } else {
+            dispatch(addSeatFilter(ISeatType.SLEEPER));
+        }
+
         searchParams.set('seatType', event.target.value);
         setSearchParams(searchParams);
     };

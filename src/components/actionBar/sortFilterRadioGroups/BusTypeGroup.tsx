@@ -18,7 +18,12 @@ export default function BusTypeGroup() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const busFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(addBusFilter(event.target.value as IBusType));
+        if (event.target.value === filterValues.ac) {
+            dispatch(addBusFilter(IBusType.AC));
+        } else {
+            dispatch(addBusFilter(IBusType.NON_AC));
+        }
+
         searchParams.set('busType', event.target.value);
         setSearchParams(searchParams);
     };
