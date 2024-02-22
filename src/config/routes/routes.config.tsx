@@ -5,6 +5,7 @@ import { Layout } from '../../layout';
 import { paths } from '..';
 import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
 import { RequireAuth } from '../../components/RequireAuth/RequireAuth';
+import { EUserRole } from '../../types';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -20,12 +21,21 @@ export const routesConfig: RouteObject[] = [
                 element: <TripsListingPage />,
             },
             {
-                element: <RequireAuth />,
+                element: <RequireAuth allowedRoles={[EUserRole.ADMIN]} />,
                 children: [
                     {
                         path: paths.usersListing,
                         element: <UsersListingPage />,
                     },
+                ],
+            },
+            {
+                element: (
+                    <RequireAuth
+                        allowedRoles={[EUserRole.ADMIN, EUserRole.CUSTOMER]}
+                    />
+                ),
+                children: [
                     {
                         path: paths.tripBooking,
                         element: <TripBookingPage />,

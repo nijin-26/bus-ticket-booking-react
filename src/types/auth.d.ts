@@ -1,19 +1,24 @@
+export enum EUserRole {
+    ADMIN = 'admin',
+    CUSTOMER = 'customer',
+}
+
 export interface IAuthData {
     accessToken: string;
     fullName: string;
     email: string;
-    role: null;
+    role: EUserRole;
 }
 
-interface IAuthUser {
+export interface IAuthUser {
     fullName: string;
     email: string;
-    role: null;
+    role: EUserRole;
 }
 
 export interface IDecodedAccessToken {
     userId: number;
-    role: null;
+    role: EUserRole;
     iat: number;
     exp: number;
 }

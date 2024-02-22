@@ -3,15 +3,24 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { paths } from '../../config';
 import { setRedirectState, showAuthModal } from '../../app/features/authSlice';
 import { useTranslation } from 'react-i18next';
+import { EUserRole } from '../../types';
 
-export const RequireAuth = () => {
+interface IRequireAuthProps {
+    allowedRoles: EUserRole[];
+}
+
+export const RequireAuth = ({ allowedRoles }: IRequireAuthProps) => {
     const { t } = useTranslation('auth');
     const location = useLocation();
     const dispatch = useAppDispatch();
 
     const user = useAppSelector((state) => state.auth.user);
 
-    if (!user) {
+    if (user && allowedRoles.includes(user.role)) {
+        return <Outlet />;
+    } else if (user) {
+        return <Navigate to="404" replace />;
+    } else {
         dispatch(
             setRedirectState({
                 from: location.pathname,
@@ -19,7 +28,6 @@ export const RequireAuth = () => {
             })
         );
         dispatch(showAuthModal());
+        return <Navigate to={paths.home} replace />;
     }
-
-    return user ? <Outlet /> : <Navigate to={paths.home} replace />;
 };
