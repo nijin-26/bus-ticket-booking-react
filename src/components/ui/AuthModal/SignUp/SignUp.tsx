@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Button, Stack } from '@mui/material';
+import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 import getValidationSchema from './validationSchema';
@@ -88,6 +88,12 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: TSignUpProps) => {
                                     required
                                 />
                             </Stack>
+
+                            <Alert severity="info">
+                                <Typography component="p" variant="body2">
+                                    {t('passwordRequirements')}
+                                </Typography>
+                            </Alert>
 
                             <Stack
                                 direction={'row'}

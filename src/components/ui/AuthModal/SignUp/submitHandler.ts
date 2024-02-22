@@ -15,8 +15,8 @@ const signUpSubmitHandler = async (
         const { confirmPassword, ...signUpProps } = values;
         await signUp(signUpProps as ISignUpProps);
 
-        toast.success(t('signUpSuccessToastMessage'));
         formikHelpers.resetForm();
+        toast.success(t('signUpSuccessToastMessage'));
         setSignInAsSelectedTab();
     } catch (error) {
         if (axios.isAxiosError<IAuthResponseError>(error)) {
@@ -27,8 +27,8 @@ const signUpSubmitHandler = async (
                     'email',
                     t('userAlreadyExistsErrorMessage')
                 );
+                return;
             }
-            return;
         }
         toast.error(t('signUpErrorToastMessage'));
     }

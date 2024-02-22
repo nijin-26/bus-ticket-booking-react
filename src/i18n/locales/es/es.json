@@ -38,7 +38,8 @@
         "signInErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada.",
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
-        "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación."
+        "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
+        "passwordRequirements": "La contraseña debe contener al menos un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
     },
     "seatLayout": {
         "available": "Disponible",

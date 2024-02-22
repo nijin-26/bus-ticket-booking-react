@@ -19,6 +19,7 @@ const signInSubmitHandler = async (
     try {
         const userData = await signIn(values);
         dispatch(setCredentials(userData));
+
         formikHelpers.resetForm();
         dispatch(hideAuthModal());
         toast.success(t('signInSuccessToastMessage'));
@@ -33,13 +34,14 @@ const signInSubmitHandler = async (
                     'password',
                     t('invalidPasswordErrorMessage')
                 );
+                return;
             } else if (errorMessage === 'User not found.') {
                 formikHelpers.setFieldError(
                     'email',
                     t('userNotFoundErrorMessage')
                 );
+                return;
             }
-            return;
         }
         toast.error(t('signInErrorToastMessage'));
     }

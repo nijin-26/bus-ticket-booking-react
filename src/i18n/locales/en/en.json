@@ -38,7 +38,8 @@
         "signInErrorToastMessage": "Unexpected error. Please try again later.",
         "signUpSuccessToastMessage": "Welcome aboard! Your account has been created.",
         "signUpErrorToastMessage": "Unexpected error. Please try again later.",
-        "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication."
+        "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication.",
+        "passwordRequirements": "The Password must contain at least an uppercase character, a lowercase character, a number and a special character."
     },
     "seatLayout": {
         "available": "Available",
