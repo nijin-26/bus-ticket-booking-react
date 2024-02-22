@@ -13,6 +13,8 @@ import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
 import { getAllBookings, getMyBookings } from './api/endpoints/ticket.api';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const basename = '/';
 
@@ -36,19 +38,22 @@ function App() {
     }, []);
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
-                <CustomThemeProvider theme={getCustomTheme(mode)}>
-                    <GlobalStyle />
-                    <CssBaseline />
-                    {loading ? (
-                        <div>loading</div>
-                    ) : (
-                        <RouterProvider router={router} />
-                    )}
-                </CustomThemeProvider>
-            </MuiThemeProvider>
-        </LocalizationProvider>
+        <>
+            <ToastContainer theme={mode} />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <MuiThemeProvider theme={createTheme(getMuiTheme(mode))}>
+                    <CustomThemeProvider theme={getCustomTheme(mode)}>
+                        <GlobalStyle />
+                        <CssBaseline />
+                        {loading ? (
+                            <div>loading</div>
+                        ) : (
+                            <RouterProvider router={router} />
+                        )}
+                    </CustomThemeProvider>
+                </MuiThemeProvider>
+            </LocalizationProvider>
+        </>
     );
 }
 
