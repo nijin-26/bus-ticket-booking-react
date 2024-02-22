@@ -29,11 +29,10 @@ const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
     const tomorrow = addDays(new Date(), 1);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
-    console.log('start loc', startLocation);
 
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
@@ -46,6 +45,33 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     const [toggle, setToggle] = useState(false);
 
+    const originParam = searchParams.get('originID');
+    const destinationParam = searchParams.get('destinationID');
+    const tripDateParam = searchParams.get('tripDate');
+
+    // setting origin and destination from query params
+    const setParamOptions = () => {
+        const originlocation = locOptions.find((opt) => {
+            return opt.id == Number(originParam);
+        });
+        const destinationlocation = locOptions.find((opt) => {
+            return opt.id === Number(destinationParam);
+        });
+
+        if (originlocation) {
+            setStartLocation(originlocation);
+        }
+        if (destinationlocation) {
+            setStopLocation(destinationlocation);
+        }
+        if (tripDate && tripDateParam) {
+            const date = tripDate.toUTCString();
+            const convDate = new Date(date);
+            setTripDate(convDate);
+        }
+    };
+
+    // querying the locations
     const getLocOptions = async () => {
         try {
             const loc = await getLocations();
@@ -53,7 +79,6 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 return { id: Number(locObj.id), label: locObj.name };
             });
             setLocOptions(() => converterLoc);
-            console.log('BLEHHHHHH', locOptions);
         } catch (err) {
             // show error
             console.log('There is an error', err);
@@ -61,47 +86,16 @@ const ActionBar: React.FC<IActionBarProps> = ({
     };
 
     useEffect(() => {
-        const originParam = searchParams.get('originID');
-        const destinationParam = searchParams.get('destinationID');
-        const tripDateParam = searchParams.get('tripDate');
-
         console.log('originParam', originParam);
+        getLocOptions().catch(() => {
+            console.log('couldnt fetch location into locOptions');
+        });
+    }, []);
 
-        // setting origin and destination from query params
-        const setParamOptions = () => {
-            console.log('im inside hekwvf%%%%%%%%%%%%%');
-            console.log('locOptions', locOptions);
-
-            const originlocation = locOptions.find((opt) => {
-                return opt.id == Number(originParam);
-            });
-            const destinationlocation = locOptions.find((opt) => {
-                return opt.id === Number(destinationParam);
-            });
-
-            console.log('originlocation', originlocation);
-
-            if (originlocation) {
-                setStartLocation(originlocation);
-            }
-            if (destinationlocation) {
-                setStopLocation(destinationlocation);
-            }
-            if (tripDate && tripDateParam) {
-                const date = tripDate.toUTCString();
-                const convDate = new Date(date);
-                setTripDate(convDate);
-            }
-        };
-
-        getLocOptions()
-            .then(() => {
-                setParamOptions();
-            })
-            .catch(() => {
-                console.log('couldnt fetch location into locOptions');
-            });
-    }, [searchParams]);
+    // sstart, start and date set once locations are loaded
+    useEffect(() => {
+        setParamOptions();
+    }, [locOptions]);
 
     // setting start location
     const handleStartSelect = (
@@ -151,7 +145,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 setBusSearchParams({
                     originID: startLocation.id,
                     destinationID: stopLocation.id,
-                    tripDate: tripDate,
+                    tripDate: tripDate.toISOString(),
                 })
             );
 
@@ -296,9 +290,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
             <CenteredButton
                 variant="contained"
-                disabled={
-                    startLocation && stopLocation && tripDate ? false : true
-                }
+                disabled={!(startLocation && stopLocation && tripDate)}
                 onClick={searchBusHandler}
                 sx={{ mt: 2 }}
                 startIcon={<Search />}

@@ -1,10 +1,4 @@
-import {
-    Button,
-    // FormControl,
-    Menu,
-    Stack,
-    Badge,
-} from '@mui/material';
+import { Button, Menu, Stack } from '@mui/material';
 import React, { useState } from 'react';
 import { Wrapper } from './FilterSort.styled';
 import { useTranslation } from 'react-i18next';
@@ -18,9 +12,6 @@ import {
     removeBusFilter,
     removeSeatFilter,
 } from '../../../app/features/busSearchSlice';
-
-// filter chip to be incorporated after setting filter state in store
-// import FilterChip from './FilterChip';
 
 export default function FilterSort() {
     const { t } = useTranslation('filterSort');
@@ -92,8 +83,6 @@ export default function FilterSort() {
                     </Button>
                     <Button
                         onClick={() => {
-                            //setBusTypeFilter(null);
-                            //setSeatTypeFilter(null);
                             searchParams.delete('seatType');
                             setSearchParams(searchParams);
                             searchParams.delete('busType');

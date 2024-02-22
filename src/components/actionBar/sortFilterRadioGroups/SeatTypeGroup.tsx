@@ -9,6 +9,7 @@ import {
     addSeatFilter,
     removeSeatFilter,
 } from '../../../app/features/busSearchSlice';
+import { ISeatType } from '../../../types';
 
 export default function SeatTypeGroup() {
     const { t } = useTranslation('filterSort');
@@ -17,7 +18,7 @@ export default function SeatTypeGroup() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const seatFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(addSeatFilter(event.target.value));
+        dispatch(addSeatFilter(event.target.value as ISeatType));
         searchParams.set('seatType', event.target.value);
         setSearchParams(searchParams);
     };

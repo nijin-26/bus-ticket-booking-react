@@ -1,6 +1,5 @@
 import { Stack } from '@mui/material';
 import { FixedChip } from './FilterSort.styled';
-import { filterValues } from '../../../config';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import {
@@ -9,16 +8,21 @@ import {
 } from '../../../app/features/busSearchSlice';
 import { useAppSelector } from '../../../app/hooks';
 import { useSearchParams } from 'react-router-dom';
+import { filterValues } from '../../../config';
 
 const FilterChip: React.FC = () => {
     const { t } = useTranslation('filterSort');
     const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
-    const params = useAppSelector((state) => state.busSearch);
+    const storedparams = useAppSelector((state) => state.busSearch);
+    const busTypeParams =
+        searchParams.get('busType') ?? storedparams.busType?.toString();
+    const seatTypeParams =
+        searchParams.get('seatType') ?? storedparams.seatType?.toString();
 
     return (
         <Stack spacing={1} direction="row">
-            {params.busType ? (
+            {busTypeParams && (
                 <FixedChip
                     onDelete={() => {
                         searchParams.delete('busType');
@@ -26,15 +30,11 @@ const FilterChip: React.FC = () => {
                         dispatch(removeBusFilter());
                     }}
                     label={
-                        params.busType === filterValues.ac
-                            ? t('AC')
-                            : t('nonAC')
+                        busTypeParams === filterValues.ac ? t('AC') : t('nonAC')
                     }
                 />
-            ) : (
-                <></>
             )}
-            {params.seatType ? (
+            {seatTypeParams && (
                 <FixedChip
                     onDelete={() => {
                         searchParams.delete('seatType');
@@ -42,13 +42,11 @@ const FilterChip: React.FC = () => {
                         dispatch(removeSeatFilter());
                     }}
                     label={
-                        params.seatType === filterValues.seater
+                        seatTypeParams === filterValues.seater
                             ? t('seater')
                             : t('sleeper')
                     }
                 />
-            ) : (
-                <></>
             )}
         </Stack>
     );
