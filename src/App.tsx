@@ -12,7 +12,7 @@ import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
-import { getAllBookings } from './api/endpoints/ticket.api';
+import { getAllBookings, getMyBookings } from './api/endpoints/ticket.api';
 
 const basename = '/';
 
@@ -25,7 +25,7 @@ function App() {
     const mode = useAppSelector((state) => state.theme.currentTheme);
 
     const test = async () => {
-        const res = await getAllBookings();
+        const res = await getMyBookings();
         console.log(res);
     };
 
