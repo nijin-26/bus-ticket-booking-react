@@ -12,7 +12,7 @@ import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
 import { useAppSelector } from './app/hooks';
-import { getAllBookings, getMyBookings } from './api/endpoints/ticket.api';
+import { getMyBookings } from './api/endpoints/ticket.api';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

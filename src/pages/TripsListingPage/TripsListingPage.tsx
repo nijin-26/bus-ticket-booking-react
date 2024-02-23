@@ -13,6 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSearchParams } from 'react-router-dom';
 import { getTrips } from '../../api';
 import { ITrip } from '../../types';
+import { useAppSelector } from '../../app/hooks';
 
 export const TripsListingPage = () => {
     const [tripData, setTripData] = useState<ITrip[]>([]);
