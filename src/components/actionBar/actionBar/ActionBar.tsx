@@ -66,16 +66,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
         if (destinationlocation) {
             setStopLocation(destinationlocation);
         }
-        // if (tripDate && tripDateParam) {
-        //     const convDate = new Date(tripDate.toUTCString());
-        //     setTripDate(convDate);
-        // }
-        if(tripDateParam) {
-            console.log('tripDateParam ', tripDateParam);
-            const convDate = new Date(tripDateParam);
+        if (tripDate && tripDateParam) {
+            const convDate = new Date(tripDate.toUTCString());
             setTripDate(convDate);
-            
-            console.log("DATE : ", convDate);
         }
     };
 
