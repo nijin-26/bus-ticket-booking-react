@@ -1,5 +1,5 @@
-import { ITrip } from '../../types';
 import { ITicket } from '../../types/ticket';
+import { ITripExternal } from './trip';
 import { IUserExternal } from './user';
 
 export interface ITicketRequest {
@@ -16,10 +16,9 @@ export interface IBookingExternal {
 }
 
 export interface ITicketExternal extends IBookingExternal {
-    trip: ITrip;
+    trip: ITripExternal;
     seatNumber: string;
     fare: string;
-    bookedBy: IUserExternal;
     status: string;
     pnrNumber: string;
     tripId: string;
@@ -34,3 +33,14 @@ export interface IBookingRequest {
 }
 
 export type IBookingResponse = ITicketExternal[];
+
+export interface IBookingListingResponse {
+    bookings: ITicketExternal[];
+}
+
+export type IMyBookingResponse = (
+    | {
+          bookings: Omit<ITicketExternal, 'trip'>[];
+      }
+    & ITripExternal
+)[];

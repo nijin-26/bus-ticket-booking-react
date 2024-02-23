@@ -1,10 +1,4 @@
-import {
-    Autocomplete,
-    TextField,
-    InputAdornment,
-    IconButton,
-    Grid,
-} from '@mui/material';
+import { Autocomplete, TextField, InputAdornment, Grid } from '@mui/material';
 
 import {
     FmdGood,
@@ -14,13 +8,19 @@ import {
     TripOrigin,
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
-import { locationOptions, paths } from '../../../config';
-import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../config';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getLocations } from '../../../api';
+import { addDays } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { setBusSearchParams } from '../../../app/features/busSearchSlice';
+import { ToggleButton } from './ActionBar.styled';
+import { toast } from 'react-toastify';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -29,15 +29,75 @@ interface IActionBarProps {
 const ActionBar: React.FC<IActionBarProps> = ({
     showFilterSort,
 }: IActionBarProps) => {
+    const tomorrow = addDays(new Date(), 1);
+    const [searchParams] = useSearchParams();
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
+
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
     );
-
+    const [tripDate, setTripDate] = useState<Date | null>(tomorrow);
+    const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
+    const [loadingState, setLoadingState] = useState<boolean>(false);
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const [toggle, setToggle] = useState(false);
+
+    const originParam = searchParams.get('originId');
+    const destinationParam = searchParams.get('destinationId');
+    const tripDateParam = searchParams.get('tripDate');
+
+    // setting origin and destination from query params
+    const setParamOptions = (): void => {
+        const originlocation = locOptions.find((opt) => {
+            return opt.id == Number(originParam);
+        });
+        const destinationlocation = locOptions.find((opt) => {
+            return opt.id === Number(destinationParam);
+        });
+
+        if (originlocation) {
+            setStartLocation(originlocation);
+        }
+        if (destinationlocation) {
+            setStopLocation(destinationlocation);
+        }
+        // if (tripDate && tripDateParam) {
+        //     const convDate = new Date(tripDate.toUTCString());
+        //     setTripDate(convDate);
+        // }
+        if(tripDateParam) {
+            console.log('tripDateParam ', tripDateParam);
+            const convDate = new Date(tripDateParam);
+            setTripDate(convDate);
+            
+            console.log("DATE : ", convDate);
+        }
+    };
+
+    // querying the locations
+    const getLocOptions = async () => {
+        const loc = await getLocations();
+        const converterLoc = loc.map((locObj) => {
+            return { id: Number(locObj.id), label: locObj.name };
+        });
+        setLocOptions(() => converterLoc);
+    };
+
+    useEffect(() => {
+        getLocOptions().catch(() => {
+            toast.error('Failed to get locations');
+        });
+    }, []);
+
+    // start, stop and date set once locations are loaded
+    useEffect(() => {
+        setParamOptions();
+    }, [locOptions]);
 
     // setting start location
     const handleStartSelect = (
@@ -61,16 +121,53 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
     // swap to and from locations
     const swapLocationOptions = () => {
-        const tempTo = stopLocation;
-        setStopLocation(startLocation);
-        setStartLocation(tempTo);
+        if (startLocation && stopLocation) {
+            const tempTo = stopLocation;
+
+            setStopLocation(startLocation);
+            setStartLocation(tempTo);
+
+            setToggle(!toggle);
+        }
     };
+
+    // setting date
+    function handleJourneyDate(value: Date | null) {
+        setTripDate(value);
+    }
 
     // submit handler
     const searchBusHandler = () => {
-        navigate(paths.tripsListing);
-        // api call to get listing data
-        // apply loading states
+        if (startLocation && stopLocation && tripDate) {
+            setLoadingState(true);
+            dispatch(
+                setBusSearchParams({
+                    originId: startLocation.id,
+                    destinationId: stopLocation.id,
+                    tripDate: tripDate.toISOString(),
+                })
+            );
+
+            navigate(
+                `${paths.tripsListing}?originId=${
+                    startLocation.id
+                }&destinationId=${
+                    stopLocation.id
+                }&tripDate=${tripDate.toString()}`
+            );
+            setLoadingState(false);
+        }
+    };
+
+    // filters selected location option
+    const filterLocationOptions = (
+        filter: ILocationOptions | null
+    ): ILocationOptions[] => {
+        return filter
+            ? locOptions.filter(
+                  (loc) => loc.id != filter.id || loc.label != filter.label
+              )
+            : locOptions;
     };
 
     return (
@@ -87,11 +184,12 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={locationOptions.filter((loc) => {
-                                return loc != stopLocation;
-                            })}
+                            options={filterLocationOptions(stopLocation)}
                             value={startLocation}
                             onChange={handleStartSelect}
+                            isOptionEqualToValue={(option, value) =>
+                                option.id === value.id
+                            }
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -116,7 +214,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     </Grid>
 
                     <Grid item xs={12} sm="auto" textAlign="center">
-                        <IconButton
+                        <ToggleButton
+                            className={toggle ? 'toggle' : 'reverse'}
                             sx={{
                                 rotate: { xs: '90deg', sm: '0deg' },
                                 height: '4rem',
@@ -125,17 +224,18 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             onClick={swapLocationOptions}
                         >
                             <SwapHoriz style={{ minWidth: '4rem' }} />
-                        </IconButton>
+                        </ToggleButton>
                     </Grid>
 
                     <Grid item xs={12} sm>
                         <Autocomplete
                             fullWidth
-                            options={locationOptions.filter((loc) => {
-                                return loc != startLocation;
-                            })}
+                            options={filterLocationOptions(startLocation)}
                             value={stopLocation}
                             onChange={handleStopSelect}
+                            isOptionEqualToValue={(option, value) =>
+                                option.id === value.id
+                            }
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -163,6 +263,9 @@ const ActionBar: React.FC<IActionBarProps> = ({
                 <Grid item xs={12} md={3}>
                     <DatePicker
                         label={t('date')}
+                        disablePast
+                        defaultValue={tripDate}
+                        minDate={tomorrow}
                         slots={{
                             openPickerIcon: Today,
                         }}
@@ -173,6 +276,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                             },
                         }}
                         sx={{ width: '100%' }}
+                        onChange={handleJourneyDate}
                     />
                 </Grid>
             </Grid>
@@ -181,6 +285,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
             <CenteredButton
                 variant="contained"
+                disabled={!(startLocation && stopLocation && tripDate)}
+                loading={loadingState}
                 onClick={searchBusHandler}
                 sx={{ mt: 2 }}
                 startIcon={<Search />}

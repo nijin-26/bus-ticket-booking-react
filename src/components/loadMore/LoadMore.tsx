@@ -3,7 +3,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { rowsPerPage } from '../../config';
 import { useTheme } from '@emotion/react';
-import { MutableRefObject } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const LoadMore = ({
@@ -12,20 +11,17 @@ const LoadMore = ({
     setPage,
     btnLoading,
     setBtnLoading,
-    hasMounted,
 }: {
     resultLength: number;
     page: string;
     setPage: (arg: string) => void;
     btnLoading: boolean;
     setBtnLoading: (arg: boolean) => void;
-    hasMounted: MutableRefObject<boolean>;
 }) => {
     const theme = useTheme();
     const { t } = useTranslation('tripListing');
 
     const handleLoadMore = () => {
-        hasMounted.current = true;
         setBtnLoading(true);
         const totalPages = String(Math.ceil(resultLength / rowsPerPage));
         if (totalPages > page) {

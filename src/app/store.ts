@@ -3,10 +3,13 @@ import { configureStore } from '@reduxjs/toolkit';
 // Reducers
 import themeReducer from './features/themeSlice';
 import languageReducer from './features/languageSlice';
+import busSearchSlice from './features/busSearchSlice';
+
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
         language: languageReducer,
+        busSearch: busSearchSlice,
     },
 });
 

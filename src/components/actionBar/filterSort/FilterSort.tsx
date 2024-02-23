@@ -1,22 +1,22 @@
-import {
-    Button,
-    // FormControl,
-    Menu,
-    Stack,
-    Badge,
-} from '@mui/material';
+import { Button, Menu, Stack } from '@mui/material';
 import React, { useState } from 'react';
 import { Wrapper } from './FilterSort.styled';
 import { useTranslation } from 'react-i18next';
 import SortGroup from '../sortFilterRadioGroups/SortGroup';
 import BusTypeGroup from '../sortFilterRadioGroups/BusTypeGroup';
 import SeatTypeGroup from '../sortFilterRadioGroups/SeatTypeGroup';
-
-// filter chip to be incorporated after setting filter state in store
-// import FilterChip from './FilterChip';
+import FilterChip from './FilterChip';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {
+    removeBusFilter,
+    removeSeatFilter,
+} from '../../../app/features/busSearchSlice';
 
 export default function FilterSort() {
     const { t } = useTranslation('filterSort');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const dispatch = useDispatch();
 
     // anchor state
     const [busMenu, setBusMenu] = useState<null | HTMLElement>(null);
@@ -83,30 +83,23 @@ export default function FilterSort() {
                     </Button>
                     <Button
                         onClick={() => {
-                            //setBusTypeFilter(null);
-                            //setSeatTypeFilter(null);
+                            searchParams.delete('seatType');
+                            setSearchParams(searchParams);
+                            searchParams.delete('busType');
+                            setSearchParams(searchParams);
+                            dispatch(removeSeatFilter());
+                            dispatch(removeBusFilter());
                         }}
                     >
                         {t('clearAll')}
                     </Button>
 
-                    {/* <FilterChip
-                            busTypeFilter={busTypeFilter}
-                            busFilterHandler={busFilterHandler}
-                            seatTypeFilter={seatTypeFilter}
-                            seatFilterHandler={seatFilterHandler}
-                        /> */}
+                    <FilterChip />
                 </Stack>
-                <Badge
-                    //invisible={Boolean(!sortBy)}
-                    color="primary"
-                    badgeContent=" "
-                    variant="dot"
-                >
-                    <Button variant="outlined" onClick={sortTypeHandler}>
-                        {t('sort')}
-                    </Button>
-                </Badge>
+
+                <Button variant="outlined" onClick={sortTypeHandler}>
+                    {t('sort')}
+                </Button>
             </Stack>
 
             {/* Filters menu */}

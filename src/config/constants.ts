@@ -41,9 +41,9 @@ export const locationOptions: ILocationOptions[] = [
 
 export const filterValues = {
     ac: 'AC',
-    nonAc: 'Non-AC',
-    seater: 'Seater',
-    sleeper: 'Sleeper',
+    nonAc: 'NON_AC',
+    seater: 'SEATER',
+    sleeper: 'SLEEPER',
 };
 
 export const LANGUAGES: Language[] = [
