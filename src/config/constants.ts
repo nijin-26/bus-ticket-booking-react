@@ -50,3 +50,5 @@ export const LANGUAGES: Language[] = [
     { label: 'English', code: LanguageCode.English },
     { label: 'Spanish', code: LanguageCode.Spanish },
 ];
+
+export const rowsPerPage: number = 5;

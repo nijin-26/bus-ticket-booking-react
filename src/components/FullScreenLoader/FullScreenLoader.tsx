@@ -5,7 +5,7 @@ interface IFullScreenLoaderProps {
     open: boolean;
 }
 
-export default function FullScreenLoader({ open }: IFullScreenLoaderProps) {
+const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
     return (
         <Backdrop
             sx={{
@@ -17,4 +17,6 @@ export default function FullScreenLoader({ open }: IFullScreenLoaderProps) {
             <CircularProgress color="inherit" />
         </Backdrop>
     );
-}
+};
+
+export default FullScreenLoader;
