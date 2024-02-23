@@ -36,14 +36,13 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
+
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
     );
     const [tripDate, setTripDate] = useState<Date | null>(tomorrow);
-
     const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
     const [loadingState, setLoadingState] = useState<boolean>(false);
-
     const [toggle, setToggle] = useState(false);
 
     const originParam = searchParams.get('originId');
@@ -113,6 +112,14 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
 
     // swap to and from locations
     const swapLocationOptions = () => {
+        if (startLocation && stopLocation) {
+            const tempTo = stopLocation;
+
+            setStopLocation(startLocation);
+            setStartLocation(tempTo);
+
+            setToggle(!toggle);
+        }
         if (startLocation && stopLocation) {
             const tempTo = stopLocation;
 
