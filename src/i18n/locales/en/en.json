@@ -6,10 +6,10 @@
         "hello": "hello"
     },
     "headerFooter": {
-        "myBooking": "My Booking",
+        "myBookings": "My Bookings",
         "copyRight": "© 2024 All rights reserved",
-        "Login": "Login",
-        "Logout": "Logout"
+        "login": "Login",
+        "logout": "Logout"
     },
     "auth": {
         "signIn": "SIGN IN",
@@ -27,10 +27,21 @@
         "emailRequired": "Email is required.",
         "invalidPhone": "Invalid phone number.",
         "phoneRequired": "Phone number is required.",
-        "passwordValidationMsg": "Password must be at least 6 characters.",
+        "passwordLengthValidationMsg": "Password must be at least 6 characters.",
+        "passwordValidationMsg": "Password not strong enough.",
         "passwordRequired": "Password is required.",
         "passwordMatch": "Passwords must match.",
-        "confirmPasswordRequired": "Confirm Password is required."
+        "confirmPasswordRequired": "Confirm Password is required.",
+        "invalidPasswordErrorMessage": "Incorrect Password",
+        "userNotFoundErrorMessage": "User does not exist",
+        "userAlreadyExistsErrorMessage": "User already exists",
+        "signInSuccessToastMessage": "Login successful. Happy to have you here!",
+        "signInErrorToastMessage": "Unexpected error. Please try again later.",
+        "signUpSuccessToastMessage": "Welcome aboard! Your account has been successfully created. Please sign in to continue.",
+        "signUpErrorToastMessage": "Unexpected error. Please try again later.",
+        "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication.",
+        "forbiddenErrorMessage": "Access Denied: You don't have sufficient authorization to view this page.",
+        "passwordRequirements": "The Password must be atleast 6 characters long and contain an uppercase character, a lowercase character, a number and a special character."
     },
     "seatLayout": {
         "available": "Available",
@@ -119,6 +130,13 @@
         "fullNameLength": "Full Name must be 3 to 60 characters long",
         "AgeNumberCheck": "Age must be a valid number",
         "AgeRangeCheck": "Age must be between 1 and 130"
+    },
+    "logoutConfirmationModal": {
+        "title": "Are you sure?",
+        "message": "All your unsaved data will be lost.",
+        "confirmText": "Yes",
+        "cancelText": "Cancel",
+        "logoutSuccessMessage": "You have been successfully logged out. Have a great day!"
     },
     "error": {
         "unexpected": "Some unexpected error has occurred"

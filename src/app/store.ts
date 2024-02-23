@@ -5,11 +5,14 @@ import themeReducer from './features/themeSlice';
 import languageReducer from './features/languageSlice';
 import busSearchSlice from './features/busSearchSlice';
 
+import authReducer from './features/authSlice';
+
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
         language: languageReducer,
         busSearch: busSearchSlice,
+        auth: authReducer,
     },
 });
 

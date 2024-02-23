@@ -14,8 +14,10 @@ const {
     filterSort,
     landingPage,
     auth,
+    logoutConfirmationModal,
     error,
 } = data;
+
 const resources = {
     ns1,
     ns2,
@@ -30,6 +32,7 @@ const resources = {
     tripListing,
     landingPage,
     passengerDetails,
+    logoutConfirmationModal,
     error,
 } as const;
 

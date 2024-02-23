@@ -17,6 +17,7 @@ const {
     landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
+    logoutConfirmationModal: enLogoutConfirmationModal,
     error: enError,
 } = en;
 const {
@@ -33,6 +34,7 @@ const {
     tripListing: esTripListing,
     landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
+    logoutConfirmationModal: esLogoutConfirmationModal,
     error: esError,
 } = es;
 
@@ -55,6 +57,7 @@ void i18n.use(initReactI18next).init({
             tripListing: enTripListing,
             landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
+            logoutConfirmationModal: enLogoutConfirmationModal,
             error: enError,
         },
         es: {
@@ -71,6 +74,7 @@ void i18n.use(initReactI18next).init({
             tripListing: esTripListing,
             landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
+            logoutConfirmationModal: esLogoutConfirmationModal,
             error: esError,
         },
     },
@@ -90,6 +94,7 @@ void i18n.use(initReactI18next).init({
         'filterSort',
         'landingPage',
         'auth',
+        'logoutConfirmationModal',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.
