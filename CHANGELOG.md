@@ -20,3 +20,4 @@
 -   [86cukqvct] Implemented API layer
 -   [86cugexhf] Landing page illustration, action bar incorporated and routing to trip listing page.
 -   [86cumak5j] Enhanced API layer and added converters for requests and responses
+-   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
