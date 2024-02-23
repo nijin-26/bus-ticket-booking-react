@@ -5,22 +5,23 @@ import { rowsPerPage } from '../../config';
 import { useTheme } from '@emotion/react';
 import { useTranslation } from 'react-i18next';
 
+interface ILoadMore {
+    resultLength: number;
+    page: string;
+    setPage: (arg: string) => void;
+    btnLoading: boolean;
+    setBtnLoading: (arg: boolean) => void;
+}
+
 const LoadMore = ({
     resultLength,
     page,
     setPage,
     btnLoading,
     setBtnLoading,
-}: {
-    resultLength: number;
-    page: string;
-    setPage: (arg: string) => void;
-    btnLoading: boolean;
-    setBtnLoading: (arg: boolean) => void;
-}) => {
+}: ILoadMore) => {
     const theme = useTheme();
     const { t } = useTranslation('tripListing');
-
     const handleLoadMore = () => {
         setBtnLoading(true);
         const totalPages = String(Math.ceil(resultLength / rowsPerPage));
