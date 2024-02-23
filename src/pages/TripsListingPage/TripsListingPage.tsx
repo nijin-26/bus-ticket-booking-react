@@ -17,8 +17,36 @@ import { ITrip } from '../../types';
 export const TripsListingPage = () => {
     const [tripData, setTripData] = useState<ITrip[]>([]);
     const [resultLength, setResultLength] = useState<number>(0);
+
+    //testing store updating
+    const paramsFromStore = useAppSelector((state) => state.busSearch);
+    console.log('paramsFromStore', paramsFromStore);
+
     const [searchParams] = useSearchParams();
     const matches = useMediaQuery('(min-width:600px)');
+
+    useEffect(() => {
+        // when filters and sort states in store change, a fetch must me called
+        const start = searchParams.get('originID');
+        const dest = searchParams.get('destinationID');
+        const date = searchParams.get('tripDate');
+
+        if (start && dest && date) {
+            getTrips({
+                originId: start,
+                destinationId: dest,
+                tripDate: date,
+                page: 1,
+                pageSize: 5,
+            })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, []);
     // setSearchParams({ page: '1' });
     console.log(searchParams);
     const fetchTripData = useCallback(async () => {

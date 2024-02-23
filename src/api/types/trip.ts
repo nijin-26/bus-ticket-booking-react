@@ -4,10 +4,6 @@ import { IBookingExternal } from './ticket';
 
 export interface ITripExternal {
     id: number;
-    createdAt: string;
-    updatedAt: string;
-    originId: number;
-    destinationId: number;
     tripDate: string;
     departure: string;
     arrival: string;
@@ -17,11 +13,8 @@ export interface ITripExternal {
     seatType: ISeatType;
     totalSeats: number;
     farePerSeat: string;
-    publish: boolean;
-    creatorId: string;
     origin: ILocationExternal;
     destination: ILocationExternal;
-    creator: unknown;
 }
 
 export interface ITripDetailedExternal extends ITripExternal {
@@ -33,8 +26,8 @@ export interface ITripsQueryRequest {
     originId: string;
     destinationId: string;
     tripDate: string;
-    sortBy: ITripsSortKey;
-    sortOrder: ISortOrder;
+    sortBy?: ITripsSortKey;
+    sortOrder?: ISortOrder;
     page: number;
     pageSize: number;
     seatType?: ISeatType;
@@ -60,9 +53,9 @@ export interface ITripDetailResponse {
 }
 
 export enum ITripsSortKey {
-    DEPARTURE_TIMESTAMP = 'departureTimestamp',
-    ARRIVAL_TIMESTAMP = 'arrivalTimestamp',
-    FARE = 'fare',
+    DEPARTURE_TIMESTAMP = 'departure',
+    FARE = 'farePerSeat',
+    SEATS_AVAILABLE = 'totalSeats',
 }
 
 export enum ISortOrder {

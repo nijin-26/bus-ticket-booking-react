@@ -4,6 +4,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './features/themeSlice';
 import languageReducer from './features/languageSlice';
 import tripListingReducer from './features/tripListingSlice';
+import busSearchSlice from './features/busSearchSlice';
+
 import tripDetailsReducer from './features/tripDetailsSlice';
 
 export const store = configureStore({
@@ -11,6 +13,7 @@ export const store = configureStore({
         theme: themeReducer,
         language: languageReducer,
         tripListing: tripListingReducer,
+        busSearch: busSearchSlice,
         tripDetails: tripDetailsReducer,
     },
 });
