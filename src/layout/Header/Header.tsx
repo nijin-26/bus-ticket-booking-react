@@ -14,7 +14,7 @@ import {
     IconButton,
     ListItemIcon,
 } from '@mui/material';
-// import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { StyledButton } from '../Footer/Footer.styled';
 import { ConfirmDialog } from '../../components';
 import { StyledToolBar } from './Header.styled';
@@ -24,15 +24,18 @@ import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-// import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import { paths } from '../../config';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutModal']);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
     const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] =
         useState<boolean>(false);
-    const dispatch = useAppDispatch();
 
     const [menuAnchorElement, setMenuAnchorElement] =
         useState<null | HTMLElement>(null);
@@ -54,6 +57,7 @@ export const Header = () => {
     const handleLogoutClick = () => {
         dispatch(logout());
         handleCloseUserMenu();
+        navigate(paths.home);
     };
 
     return (
@@ -129,8 +133,8 @@ export const Header = () => {
                                     }}
                                     sx={{ mt: '5px' }}
                                 >
-                                    {/*To be included after myBookings page has been added*/}
-                                    {/* <MenuItem component={NavLink} to="/users">
+                                    {/*TODO : Need to update link after myBookings page is added*/}
+                                    <MenuItem component={NavLink} to="/">
                                         <ListItemIcon>
                                             <PermContactCalendarIcon fontSize="small" />
                                         </ListItemIcon>
@@ -140,7 +144,7 @@ export const Header = () => {
                                         >
                                             {t('myBookings')}
                                         </Typography>
-                                    </MenuItem> */}
+                                    </MenuItem>
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);

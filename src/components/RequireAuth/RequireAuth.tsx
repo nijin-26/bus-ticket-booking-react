@@ -21,10 +21,9 @@ export const RequireAuth = ({ allowedRoles }: IRequireAuthProps) => {
         return <Outlet />;
     } else if (user) {
         setTimeout(() =>
-            toast.error(
-                "Access Denied: You don't have sufficient authorization to view this page.",
-                { toastId: 'forbidden toast' }
-            )
+            toast.error(t('forbiddenErrorMessage'), {
+                toastId: 'forbidden toast',
+            })
         );
         return <Navigate to={paths.home} replace />;
     } else {

@@ -39,6 +39,7 @@
         "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada.",
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
+        "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",
         "passwordRequirements": "La contraseña debe contener al menos un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
     },
     "seatLayout": {
