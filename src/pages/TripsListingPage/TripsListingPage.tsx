@@ -35,10 +35,6 @@ export const TripsListingPage = () => {
         const destinationId = searchParams.get('destinationId') as string;
         const tripDate = searchParams.get('tripDate') as string;
         const sortByParam = searchParams.get('sortBy');
-        // const sortBy: ITripsSortKey =
-        //     sortByParam ?? ITripsSortKey.SEATS_AVAILABLE;
-        console.log(sortByParam, 'sortbyparam');
-        // console.log(sortBy, 'sortby');
         const sortOrderParam = searchParams.get(
             'sortOrder'
         ) as ISortOrder | null;
@@ -79,7 +75,6 @@ export const TripsListingPage = () => {
                 passengerCount: Number(passengerCount),
             };
             const response = await getTrips(params);
-            // console.log(tripData, 'before set');
             const uniqueTrips = new Set([...tripData, ...response.trips]);
             setFlag(true);
             setTripData(() => Array.from(uniqueTrips));
@@ -95,16 +90,12 @@ export const TripsListingPage = () => {
     };
 
     useEffect(() => {
-        // console.log('useEffect 1');
-        // console.log('clearing data');
         setTripData([]);
         setPage('1');
         setFlag(false);
-        // console.log(page, 'page');
     }, [searchParams]);
 
     useEffect(() => {
-        // console.log('useEffect 3');
         if (tripData.length === 0 && !flag) {
             fetchTripData().catch((error) => {
                 console.error('Error in useEffect:', error);
@@ -114,14 +105,12 @@ export const TripsListingPage = () => {
     }, [tripData]);
 
     useEffect(() => {
-        // console.log('useEffect 2');
         fetchTripData().catch((error) => {
             console.error('Error in useEffect:', error);
             setHasError(true);
         });
     }, [page, t]);
 
-    console.log(tripData, 'tripdata'); //remove
     return (
         <TripsListingPageWrapper>
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
