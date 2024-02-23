@@ -26,24 +26,23 @@ interface IActionBarProps {
     showFilterSort?: boolean;
 }
 
-const ActionBar: React.FC<IActionBarProps> = ({
-    showFilterSort,
-}: IActionBarProps) => {
+const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
     const tomorrow = addDays(new Date(), 1);
     const [searchParams] = useSearchParams();
+    const { t } = useTranslation('actionBar');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
-
     const [stopLocation, setStopLocation] = useState<ILocationOptions | null>(
         null
     );
     const [tripDate, setTripDate] = useState<Date | null>(tomorrow);
+
     const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
     const [loadingState, setLoadingState] = useState<boolean>(false);
-    const { t } = useTranslation('actionBar');
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const [toggle, setToggle] = useState(false);
 
@@ -66,8 +65,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
         if (destinationlocation) {
             setStopLocation(destinationlocation);
         }
-        if (tripDate && tripDateParam) {
-            const convDate = new Date(tripDate.toUTCString());
+        if (tripDateParam) {
+            const convDate = new Date(tripDateParam.replace('GMT ', 'GMT+'));
             setTripDate(convDate);
         }
     };
@@ -78,7 +77,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
         const converterLoc = loc.map((locObj) => {
             return { id: Number(locObj.id), label: locObj.name };
         });
-        setLocOptions(() => converterLoc);
+        setLocOptions(converterLoc);
     };
 
     useEffect(() => {
@@ -257,7 +256,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <DatePicker
                         label={t('date')}
                         disablePast
-                        defaultValue={tripDate}
+                        value={tripDate}
                         minDate={tomorrow}
                         slots={{
                             openPickerIcon: Today,
