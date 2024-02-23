@@ -36,7 +36,7 @@
         "userAlreadyExistsErrorMessage": "El usuario ya existe",
         "signInSuccessToastMessage": "Inicio de sesión exitoso. ¡Feliz de tenerte aquí!",
         "signInErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
-        "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada.",
+        "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada exitosamente. Por favor, inicia sesión para continuar.",
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
         "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",

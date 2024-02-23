@@ -16,8 +16,8 @@ type TSignInProps = {
 };
 
 const initialValues: ISignInForm = {
-    email: 'johng@gmail.com',
-    password: 'John@123',
+    email: '',
+    password: '',
 };
 
 const SignIn = ({ closeModal }: TSignInProps) => {

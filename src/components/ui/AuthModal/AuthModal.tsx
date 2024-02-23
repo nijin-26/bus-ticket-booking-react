@@ -51,7 +51,7 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                         timeout={300}
                     >
                         <Box py={4}>
-                            <SignIn closeModal={closeModal} />
+                            <SignIn closeModal={closeModal} key={selectedTab} />
                         </Box>
                     </Collapse>
                     <Collapse
@@ -62,6 +62,7 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                             <SignUp
                                 closeModal={closeModal}
                                 setSignInAsSelectedTab={setSignInAsSelectedTab}
+                                key={selectedTab}
                             />
                         </Box>
                     </Collapse>

@@ -20,6 +20,7 @@ export const RequireAuth = ({ allowedRoles }: IRequireAuthProps) => {
     if (user && allowedRoles.includes(user.role)) {
         return <Outlet />;
     } else if (user) {
+        //setTimeout added so that toast is still visible after navigating to landing page
         setTimeout(() =>
             toast.error(t('forbiddenErrorMessage'), {
                 toastId: 'forbidden toast',
