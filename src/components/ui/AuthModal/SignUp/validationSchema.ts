@@ -23,10 +23,10 @@ const getValidationSchema = (t: TFunction<'auth'>) =>
         password: Yup.string()
             .trim()
             .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^&*()-_+={}[\]|\\;:'"<>,./?]).{8,}$/,
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^&*()-_+={}[\]|\\;:'"<>,./?])/,
                 t('passwordValidationMsg')
             )
-            .min(6, t('passwordValidationMsg'))
+            .min(6, t('passwordLengthValidationMsg'))
             .required(t('passwordRequired')),
         confirmPassword: Yup.string()
             .trim()

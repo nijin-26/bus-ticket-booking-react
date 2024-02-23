@@ -14,10 +14,10 @@ import {
     IconButton,
     ListItemIcon,
 } from '@mui/material';
+import { toast } from 'react-toastify';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { StyledButton } from '../Footer/Footer.styled';
 import { ConfirmDialog } from '../../components';
-import { StyledToolBar } from './Header.styled';
+import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
@@ -28,7 +28,7 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { paths } from '../../config';
 
 export const Header = () => {
-    const { t } = useTranslation(['headerFooter', 'logoutModal']);
+    const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -57,6 +57,7 @@ export const Header = () => {
     const handleLogoutClick = () => {
         dispatch(logout());
         handleCloseUserMenu();
+        toast.success(t('logoutConfirmationModal:logoutSuccessMessage'));
         navigate(paths.home);
     };
 
@@ -95,7 +96,7 @@ export const Header = () => {
                         </IconButton>
                         {user ? (
                             <>
-                                <StyledButton
+                                <StyledProfileButton
                                     id="profile-button"
                                     aria-controls={
                                         isMenuOpen ? 'profile-menu' : undefined
@@ -113,7 +114,7 @@ export const Header = () => {
                                     <Typography variant="body2">
                                         {user.fullName}
                                     </Typography>
-                                </StyledButton>
+                                </StyledProfileButton>
                                 <Menu
                                     id="profile-menu"
                                     keepMounted
@@ -176,16 +177,16 @@ export const Header = () => {
                 </StyledToolBar>
             </AppBar>
             <ConfirmDialog
-                title={t('logoutModal:title')}
+                title={t('logoutConfirmationModal:title')}
                 open={isLogoutModalDisplayed}
                 handleClose={() => {
                     setIsLogoutModalDisplayed(false);
                 }}
-                agreeText={t('logoutModal:confirmText')}
-                disagreeText={t('logoutModal:cancelText')}
+                agreeText={t('logoutConfirmationModal:confirmText')}
+                disagreeText={t('logoutConfirmationModal:cancelText')}
                 handleAgreeFunction={handleLogoutClick}
             >
-                {t('logoutModal:message')}
+                {t('logoutConfirmationModal:message')}
             </ConfirmDialog>
         </>
     );

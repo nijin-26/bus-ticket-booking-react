@@ -27,7 +27,8 @@
         "emailRequired": "Se requiere el correo electrónico.",
         "invalidPhone": "Número de teléfono inválido.",
         "phoneRequired": "Se requiere el número de teléfono.",
-        "passwordValidationMsg": "La contraseña debe tener al menos 6 caracteres.",
+        "passwordLengthValidationMsg": "La contraseña debe tener al menos 6 caracteres.",
+        "passwordValidationMsg": "Contraseña no suficientemente segura.",
         "passwordRequired": "Se requiere la contraseña.",
         "passwordMatch": "Las contraseñas deben coincidir.",
         "confirmPasswordRequired": "Se requiere confirmar la contraseña.",
@@ -40,7 +41,7 @@
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
         "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",
-        "passwordRequirements": "La contraseña debe contener al menos un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
+        "passwordRequirements": "La contraseña debe tener al menos 6 caracteres de longitud y contener un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
     },
     "seatLayout": {
         "available": "Disponible",
@@ -120,10 +121,11 @@
         "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
     },
-    "logoutModal": {
+    "logoutConfirmationModal": {
         "title": "¿Estás seguro?",
         "message": "Se perderán todos tus datos no guardados.",
         "confirmText": "Sí",
-        "cancelText": "Cancelar"
+        "cancelText": "Cancelar",
+        "logoutSuccessMessage": "Has cerrado sesión correctamente. ¡Que tengas un gran día!"
     }
 }
