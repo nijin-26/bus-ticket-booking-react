@@ -5,5 +5,6 @@ export const apiRoutes = {
     trip: 'trip',
     tripSearch: 'trip/search',
     booking: 'booking',
+    userBooking: 'booking/user/all',
     user: 'user',
 };

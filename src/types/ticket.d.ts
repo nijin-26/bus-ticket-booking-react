@@ -1,3 +1,5 @@
+import { ITrip } from ".";
+
 export interface ITicket {
     pnrNumber: string;
     trip: ITrip;

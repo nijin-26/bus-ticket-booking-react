@@ -1,7 +1,15 @@
 import { API, apiRoutes } from '..';
 import { IPassengerSeat, ITicket } from '../../types';
-import { getTicketFromBookingResponse } from '../converters/ticket.converter';
-import { IBookingRequest, IBookingResponse } from '../types/ticket';
+import {
+    getTicketFromBookingResponse,
+    getTicketsFromBookingListingResponse,
+} from '../converters/ticket.converter';
+import {
+    IBookingListingResponse,
+    IBookingRequest,
+    IBookingResponse,
+    IMyBookingResponse,
+} from '../types/ticket';
 
 export const bookTicket = async (
     tripId: string,
@@ -19,4 +27,20 @@ export const bookTicket = async (
     const response: IBookingResponse = await API.post(apiRoutes.booking, body);
     const ticket = getTicketFromBookingResponse(response);
     return ticket;
+};
+
+export const getAllBookings = async (): Promise<ITicket[]> => {
+    const response: IBookingListingResponse = await API.get(apiRoutes.booking, {
+        params: {
+            page: 1,
+            pageSize: 1000,
+        },
+    });
+    const tickets = getTicketsFromBookingListingResponse(response);
+    return tickets;
+};
+
+export const getMyBookings = async (): Promise<ITicket[]> => {
+    const tickets = await getAllBookings();
+    return tickets;
 };

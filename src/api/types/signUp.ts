@@ -6,6 +6,19 @@ export interface ISignUpRequest {
 }
 
 export interface ISignUpResponse {
-    accessToken: string;
-    refreshToken: string;
+    user: {
+        passwordChanged: boolean;
+        name: string;
+        email: string;
+        phone: string;
+        password: string;
+        verificationToken: string;
+        tokenGeneratedAt: string;
+        role: null;
+        resetToken: null;
+        resetTokenGeneratedAt: null;
+        id: number;
+        createdAt: string;
+        updatedAt: string;
+    };
 }

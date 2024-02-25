@@ -1,45 +1,52 @@
 import { Stack } from '@mui/material';
 import { FixedChip } from './FilterSort.styled';
-import { filterValues } from '../../../config';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import {
+    removeBusFilter,
+    removeSeatFilter,
+} from '../../../app/features/busSearchSlice';
+import { useAppSelector } from '../../../app/hooks';
+import { useSearchParams } from 'react-router-dom';
+import { filterValues } from '../../../config';
 
-interface IFilterChipProps {
-    busTypeFilter: string | null;
-    busFilterHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    seatTypeFilter: string | null;
-    seatFilterHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const FilterChip: React.FC<IFilterChipProps> = ({
-    busTypeFilter,
-    busFilterHandler,
-    seatTypeFilter,
-    seatFilterHandler,
-}: IFilterChipProps) => {
+const FilterChip: React.FC = () => {
     const { t } = useTranslation('filterSort');
+    const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const storedparams = useAppSelector((state) => state.busSearch);
+    const busTypeParams =
+        searchParams.get('busType') ?? storedparams.busType?.toString();
+    const seatTypeParams =
+        searchParams.get('seatType') ?? storedparams.seatType?.toString();
+
     return (
         <Stack spacing={1} direction="row">
-            {busTypeFilter ? (
+            {busTypeParams && (
                 <FixedChip
-                    onDelete={busFilterHandler}
+                    onDelete={() => {
+                        searchParams.delete('busType');
+                        setSearchParams(searchParams);
+                        dispatch(removeBusFilter());
+                    }}
                     label={
-                        busTypeFilter === filterValues.ac ? t('AC') : t('nonAC')
+                        busTypeParams === filterValues.ac ? t('AC') : t('nonAC')
                     }
                 />
-            ) : (
-                <></>
             )}
-            {seatTypeFilter ? (
+            {seatTypeParams && (
                 <FixedChip
-                    onDelete={seatFilterHandler}
+                    onDelete={() => {
+                        searchParams.delete('seatType');
+                        setSearchParams(searchParams);
+                        dispatch(removeSeatFilter());
+                    }}
                     label={
-                        seatTypeFilter === filterValues.seater
+                        seatTypeParams === filterValues.seater
                             ? t('seater')
                             : t('sleeper')
                     }
                 />
-            ) : (
-                <></>
             )}
         </Stack>
     );

@@ -3,14 +3,18 @@ import { configureStore } from '@reduxjs/toolkit';
 // Reducers
 import themeReducer from './features/themeSlice';
 import languageReducer from './features/languageSlice';
-import tripListingReducer from './features/tripListingSlice';
+import busSearchSlice from './features/busSearchSlice';
+
+import authReducer from './features/authSlice';
 import tripDetailsReducer from './features/tripDetailsSlice';
+
 
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
         language: languageReducer,
-        tripListing: tripListingReducer,
+        busSearch: busSearchSlice,
+        auth: authReducer,
         tripDetails: tripDetailsReducer,
     },
 });
