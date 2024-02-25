@@ -87,7 +87,9 @@
         "departure": "Partida",
         "arrival": "Llegada",
         "duration": "Duración",
-        "busType": "Tipo de autobús"
+        "busType": "Tipo de autobús",
+        "emptyResponse": "Datos del viaje no disponibles",
+        "errorResponse": "Error al recuperar los detalles del viaje"
     },
     "tripListing": {
         "busTypeAC": "Tipo de Autobús - Aire Acondicionado",

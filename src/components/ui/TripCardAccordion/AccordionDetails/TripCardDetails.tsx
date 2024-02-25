@@ -19,6 +19,7 @@ import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
 import { toSerializable } from '../../../../app/features/utils/tripDetailsHelperFns';
 import { TripCardDetailsLoader } from './components/Loader/Loader';
+import { toast } from 'react-toastify';
 
 interface ITripCardAccordionData extends ITrip {
     seats?: ISeat[];
@@ -56,13 +57,12 @@ export const TripCardDetails = ({
             try {
                 const response = await getTrip(data.id);
                 if (response) {
-                    console.log(response);
                     setTripSpecificData(response);
                 } else {
-                    console.log('Trip data not available');
+                    console.log(t('emptyResponse'));
                 }
             } catch (error) {
-                console.error(error);
+                toast.error(t('errorResponse'));
             } finally {
                 setLoading(false);
             }
@@ -75,7 +75,7 @@ export const TripCardDetails = ({
             setSelectedSeats(filterSelectedSeats(data.seats));
             setLoading(false);
         }
-    }, [data]);
+    }, [data, t]);
 
     const {
         seats,
