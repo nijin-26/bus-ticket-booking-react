@@ -12,16 +12,16 @@ import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 import { useNavigate } from 'react-router-dom';
 import { clearRedirectState } from '../../../../app/features/authSlice';
 
-type TSignInProps = {
+interface ISignInProps {
     closeModal: () => void;
-};
+}
 
 const initialValues: ISignInForm = {
     email: '',
     password: '',
 };
 
-const SignIn = ({ closeModal }: TSignInProps) => {
+const SignIn = ({ closeModal }: ISignInProps) => {
     const { t } = useTranslation('auth');
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
