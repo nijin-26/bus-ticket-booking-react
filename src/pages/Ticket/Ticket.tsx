@@ -4,14 +4,50 @@ import { TicketWrapper } from './Ticket.styled';
 import Barcode from 'react-barcode';
 import { TwoLineHeading } from './components/TwoLineHeading';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ITicket } from '../../types';
+
+const formatDate = (timestamp: Date, short: boolean = false) => {
+    const formatOptions = {
+        month: short ? 'short' : '2-digit',
+        day: '2-digit',
+    };
+
+    const formattedDate = timestamp.toLocaleDateString('en-US', formatOptions);
+    const formattedTime = timestamp.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    });
+
+    return { formattedDate, formattedTime };
+};
 
 export const Ticket = () => {
     const isSmallScreen = useMediaQuery('(max-width:860px)');
     const isMediumScreen = useMediaQuery('(max-width:1024px)');
 
+    const location = useLocation();
+    const ticketDataFromState: ITicket = location.state as ITicket;
+    const [ticketData, setTicketData] = useState<ITicket>(ticketDataFromState);
+
+    const { pnrNumber, trip, seats } = ticketDataFromState;
+    const { departureTimestamp, arrivalTimestamp } = trip;
+    console.log(location);
+
+    const { formattedDate: departureDate, formattedTime: departureTime } =
+        formatDate(departureTimestamp);
+    const { formattedDate: arrivalDate, formattedTime: arrivalTime } =
+        formatDate(arrivalTimestamp);
+
+    const shortDepartureDate = formatDate(
+        departureTimestamp,
+        true
+    ).formattedDate;
+    const shortArrivalDate = formatDate(arrivalTimestamp, true).formattedDate;
+
     const [loading, setLoading] = useState<boolean>(true);
 
-    
     return (
         <TicketWrapper>
             <Box>
@@ -39,20 +75,32 @@ export const Ticket = () => {
                     spacing={'20px'}
                     justifyContent={'space-around'}
                 >
-                    <TwoLineHeading title="Passenger Name" value="John Smith" />
+                    <TwoLineHeading
+                        title="Passenger Name"
+                        value={seats[0].passenger.fullName}
+                    />
                     <Stack
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row"
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
-                        <TwoLineHeading title="FROM" value="Trivandrum - TRV" />
+                        <TwoLineHeading
+                            title="FROM"
+                            value={`${trip.origin.name} - ${trip.origin.shortCode}`}
+                        />
                         <Stack
                             direction={'row'}
                             justifyContent={'space-between'}
                         >
-                            <TwoLineHeading title="Date" value="09JUN" />
-                            <TwoLineHeading title="tIME" value="09.40AM" />
+                            <TwoLineHeading
+                                title="Date"
+                                value={departureDate}
+                            />
+                            <TwoLineHeading
+                                title="tIME"
+                                value={departureTime}
+                            />
                         </Stack>
                     </Stack>
                     <Stack
@@ -61,13 +109,16 @@ export const Ticket = () => {
                         className="details-row"
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
-                        <TwoLineHeading title="To" value="Banglore - BLR" />
+                        <TwoLineHeading
+                            title="To"
+                            value={`${trip.destination.name} - ${trip.destination.shortCode}`}
+                        />
                         <Stack
                             direction={'row'}
                             justifyContent={'space-between'}
                         >
-                            <TwoLineHeading title="Date" value="09JUN" />
-                            <TwoLineHeading title="tIME" value="09.40AM" />
+                            <TwoLineHeading title="Date" value={arrivalDate} />
+                            <TwoLineHeading title="tIME" value={arrivalTime} />
                         </Stack>
                     </Stack>
                     <Stack
@@ -76,18 +127,25 @@ export const Ticket = () => {
                         className="details-row"
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
-                        <TwoLineHeading title="PNR" value="12345678" />
+                        <TwoLineHeading
+                            title="PNR"
+                            value={pnrNumber.toUpperCase()}
+                        />
                         <Stack
                             direction={'row'}
                             justifyContent={'space-between'}
                         >
                             <TwoLineHeading
                                 title="Passenger Count"
-                                value="2 adults"
+                                value={`${seats.length} adults`}
                             />
                             <TwoLineHeading
-                                title="Seat Numbers"
-                                value="25A, 24B"
+                                title={`Seat Number${
+                                    seats.length > 1 ? 's' : ''
+                                }`}
+                                value={seats
+                                    .map((seat) => seat.seatNumber)
+                                    .join(', ')}
                             />
                         </Stack>
                     </Stack>
@@ -99,7 +157,7 @@ export const Ticket = () => {
                     }`}
                     flex={'1'}
                 >
-                    <Barcode value={'123456789'} format="CODE128" />
+                    <Barcode value={pnrNumber} format="CODE128" />
                     {/* high-density linear barcode. supports all 128 ASCII characters */}
                 </Box>
                 {!isSmallScreen && (
@@ -107,33 +165,49 @@ export const Ticket = () => {
                         <div className="dotted-vertical-div"></div>
                         <Stack
                             direction={'column'}
-                            padding={'25px'}
+                            padding={'20px'}
                             spacing={'10px'}
                             justifyContent={'space-between'}
                             flex={'1.5'}
                         >
                             <TwoLineHeading
                                 title="Passenger Name"
-                                value="John Smith"
+                                value={seats[0].passenger.fullName}
                             />
                             <Stack
                                 direction={'row'}
                                 justifyContent={'space-between'}
                             >
-                                <TwoLineHeading title="FROM" value="TRV" />
-                                <TwoLineHeading title="To" value="BLR" />
+                                <TwoLineHeading
+                                    title="FROM"
+                                    value={trip.origin.shortCode}
+                                />
+                                <TwoLineHeading
+                                    title="To"
+                                    value={trip.destination.shortCode}
+                                />
                             </Stack>
                             <TwoLineHeading
                                 title="Departure"
-                                value="09JUN 10:00AM"
+                                value={shortDepartureDate.concat(
+                                    ' ',
+                                    departureTime
+                                )}
                             />
                             <TwoLineHeading
                                 title="Arrival"
-                                value="09JUN 10:00AM"
+                                value={shortArrivalDate.concat(
+                                    ' ',
+                                    arrivalTime
+                                )}
                             />
                             <TwoLineHeading
-                                title="Seat Numbers"
-                                value="25A, 24B"
+                                title={`Seat Number${
+                                    seats.length > 1 ? 's' : ''
+                                }`}
+                                value={seats
+                                    .map((seat) => seat.seatNumber)
+                                    .join(', ')}
                             />
                         </Stack>
                     </>

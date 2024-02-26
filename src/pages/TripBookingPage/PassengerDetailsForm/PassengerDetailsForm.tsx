@@ -9,6 +9,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../config';
+import { IBusType, IGender, ISeatType, ITicket } from '../../../types';
 
 interface IPassengerDetails {
     passengers: {
@@ -46,7 +47,7 @@ const PassengerDetailsForm = () => {
     };
 
     const handleCheckout = () => {
-        const iticketObj = {
+        const iticketObj: ITicket = {
             pnrNumber: '976xq5',
             trip: {
                 id: '97',
@@ -60,12 +61,12 @@ const PassengerDetailsForm = () => {
                     name: 'Pathanamthitta',
                     shortCode: 'PTA',
                 },
-                departureTimestamp: '1970-01-01T00:00:00.000Z',
-                arrivalTimestamp: '1970-01-01T00:00:00.000Z',
+                departureTimestamp: new Date('1970-01-01T00:00:00.000Z'),
+                arrivalTimestamp: new Date('1970-01-01T00:00:00.000Z'),
                 farePerSeat: 1100,
                 totalSeats: 46,
-                busType: 'AC',
-                seatType: null,
+                busType: IBusType.AC,
+                seatType: ISeatType.SEATER,
                 availableSeats: 45,
             },
             seats: [
@@ -74,12 +75,12 @@ const PassengerDetailsForm = () => {
                     passenger: {
                         fullName: 'Akshay Krishna',
                         age: 23,
-                        gender: 'male',
+                        gender: IGender.MALE,
                     },
                 },
             ],
         };
-        navigate(`${paths.bookingSuccess}?pnr=${iticketObj.pnrNumber}`, {
+        navigate(`${paths.bookingSucess}?pnr=${iticketObj.pnrNumber}`, {
             state: iticketObj,
         });
     };

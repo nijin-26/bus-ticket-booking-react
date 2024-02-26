@@ -8,7 +8,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
-    margin:'20px',
+    margin: '20px',
     boxShadow:
         '0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1)',
 
@@ -16,11 +16,11 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         fontSize: theme.font.h2,
         fontWeight: theme.font.fontWeightMedium,
     },
-    '& > :first-child, & > :last-child': {
+    '& > :first-of-type, & > :last-child': {
         padding: '20px',
         backgroundColor: theme.color.primary,
     },
-    '&>:first-child': {
+    '&>:first-of-type': {
         color: theme.color.background,
         borderRadius: '15px 15px 0 0', // Apply the same borderRadius as the parent
     },
@@ -37,8 +37,8 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         marginLeft: '0',
         display: 'flex',
         alignItems: 'center',
-        backgroundColor:'transparent',
-        
+        backgroundColor: 'transparent',
+
         '& >svg': {
             rotate: '270deg',
             maxHeight: '10rem',
@@ -48,14 +48,13 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     },
     '& .rotated-barcode-container.small-screen': {
         '& > svg': {
-          rotate: '0deg', // Keep the original angle on small screens
+            rotate: '0deg', // Keep the original angle on small screens
         },
-      },      
+    },
     '& .dotted-vertical-div': {
         width: '1px', // Set width to create a vertical line
         border: '1px dashed black',
         borderRadius: '5px',
         marginLeft: '35px', // Adjust the margin to position the line between the two columns
     },
-
 }));
