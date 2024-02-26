@@ -7,12 +7,14 @@ export const paths = {
     tripDetail: '/trips/:tripId',
     usersListing: '/users',
     tripBooking: '/trips/booking',
+    bookingSucess:'/bookingSuccess'
 };
 
 export const colors = {
     deepPurple: '#6750A4',
     lightPurple: '#E8DEF8',
     white: '#fff',
+    cardWhite: '#f9f9f9',
     grey500: '#9e9e9e',
     black: '#202124',
     selectedSeat: '#56a55c',
