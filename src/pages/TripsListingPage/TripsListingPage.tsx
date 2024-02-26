@@ -109,7 +109,7 @@ export const TripsListingPage = () => {
             console.error('Error in useEffect:', error);
             setHasError(true);
         });
-    }, [page, t]);
+    }, [page]);
 
     return (
         <TripsListingPageWrapper>
