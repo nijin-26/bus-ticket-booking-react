@@ -4,11 +4,12 @@ import { Stack } from '@mui/material';
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
     borderRadius: '25px',
     backgroundColor: theme.color.cardWhite,
-    minWidth: 350,
+    width: '100%', // Use 100% width
+    maxWidth: 'calc(100% - 30px)', // Maximum width with margin
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
-    margin:'20px',
+    margin: '20px',
     boxShadow:
         '0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1)',
 
@@ -37,8 +38,8 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         marginLeft: '0',
         display: 'flex',
         alignItems: 'center',
-        backgroundColor:'transparent',
-        
+        backgroundColor: 'transparent',
+
         '& >svg': {
             rotate: '270deg',
             maxHeight: '10rem',
@@ -48,14 +49,13 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     },
     '& .rotated-barcode-container.small-screen': {
         '& > svg': {
-          rotate: '0deg', // Keep the original angle on small screens
+            rotate: '0deg', // Keep the original angle on small screens
         },
-      },      
+    },
     '& .dotted-vertical-div': {
         width: '1px', // Set width to create a vertical line
         border: '1px dashed black',
         borderRadius: '5px',
         marginLeft: '35px', // Adjust the margin to position the line between the two columns
     },
-
 }));
