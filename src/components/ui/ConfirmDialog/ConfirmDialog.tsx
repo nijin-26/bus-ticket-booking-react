@@ -20,11 +20,11 @@ interface IConfirmDialogProps {
     children: React.ReactNode;
 }
 
-export default function ConfirmDialog({
+export const ConfirmDialog = ({
     handleAgreeFunction = () => {},
     handleDisagreeFunction = () => {},
     ...props
-}: IConfirmDialogProps) {
+}: IConfirmDialogProps) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -79,4 +79,4 @@ export default function ConfirmDialog({
             </Dialog>
         </>
     );
-}
+};

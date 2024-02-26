@@ -1,14 +1,13 @@
 import { Grid, Stack, Typography } from '@mui/material';
 import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
-import { TripCardAccordion } from '../../components';
+import { ConfirmDialog, TripCardAccordion } from '../../components';
 import { useAppSelector } from '../../app/hooks';
 import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
 import { useEffect, useRef, useState } from 'react';
 import { FormikProps } from 'formik';
-import ConfirmDialog from '../../components/ui/ConfirmDialog/ConfirmDialog';
 import { IPassengersInputFromFormik, filterSelectedSeats } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -41,7 +40,7 @@ export const TripBookingPage = () => {
     };
     useEffect(() => {
         if (state.seats.length === 0) {
-            navigate('/trips');
+            navigate(-1);
             toast.error(t('absentStateError'));
         }
     }, [navigate, state, t]);

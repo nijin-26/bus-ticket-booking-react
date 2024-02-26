@@ -1,11 +1,11 @@
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-interface FullScreenLoaderProps {
+interface IFullScreenLoaderProps {
     open: boolean;
 }
 
-export default function FullScreenLoader({ open }: FullScreenLoaderProps) {
+const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
     return (
         <Backdrop
             sx={{
@@ -17,4 +17,6 @@ export default function FullScreenLoader({ open }: FullScreenLoaderProps) {
             <CircularProgress color="inherit" />
         </Backdrop>
     );
-}
+};
+
+export default FullScreenLoader;

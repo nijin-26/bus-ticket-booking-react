@@ -12,13 +12,16 @@
 -   [86cuex03r] Add a custom Confirmation Dialog for the app for reusability.
 -   [86cufjjjg] Implemented a dedicated slice and configured the reducer using the reduxjs toolkit for language switching.
 -   [86cueuap5] Add UI for SignIn & SignUp with validation schema using formik & yup.
--   [86cuex0z1] Implemented trip details section of the accordian including creation of custom alert and long button along with seat legend and incorporation of seat layout.- [86cueuydg] Created axios instance, implemented axios interceptors and local storage helper functions
+-   [86cuex0z1] Implemented trip details section of the accordian including creation of custom alert and long button along with seat legend and incorporation of seat layout.
+-   [86cueuydg] Created axios instance, implemented axios interceptors and local storage helper functions
 -   [86cueuydg] Created axios instance, implemented axios interceptors and local storage helper functions
 -   [86cuhfyvp] Implemented functionality of Trip listing card using dummy data
 -   [86cugqgpt] Implemented filters and sort for action bar
 -   [86cueubmz] Implemented trip booking page and booking details form UI
--   # [86cugexhf] Landing page illustration, action bar incorporated and routing to trip listing page.
+-   [86cugexhf] Landing page illustration, action bar incorporated and routing to trip listing page.
 -   [86cukqvct] Implemented API layer
 -   [86cumak5j] Enhanced API layer and added converters for requests and responses
 -   [86cueujxt] Implemented bus search functionality for action bar and action bar filters, handling query params, corresponding reducer busSearchSlice and toggle animation
+-   [86cuerykj] Implemented authentication functionality, protected routes and role based access controls.
+-   [86cujnfuc] API integration of Trip Listing Page.
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.

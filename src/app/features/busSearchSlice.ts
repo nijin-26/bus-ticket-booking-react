@@ -4,8 +4,8 @@ import { IBusType, ISeatType } from '../../types';
 import { ISortOrder, ITripsSortKey } from '../../api/types/trip';
 
 interface IBusSearchParams {
-    originID?: number;
-    destinationID?: number;
+    originId?: number;
+    destinationId?: number;
     tripDate?: string;
     sortBy?: ITripsSortKey;
     sortOrder?: ISortOrder;
@@ -23,8 +23,8 @@ export const busSearchSlice = createSlice({
             state,
             action: PayloadAction<IBusSearchParams>
         ) => {
-            state.originID = action.payload.originID;
-            state.destinationID = action.payload.destinationID;
+            state.originId = action.payload.originId;
+            state.destinationId = action.payload.destinationId;
             state.tripDate = action.payload.tripDate;
         },
 

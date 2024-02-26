@@ -1,57 +1,64 @@
 import { useTranslation } from 'react-i18next';
-// import { LANGUAGES } from '../../config/constants';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import { StyledToolBar } from './Header.styled';
-import IconButton from '@mui/material/IconButton';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { toggleTheme } from '../../app/features/themeSlice';
+import { logout, showAuthModal } from '../../app/features/authSlice';
 import {
-    Avatar,
+    Box,
+    AppBar,
     Button,
     Link,
     Menu,
     MenuItem,
     Typography,
+    IconButton,
+    ListItemIcon,
 } from '@mui/material';
+import { toast } from 'react-toastify';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { ConfirmDialog } from '../../components';
+import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
-import testProfile from '../../assets/person1.jpeg';
-import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { toggleTheme } from '../../app/features/themeSlice';
-import { AuthModal } from '../../components';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import PersonIcon from '@mui/icons-material/Person';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import { paths } from '../../config';
 
 export const Header = () => {
-    const { t } = useTranslation('headerFooter'); // mention "ns2" to include values from ns2.json
-    const themeMode = useAppSelector((state) => state.theme.currentTheme);
+    const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-    const [isLoginClicked, setLoginClick] = useState(false);
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const themeMode = useAppSelector((state) => state.theme.currentTheme);
+    const user = useAppSelector((state) => state.auth.user);
+    const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] =
+        useState<boolean>(false);
+
     const [menuAnchorElement, setMenuAnchorElement] =
         useState<null | HTMLElement>(null);
 
-    const settings = [t('myBooking'), t('Logout')];
+    const isMenuOpen = Boolean(menuAnchorElement);
 
-    const handleLoginClick = () => {
-        setLoginClick(true);
-        setIsLoginModalOpen(true);
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setMenuAnchorElement(event.currentTarget);
+    };
+
+    const handleCloseUserMenu = () => {
+        setMenuAnchorElement(null);
     };
 
     const handleThemeClick = () => {
         dispatch(toggleTheme());
     };
 
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setMenuAnchorElement(event.currentTarget);
-    };
-
-    const handleCloseUserMenu = (setting: string) => {
-        setMenuAnchorElement(null);
-        if (setting === t('Logout')) {
-            setLoginClick(false);
-            setIsLoginModalOpen(false);
-        }
+    const handleLogoutClick = () => {
+        dispatch(logout());
+        handleCloseUserMenu();
+        toast.success(t('logoutConfirmationModal:logoutSuccessMessage'));
+        navigate(paths.home);
     };
 
     return (
@@ -87,69 +94,100 @@ export const Header = () => {
                                 <DarkModeRoundedIcon />
                             )}
                         </IconButton>
-                        {!isLoginClicked ? (
-                            <Button
-                                onClick={handleLoginClick}
-                                variant="contained"
-                                color="secondary"
-                                size="small"
-                            >
-                                {t('Login')}
-                            </Button>
-                        ) : (
+                        {user ? (
                             <>
-                                <IconButton
+                                <StyledProfileButton
+                                    id="profile-button"
+                                    aria-controls={
+                                        isMenuOpen ? 'profile-menu' : undefined
+                                    }
+                                    aria-haspopup="true"
+                                    aria-expanded={
+                                        isMenuOpen ? 'true' : undefined
+                                    }
                                     onClick={handleOpenUserMenu}
-                                    className="profile-avatar"
+                                    sx={{ textTransform: 'none' }}
+                                    startIcon={<PersonIcon />}
+                                    endIcon={<KeyboardArrowDownIcon />}
+                                    variant="outlined"
                                 >
-                                    <Avatar
-                                        alt="profile-Picture"
-                                        src={testProfile}
-                                    />
-                                </IconButton>
+                                    <Typography variant="body2">
+                                        {user.fullName}
+                                    </Typography>
+                                </StyledProfileButton>
                                 <Menu
-                                    sx={{ mt: '45px' }}
-                                    id="menu-appbar"
+                                    id="profile-menu"
+                                    keepMounted
                                     anchorEl={menuAnchorElement}
                                     anchorOrigin={{
-                                        vertical: 'top',
+                                        vertical: 'bottom',
                                         horizontal: 'right',
                                     }}
-                                    keepMounted
                                     transformOrigin={{
                                         vertical: 'top',
                                         horizontal: 'right',
                                     }}
                                     open={Boolean(menuAnchorElement)}
                                     onClose={handleCloseUserMenu}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'profile-button',
+                                    }}
+                                    sx={{ mt: '5px' }}
                                 >
-                                    {settings.map((setting) => (
-                                        <MenuItem
-                                            key={setting}
-                                            onClick={() => {
-                                                handleCloseUserMenu(setting);
-                                            }}
+                                    {/*TODO : Need to update link after myBookings page is added*/}
+                                    <MenuItem component={NavLink} to="/">
+                                        <ListItemIcon>
+                                            <PermContactCalendarIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <Typography
+                                            variant="body2"
+                                            textAlign="center"
                                         >
-                                            <Typography
-                                                variant="body2"
-                                                textAlign="center"
-                                            >
-                                                {setting}
-                                            </Typography>
-                                        </MenuItem>
-                                    ))}
+                                            {t('myBookings')}
+                                        </Typography>
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={() => {
+                                            setIsLogoutModalDisplayed(true);
+                                        }}
+                                    >
+                                        <ListItemIcon>
+                                            <ExitToAppIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <Typography
+                                            variant="body2"
+                                            textAlign="center"
+                                        >
+                                            {t('logout')}
+                                        </Typography>
+                                    </MenuItem>
                                 </Menu>
                             </>
+                        ) : (
+                            <Button
+                                onClick={() => dispatch(showAuthModal())}
+                                variant="contained"
+                                color="secondary"
+                                size="small"
+                            >
+                                {t('login')}
+                            </Button>
                         )}
                     </Box>
                 </StyledToolBar>
             </AppBar>
-            <AuthModal
-                isOpen={isLoginModalOpen}
-                closeModal={() => {
-                    setIsLoginModalOpen(false);
+            <ConfirmDialog
+                title={t('logoutConfirmationModal:title')}
+                open={isLogoutModalDisplayed}
+                handleClose={() => {
+                    setIsLogoutModalDisplayed(false);
                 }}
-            />
+                agreeText={t('logoutConfirmationModal:confirmText')}
+                disagreeText={t('logoutConfirmationModal:cancelText')}
+                handleAgreeFunction={handleLogoutClick}
+            >
+                {t('logoutConfirmationModal:message')}
+            </ConfirmDialog>
         </>
     );
 };

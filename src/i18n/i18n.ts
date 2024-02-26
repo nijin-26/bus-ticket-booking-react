@@ -17,6 +17,8 @@ const {
     landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
+    logoutConfirmationModal: enLogoutConfirmationModal,
+    error: enError,
     bookingPageConfirmation: enBookingPageConfirmation,
 } = en;
 const {
@@ -33,6 +35,8 @@ const {
     tripListing: esTripListing,
     landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
+    logoutConfirmationModal: esLogoutConfirmationModal,
+    error: esError,
     bookingPageConfirmation: esBookingPageConfirmation,
 } = es;
 
@@ -55,6 +59,8 @@ void i18n.use(initReactI18next).init({
             tripListing: enTripListing,
             landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
+            logoutConfirmationModal: enLogoutConfirmationModal,
+            error: enError,
             bookingPageConfirmation: enBookingPageConfirmation,
         },
         es: {
@@ -71,6 +77,8 @@ void i18n.use(initReactI18next).init({
             tripListing: esTripListing,
             landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
+            logoutConfirmationModal: esLogoutConfirmationModal,
+            error: esError,
             bookingPageConfirmation: esBookingPageConfirmation,
         },
     },
@@ -91,6 +99,7 @@ void i18n.use(initReactI18next).init({
         'tripListing',
         'landingPage',
         'auth',
+        'logoutConfirmationModal',
         'bookingPageConfirmation',
     ],
     interpolation: {

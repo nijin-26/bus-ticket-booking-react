@@ -6,6 +6,7 @@ const {
     headerFooter,
     seatLayout,
     tripDetails,
+    tripListing,
     passengerDetails,
     actionBarTab,
     actionBar,
@@ -15,7 +16,10 @@ const {
     auth,
     landingPage,
     bookingPageConfirmation,
+    logoutConfirmationModal,
+    error,
 } = data;
+
 const resources = {
     ns1,
     ns2,
@@ -30,6 +34,8 @@ const resources = {
     tripListing,
     landingPage,
     passengerDetails,
+    logoutConfirmationModal,
+    error,
     bookingPageConfirmation,
 } as const;
 
