@@ -102,6 +102,7 @@
                 "label": "Other"
             }
         ],
+
         "checkout": "Checkout",
         "fullNameRequired": "Full Name is a required field",
         "ageRequired": "Age is a required field",
@@ -109,5 +110,11 @@
         "fullNameLength": "Full Name must be 3 to 60 characters long",
         "AgeNumberCheck": "Age must be a valid number",
         "AgeRangeCheck": "Age must be between 1 and 130"
+    },
+
+    "errorPage": {
+        "errorPageHeading": "Oops! We cant seem to find the page you are looking for.",
+        "goBack": "Go back",
+        "goHome": "Go home"
     }
 }

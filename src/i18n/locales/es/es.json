@@ -102,6 +102,7 @@
                 "label": "Otro"
             }
         ],
+
         "checkout": "Pagar",
         "fullNameRequired": "El Nombre Completo es un campo requerido",
         "ageRequired": "La Edad es un campo requerido",
@@ -109,5 +110,11 @@
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+    },
+
+    "errorPage": {
+        "errorPageHeading": "¡Vaya! Parece que no podemos encontrar la página que estás buscando.",
+        "goBack": "Volver",
+        "goHome": "Ir a inicio"
     }
 }
