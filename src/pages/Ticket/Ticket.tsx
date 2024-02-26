@@ -5,7 +5,9 @@ import Barcode from 'react-barcode';
 import { TwoLineHeading } from './components/TwoLineHeading';
 
 export const Ticket = () => {
-    const isSmallScreen = useMediaQuery('(max-width:800px)');
+    const isSmallScreen = useMediaQuery('(max-width:860px)');
+        const isMediumScreen = useMediaQuery('(max-width:1024px)');
+
     return (
         <TicketWrapper>
             <Box>
@@ -35,10 +37,10 @@ export const Ticket = () => {
                 >
                     <TwoLineHeading title="Passenger Name" value="John Smith" />
                     <Stack
-                        direction={isSmallScreen ? 'column' : 'row'}
+                        direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row"
-                        spacing={isSmallScreen ? '5px' : '0'}
+                        spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading title="FROM" value="Trivandrum - TRV" />
                         <Stack
@@ -50,10 +52,10 @@ export const Ticket = () => {
                         </Stack>
                     </Stack>
                     <Stack
-                        direction={isSmallScreen ? 'column' : 'row'}
+                        direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row"
-                        spacing={isSmallScreen ? '5px' : '0'}
+                        spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading title="To" value="Banglore - BLR" />
                         <Stack
@@ -64,10 +66,10 @@ export const Ticket = () => {
                         </Stack>
                     </Stack>
                     <Stack
-                        direction={isSmallScreen ? 'column' : 'row'}
+                        direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row"
-                        spacing={isSmallScreen ? '5px' : '0'}
+                        spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading title="PNR" value="12345678" />
                         <Stack

@@ -4,7 +4,7 @@ import { Stack } from '@mui/material';
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
     borderRadius: '25px',
     backgroundColor: theme.color.cardWhite,
-    minWidth: 450,
+    minWidth: 350,
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
