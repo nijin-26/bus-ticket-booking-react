@@ -1,4 +1,3 @@
-import { ISeat, ISeatStatus } from '../../types';
 import { IBerthLayout, ILayoutConfig } from './types';
 
 export const layoutNames = {
@@ -61,23 +60,4 @@ export const berthLayoutProducer = (berthLayoutConfig: IBerthLayout) => {
         }
     }
     return berthLayout;
-};
-
-//TODO: To be removed after API integration
-export const generateSeats = (
-    availableSeats: number,
-    totalSeats: number
-): ISeat[] => {
-    const seats: ISeat[] = [];
-
-    for (let seatNumber = 1; seatNumber <= totalSeats; seatNumber++) {
-        const status =
-            seatNumber <= availableSeats
-                ? ISeatStatus.AVAILABLE
-                : ISeatStatus.BOOKED;
-
-        seats.push({ seatNumber, status });
-    }
-
-    return seats;
 };
