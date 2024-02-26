@@ -10,10 +10,10 @@ import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import LoadMore from '../../components/loadMore/LoadMore';
 import { TripsListingPageWrapper } from './TripsListingPage.styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getTrips } from '../../api';
 import { IBusType, ISeatType, ITrip } from '../../types';
-import { rowsPerPage } from '../../config';
+import { paths, rowsPerPage } from '../../config';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -28,12 +28,15 @@ export const TripsListingPage = () => {
     const [flag, setFlag] = useState(false);
     const matches = useMediaQuery('(min-width:600px)');
     const { t } = useTranslation(['error', 'tripListing']);
-
+    const navigate = useNavigate();
     const fetchTripData = async () => {
         setLoading(true);
         const originId = searchParams.get('originId') as string;
         const destinationId = searchParams.get('destinationId') as string;
         const tripDate = searchParams.get('tripDate') as string;
+        if (!originId && !destinationId && !tripDate) {
+            navigate(paths.home);
+        }
         const sortByParam = searchParams.get('sortBy');
         const sortOrderParam = searchParams.get(
             'sortOrder'
@@ -81,7 +84,7 @@ export const TripsListingPage = () => {
             setResultLength(response.resultCount);
             setLoading(false);
         } catch (error) {
-            toast.error(t('unexpected'));
+            toast.error(t('unexpected'), { toastId: 'unexpected toast' });
             console.error('Error fetching trip data:', error);
             setHasError(true);
         } finally {
@@ -110,7 +113,6 @@ export const TripsListingPage = () => {
             setHasError(true);
         });
     }, [page, t]);
-
     return (
         <TripsListingPageWrapper>
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
