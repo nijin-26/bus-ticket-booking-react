@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
+import { PasswordInput } from '../../..';
 import getValidationSchema from './validationSchema';
 import signUpSubmitHandler from './submitHandler';
 import { ISignUpForm } from '../../../../types';
@@ -72,18 +73,16 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: TSignUpProps) => {
                             <Stack direction={'row'} gap={2}>
                                 <Field
                                     fullWidth
-                                    component={TextField}
+                                    component={PasswordInput}
                                     label={t('password')}
-                                    type="password"
                                     name="password"
                                     required
                                 />
 
                                 <Field
                                     fullWidth
-                                    component={TextField}
+                                    component={PasswordInput}
                                     label={t('confirmPassword')}
-                                    type="password"
                                     name="confirmPassword"
                                     required
                                 />

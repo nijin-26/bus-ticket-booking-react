@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
 import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
+import { PasswordInput } from '../../..';
 import signInSubmitHandler from './submitHandler';
 import getValidationSchema from './validationSchema';
 import { ISignInForm } from '../../../../types';
@@ -74,12 +75,12 @@ const SignIn = ({ closeModal }: TSignInProps) => {
 
                                 <Field
                                     fullWidth
-                                    component={TextField}
+                                    component={PasswordInput}
                                     label={t('password')}
-                                    type="password"
                                     name="password"
                                     required
                                 />
+
                                 <Stack
                                     direction={'row'}
                                     gap={2}
