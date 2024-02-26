@@ -46,7 +46,6 @@ export const TripCardAccordion = ({
         formattedArrivalDate: string;
         formattedDuration: string;
     } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
-
     return (
         <TripAccordionWrapper
             className={`summary ${borderDesignClass}`}
@@ -92,7 +91,8 @@ export const TripCardAccordion = ({
                         >
                             <img
                                 src={
-                                    data.seatType == ISeatType.SLEEPER
+                                    data.seatType == ISeatType.SLEEPER ||
+                                    ISeatType.Sleeper
                                         ? sleeperIcon
                                         : seatIcon
                                 }
