@@ -3,11 +3,15 @@ import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import { TicketWrapper } from './Ticket.styled';
 import Barcode from 'react-barcode';
 import { TwoLineHeading } from './components/TwoLineHeading';
+import { useState } from 'react';
 
 export const Ticket = () => {
     const isSmallScreen = useMediaQuery('(max-width:860px)');
-        const isMediumScreen = useMediaQuery('(max-width:1024px)');
+    const isMediumScreen = useMediaQuery('(max-width:1024px)');
 
+    const [loading, setLoading] = useState<boolean>(true);
+
+    
     return (
         <TicketWrapper>
             <Box>
@@ -59,7 +63,8 @@ export const Ticket = () => {
                     >
                         <TwoLineHeading title="To" value="Banglore - BLR" />
                         <Stack
-                            direction={'row'} justifyContent={'space-between'}
+                            direction={'row'}
+                            justifyContent={'space-between'}
                         >
                             <TwoLineHeading title="Date" value="09JUN" />
                             <TwoLineHeading title="tIME" value="09.40AM" />
