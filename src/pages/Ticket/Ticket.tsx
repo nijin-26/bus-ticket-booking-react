@@ -28,12 +28,12 @@ export const Ticket = () => {
     const isMediumScreen = useMediaQuery('(max-width:1024px)');
 
     const location = useLocation();
+    // TODO: Fetch ticket data if state not sent 
     const ticketDataFromState: ITicket = location.state as ITicket;
     const [ticketData, setTicketData] = useState<ITicket>(ticketDataFromState);
 
     const { pnrNumber, trip, seats } = ticketDataFromState;
     const { departureTimestamp, arrivalTimestamp } = trip;
-    console.log(location);
 
     const { formattedDate: departureDate, formattedTime: departureTime } =
         formatDate(departureTimestamp);
