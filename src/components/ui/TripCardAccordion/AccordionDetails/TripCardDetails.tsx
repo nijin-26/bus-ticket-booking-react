@@ -153,9 +153,7 @@ export const TripCardDetails = ({
                                                         aria-label="delete"
                                                         color="inherit"
                                                         size="small"
-                                                        onClick={() => {
-                                                            clearSelectedSeats();
-                                                        }}
+                                                        onClick={clearSelectedSeats}
                                                     >
                                                         <DeleteForeverIcon fontSize="inherit" />
                                                     </IconButton>
