@@ -13,13 +13,19 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 
 export const TripBookingPage = () => {
     const { t } = useTranslation('bookingPageConfirmation');
     const navigate = useNavigate();
-    const state = useAppSelector((state) =>
-        fromSerializable(state.tripDetails)
+
+    const selectTripDetails = (state: RootState) => state.tripDetails;
+    const selectSerializedTripDetails = createSelector(
+        selectTripDetails,
+        fromSerializable
     );
+    const state = useAppSelector(selectSerializedTripDetails);
 
     const selectedSeats = filterSelectedSeats(state.seats);
     const selectedSeatsCount = selectedSeats.length;
