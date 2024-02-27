@@ -11,6 +11,10 @@ import {
 } from '../../../utils';
 import { bookTicket } from '../../../api/endpoints/ticket.api';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../config';
+import axios from 'axios';
+import { IAuthResponseError } from '../../../types';
 
 interface IPassengerDetailsFormProps {
     selectedSeats: number[];
@@ -25,6 +29,7 @@ const PassengerDetailsForm = ({
     loaderFun,
     tripId,
 }: IPassengerDetailsFormProps) => {
+    const navigate = useNavigate();
     const { t } = useTranslation('passengerDetails');
     const theme = useTheme();
 
@@ -36,8 +41,19 @@ const PassengerDetailsForm = ({
             const responseBook = await bookTicket(tripId, inputObj);
             console.log(responseBook);
             toast.success(t('apiSuccessMessage'));
-        } catch (err) {
-            toast.error(t('apiErrorMessage'));
+            navigate(`${paths.ticket}/${responseBook.pnrNumber}`, {
+                state: responseBook,
+                replace: true,
+            });
+        } catch (error) {
+            if (axios.isAxiosError<IAuthResponseError>(error)) {
+                const errorMessage = error.response?.data.message;
+
+                if (errorMessage === 'Required seat already booked') {
+                    toast.error(t('seatAlreadyBookedErrorMessage'));
+                    navigate(paths.home, { replace: true });
+                }
+            } else toast.error(t('apiErrorMessage'));
         } finally {
             loaderFun(false);
         }

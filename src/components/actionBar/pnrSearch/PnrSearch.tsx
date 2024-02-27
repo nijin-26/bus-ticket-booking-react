@@ -2,12 +2,19 @@ import { TextField, Stack, InputAdornment } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { Wrapper, CenteredButton } from './PnrSearch.styled';
 import { useTranslation } from 'react-i18next';
+import { paths } from '../../../config';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function PnrSearch() {
     const { t } = useTranslation('pnrSearch');
 
-    const searchPnrHandler = async () => {
-        // handler function
+    const navigate = useNavigate();
+
+    const [pnrValue, setPnrValue] = useState<string>('');
+
+    const searchPnrHandler = () => {
+        navigate(`${paths.ticket}?pnr=${pnrValue}`);
     };
 
     return (
@@ -15,7 +22,10 @@ export default function PnrSearch() {
             <Stack spacing={5} direction="row">
                 <TextField
                     label={t('searchForTicketByPNR')}
-                    fullWidth
+                    value={pnrValue}
+                    onChange={(e) => {
+                        setPnrValue(e.target.value);
+                    }}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -23,6 +33,7 @@ export default function PnrSearch() {
                             </InputAdornment>
                         ),
                     }}
+                    fullWidth
                 />
             </Stack>
             <CenteredButton

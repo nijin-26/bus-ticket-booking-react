@@ -130,7 +130,8 @@
         "AgeNumberCheck": "Age must be a valid number",
         "AgeRangeCheck": "Age must be between 1 and 130",
         "apiSuccessMessage": "Booking success",
-        "apiErrorMessage": "Error while Booking"
+        "apiErrorMessage": "Error while Booking. Please try again",
+        "seatAlreadyBookedErrorMessage": "Oops! Selected seats are already booked"
     },
     "logoutConfirmationModal": {
         "title": "Are you sure?",

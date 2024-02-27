@@ -6,6 +6,7 @@ import { paths } from '..';
 import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
 import { RequireAuth } from '../../components/RequireAuth/RequireAuth';
 import { EUserRole } from '../../types';
+import { TicketPage } from '../../pages/TicketPage/TicketPage';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -41,6 +42,10 @@ export const routesConfig: RouteObject[] = [
                         element: <TripBookingPage />,
                     },
                 ],
+            },
+            {
+                path: `${paths.ticket}/:pnr`,
+                element: <TicketPage />,
             },
         ],
     },

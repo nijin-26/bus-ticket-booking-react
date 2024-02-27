@@ -131,7 +131,8 @@
         "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130",
         "apiSuccessMessage": "Reserva exitosa",
-        "apiErrorMessage": "Error al realizar la reserva"
+        "apiErrorMessage": "Error al reservar. Por favor, inténtalo de nuevo",
+        "seatAlreadyBookedErrorMessage": "¡Vaya! Los asientos seleccionados ya están reservados"
     },
     "logoutConfirmationModal": {
         "title": "¿Estás seguro?",
