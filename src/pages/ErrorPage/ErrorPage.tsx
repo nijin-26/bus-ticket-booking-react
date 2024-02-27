@@ -6,7 +6,7 @@ import {
 } from './ErrorPage.styled';
 import { ArrowBack, Home } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import lost from '../../assets/Lost.gif';
+import lost from '../../assets/Lost.svg';
 import { useTranslation } from 'react-i18next';
 import { paths } from '../../config';
 
