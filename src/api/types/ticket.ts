@@ -37,9 +37,17 @@ export interface IBookingListingResponse {
     bookings: ITicketExternal[];
 }
 
-export type IMyBookingResponse = (
-    | {
-          bookings: Omit<ITicketExternal, 'trip'>[];
-      }
-    & ITripExternal
-)[];
+export interface IPnrResponse extends ITripExternal {
+    bookings: {
+        id: string;
+        pnrNumber: string;
+        seatNumber: string;
+        status: string;
+        fare: string;
+        passengerName: string;
+        passengerAge: string;
+        passengerGender: string;
+    }[];
+}
+
+export type IMyBookingsResponse = IPnrResponse[];
