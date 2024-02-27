@@ -142,9 +142,7 @@ export const TripCardDetails = ({
                                 ) : (
                                     <StyledAlert
                                         action={
-                                            data.seats ? (
-                                                <></>
-                                            ) : (
+                                            !data.seats && (
                                                 <Tooltip
                                                     title="Delete selection"
                                                     arrow
