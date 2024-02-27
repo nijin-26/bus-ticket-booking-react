@@ -62,7 +62,7 @@ export const TripCardDetails = ({
                     console.log(t('emptyResponse'));
                 }
             } catch (error) {
-                toast.error(t('errorResponse'));
+                toast.error(t('errorResponse'),{toastId:'Error Response'});
             } finally {
                 setLoading(false);
             }
