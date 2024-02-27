@@ -3,7 +3,6 @@ import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
 import { ConfirmDialog, TripCardAccordion } from '../../components';
 import { useAppSelector } from '../../app/hooks';
-import { fromSerializable } from '../../app/features/utils/tripDetailsHelperFns';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
 import { useEffect, useRef, useState } from 'react';
@@ -15,12 +14,10 @@ import { useTranslation } from 'react-i18next';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+import { fromSerializable } from '../../utils/tripDetailsUtils';
 // TODO: fetch data from store
 
 export const TripBookingPage = () => {
-    const state = useAppSelector((state) =>
-        fromSerializable(state.tripDetails)
-    );
     const { t } = useTranslation('bookingPageConfirmation');
     const navigate = useNavigate();
 
@@ -66,12 +63,12 @@ export const TripBookingPage = () => {
                     {state.destination.name}
                 </Typography>
             </Stack>
-            <TripCardAccordion
+            {/* <TripCardAccordion
                 defaultExpanded={true}
                 data={state}
                 mode="view"
             />
-            <PassengerDetailsForm />
+            <PassengerDetailsForm /> */}
             <TripCardAccordion
                 defaultExpanded={true}
                 data={state}
