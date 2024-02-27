@@ -53,7 +53,6 @@ const SeatLayout = ({
                                         currentSeat,
                                         selectedSeats
                                     );
-                                    console.log(seat,seatStatus)
                                     seatIndex++;
                                     return (
                                         <Seat

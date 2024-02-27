@@ -58,8 +58,6 @@ export const TripCardDetails = ({
                 const response = await getTrip(data.id);
                 if (response) {
                     setTripSpecificData(response);
-                } else {
-                    console.log(t('emptyResponse'));
                 }
             } catch (error) {
                 toast.error(t('errorResponse'),{toastId:'Error Response'});
