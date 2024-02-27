@@ -113,7 +113,7 @@
     },
 
     "errorPage": {
-        "errorPageHeading": "Oops! We cant seem to find the page you are looking for.",
+        "errorPageHeading": "Oops! We can't seem to find the page you are looking for.",
         "goBack": "Go back",
         "goHome": "Go home"
     }

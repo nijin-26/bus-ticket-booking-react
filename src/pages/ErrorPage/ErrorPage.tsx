@@ -1,20 +1,22 @@
-import { Button } from '@mui/material';
+import { Button, Stack, useMediaQuery } from '@mui/material';
 import {
-    ButtonContainer,
     ErrorHeading,
+    ErrorIllustration,
     ErrorPageWrapper,
 } from './ErrorPage.styled';
 import { ArrowBack, Home } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import lost from '../../assets/Lost.gif';
 import { useTranslation } from 'react-i18next';
+import { paths } from '../../config';
 
 export const ErrorPage = () => {
     const navigate = useNavigate();
     const { t } = useTranslation('errorPage');
+    const matches = useMediaQuery('(min-width:600px)');
 
     const goHomeHandler = () => {
-        navigate('/');
+        navigate(paths.home);
     };
 
     const goBackHandler = () => {
@@ -24,13 +26,12 @@ export const ErrorPage = () => {
     return (
         <ErrorPageWrapper>
             <ErrorHeading>{t('errorPageHeading')}</ErrorHeading>
-            <img src={lost} />
+            <ErrorIllustration src={lost} width={matches ? '400px' : '200px'} />
 
-            <ButtonContainer>
+            <Stack direction="row" gap={2}>
                 <Button
                     variant="contained"
                     onClick={goBackHandler}
-                    sx={{ mt: 2 }}
                     startIcon={<ArrowBack />}
                 >
                     {t('goBack')}
@@ -39,12 +40,11 @@ export const ErrorPage = () => {
                 <Button
                     variant="contained"
                     onClick={goHomeHandler}
-                    sx={{ mt: 2 }}
                     startIcon={<Home />}
                 >
                     {t('goHome')}
                 </Button>
-            </ButtonContainer>
+            </Stack>
         </ErrorPageWrapper>
     );
 };
