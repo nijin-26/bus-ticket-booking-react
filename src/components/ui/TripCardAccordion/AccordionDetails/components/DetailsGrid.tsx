@@ -29,12 +29,12 @@ export const DetailsGrid = ({
     const detailsData = [
         {
             title: t('departure'),
-            value: `${tripDetails.origin.name} ${tripDetails.departureDate}, ${tripDetails.departureTime}`,
+            value: `${tripDetails.origin.name}, ${tripDetails.departureDate}, ${tripDetails.departureTime}`,
             icon: <BusDepartureIcon />,
         },
         {
             title: t('arrival'),
-            value: `${tripDetails.destination.name} ${tripDetails.arrivalDate}, ${tripDetails.arrivalTime}`,
+            value: `${tripDetails.destination.name}, ${tripDetails.arrivalDate}, ${tripDetails.arrivalTime}`,
             icon: <BusArrivalIcon />,
         },
         {
