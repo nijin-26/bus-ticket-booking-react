@@ -121,7 +121,6 @@ export const TripCardDetails = ({
                     <TripCardDetailsLoader />
                 ) : (
                     <>
-                        {' '}
                         <Stack direction={'column'} spacing={2}>
                             <Stack
                                 direction={{ sm: 'column', md: 'row' }}
