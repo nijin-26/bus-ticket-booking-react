@@ -80,7 +80,8 @@ const PassengerDetailsForm = () => {
                 },
             ],
         };
-        navigate(`${paths.bookingSucess}?pnr=${iticketObj.pnrNumber}`, {
+
+        navigate(paths.ticket.replace(':pnrNumber', iticketObj.pnrNumber), {
             state: iticketObj,
         });
     };

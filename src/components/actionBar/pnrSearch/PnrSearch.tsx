@@ -14,7 +14,7 @@ export default function PnrSearch() {
     const [pnrValue, setPnrValue] = useState<string>('');
 
     const searchPnrHandler = () => {
-        navigate(`${paths.bookingSucess}?pnr=${pnrValue}`);
+        navigate(`${paths.ticket}?pnr=${pnrValue}`);
     };
 
     return (

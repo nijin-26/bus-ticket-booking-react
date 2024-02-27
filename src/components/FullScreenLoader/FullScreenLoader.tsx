@@ -7,6 +7,7 @@ interface IFullScreenLoaderProps {
 
 const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
     return (
+        
         <Backdrop
             sx={{
                 color: '#fff',

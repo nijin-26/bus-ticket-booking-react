@@ -3,50 +3,19 @@ import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import { TicketWrapper } from './Ticket.styled';
 import Barcode from 'react-barcode';
 import { TwoLineHeading } from './components/TwoLineHeading';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { ITicket } from '../../types';
+import { formatDate } from './utils/timeUtils';
 
-const formatDate = (timestamp: Date, short: boolean = false) => {
-    const formatOptions = {
-        month: short ? 'short' : '2-digit',
-        day: '2-digit',
-    };
-
-    const formattedDate = timestamp.toLocaleDateString('en-US', formatOptions);
-    const formattedTime = timestamp.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-    });
-
-    return { formattedDate, formattedTime };
-};
-
-export const Ticket = () => {
+export const Ticket = ({data}: {data:ITicket}) => {
     const isSmallScreen = useMediaQuery('(max-width:860px)');
     const isMediumScreen = useMediaQuery('(max-width:1024px)');
 
-    const location = useLocation();
-    // TODO: Fetch ticket data if state not sent 
-    const ticketDataFromState: ITicket = location.state as ITicket;
-    const [ticketData, setTicketData] = useState<ITicket>(ticketDataFromState);
 
-    const { pnrNumber, trip, seats } = ticketDataFromState;
+    const { pnrNumber,trip, seats } = data;
     const { departureTimestamp, arrivalTimestamp } = trip;
 
-    const { formattedDate: departureDate, formattedTime: departureTime } =
-        formatDate(departureTimestamp);
-    const { formattedDate: arrivalDate, formattedTime: arrivalTime } =
-        formatDate(arrivalTimestamp);
-
-    const shortDepartureDate = formatDate(
-        departureTimestamp,
-        true
-    ).formattedDate;
-    const shortArrivalDate = formatDate(arrivalTimestamp, true).formattedDate;
-
-    const [loading, setLoading] = useState<boolean>(true);
+    const adults = seats.filter((seat) => seat.passenger.age > 18);
+    const children = seats.filter((seat) => seat.passenger.age < 18);
 
     return (
         <TicketWrapper>
@@ -95,11 +64,15 @@ export const Ticket = () => {
                         >
                             <TwoLineHeading
                                 title="Date"
-                                value={departureDate}
+                                value={
+                                    formatDate(departureTimestamp).formattedDate
+                                }
                             />
                             <TwoLineHeading
-                                title="tIME"
-                                value={departureTime}
+                                title="Time"
+                                value={
+                                    formatDate(departureTimestamp).formattedTime
+                                }
                             />
                         </Stack>
                     </Stack>
@@ -117,8 +90,18 @@ export const Ticket = () => {
                             direction={'row'}
                             justifyContent={'space-between'}
                         >
-                            <TwoLineHeading title="Date" value={arrivalDate} />
-                            <TwoLineHeading title="tIME" value={arrivalTime} />
+                            <TwoLineHeading
+                                title="Date"
+                                value={
+                                    formatDate(arrivalTimestamp).formattedDate
+                                }
+                            />
+                            <TwoLineHeading
+                                title="Time"
+                                value={
+                                    formatDate(arrivalTimestamp).formattedDate
+                                }
+                            />
                         </Stack>
                     </Stack>
                     <Stack
@@ -137,7 +120,27 @@ export const Ticket = () => {
                         >
                             <TwoLineHeading
                                 title="Passenger Count"
-                                value={`${seats.length} adults`}
+                                value={`${
+                                    adults.length > 0
+                                        ? `${adults.length} ${
+                                              adults.length > 1
+                                                  ? 'adults'
+                                                  : 'adult'
+                                          }`
+                                        : ''
+                                }${
+                                    adults.length > 0 && children.length > 0
+                                        ? ' and '
+                                        : ''
+                                }${
+                                    children.length > 0
+                                        ? `${children.length} ${
+                                              children.length > 1
+                                                  ? 'children'
+                                                  : 'child'
+                                          }`
+                                        : ''
+                                }`}
                             />
                             <TwoLineHeading
                                 title={`Seat Number${
@@ -189,16 +192,22 @@ export const Ticket = () => {
                             </Stack>
                             <TwoLineHeading
                                 title="Departure"
-                                value={shortDepartureDate.concat(
+                                value={formatDate(
+                                    departureTimestamp,
+                                    true
+                                ).formattedDate.concat(
                                     ' ',
-                                    departureTime
+                                    formatDate(departureTimestamp).formattedTime
                                 )}
                             />
                             <TwoLineHeading
                                 title="Arrival"
-                                value={shortArrivalDate.concat(
+                                value={formatDate(
+                                    arrivalTimestamp,
+                                    true
+                                ).formattedDate.concat(
                                     ' ',
-                                    arrivalTime
+                                    formatDate(arrivalTimestamp).formattedTime
                                 )}
                             />
                             <TwoLineHeading
