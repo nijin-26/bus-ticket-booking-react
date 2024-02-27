@@ -17,7 +17,7 @@ import { useAppDispatch } from '../../../../app/hooks';
 import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
-import { toSerializable } from '../../../../app/features/utils/tripDetailsHelperFns';
+import { toSerializable } from '../../../../utils/tripDetailsUtils';
 import { TripCardDetailsLoader } from './components/Loader/Loader';
 import { toast } from 'react-toastify';
 
@@ -60,7 +60,7 @@ export const TripCardDetails = ({
                     setTripSpecificData(response);
                 }
             } catch (error) {
-                toast.error(t('errorResponse'),{toastId:'Error Response'});
+                toast.error(t('errorResponse'), { toastId: 'Error Response' });
             } finally {
                 setLoading(false);
             }
@@ -153,7 +153,9 @@ export const TripCardDetails = ({
                                                         aria-label="delete"
                                                         color="inherit"
                                                         size="small"
-                                                        onClick={clearSelectedSeats}
+                                                        onClick={
+                                                            clearSelectedSeats
+                                                        }
                                                     >
                                                         <DeleteForeverIcon fontSize="inherit" />
                                                     </IconButton>
