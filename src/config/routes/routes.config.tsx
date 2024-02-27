@@ -6,6 +6,8 @@ import { paths } from '..';
 import { AllBookingsPage } from '../../pages/BookingsList/AllBookingsPage/AllBookingsPage';
 import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
 import { MyBookingsPage } from '../../pages/BookingsList/MyBookingsPage/MyBookingsPage';
+import { RequireAuth } from '../../components/RequireAuth/RequireAuth';
+import { EUserRole } from '../../types';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -21,16 +23,26 @@ export const routesConfig: RouteObject[] = [
                 element: <TripsListingPage />,
             },
             {
-                path: paths.bookings,
-                element: <AllBookingsPage />,
+                element: <RequireAuth allowedRoles={[EUserRole.ADMIN]} />,
+                children: [
+                    {
+                        path: paths.usersListing,
+                        element: <UsersListingPage />,
+                    },
+                ],
             },
             {
-                path: paths.usersListing,
-                element: <UsersListingPage />,
-            },
-            {
-                path: paths.tripBooking,
-                element: <TripBookingPage />,
+                element: (
+                    <RequireAuth
+                        allowedRoles={[EUserRole.ADMIN, EUserRole.CUSTOMER]}
+                    />
+                ),
+                children: [
+                    {
+                        path: paths.tripBooking,
+                        element: <TripBookingPage />,
+                    },
+                ],
             },
             {
                 path: paths.myBookings,

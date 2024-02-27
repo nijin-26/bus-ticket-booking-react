@@ -6,6 +6,7 @@ const {
     headerFooter,
     seatLayout,
     tripDetails,
+    tripListing,
     passengerDetails,
     actionBarTab,
     actionBar,
@@ -17,6 +18,8 @@ const {
     tableExportOptions,
     landingPage,
     auth,
+    logoutConfirmationModal,
+    error,
 } = data;
 
 const resources = {
@@ -36,6 +39,8 @@ const resources = {
     tableNoRowsOverlay,
     landingPage,
     passengerDetails,
+    logoutConfirmationModal,
+    error,
 } as const;
 
 export default resources;

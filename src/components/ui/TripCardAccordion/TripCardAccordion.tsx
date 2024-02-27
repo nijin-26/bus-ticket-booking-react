@@ -11,6 +11,7 @@ import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 import { ITrip, IBusType, ISeatType } from '../../../types';
+import { useTranslation } from 'react-i18next';
 
 let borderDesignClass: string;
 
@@ -23,6 +24,8 @@ export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
 }: ITripCardAccordionProps) => {
+    const { t } = useTranslation('tripListing');
+
     if (data.availableSeats >= 20) {
         borderDesignClass = 'more-seats';
     } else if (data.availableSeats > 0) {
@@ -38,7 +41,6 @@ export const TripCardAccordion = ({
         formattedArrivalDate: string;
         formattedDuration: string;
     } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
-
     return (
         <TripAccordionWrapper
             className={`summary ${borderDesignClass}`}
@@ -48,15 +50,19 @@ export const TripCardAccordion = ({
                 expandIcon={<ArrowDropDownIcon />}
                 aria-controls="panel-content"
                 id="panel-header"
-                disabled={data.availableSeats == 0}
+                disabled={data.totalSeats == 0}
             >
-                <Stack direction={'row'} spacing={12} className="details">
+                <Stack
+                    className="details"
+                    direction={{ xs: 'column', sm: 'column', md: 'row' }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                >
                     <Stack className="trip-card-icons">
                         <Tooltip
                             title={
                                 data.busType == IBusType.AC
-                                    ? 'Bus Type - AC'
-                                    : 'Bus Type - Non-AC'
+                                    ? t('busTypeAC')
+                                    : t('busTypeNonAC')
                             }
                             arrow
                         >
@@ -72,14 +78,15 @@ export const TripCardAccordion = ({
                         <Tooltip
                             title={
                                 data.seatType == ISeatType.SLEEPER
-                                    ? 'Seat Type - Sleeper'
-                                    : 'Seat Type - Seater'
+                                    ? t('SeatTypeSleeper')
+                                    : t('SeatTypeSeater')
                             }
                             arrow
                         >
                             <img
                                 src={
-                                    data.seatType == ISeatType.SLEEPER
+                                    data.seatType == ISeatType.SLEEPER ||
+                                    data.seatType == ISeatType.Sleeper
                                         ? sleeperIcon
                                         : seatIcon
                                 }
@@ -108,7 +115,7 @@ export const TripCardAccordion = ({
                         <p className="duration">{dates.formattedDuration}</p>
                     </Tooltip>
                     <p className={`seats ${borderDesignClass}`}>
-                        {data.availableSeats} seats available
+                        {data.availableSeats} {t('seatsAvailable')}
                     </p>
                     <p className="price">Rs. {data.farePerSeat}/-</p>
                 </Stack>
