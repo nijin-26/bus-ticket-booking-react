@@ -7,17 +7,21 @@ const SeatWrapper = styled('li')(({ theme }) => ({
         backgroundColor: theme.color.seat,
         lineHeight: '4.5rem',
         textAlign: 'center',
-        cursor: 'pointer',
     },
     '&.unavailable': {
         backgroundColor: theme.color.bookedSeat,
-        cursor: 'not-allowed',
     },
     '&.selected': {
         backgroundColor: theme.color.selectedSeat,
     },
     '&.aisle': {
         visibility: 'hidden',
+    },
+    '&.disable-click': {
+        cursor: 'not-allowed',
+    },
+    '&.cursor-pointer': {
+        cursor: 'pointer',
     },
 }));
 
