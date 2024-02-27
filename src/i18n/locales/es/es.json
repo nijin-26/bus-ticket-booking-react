@@ -8,8 +8,8 @@
     "headerFooter": {
         "myBooking": "Mis Reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
-        "Login": "Iniciar sesión",
-        "Logout": "Cerrar sesión"
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",
@@ -27,10 +27,21 @@
         "emailRequired": "Se requiere el correo electrónico.",
         "invalidPhone": "Número de teléfono inválido.",
         "phoneRequired": "Se requiere el número de teléfono.",
-        "passwordValidationMsg": "La contraseña debe tener al menos 6 caracteres.",
+        "passwordLengthValidationMsg": "La contraseña debe tener al menos 6 caracteres.",
+        "passwordValidationMsg": "Contraseña no suficientemente segura.",
         "passwordRequired": "Se requiere la contraseña.",
         "passwordMatch": "Las contraseñas deben coincidir.",
-        "confirmPasswordRequired": "Se requiere confirmar la contraseña."
+        "confirmPasswordRequired": "Se requiere confirmar la contraseña.",
+        "invalidPasswordErrorMessage": "Contraseña incorrecta",
+        "userNotFoundErrorMessage": "El usuario no existe",
+        "userAlreadyExistsErrorMessage": "El usuario ya existe",
+        "signInSuccessToastMessage": "Inicio de sesión exitoso. ¡Feliz de tenerte aquí!",
+        "signInErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
+        "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada exitosamente. Por favor, inicia sesión para continuar.",
+        "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
+        "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
+        "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",
+        "passwordRequirements": "La contraseña debe tener al menos 6 caracteres de longitud y contener un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
     },
     "seatLayout": {
         "available": "Disponible",
@@ -78,6 +89,16 @@
         "duration": "Duración",
         "busType": "Tipo de autobús"
     },
+    "tripListing": {
+        "busTypeAC": "Tipo de Autobús - Aire Acondicionado",
+        "busTypeNonAC": "Tipo de Autobús - Sin Aire Acondicionado",
+        "SeatTypeSeater": "Tipo de Asiento - Asiento",
+        "SeatTypeSleeper": "Tipo de Autobús - Litera",
+        "seatsAvailable": "asientos disponibles",
+        "loadMore": "Cargar más",
+        "noOptions": "No hay opciones que coincidan con tu búsqueda",
+        "change": "Prueba a cambiar las fechas o el destino para ver resultados"
+    },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
     },
@@ -110,6 +131,16 @@
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
         "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+    },
+    "logoutConfirmationModal": {
+        "title": "¿Estás seguro?",
+        "message": "Se perderán todos tus datos no guardados.",
+        "confirmText": "Sí",
+        "cancelText": "Cancelar",
+        "logoutSuccessMessage": "Has cerrado sesión correctamente. ¡Que tengas un gran día!"
+    },
+    "error": {
+        "unexpected": "Se ha producido un error inesperado."
     },
 
     "errorPage": {

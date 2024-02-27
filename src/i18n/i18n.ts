@@ -13,9 +13,12 @@ const {
     pnrSearch: enPnrSearch,
     filterSort: enFilterSort,
     tripDetails: enTripDetails,
+    tripListing: enTripListing,
     landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
+    logoutConfirmationModal: enLogoutConfirmationModal,
+    error: enError,
     errorPage: enErrorPage,
 } = en;
 
@@ -30,8 +33,11 @@ const {
     pnrSearch: esPnrSearch,
     filterSort: esFilterSort,
     tripDetails: esTripDetails,
+    tripListing: esTripListing,
     landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
+    logoutConfirmationModal: esLogoutConfirmationModal,
+    error: esError,
     errorPage: esErrorPage,
 } = es;
 
@@ -51,8 +57,11 @@ void i18n.use(initReactI18next).init({
             pnrSearch: enPnrSearch,
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
+            tripListing: enTripListing,
             landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
+            logoutConfirmationModal: enLogoutConfirmationModal,
+            error: enError,
             errorPage: enErrorPage,
         },
         es: {
@@ -66,8 +75,11 @@ void i18n.use(initReactI18next).init({
             pnrSearch: esPnrSearch,
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
+            tripListing: esTripListing,
             landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
+            logoutConfirmationModal: esLogoutConfirmationModal,
+            error: esError,
             errorPage: esErrorPage,
         },
     },
@@ -87,6 +99,7 @@ void i18n.use(initReactI18next).init({
         'filterSort',
         'landingPage',
         'auth',
+        'logoutConfirmationModal',
         'errorPage',
     ],
     interpolation: {

@@ -1,6 +1,5 @@
 import { ITicket } from '../../types/ticket';
 import { ITripExternal } from './trip';
-import { IUserExternal } from './user';
 
 export interface ITicketRequest {
     pnrNumber: string;

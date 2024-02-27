@@ -26,11 +26,13 @@ interface IActionBarProps {
     showFilterSort?: boolean;
 }
 
-const ActionBar: React.FC<IActionBarProps> = ({
-    showFilterSort,
-}: IActionBarProps) => {
+const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
     const tomorrow = addDays(new Date(), 1);
     const [searchParams] = useSearchParams();
+    const { t } = useTranslation('actionBar');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
     );
@@ -41,14 +43,10 @@ const ActionBar: React.FC<IActionBarProps> = ({
     const [tripDate, setTripDate] = useState<Date | null>(tomorrow);
     const [locOptions, setLocOptions] = useState<ILocationOptions[]>([]);
     const [loadingState, setLoadingState] = useState<boolean>(false);
-    const { t } = useTranslation('actionBar');
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-
     const [toggle, setToggle] = useState(false);
 
-    const originParam = searchParams.get('originID');
-    const destinationParam = searchParams.get('destinationID');
+    const originParam = searchParams.get('originId');
+    const destinationParam = searchParams.get('destinationId');
     const tripDateParam = searchParams.get('tripDate');
 
     // setting origin and destination from query params
@@ -66,8 +64,8 @@ const ActionBar: React.FC<IActionBarProps> = ({
         if (destinationlocation) {
             setStopLocation(destinationlocation);
         }
-        if (tripDate && tripDateParam) {
-            const convDate = new Date(tripDate.toUTCString());
+        if (tripDateParam) {
+            const convDate = new Date(tripDateParam.replace('GMT ', 'GMT+'));
             setTripDate(convDate);
         }
     };
@@ -78,7 +76,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
         const converterLoc = loc.map((locObj) => {
             return { id: Number(locObj.id), label: locObj.name };
         });
-        setLocOptions(() => converterLoc);
+        setLocOptions(converterLoc);
     };
 
     useEffect(() => {
@@ -122,6 +120,14 @@ const ActionBar: React.FC<IActionBarProps> = ({
 
             setToggle(!toggle);
         }
+        if (startLocation && stopLocation) {
+            const tempTo = stopLocation;
+
+            setStopLocation(startLocation);
+            setStartLocation(tempTo);
+
+            setToggle(!toggle);
+        }
     };
 
     // setting date
@@ -135,16 +141,16 @@ const ActionBar: React.FC<IActionBarProps> = ({
             setLoadingState(true);
             dispatch(
                 setBusSearchParams({
-                    originID: startLocation.id,
-                    destinationID: stopLocation.id,
+                    originId: startLocation.id,
+                    destinationId: stopLocation.id,
                     tripDate: tripDate.toISOString(),
                 })
             );
 
             navigate(
-                `${paths.tripsListing}?originID=${
+                `${paths.tripsListing}?originId=${
                     startLocation.id
-                }&destinationID=${
+                }&destinationId=${
                     stopLocation.id
                 }&tripDate=${tripDate.toString()}`
             );
@@ -257,7 +263,7 @@ const ActionBar: React.FC<IActionBarProps> = ({
                     <DatePicker
                         label={t('date')}
                         disablePast
-                        defaultValue={tripDate}
+                        value={tripDate}
                         minDate={tomorrow}
                         slots={{
                             openPickerIcon: Today,
