@@ -31,7 +31,8 @@ const Seat = ({
                         : 'disable-click'
                 }`}
                 onClick={() => {
-                    mode === 'edit' &&
+                    mode === 'edit'&& (seatStatus === 'available' ||
+                          seatStatus === 'selected') &&
                         updateSelectedSeats &&
                         updateSelectedSeats(seatNumber);
                 }}

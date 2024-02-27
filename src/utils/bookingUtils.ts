@@ -1,12 +1,12 @@
 import { ISeat, ISeatStatus } from '../types';
 import { IGender, IPassengerSeat } from '../types';
 
-interface Ipdetails {
+interface IPassengerDetails {
     fullName: string;
     age: string;
     gender: string;
 }
-interface IPassengers extends Ipdetails {
+interface IPassengers extends IPassengerDetails {
     seatNumber: number;
 }
 export interface IPassengersInputFromFormik {

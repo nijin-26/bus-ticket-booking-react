@@ -15,8 +15,12 @@ import { useTranslation } from 'react-i18next';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+// TODO: fetch data from store
 
 export const TripBookingPage = () => {
+    const state = useAppSelector((state) =>
+        fromSerializable(state.tripDetails)
+    );
     const { t } = useTranslation('bookingPageConfirmation');
     const navigate = useNavigate();
 
@@ -62,6 +66,12 @@ export const TripBookingPage = () => {
                     {state.destination.name}
                 </Typography>
             </Stack>
+            <TripCardAccordion
+                defaultExpanded={true}
+                data={state}
+                mode="view"
+            />
+            <PassengerDetailsForm />
             <TripCardAccordion
                 defaultExpanded={true}
                 data={state}

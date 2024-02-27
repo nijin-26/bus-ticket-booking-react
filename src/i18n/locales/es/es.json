@@ -71,7 +71,7 @@
         "seater": "Asiento",
         "sleeper": "Cama",
         "sort": "Ordenar",
-        "startDate": "Fecha de inicio",
+        "startDate": "Salida primero",
         "seatsAvailable": "Asientos disponibles",
         "priceHighToLow": "Precio: de alto a bajo",
         "priceLowToHigh": "Precio: de bajo a alto",
@@ -88,7 +88,9 @@
         "arrival": "Llegada",
         "duration": "Duración",
         "busType": "Tipo de autobús",
-        "seat": "asiento"
+        "seat": "asiento",
+        "emptyResponse": "Datos del viaje no disponibles",
+        "errorResponse": "Error al recuperar los detalles del viaje"
     },
     "tripListing": {
         "busTypeAC": "Tipo de Autobús - Aire Acondicionado",

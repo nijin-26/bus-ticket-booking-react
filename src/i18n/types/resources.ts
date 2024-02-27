@@ -3,6 +3,7 @@ import data from '../locales/en/en.json';
 const {
     ns1,
     ns2,
+    auth,
     headerFooter,
     seatLayout,
     tripDetails,
@@ -23,7 +24,6 @@ const {
 const resources = {
     ns1,
     ns2,
-    auth,
     headerFooter,
     seatLayout,
     actionBarTab,
@@ -33,6 +33,7 @@ const resources = {
     tripDetails,
     tripListing,
     landingPage,
+    auth,
     passengerDetails,
     logoutConfirmationModal,
     error,

@@ -24,4 +24,6 @@
 -   [86cueujxt] Implemented bus search functionality for action bar and action bar filters, handling query params, corresponding reducer busSearchSlice and toggle animation
 -   [86cuerykj] Implemented authentication functionality, protected routes and role based access controls.
 -   [86cujnfuc] API integration of Trip Listing Page.
+-   [86cuewzt9] API integration of Trip Details Section.
+
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
