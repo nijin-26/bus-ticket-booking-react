@@ -7,12 +7,12 @@ interface IFareDetailsProps {
 }
 
 export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
+    const { t } = useTranslation('tripDetails');
     const totalFare = noOfSeats * farePerSeat;
-    const totalFareInString = `${noOfSeats} seat${
+    const totalFareInString = `${noOfSeats} ${t('seat')}${
         noOfSeats > 1 ? 's' : ''
     } x ₹${farePerSeat} = ₹${totalFare}`;
 
-    const { t } = useTranslation('tripDetails');
     const { font } = useTheme();
 
     return (

@@ -4,6 +4,9 @@ import { ErrorPage } from '../../pages/ErrorPage/ErrorPage';
 import { Layout } from '../../layout';
 import { paths } from '..';
 import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
+import { RequireAuth } from '../../components/RequireAuth/RequireAuth';
+import { EUserRole } from '../../types';
+import { TicketPage } from '../../pages/TicketPage/TicketPage';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -19,8 +22,30 @@ export const routesConfig: RouteObject[] = [
                 element: <TripsListingPage />,
             },
             {
-                path: paths.usersListing,
-                element: <UsersListingPage />,
+                element: <RequireAuth allowedRoles={[EUserRole.ADMIN]} />,
+                children: [
+                    {
+                        path: paths.usersListing,
+                        element: <UsersListingPage />,
+                    },
+                ],
+            },
+            {
+                element: (
+                    <RequireAuth
+                        allowedRoles={[EUserRole.ADMIN, EUserRole.CUSTOMER]}
+                    />
+                ),
+                children: [
+                    {
+                        path: paths.tripBooking,
+                        element: <TripBookingPage />,
+                    },
+                ],
+            },
+            {
+                path: `${paths.ticket}/:pnr`,
+                element: <TicketPage />,
             },
             {
                 path: paths.tripBooking,

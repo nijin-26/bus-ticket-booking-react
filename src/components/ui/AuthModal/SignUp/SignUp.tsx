@@ -1,13 +1,19 @@
-import { Button, Stack, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Alert, Button, Stack, Typography } from '@mui/material';
+import { Formik, Form, Field } from 'formik';
+import { TextField } from 'formik-mui';
 import getValidationSchema from './validationSchema';
+import signUpSubmitHandler from './submitHandler';
+import { ISignUpForm } from '../../../../types';
+import { useState } from 'react';
+import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 
 type TSignUpProps = {
     closeModal: () => void;
+    setSignInAsSelectedTab: () => void;
 };
 
-const initialValues = {
+const initialValues: ISignUpForm = {
     fullName: '',
     email: '',
     phone: '',
@@ -15,102 +21,107 @@ const initialValues = {
     confirmPassword: '',
 };
 
-const SignUp = ({ closeModal }: TSignUpProps) => {
+const SignUp = ({ closeModal, setSignInAsSelectedTab }: TSignUpProps) => {
     const { t } = useTranslation('auth');
-
-    const handleSubmit = () => {};
+    const [loading, setLoading] = useState(false);
 
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={getValidationSchema(t)}
-            onSubmit={handleSubmit}
-        >
-            {({ errors, touched }) => (
-                <Form>
-                    <Stack gap={4}>
-                        <Field
-                            as={TextField}
-                            label={t('fullName')}
-                            type="text"
-                            name="fullName"
-                            required
-                            fullWidth
-                            error={errors.fullName && touched.fullName}
-                            helperText={<ErrorMessage name="fullName" />}
-                        />
-
-                        <Field
-                            as={TextField}
-                            label={t('email')}
-                            type="email"
-                            name="email"
-                            required
-                            fullWidth
-                            error={errors.email && touched.email}
-                            helperText={<ErrorMessage name="email" />}
-                        />
-
-                        <Field
-                            as={TextField}
-                            label={t('phone')}
-                            type=""
-                            name="phone"
-                            required
-                            fullWidth
-                            error={errors.phone && touched.phone}
-                            helperText={<ErrorMessage name="phone" />}
-                        />
-
-                        <Stack direction={'row'} gap={2}>
+        <>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={getValidationSchema(t)}
+                onSubmit={async (values, formikHelpers) => {
+                    setLoading(true);
+                    await signUpSubmitHandler(
+                        values,
+                        formikHelpers,
+                        setSignInAsSelectedTab,
+                        t
+                    );
+                    setLoading(false);
+                }}
+            >
+                {({ isSubmitting }) => (
+                    <Form noValidate>
+                        <Stack gap={4}>
                             <Field
-                                as={TextField}
-                                label={t('password')}
-                                type="password"
-                                name="password"
-                                required
                                 fullWidth
-                                error={errors.password && touched.password}
-                                helperText={<ErrorMessage name="password" />}
+                                component={TextField}
+                                label={t('fullName')}
+                                name="fullName"
+                                required
                             />
 
                             <Field
-                                as={TextField}
-                                label={t('confirmPassword')}
-                                type="password"
-                                name="confirmPassword"
+                                fullWidth
+                                component={TextField}
+                                label={t('email')}
+                                type="email"
+                                name="email"
                                 required
-                                fullWidth
-                                error={
-                                    errors.confirmPassword &&
-                                    touched.confirmPassword
-                                }
-                                helperText={
-                                    <ErrorMessage name="confirmPassword" />
-                                }
                             />
-                        </Stack>
 
-                        <Stack
-                            direction={'row'}
-                            gap={2}
-                            justifyContent={'center'}
-                        >
-                            <Button
-                                onClick={closeModal}
-                                variant="outlined"
+                            <Field
                                 fullWidth
+                                component={TextField}
+                                label={t('phone')}
+                                name="phone"
+                                required
+                            />
+
+                            <Stack direction={'row'} gap={2}>
+                                <Field
+                                    fullWidth
+                                    component={TextField}
+                                    label={t('password')}
+                                    type="password"
+                                    name="password"
+                                    required
+                                />
+
+                                <Field
+                                    fullWidth
+                                    component={TextField}
+                                    label={t('confirmPassword')}
+                                    type="password"
+                                    name="confirmPassword"
+                                    required
+                                />
+                            </Stack>
+
+                            <Alert severity="info">
+                                <Typography component="p" variant="body2">
+                                    {t('passwordRequirements')}
+                                </Typography>
+                            </Alert>
+
+                            <Stack
+                                direction={'row'}
+                                gap={2}
+                                justifyContent={'center'}
                             >
-                                {t('cancel')}
-                            </Button>
-                            <Button type="submit" variant="contained" fullWidth>
-                                {t('signUp')}
-                            </Button>
+                                <Button
+                                    onClick={closeModal}
+                                    variant="outlined"
+                                    fullWidth
+                                >
+                                    {t('cancel')}
+                                </Button>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    fullWidth
+                                    disabled={isSubmitting}
+                                >
+                                    {t('signUp')}
+                                </Button>
+                            </Stack>
                         </Stack>
-                    </Stack>
-                </Form>
-            )}
-        </Formik>
+                    </Form>
+                )}
+            </Formik>
+            <FullScreenLoader open={loading} />
+        </>
     );
 };
 

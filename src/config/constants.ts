@@ -6,13 +6,16 @@ export const paths = {
     tripsListing: '/trips',
     tripDetail: '/trips/:tripId',
     usersListing: '/users',
-    tripBooking:'/trips/booking'
+    tripBooking: '/trips/booking',
+    // ticket: '/ticket/:pnrNumber',
+    ticket: '/ticket',
 };
 
 export const colors = {
     deepPurple: '#6750A4',
     lightPurple: '#E8DEF8',
     white: '#fff',
+    cardWhite: '#f9f9f9',
     grey500: '#9e9e9e',
     black: '#202124',
     selectedSeat: '#56a55c',
@@ -41,12 +44,14 @@ export const locationOptions: ILocationOptions[] = [
 
 export const filterValues = {
     ac: 'AC',
-    nonAc: 'Non-AC',
-    seater: 'Seater',
-    sleeper: 'Sleeper',
+    nonAc: 'NON_AC',
+    seater: 'SEATER',
+    sleeper: 'SLEEPER',
 };
 
 export const LANGUAGES: Language[] = [
     { label: 'English', code: LanguageCode.English },
     { label: 'Spanish', code: LanguageCode.Spanish },
 ];
+
+export const rowsPerPage: number = 5;

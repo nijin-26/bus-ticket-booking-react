@@ -1,11 +1,6 @@
 import { format, formatDuration, intervalToDuration } from 'date-fns';
 
-export function convertTimeStamp(
-    departureTimestamp: string,
-    arrivalTimestamp: string
-) {
-    const departureDate = new Date(departureTimestamp);
-    const arrivalDate = new Date(arrivalTimestamp);
+export function convertTimeStamp(departureDate: Date, arrivalDate: Date) {
     const formattedDepartureTime = format(departureDate, 'p');
     const formattedDepartureDate = format(departureDate, 'do LLL');
     const formattedArrivalTime = format(arrivalDate, 'p');

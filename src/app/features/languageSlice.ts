@@ -6,10 +6,12 @@ interface ILanguageState {
     currentLanguage: LanguageCode;
 }
 
+const localStorageLanguage = localStorage.getItem('language');
 const initialState: ILanguageState = {
-    currentLanguage: i18n.language as LanguageCode.English,
+    currentLanguage: localStorageLanguage
+        ? (localStorageLanguage as LanguageCode)
+        : (i18n.language as LanguageCode.English),
 };
-
 const languageSlice = createSlice({
     name: 'i18n',
     initialState,
@@ -19,6 +21,8 @@ const languageSlice = createSlice({
             i18n.changeLanguage(action.payload).catch((error) => {
                 console.error('Something went wrong loading', error);
             });
+
+            localStorage.setItem('language', state.currentLanguage);
         },
     },
 });

@@ -6,10 +6,10 @@
         "hello": "hello"
     },
     "headerFooter": {
-        "myBooking": "My Booking",
+        "myBookings": "My Bookings",
         "copyRight": "© 2024 All rights reserved",
-        "Login": "Login",
-        "Logout": "Logout"
+        "login": "Login",
+        "logout": "Logout"
     },
     "auth": {
         "signIn": "SIGN IN",
@@ -27,10 +27,21 @@
         "emailRequired": "Email is required.",
         "invalidPhone": "Invalid phone number.",
         "phoneRequired": "Phone number is required.",
-        "passwordValidationMsg": "Password must be at least 6 characters.",
+        "passwordLengthValidationMsg": "Password must be at least 6 characters.",
+        "passwordValidationMsg": "Password not strong enough.",
         "passwordRequired": "Password is required.",
         "passwordMatch": "Passwords must match.",
-        "confirmPasswordRequired": "Confirm Password is required."
+        "confirmPasswordRequired": "Confirm Password is required.",
+        "invalidPasswordErrorMessage": "Incorrect Password",
+        "userNotFoundErrorMessage": "User does not exist",
+        "userAlreadyExistsErrorMessage": "User already exists",
+        "signInSuccessToastMessage": "Login successful. Happy to have you here!",
+        "signInErrorToastMessage": "Unexpected error. Please try again later.",
+        "signUpSuccessToastMessage": "Welcome aboard! Your account has been successfully created. Please sign in to continue.",
+        "signUpErrorToastMessage": "Unexpected error. Please try again later.",
+        "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication.",
+        "forbiddenErrorMessage": "Access Denied: You don't have sufficient authorization to view this page.",
+        "passwordRequirements": "The Password must be atleast 6 characters long and contain an uppercase character, a lowercase character, a number and a special character."
     },
     "seatLayout": {
         "available": "Available",
@@ -60,7 +71,7 @@
         "seater": "Seater",
         "sleeper": "Sleeper",
         "sort": "Sort",
-        "startDate": "Start date",
+        "startDate": "Departure first",
         "seatsAvailable": "Seats available",
         "priceHighToLow": "Price: high to low",
         "priceLowToHigh": "Price: low to high",
@@ -76,7 +87,20 @@
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",
-        "busType": "Bus Type"
+        "busType": "Bus Type",
+        "seat": "seat",
+        "emptyResponse": "Trip data not available",
+        "errorResponse": "Error fetching the trip details"
+    },
+    "tripListing": {
+        "busTypeAC": "Bus Type - AC",
+        "busTypeNonAC": "Bus Type - Non-AC",
+        "SeatTypeSeater": "Seat Type - Seater",
+        "SeatTypeSleeper": "Bus Type - Sleeper",
+        "seatsAvailable": "seats available",
+        "loadMore": "Load More",
+        "noOptions": "No options matching your search",
+        "change": "Try changing your dates or destination to see results"
     },
     "passengerDetails": {
         "passengerDetailsFormHeading": "Passenger Details",
@@ -109,5 +133,51 @@
     },
     "landingPage": {
         "busWithUs": "Bus with us."
+    },
+    "passengerDetails": {
+        "passengerDetailsFormHeading": "Passenger Details",
+        "passenger": "Passenger",
+        "seat": "seat",
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "genderValues": [
+            {
+                "value": "male",
+                "label": "Male"
+            },
+            {
+                "value": "female",
+                "label": "Female"
+            }
+        ],
+        "checkout": "Checkout",
+        "fullNameRequired": "Full Name is a required field",
+        "ageRequired": "Age is a required field",
+        "genderRequired": "Gender is a required field",
+        "fullNameLength": "Full Name must be 3 to 60 characters long",
+        "AgeNumberCheck": "Age must be a valid number",
+        "AgeRangeCheck": "Age must be between 1 and 130",
+        "apiSuccessMessage": "Booking success",
+        "apiErrorMessage": "Error while Booking. Please try again",
+        "seatAlreadyBookedErrorMessage": "Oops! Selected seats are already booked"
+    },
+    "logoutConfirmationModal": {
+        "title": "Are you sure?",
+        "message": "All your unsaved data will be lost.",
+        "confirmText": "Yes",
+        "cancelText": "Cancel",
+        "logoutSuccessMessage": "You have been successfully logged out. Have a great day!"
+    },
+    "error": {
+        "unexpected": "Some unexpected error has occurred"
+    },
+    "bookingPageConfirmation": {
+        "confirmationTitle": "Confirm Booking",
+        "agreeText": "Confirm",
+        "DisagreeText": "Decline",
+        "dialogContent": "Are you sure you want to confirm",
+        "checkout": "Checkout",
+        "absentStateError": "Error while fetching booking data"
     }
 }

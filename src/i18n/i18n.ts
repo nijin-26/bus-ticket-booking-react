@@ -14,8 +14,13 @@ const {
     filterSort: enFilterSort,
     auth: enAuth,
     tripDetails: enTripDetails,
-    passengerDetails: enPassengerDetails,
+    tripListing: enTripListing,
     landingPage: enLandingPage,
+    auth: enAuth,
+    passengerDetails: enPassengerDetails,
+    logoutConfirmationModal: enLogoutConfirmationModal,
+    error: enError,
+    bookingPageConfirmation: enBookingPageConfirmation,
 } = en;
 const {
     ns1: esNs1,
@@ -28,14 +33,18 @@ const {
     pnrSearch: esPnrSearch,
     filterSort: esFilterSort,
     tripDetails: esTripDetails,
-    passengerDetails: esPassengerDetails,
+    tripListing: esTripListing,
     landingPage: eslandingPage,
+    passengerDetails: esPassengerDetails,
+    logoutConfirmationModal: esLogoutConfirmationModal,
+    error: esError,
+    bookingPageConfirmation: esBookingPageConfirmation,
 } = es;
 
 export const defaultNS = 'ns1';
+const language = localStorage.getItem('language')?.toString();
 
 void i18n.use(initReactI18next).init({
-    debug: true, // for debugging
     resources: {
         en: {
             ns1: enNs1,
@@ -48,8 +57,12 @@ void i18n.use(initReactI18next).init({
             pnrSearch: enPnrSearch,
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
-            passengerDetails: enPassengerDetails,
+            tripListing: enTripListing,
             landingPage: enLandingPage,
+            passengerDetails: enPassengerDetails,
+            logoutConfirmationModal: enLogoutConfirmationModal,
+            error: enError,
+            bookingPageConfirmation: enBookingPageConfirmation,
         },
         es: {
             ns1: esNs1,
@@ -62,11 +75,15 @@ void i18n.use(initReactI18next).init({
             pnrSearch: esPnrSearch,
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
-            passengerDetails: esPassengerDetails,
+            tripListing: esTripListing,
             landingPage: eslandingPage,
+            passengerDetails: esPassengerDetails,
+            logoutConfirmationModal: esLogoutConfirmationModal,
+            error: esError,
+            bookingPageConfirmation: esBookingPageConfirmation,
         },
     },
-    lng: 'en',
+    lng: language,
     fallbackLng: 'en',
     defaultNS,
     ns: [
@@ -76,13 +93,15 @@ void i18n.use(initReactI18next).init({
         'seatLayout',
         'tripDetails',
         'passengerDetails',
-        'auth',
         'actionBarTab',
         'actionBar',
         'pnrSearch',
         'filterSort',
+        'tripListing',
         'landingPage',
-        'auth'
+        'auth',
+        'logoutConfirmationModal',
+        'bookingPageConfirmation',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

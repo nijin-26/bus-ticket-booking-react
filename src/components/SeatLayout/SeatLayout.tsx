@@ -1,19 +1,22 @@
 import { berthLayoutProducer, layoutConfig } from './seatConfig';
 import SeatLayoutWrapper from './SeatLayout.styled';
 import steeringWheel from '../../assets/tabler_steering-wheel.svg';
-import { ISeat, ISeatStatus } from '../../api/types/trip';
-import {  useEffect, useState } from 'react';
-import Seat from './Seat';
+import { useEffect, useState } from 'react';
+import { ISeat } from '../../types';
+import getSeatStatus from './utils/getSeatStatus';
+import Seat from './Seat/Seat';
 
 const SeatLayout = ({
     layoutName,
     seats,
     selectedSeats,
+    mode,
     updateSelectedSeats,
 }: {
     layoutName: string;
     seats: ISeat[];
     selectedSeats: number[];
+    mode: 'view' | 'edit';
     updateSelectedSeats: (seat: number) => void;
 }) => {
     const [berth, setBerth] = useState<{
@@ -46,39 +49,20 @@ const SeatLayout = ({
                             {row.map((seat: number, index: number) => {
                                 if (seat === 1) {
                                     const currentSeat = seats[seatIndex];
+                                    const seatStatus = getSeatStatus(
+                                        currentSeat,
+                                        selectedSeats
+                                    );
                                     seatIndex++;
-                                    return currentSeat.status.toString() ===
-                                        ISeatStatus.AVAILABLE.toString() ? (
-                                        selectedSeats.includes(
-                                            currentSeat.seatNumber
-                                        ) ? (
-                                            <Seat
-                                                seatNumber={
-                                                    currentSeat.seatNumber
-                                                }
-                                                key={`seat${rowIndex}-${index}`}
-                                                updateSelectedSeats={
-                                                    updateSelectedSeats
-                                                }
-                                                seatStatus={'selected'}
-                                            />
-                                        ) : (
-                                            <Seat
-                                                seatNumber={
-                                                    currentSeat.seatNumber
-                                                }
-                                                key={`seat${rowIndex}-${index}`}
-                                                updateSelectedSeats={
-                                                    updateSelectedSeats
-                                                }
-                                                seatStatus={'available'}
-                                            />
-                                        )
-                                    ) : (
+                                    return (
                                         <Seat
                                             seatNumber={currentSeat.seatNumber}
                                             key={`seat${rowIndex}-${index}`}
-                                            seatStatus={'unavailable'}
+                                            updateSelectedSeats={
+                                                updateSelectedSeats
+                                            }
+                                            seatStatus={seatStatus}
+                                            mode={mode}
                                         />
                                     );
                                 } else {
@@ -86,6 +70,7 @@ const SeatLayout = ({
                                         <Seat
                                             seatStatus={'aisle'}
                                             key={`seat${rowIndex}-${index}`}
+                                            mode={mode}
                                         />
                                     );
                                 }

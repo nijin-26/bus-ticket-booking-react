@@ -1,29 +1,53 @@
+import { ITicket } from '../../types/ticket';
+import { ITripExternal } from './trip';
+
 export interface ITicketRequest {
     pnrNumber: string;
 }
 
 export interface ITicketResponse extends ITicket {}
 
-export interface IBookingRequest {
-    tripId: string;
-    seats: IPassengerSeat[];
+export interface IBookingExternal {
+    seatNumber: string;
+    passengerName: string;
+    passengerAge: string;
+    passengerGender: string;
 }
 
-export interface IBookingResponse extends ITicket {}
-
-export interface ITicket {
+export interface ITicketExternal extends IBookingExternal {
+    trip: ITripExternal;
+    seatNumber: string;
+    fare: string;
+    status: string;
     pnrNumber: string;
     tripId: string;
-    seats: IPassengerSeat[];
+    id: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
-export interface IPassengerSeat {
-    seatNumber: number;
-    passenger: IPassenger;
+export interface IBookingRequest {
+    tripId: number;
+    bookings: IBookingExternal[];
 }
 
-export interface IPassenger {
-    fullName: string;
-    age: number;
-    gender: string;
+export type IBookingResponse = ITicketExternal[];
+
+export interface IBookingListingResponse {
+    bookings: ITicketExternal[];
 }
+
+export interface IPnrResponse extends ITripExternal {
+    bookings: {
+        id: string;
+        pnrNumber: string;
+        seatNumber: string;
+        status: string;
+        fare: string;
+        passengerName: string;
+        passengerAge: string;
+        passengerGender: string;
+    }[];
+}
+
+export type IMyBookingsResponse = IPnrResponse[];
