@@ -29,6 +29,10 @@ export const routesConfig: RouteObject[] = [
                         path: paths.usersListing,
                         element: <UsersListingPage />,
                     },
+                    {
+                        path: paths.bookings,
+                        element: <AllBookingsPage />,
+                    },
                 ],
             },
             {

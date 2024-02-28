@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import { Download } from '@mui/icons-material';
 import { GridColDef } from '@mui/x-data-grid';
 import { ITicket } from '../../types';
 import { getDateFromTimestamp } from '../../utils';
@@ -50,7 +48,7 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedDate } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,
-                    'dd-mm-yyyy'
+                    'dd-MMM-yyyy'
                 );
                 return <p>{formattedDate}</p>;
             },
@@ -61,11 +59,12 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,
-                    'dd-mm-yyyy'
+                    undefined,
+                    'hh:mm a'
                 );
                 return (
                     <p>
-                        {params.row.trip.originId} ({formattedTime})
+                        {params.row.trip.origin.shortCode} ({formattedTime})
                     </p>
                 );
             },
@@ -76,11 +75,13 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.arrivalTimestamp,
-                    'dd-mm-yyyy'
+                    undefined,
+                    'hh:mm a'
                 );
                 return (
                     <p>
-                        {params.row.trip.destinationId} ({formattedTime})
+                        {params.row.trip.destination.shortCode} ({formattedTime}
+                        )
                     </p>
                 );
             },
@@ -92,25 +93,6 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
                 return (
                     <p>
                         {params.row.trip.busType}/{params.row.trip.seatType}
-                    </p>
-                );
-            },
-        },
-        {
-            field: 'download',
-            headerName: '',
-            align: 'center',
-            maxWidth: 50,
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
-                return (
-                    <p>
-                        <IconButton
-                            onClick={() => {
-                                console.log(params);
-                            }}
-                        >
-                            <Download />
-                        </IconButton>
                     </p>
                 );
             },
