@@ -51,4 +51,6 @@ export interface IPnrResponse extends ITripExternal {
     }[];
 }
 
-export type IMyBookingsResponse = IPnrResponse[];
+export interface IMyBookingsResponse {
+    bookings: IPnrResponse[];
+}
