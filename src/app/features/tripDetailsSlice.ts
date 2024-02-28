@@ -28,10 +28,10 @@ const tripDetailsSlice = createSlice({
     initialState,
     reducers: {
         setTripDetailsData: (
-            state,
+            _state,
             action: PayloadAction<ITripDetailedSerializable>
         ) => {
-            return action.payload
+            return action.payload;
         },
         resetTripDetailsData: () => {
             return initialState;

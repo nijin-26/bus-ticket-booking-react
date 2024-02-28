@@ -3,11 +3,9 @@ import data from '../locales/en/en.json';
 const {
     ns1,
     ns2,
-    auth,
     headerFooter,
     seatLayout,
     tripDetails,
-    tripListing,
     passengerDetails,
     actionBarTab,
     actionBar,
