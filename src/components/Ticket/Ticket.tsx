@@ -99,7 +99,7 @@ export const Ticket = ({data}: {data:ITicket}) => {
                             <TwoLineHeading
                                 title="Time"
                                 value={
-                                    formatDate(arrivalTimestamp).formattedDate
+                                    formatDate(arrivalTimestamp).formattedTime
                                 }
                             />
                         </Stack>

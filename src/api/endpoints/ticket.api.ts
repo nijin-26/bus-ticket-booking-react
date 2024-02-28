@@ -2,6 +2,7 @@ import { API, apiRoutes } from '..';
 import { IPassengerSeat, ITicket } from '../../types';
 import {
     getTicketFromBookingResponse,
+    getTicketsFromMyBookingsResponse,
     getTicketFromPnrResponse,
     getTicketsFromBookingListingResponse,
 } from '../converters/ticket.converter';
@@ -9,6 +10,7 @@ import {
     IBookingListingResponse,
     IBookingRequest,
     IBookingResponse,
+    IMyBookingsResponse,
     IPnrResponse,
 } from '../types/ticket';
 
@@ -42,8 +44,8 @@ export const getAllBookings = async (): Promise<ITicket[]> => {
 };
 
 export const getMyBookings = async (): Promise<ITicket[]> => {
-    // TODO: use my bookings API once implemented
-    const tickets = await getAllBookings();
+    const response: IMyBookingsResponse = await API.get(apiRoutes.userBooking);
+    const tickets = getTicketsFromMyBookingsResponse(response);
     return tickets;
 };
 
