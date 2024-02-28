@@ -6,6 +6,7 @@ export const apiRoutes = {
     tripSearch: 'trip/search',
     allBookings: 'booking',
     booking: 'booking',
+    bookingPnr: 'booking/pnr',
     userBooking: 'booking/user/all',
     user: 'user',
     myBookings: 'booking/user/all',

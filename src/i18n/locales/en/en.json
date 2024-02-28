@@ -71,7 +71,7 @@
         "seater": "Seater",
         "sleeper": "Sleeper",
         "sort": "Sort",
-        "startDate": "Start date",
+        "startDate": "Departure first",
         "seatsAvailable": "Seats available",
         "priceHighToLow": "Price: high to low",
         "priceLowToHigh": "Price: low to high",
@@ -87,7 +87,9 @@
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",
-        "busType": "Bus Type"
+        "busType": "Bus Type",
+        "emptyResponse": "Trip data not available",
+        "errorResponse":"Error fetching the trip details"
     },
     "tripListing": {
         "busTypeAC": "Bus Type - AC",

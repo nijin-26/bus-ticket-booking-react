@@ -9,9 +9,13 @@ export const TripCardDetailsWrapper = styled(AccordionDetails)(({ theme }) => ({
     '& .title': {
         fontSize: theme.font.lg,
         fontWeight: theme.font.fontWeightMedium,
+        paddingLeft:0
     },
     '& .value': {
         fontSize: theme.font.lg,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        textAlign: 'center',
     },
     '& .title-container': {
         svg: {
