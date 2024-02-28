@@ -53,7 +53,7 @@ export default function SortGroup() {
         setSearchParams(searchParams);
     };
 
-    const sortParam = searchParams.get('sortBy');
+    const sortParam = searchParams.get('sortBy') || 'SeatsAvailable';
 
     return (
         <>
