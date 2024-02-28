@@ -12,6 +12,9 @@ dist/
 *.js.map
 *.d.ts
 
+#,env
+.env
+
 # Ignore configuration files
 .eslint*
 tsconfig*
