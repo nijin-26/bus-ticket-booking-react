@@ -13,6 +13,7 @@ export const MyBookingsPage = () => {
             t={t}
             getData={getMyBookings}
             rowId={'pnrNumber'}
+            frontendPagination={false}
         />
     );
 };

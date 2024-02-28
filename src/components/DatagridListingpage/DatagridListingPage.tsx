@@ -6,18 +6,26 @@ import { IPagination } from '../../types/pagination';
 import { GridColDef } from '@mui/x-data-grid';
 import { TFunction } from 'i18next';
 import { CustomTable } from './datagrid/CustomTable';
+import { IPaginatedData } from '../../api/types/pagination';
+
+interface IDatagridListingPage<T> {
+    columns: GridColDef[];
+    t: TFunction;
+    getData: (
+        page: string,
+        pageSize: string
+    ) => Promise<T[]> | Promise<IPaginatedData<T>>;
+    rowId: keyof T;
+    frontendPagination: boolean;
+}
 
 export const DatagridListingPage = <T,>({
     columns,
     t,
     getData,
     rowId,
-}: {
-    columns: GridColDef[];
-    t: TFunction;
-    getData: (page: string, pageSize: string) => Promise<T[]>;
-    rowId: keyof T;
-}) => {
+    frontendPagination,
+}: IDatagridListingPage<T>) => {
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
     const updateSearchParams = (newPage: string) => {
         searchParams.set('page', String(newPage));
@@ -38,23 +46,32 @@ export const DatagridListingPage = <T,>({
 
     useEffect(() => {
         //Fething data
-        void (async () => {
-            updatePageState({ loading: true });
-            try {
-                const ticketsResponse = await getData(
-                    searchParams.get('page') || '1',
-                    String(pageState.pageSize)
-                );
-                updatePageState({
-                    data: ticketsResponse,
-                    totalNumberOfData: ticketsResponse.length,
-                });
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setPageState((prev) => ({ ...prev, loading: false }));
-            }
-        })();
+        if (!frontendPagination || pageState.data.length === 0) {
+            void (async () => {
+                updatePageState({ loading: true });
+                try {
+                    const ticketsResponse = await getData(
+                        searchParams.get('page') || '1',
+                        String(pageState.pageSize)
+                    );
+                    updatePageState(
+                        'data' in ticketsResponse
+                            ? {
+                                  data: ticketsResponse.data,
+                                  totalNumberOfData: ticketsResponse.total,
+                              }
+                            : {
+                                  data: ticketsResponse,
+                                  totalNumberOfData: ticketsResponse.length,
+                              }
+                    );
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setPageState((prev) => ({ ...prev, loading: false }));
+                }
+            })();
+        }
     }, [getData, searchParams]);
 
     return (
@@ -105,6 +122,7 @@ export const DatagridListingPage = <T,>({
                 columns={columns}
                 rowId={rowId}
                 t={t}
+                frontendPagination={frontendPagination}
             />
         </DatagridListingPageWrapper>
     );

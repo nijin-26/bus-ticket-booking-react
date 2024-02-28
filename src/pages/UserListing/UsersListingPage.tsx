@@ -13,6 +13,7 @@ export const UsersListingPage = () => {
             t={t}
             getData={getAllUsers}
             rowId={'id'}
+            frontendPagination={false}
         />
     );
 };

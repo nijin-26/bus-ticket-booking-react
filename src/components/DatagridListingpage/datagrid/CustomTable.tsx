@@ -15,6 +15,7 @@ export interface ICustomTable<T> {
     rowId: keyof T;
     columns: GridColDef[];
     t: TFunction;
+    frontendPagination: boolean;
 }
 
 export const CustomTable = <T,>({
@@ -24,6 +25,7 @@ export const CustomTable = <T,>({
     columns,
     rowId,
     t,
+    frontendPagination,
 }: ICustomTable<T>) => {
     const { t: tExport } = useTranslation('tableExportOptions');
     return (
@@ -62,7 +64,7 @@ export const CustomTable = <T,>({
                 disableColumnFilter
                 disableColumnSelector
                 disableColumnMenu
-                paginationMode="server"
+                paginationMode={frontendPagination ? 'client' : 'server'}
                 onPaginationModelChange={(newPaginationModel) => {
                     updatePageState(newPaginationModel);
                 }}
