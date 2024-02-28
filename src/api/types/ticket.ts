@@ -52,4 +52,5 @@ export interface IPnrResponse extends ITripExternal {
 
 export interface IMyBookingsResponse {
     bookings: IPnrResponse[];
+    resultCount: number;
 }
