@@ -26,3 +26,4 @@
 -   [86cujnfuc] API integration of Trip Listing Page.
 -   [86cuewzt9] API integration of Trip Details Section.
 
+-   [86cupmdug] Added error page, illustration and navigation buttons
