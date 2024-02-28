@@ -5,36 +5,53 @@ import { BusDepartureIcon } from '../../../../../assets/accordianDetails/BusDepa
 import { BusArrivalIcon } from '../../../../../assets/accordianDetails/BusArrivalIcon';
 import { StopwatchIcon } from '../../../../../assets/accordianDetails/StopwatchIcon';
 import { BusIcon } from '../../../../../assets/accordianDetails/BusIcon';
+import { ISeatType, IBusType, ILocation } from '../../../../../types';
 
-export const DetailsGrid = () => {
+export interface IDetailsGridProps {
+    departureTime: string;
+    departureDate: string;
+    arrivalTime: string;
+    arrivalDate: string;
+    duration: string;
+    origin: ILocation;
+    destination: ILocation;
+    seatType: ISeatType;
+    busType: IBusType;
+}
+
+export const DetailsGrid = ({
+    tripDetails,
+}: {
+    tripDetails: IDetailsGridProps;
+}) => {
     const { t } = useTranslation('tripDetails');
 
     const detailsData = [
         {
             title: t('departure'),
-            value: 'Trivandrum, 20th Jan, 5:00 am',
+            value: `${tripDetails.origin.name}, ${tripDetails.departureDate}, ${tripDetails.departureTime}`,
             icon: <BusDepartureIcon />,
         },
         {
             title: t('arrival'),
-            value: 'Bangalore, 23rd Jan, 18:40 pm',
+            value: `${tripDetails.destination.name}, ${tripDetails.arrivalDate}, ${tripDetails.arrivalTime}`,
             icon: <BusArrivalIcon />,
         },
         {
             title: t('duration'),
-            value: '3 days, 13 hours, 40 minutes',
+            value: tripDetails.duration,
             icon: <StopwatchIcon />,
         },
         {
             title: t('busType'),
-            value: 'AC, Seater',
+            value: `${tripDetails.busType} , ${tripDetails.seatType}`,
             icon: <BusIcon />,
         },
     ];
 
     return (
         <Box sx={{ width: '100%' }} mt={3}>
-            <Grid container rowSpacing={2} columnSpacing={30}>
+            <Grid container rowSpacing={2} columnSpacing={10}>
                 {detailsData.map((detail, index) => (
                     <Grid item key={index} xs={12} sm={12} md={6} lg={6}>
                         {/* 

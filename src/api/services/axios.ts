@@ -2,8 +2,14 @@ import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { onRequest, onRequestError } from './requestInterceptor';
 import { onResponse, onResponseError } from './responseInterceptor';
 
+const baseUrl = import.meta.env.VITE_API_ENDPOINT as string | undefined;
+
+if (baseUrl === undefined) {
+    throw new Error('VITE_API_ENDPOINT is not defined. Is .env file missing?');
+}
+
 const apiClient = axios.create({
-    baseURL: import.meta.env.VITE_API_ENDPOINT as string,
+    baseURL: baseUrl,
     timeout: 30000,
 });
 

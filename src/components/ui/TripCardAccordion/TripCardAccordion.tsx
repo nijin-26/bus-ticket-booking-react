@@ -10,19 +10,24 @@ import Tooltip from '@mui/material/Tooltip';
 import { TripAccordionWrapper } from './TripCardAccordion.styled';
 import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
-import { ITrip, IBusType, ISeatType } from '../../../types';
+import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 import { useTranslation } from 'react-i18next';
 
 let borderDesignClass: string;
+interface ITripCardAccordionData extends ITrip {
+    seats?: ISeat[];
+}
 
 interface ITripCardAccordionProps {
-    data: ITrip;
+    data: ITripCardAccordionData;
     defaultExpanded?: boolean;
+    mode: 'view' | 'edit';
 }
 
 export const TripCardAccordion = ({
     data,
     defaultExpanded = false,
+    mode,
 }: ITripCardAccordionProps) => {
     const { t } = useTranslation('tripListing');
 
@@ -45,6 +50,7 @@ export const TripCardAccordion = ({
         <TripAccordionWrapper
             className={`summary ${borderDesignClass}`}
             defaultExpanded={defaultExpanded}
+            slotProps={{ transition: { unmountOnExit: true } }}
         >
             <AccordionSummary
                 expandIcon={<ArrowDropDownIcon />}
@@ -117,10 +123,10 @@ export const TripCardAccordion = ({
                     <p className={`seats ${borderDesignClass}`}>
                         {data.availableSeats} {t('seatsAvailable')}
                     </p>
-                    <p className="price">Rs. {data.farePerSeat}/-</p>
+                    <p className="price">₹ {data.farePerSeat}/-</p>
                 </Stack>
             </AccordionSummary>
-            <TripCardDetails />
+            <TripCardDetails data={data} mode={mode} />
         </TripAccordionWrapper>
     );
 };
