@@ -10,4 +10,7 @@ export interface IUserExternal {
     passwordChanged: boolean;
 }
 
-export type IUsersResponse = IUserExternal[];
+export interface IUsersResponse {
+    users: IUserExternal[];
+    resultCount: number;
+}

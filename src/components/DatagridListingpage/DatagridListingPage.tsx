@@ -44,35 +44,45 @@ export const DatagridListingPage = <T,>({
         setPageState({ ...pageState, ...newPageState });
     };
 
+    const getListData = async () => {
+        updatePageState({ loading: true });
+        try {
+            const ticketsResponse = await getData(
+                searchParams.get('page') || '1',
+                String(pageState.pageSize)
+            );
+            updatePageState(
+                'data' in ticketsResponse
+                    ? {
+                          data: ticketsResponse.data,
+                          totalNumberOfData: ticketsResponse.total,
+                      }
+                    : {
+                          data: ticketsResponse,
+                          totalNumberOfData: ticketsResponse.length,
+                      }
+            );
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setPageState((prev) => ({ ...prev, loading: false }));
+        }
+    };
+
+    useEffect(() => {
+        void (async () => {
+            await getListData();
+        })();
+    }, []);
+
     useEffect(() => {
         //Fething data
-        if (!frontendPagination || pageState.data.length === 0) {
+        if (!frontendPagination && pageState.data.length != 0) {
             void (async () => {
-                updatePageState({ loading: true });
-                try {
-                    const ticketsResponse = await getData(
-                        searchParams.get('page') || '1',
-                        String(pageState.pageSize)
-                    );
-                    updatePageState(
-                        'data' in ticketsResponse
-                            ? {
-                                  data: ticketsResponse.data,
-                                  totalNumberOfData: ticketsResponse.total,
-                              }
-                            : {
-                                  data: ticketsResponse,
-                                  totalNumberOfData: ticketsResponse.length,
-                              }
-                    );
-                } catch (error) {
-                    console.error(error);
-                } finally {
-                    setPageState((prev) => ({ ...prev, loading: false }));
-                }
+                await getListData();
             })();
         }
-    }, [getData, searchParams]);
+    }, [searchParams]);
 
     return (
         <DatagridListingPageWrapper>

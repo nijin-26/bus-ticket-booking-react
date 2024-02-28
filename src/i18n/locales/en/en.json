@@ -6,10 +6,12 @@
         "hello": "hello"
     },
     "headerFooter": {
-        "myBookings": "My Bookings",
+        "myBookings": "My bookings",
         "copyRight": "© 2024 All rights reserved",
         "login": "Login",
-        "logout": "Logout"
+        "logout": "Logout",
+        "allBookings": "All bookings",
+        "allUsers": "All users"
     },
     "auth": {
         "signIn": "SIGN IN",
@@ -89,7 +91,7 @@
         "duration": "Duration",
         "busType": "Bus Type",
         "emptyResponse": "Trip data not available",
-        "errorResponse":"Error fetching the trip details"
+        "errorResponse": "Error fetching the trip details"
     },
     "tripListing": {
         "busTypeAC": "Bus Type - AC",
