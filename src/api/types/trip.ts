@@ -10,7 +10,7 @@ export interface ITripExternal {
     durationInHours: string;
     busId: string;
     busType: IBusType;
-    seatType: ISeatTypeExternal;
+    seatType: ISeatType;
     totalSeats: number;
     farePerSeat: string;
     origin: ILocationExternal;
