@@ -8,7 +8,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
-    margin: '20px',
+    margin: '20px 0 ',
     boxShadow:
         '0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1)',
 
@@ -29,9 +29,16 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         borderRadius: '0 0 15px 15px', // Apply the same borderRadius as the parent
     },
     '.details-row': {
-        '& > *': {
-            flex: 1,
+        gap: '5px',
+        '& > :first-of-type': {
+            flex: 2,
         },
+        '& >*': {
+            flex:1
+        }
+    },
+    '.row-wrap': {
+        flexWrap: 'wrap',
     },
     '& .rotated-barcode-container': {
         marginLeft: '0',

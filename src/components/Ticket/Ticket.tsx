@@ -6,12 +6,11 @@ import { TwoLineHeading } from './components/TwoLineHeading';
 import { ITicket } from '../../types';
 import { formatDate } from './utils/timeUtils';
 
-export const Ticket = ({data}: {data:ITicket}) => {
+export const Ticket = ({ data }: { data: ITicket }) => {
     const isSmallScreen = useMediaQuery('(max-width:860px)');
     const isMediumScreen = useMediaQuery('(max-width:1024px)');
 
-
-    const { pnrNumber,trip, seats } = data;
+    const { pnrNumber, trip, seats } = data;
     const { departureTimestamp, arrivalTimestamp } = trip;
 
     const adults = seats.filter((seat) => seat.passenger.age > 18);
@@ -51,106 +50,82 @@ export const Ticket = ({data}: {data:ITicket}) => {
                     <Stack
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
-                        className="details-row"
+                        className="details-row row-wrap"
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading
                             title="FROM"
                             value={`${trip.origin.name} - ${trip.origin.shortCode}`}
                         />
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                        >
-                            <TwoLineHeading
-                                title="Date"
-                                value={
-                                    formatDate(departureTimestamp).formattedDate
-                                }
-                            />
-                            <TwoLineHeading
-                                title="Time"
-                                value={
-                                    formatDate(departureTimestamp).formattedTime
-                                }
-                            />
-                        </Stack>
+
+                        <TwoLineHeading
+                            title="Date"
+                            value={formatDate(departureTimestamp).formattedDate}
+                        />
+                        <TwoLineHeading
+                            title="Time"
+                            value={formatDate(departureTimestamp).formattedTime}
+                        />
                     </Stack>
                     <Stack
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
-                        className="details-row"
+                        className="details-row row-wrap"
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading
                             title="To"
                             value={`${trip.destination.name} - ${trip.destination.shortCode}`}
                         />
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                        >
-                            <TwoLineHeading
-                                title="Date"
-                                value={
-                                    formatDate(arrivalTimestamp).formattedDate
-                                }
-                            />
-                            <TwoLineHeading
-                                title="Time"
-                                value={
-                                    formatDate(arrivalTimestamp).formattedTime
-                                }
-                            />
-                        </Stack>
+
+                        <TwoLineHeading
+                            title="Date"
+                            value={formatDate(arrivalTimestamp).formattedDate}
+                        />
+                        <TwoLineHeading
+                            title="Time"
+                            value={formatDate(arrivalTimestamp).formattedTime}
+                        />
                     </Stack>
                     <Stack
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
-                        className="details-row"
+                        className="details-row row-wrap"
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading
                             title="PNR"
                             value={pnrNumber.toUpperCase()}
                         />
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                        >
-                            <TwoLineHeading
-                                title="Passenger Count"
-                                value={`${
-                                    adults.length > 0
-                                        ? `${adults.length} ${
-                                              adults.length > 1
-                                                  ? 'adults'
-                                                  : 'adult'
-                                          }`
-                                        : ''
-                                }${
-                                    adults.length > 0 && children.length > 0
-                                        ? ' and '
-                                        : ''
-                                }${
-                                    children.length > 0
-                                        ? `${children.length} ${
-                                              children.length > 1
-                                                  ? 'children'
-                                                  : 'child'
-                                          }`
-                                        : ''
-                                }`}
-                            />
-                            <TwoLineHeading
-                                title={`Seat Number${
-                                    seats.length > 1 ? 's' : ''
-                                }`}
-                                value={seats
-                                    .map((seat) => seat.seatNumber)
-                                    .join(', ')}
-                            />
-                        </Stack>
+
+                        <TwoLineHeading
+                            title="Passenger Count"
+                            value={`${
+                                adults.length > 0
+                                    ? `${adults.length} ${
+                                          adults.length > 1 ? 'adults' : 'adult'
+                                      }`
+                                    : ''
+                            }${
+                                adults.length > 0 && children.length > 0
+                                    ? ' and '
+                                    : ''
+                            }${
+                                children.length > 0
+                                    ? `${children.length} ${
+                                          children.length > 1
+                                              ? 'children'
+                                              : 'child'
+                                      }`
+                                    : ''
+                            }`}
+                        />
+                        <TwoLineHeading
+                            title={`Seat Number${seats.length > 1 ? 's' : ''}`}
+                            value={seats
+                                .map((seat) => seat.seatNumber)
+                                .join(', ')}
+                        />
                     </Stack>
                 </Stack>
                 <Box
