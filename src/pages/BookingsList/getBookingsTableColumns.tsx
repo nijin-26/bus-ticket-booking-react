@@ -26,7 +26,6 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
             field: 'passengerCount',
             headerName: t('pax'),
             maxWidth: 50,
-            align: 'right',
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return <p>{params.row.seats.length}</p>;
             },
@@ -35,7 +34,6 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
             field: 'tripId',
             headerName: t('tripId'),
             maxWidth: 80,
-            align: 'right',
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return <p>{params.row.trip.id}</p>;
             },
@@ -43,8 +41,7 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
         {
             field: 'departureDate',
             headerName: t('date'),
-            align: 'right',
-            maxWidth: 110,
+            maxWidth: 150,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 const { formattedDate } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,

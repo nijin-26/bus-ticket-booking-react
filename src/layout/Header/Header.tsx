@@ -27,6 +27,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { paths } from '../../config';
 import { EUserRole } from '../../types';
+import { BackupTable, PeopleAlt } from '@mui/icons-material';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
@@ -144,7 +145,7 @@ export const Header = () => {
                                             }}
                                         >
                                             <ListItemIcon>
-                                                <PermContactCalendarIcon fontSize="small" />
+                                                <PeopleAlt fontSize="small" />
                                             </ListItemIcon>
                                             <Typography
                                                 variant="body2"
@@ -180,7 +181,7 @@ export const Header = () => {
                                             }}
                                         >
                                             <ListItemIcon>
-                                                <PermContactCalendarIcon fontSize="small" />
+                                                <BackupTable fontSize="small" />
                                             </ListItemIcon>
                                             <Typography
                                                 variant="body2"
