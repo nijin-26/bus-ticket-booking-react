@@ -112,14 +112,15 @@ export const TripsListingPage = () => {
             console.error('Error in useEffect:', error);
             setHasError(true);
         });
-    }, [page, t]);
+    }, [page]);
+
     return (
         <TripsListingPageWrapper>
             {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
             <section className="accordions">
                 {tripData.length !== 0
                     ? tripData.map((indData) => (
-                          <TripCardAccordion key={indData.id} data={indData} />
+                          <TripCardAccordion key={indData.id} data={indData} mode='edit'/>
                       ))
                     : !loading &&
                       !hasError && (

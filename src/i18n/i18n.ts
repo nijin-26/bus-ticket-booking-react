@@ -44,7 +44,6 @@ const {
 export const defaultNS = 'ns1';
 
 void i18n.use(initReactI18next).init({
-    debug: true, // for debugging
     resources: {
         en: {
             ns1: enNs1,
@@ -97,6 +96,7 @@ void i18n.use(initReactI18next).init({
         'actionBar',
         'pnrSearch',
         'filterSort',
+        'tripListing',
         'landingPage',
         'auth',
         'logoutConfirmationModal',
