@@ -12,7 +12,6 @@ const {
     actionBar: enActionBar,
     pnrSearch: enPnrSearch,
     filterSort: enFilterSort,
-    auth: enAuth,
     tripDetails: enTripDetails,
     tripListing: enTripListing,
     landingPage: enLandingPage,
