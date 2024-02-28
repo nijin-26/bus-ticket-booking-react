@@ -28,7 +28,7 @@ export const ErrorPage = () => {
             <ErrorHeading>{t('errorPageHeading')}</ErrorHeading>
             <ErrorIllustration src={lost} width={matches ? '400px' : '200px'} />
 
-            <Stack direction="row" gap={2}>
+            <Stack direction="row" gap={2} sx={{ marginTop: '3rem' }}>
                 <Button
                     variant="contained"
                     onClick={goBackHandler}
