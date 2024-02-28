@@ -17,6 +17,11 @@ export interface ITripDetailed extends ITrip {
     seats: ISeat[];
 }
 
+export type ITripDetailedSerializable = {
+    departureTimestamp: string;
+    arrivalTimestamp: string;
+} & Omit<ITripDetailed, 'departureTimestamp' | 'arrivalTimestamp'>;
+
 export interface ISeat {
     seatNumber: number;
     status: ISeatStatus;
@@ -36,4 +41,5 @@ export enum IBusType {
 export enum ISeatStatus {
     BOOKED = 'BOOKED',
     AVAILABLE = 'AVAILABLE',
+    SELECTED = 'SELECTED',
 }

@@ -6,6 +6,8 @@ import languageReducer from './features/languageSlice';
 import busSearchSlice from './features/busSearchSlice';
 
 import authReducer from './features/authSlice';
+import tripDetailsReducer from './features/tripDetailsSlice';
+
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +15,7 @@ export const store = configureStore({
         language: languageReducer,
         busSearch: busSearchSlice,
         auth: authReducer,
+        tripDetails: tripDetailsReducer,
     },
 });
 
