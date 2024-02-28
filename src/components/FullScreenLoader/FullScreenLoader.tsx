@@ -4,7 +4,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 interface IFullScreenLoaderProps {
     open: boolean;
 }
-
 const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
     return (
         
