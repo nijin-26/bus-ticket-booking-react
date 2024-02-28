@@ -1,4 +1,4 @@
-import { IGender, IPassengerSeat, ITicket } from '../../types';
+import { IGender, ITicket } from '../../types';
 import {
     IBookingListingResponse,
     IBookingResponse,
