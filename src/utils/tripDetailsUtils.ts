@@ -1,4 +1,4 @@
-import { ITripDetailed, ITripDetailedSerializable } from "../../../types";
+import { ITripDetailed, ITripDetailedSerializable } from '../types';
 
 export const toSerializable = (
     data: ITripDetailed
@@ -12,7 +12,6 @@ export const toSerializable = (
     };
     return serializedData;
 };
-
 
 export const fromSerializable = (
     serializedData: ITripDetailedSerializable

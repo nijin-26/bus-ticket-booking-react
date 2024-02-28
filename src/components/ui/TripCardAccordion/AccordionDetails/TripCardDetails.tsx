@@ -17,7 +17,7 @@ import { useAppDispatch } from '../../../../app/hooks';
 import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
-import { toSerializable } from '../../../../app/features/utils/tripDetailsHelperFns';
+import { toSerializable } from '../../../../utils/tripDetailsUtils';
 import { TripCardDetailsLoader } from './components/Loader/Loader';
 import { toast } from 'react-toastify';
 
@@ -58,11 +58,9 @@ export const TripCardDetails = ({
                 const response = await getTrip(data.id);
                 if (response) {
                     setTripSpecificData(response);
-                } else {
-                    console.log(t('emptyResponse'));
                 }
             } catch (error) {
-                toast.error(t('errorResponse'));
+                toast.error(t('errorResponse'), { toastId: 'Error Response' });
             } finally {
                 setLoading(false);
             }
@@ -123,7 +121,6 @@ export const TripCardDetails = ({
                     <TripCardDetailsLoader />
                 ) : (
                     <>
-                        {' '}
                         <Stack direction={'column'} spacing={2}>
                             <Stack
                                 direction={{ sm: 'column', md: 'row' }}
@@ -145,9 +142,7 @@ export const TripCardDetails = ({
                                 ) : (
                                     <StyledAlert
                                         action={
-                                            data.seats ? (
-                                                <></>
-                                            ) : (
+                                            !data.seats && (
                                                 <Tooltip
                                                     title="Delete selection"
                                                     arrow
@@ -156,9 +151,9 @@ export const TripCardDetails = ({
                                                         aria-label="delete"
                                                         color="inherit"
                                                         size="small"
-                                                        onClick={() => {
-                                                            clearSelectedSeats();
-                                                        }}
+                                                        onClick={
+                                                            clearSelectedSeats
+                                                        }
                                                     >
                                                         <DeleteForeverIcon fontSize="inherit" />
                                                     </IconButton>
