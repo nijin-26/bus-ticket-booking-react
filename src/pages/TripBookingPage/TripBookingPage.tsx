@@ -38,6 +38,8 @@ export const TripBookingPage = () => {
     };
     const formikRef = useRef<FormikProps<IPassengersInputFromFormik>>(null);
 
+    document.title = 'Bustle - book ticket';
+
     const handleFormSubmit = () => {
         if (formikRef.current?.isValid) {
             setShowDialog(true);

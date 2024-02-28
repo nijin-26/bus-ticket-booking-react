@@ -29,6 +29,9 @@ export const TripsListingPage = () => {
     const matches = useMediaQuery('(min-width:600px)');
     const { t } = useTranslation(['error', 'tripListing']);
     const navigate = useNavigate();
+
+    document.title = 'Bustle - search results';
+
     const fetchTripData = async () => {
         setLoading(true);
         const originId = searchParams.get('originId') as string;
