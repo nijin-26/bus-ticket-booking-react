@@ -4,8 +4,7 @@ import { Stack } from '@mui/material';
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
     borderRadius: '25px',
     backgroundColor: theme.color.cardWhite,
-    width: '100%', // Use 100% width
-    maxWidth: 'calc(100% - 30px)', // Maximum width with margin
+    minWidth: '350px',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
@@ -17,11 +16,11 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         fontSize: theme.font.h2,
         fontWeight: theme.font.fontWeightMedium,
     },
-    '& > :first-child, & > :last-child': {
+    '& > :first-of-type, & > :last-child': {
         padding: '20px',
         backgroundColor: theme.color.primary,
     },
-    '&>:first-child': {
+    '&>:first-of-type': {
         color: theme.color.background,
         borderRadius: '15px 15px 0 0', // Apply the same borderRadius as the parent
     },

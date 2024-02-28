@@ -7,7 +7,6 @@ export const paths = {
     tripDetail: '/trips/:tripId',
     usersListing: '/users',
     tripBooking: '/trips/booking',
-    bookingSucess:'/bookingSuccess'
 };
 
 export const colors = {

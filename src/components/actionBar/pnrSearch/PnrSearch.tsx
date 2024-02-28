@@ -1,19 +1,19 @@
 import { TextField, Stack, InputAdornment } from '@mui/material';
 import { Search } from '@mui/icons-material';
-import { Wrapper, CenteredButton, Overlay } from './PnrSearch.styled';
+import { Wrapper, CenteredButton } from './PnrSearch.styled';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { Ticket } from '../../../pages/Ticket/Ticket';
 import { useSearchParams } from 'react-router-dom';
+import { TicketModal } from '../../Ticket/TicketModal';
 
 export default function PnrSearch() {
     const { t } = useTranslation('pnrSearch');
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const getPnrBySearch = searchParams.get('pnr')??'';
+    const getPnrBySearch = searchParams.get('pnr') ?? '';
     const [pnrValue, setPnrValue] = useState<string>(getPnrBySearch);
     const [showTicket, setShowTicket] = useState<boolean>(false);
-
+    const showTicketStateObject = { showTicket, setShowTicket };
     const searchPnrHandler = () => {
         setSearchParams({ pnr: pnrValue });
         setShowTicket(true);
@@ -44,17 +44,13 @@ export default function PnrSearch() {
                     onClick={searchPnrHandler}
                     sx={{ mt: 2 }}
                     startIcon={<Search />}
-                    disabled={pnrValue==''}
+                    disabled={pnrValue == ''}
                 >
                     {t('findMyTicket')}
                 </CenteredButton>
             </Wrapper>
             {showTicket && (
-                <Overlay onClick={()=>{setShowTicket(false)}}>
-                    <div className="centered-ticket-container">
-                        <Ticket />
-                    </div>
-                </Overlay>
+                <TicketModal showTicketStateObject={showTicketStateObject} />
             )}
         </>
     );
