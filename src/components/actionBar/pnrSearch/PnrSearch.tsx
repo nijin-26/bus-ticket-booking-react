@@ -13,12 +13,15 @@ export default function PnrSearch() {
     const getPnrBySearch = searchParams.get('pnr') ?? '';
     const [pnrValue, setPnrValue] = useState<string>(getPnrBySearch);
     const [showTicket, setShowTicket] = useState<boolean>(getPnrBySearch!='');
-    const showTicketStateObject = { showTicket, setShowTicket };
+    
     const searchPnrHandler = () => {
         setSearchParams({ pnr: pnrValue });
         setShowTicket(true);
     };
 
+    const cancelModal = () => {
+        setShowTicket(false)
+    }
     return (
         <>
             <Wrapper>
@@ -49,9 +52,7 @@ export default function PnrSearch() {
                     {t('findMyTicket')}
                 </CenteredButton>
             </Wrapper>
-            {showTicket && (
-                <TicketModal showTicketStateObject={showTicketStateObject} />
-            )}
+            {showTicket && <TicketModal cancelModal={cancelModal} />}
         </>
     );
 }
