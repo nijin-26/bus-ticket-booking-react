@@ -92,7 +92,7 @@ export const TripCardAccordion = ({
                             <img
                                 src={
                                     data.seatType == ISeatType.SLEEPER ||
-                                    ISeatType.Sleeper
+                                    data.seatType == ISeatType.Sleeper
                                         ? sleeperIcon
                                         : seatIcon
                                 }

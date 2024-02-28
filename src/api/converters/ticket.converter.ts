@@ -1,7 +1,9 @@
-import { IGender, ITicket } from '../../types';
+import { IGender, IPassengerSeat, ITicket } from '../../types';
 import {
     IBookingListingResponse,
     IBookingResponse,
+    IMyBookingsResponse,
+    IPnrResponse,
     ITicketExternal,
 } from '../types/ticket';
 import { getTripFromTripExternal } from './trip.converter';
@@ -44,6 +46,33 @@ export const getTicketsFromBookingListingResponse = (
     }
     const tickets = Array.from(ticketExternal.values()).map((ticket) =>
         getTicketFromTicketExternals(ticket)
+    );
+    return tickets;
+};
+
+export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
+    const pnrNumber = response.bookings[0].pnrNumber;
+    const trip = getTripFromTripExternal(response);
+    const ticket: ITicket = {
+        pnrNumber,
+        trip,
+        seats: response.bookings.map((booking) => ({
+            seatNumber: parseInt(booking.seatNumber),
+            passenger: {
+                fullName: booking.passengerName,
+                age: parseInt(booking.passengerAge),
+                gender: booking.passengerGender as IGender,
+            },
+        })),
+    };
+    return ticket;
+};
+
+export const getTicketsFromMyBookingsResponse = (
+    response: IMyBookingsResponse
+): ITicket[] => {
+    const tickets = response.bookings.map((pnr) =>
+        getTicketFromPnrResponse(pnr)
     );
     return tickets;
 };
