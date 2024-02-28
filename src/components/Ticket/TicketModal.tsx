@@ -9,7 +9,6 @@ import { getTicketByPnr } from '../../api/endpoints/ticket.api';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 
-
 export const TicketModal = ({
     showTicketStateObject,
 }: {
@@ -19,7 +18,7 @@ export const TicketModal = ({
     };
 }) => {
     const location = useLocation();
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const pnrNumber: string | null = searchParams.get('pnr');
     const { t } = useTranslation('error');
 
@@ -35,11 +34,10 @@ export const TicketModal = ({
             try {
                 if (pnrNumber) {
                     const response = await getTicketByPnr(pnrNumber);
-                    console.log(response);
                     setTicketData(response);
                 }
             } catch (error) {
-                toast.error(errorText);
+                toast.error(errorText, { toastId: 'Error toast ' });
             } finally {
                 setLoading(false);
             }
@@ -53,27 +51,28 @@ export const TicketModal = ({
         }
     }, [errorText, pnrNumber, ticketDataFromState]);
 
-    console.log(loading);
     return loading ? (
         <FullScreenLoader open={loading} />
     ) : (
-        <Overlay
-            onClick={() => {
-                showTicketStateObject.setShowTicket(false);
-            }}
-        >
-            <CloseIcon
-                onClick={(e) => {
-                    e.stopPropagation(); // Prevents the overlay's onClick from being triggered
+        ticketData && (
+            <Overlay
+                onClick={() => {
+                    searchParams.delete('pnr');
+                    setSearchParams(searchParams);
                     showTicketStateObject.setShowTicket(false);
                 }}
-                className="close-icon"
-            />
-            {ticketData && (
+            >
+                <CloseIcon
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevents the overlay's onClick from being triggered
+                        showTicketStateObject.setShowTicket(false);
+                    }}
+                    className="close-icon"
+                />
                 <div className="centered-ticket-container">
                     <Ticket data={ticketData} />
                 </div>
-            )}
-        </Overlay>
+            </Overlay>
+        )
     );
 };
