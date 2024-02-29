@@ -18,6 +18,7 @@ import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import bus from '../../assets/bus.svg';
+
 export const TripsListingPage = () => {
     const [tripData, setTripData] = useState<ITrip[]>([]);
     const [resultLength, setResultLength] = useState<number>(0);
