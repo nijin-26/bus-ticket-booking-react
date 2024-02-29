@@ -8,8 +8,8 @@ import { formatDate } from './utils/timeUtils';
 import { useTranslation } from 'react-i18next';
 
 export const Ticket = ({ data }: { data: ITicket }) => {
-    const isSmallScreen = useMediaQuery('(max-width:860px)');
-    const isMediumScreen = useMediaQuery('(max-width:1024px)');
+    const isSmallScreen = useMediaQuery('(max-width:86rem)');
+    const isMediumScreen = useMediaQuery('(max-width:102rem)');
     const { t } = useTranslation('ticket');
 
     const { pnrNumber, trip, seats } = data;

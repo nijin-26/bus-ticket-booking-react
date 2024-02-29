@@ -18,7 +18,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         fontWeight: theme.font.fontWeightMedium,
     },
     '& > :first-of-type, & > :last-child': {
-        padding: '20px',
+        padding: '2rem',
         backgroundColor: colors.deepPurple,
     },
     '&>:first-of-type': {
@@ -26,7 +26,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         borderRadius: '2rem 2rem 0 0',
     },
     '& > :last-child': {
-        padding: '10px',
+        padding: '1rem',
         borderRadius: '0 0 2rem 2rem',
     },
     '.details-row': {
@@ -66,8 +66,8 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         },
     },
     '& .dotted-vertical-div': {
-        width: '1px',
-        border: '1px dashed',
+        width: '0.1rem',
+        border: '0.1rem dashed',
         borderColor: theme.color.textPrimary,
         marginLeft: '3.5rem', // Adjust the margin to position the line between the two columns
     },

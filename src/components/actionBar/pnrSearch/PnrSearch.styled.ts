@@ -21,7 +21,7 @@ export const Overlay = styled('div')(() => ({
         left: '50%',
         width: '100%', // Use 100% width
         transform: 'translate(-50%, -50%)',
-        maxWidth: '1200px',
+        maxWidth: '120rem',
     },
     '.close-icon': {
         position: 'absolute',
