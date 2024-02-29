@@ -2,16 +2,17 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
+import { PasswordInput } from '../../..';
 import getValidationSchema from './validationSchema';
 import signUpSubmitHandler from './submitHandler';
 import { ISignUpForm } from '../../../../types';
 import { useState } from 'react';
 import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 
-type TSignUpProps = {
+interface ISignUpProps {
     closeModal: () => void;
     setSignInAsSelectedTab: () => void;
-};
+}
 
 const initialValues: ISignUpForm = {
     fullName: '',
@@ -21,7 +22,7 @@ const initialValues: ISignUpForm = {
     confirmPassword: '',
 };
 
-const SignUp = ({ closeModal, setSignInAsSelectedTab }: TSignUpProps) => {
+const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
     const { t } = useTranslation('auth');
     const [loading, setLoading] = useState(false);
 
@@ -69,21 +70,22 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: TSignUpProps) => {
                                 required
                             />
 
-                            <Stack direction={'row'} gap={2}>
+                            <Stack
+                                direction={{ xs: 'column', sm: 'row' }}
+                                gap={{ xs: 4, sm: 2 }}
+                            >
                                 <Field
                                     fullWidth
-                                    component={TextField}
+                                    component={PasswordInput}
                                     label={t('password')}
-                                    type="password"
                                     name="password"
                                     required
                                 />
 
                                 <Field
                                     fullWidth
-                                    component={TextField}
+                                    component={PasswordInput}
                                     label={t('confirmPassword')}
-                                    type="password"
                                     name="confirmPassword"
                                     required
                                 />

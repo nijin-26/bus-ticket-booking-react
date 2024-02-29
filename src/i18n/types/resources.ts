@@ -13,11 +13,16 @@ const {
     actionBar,
     pnrSearch,
     filterSort,
+    bookingsList,
+    usersList,
+    tableNoRowsOverlay,
+    tableExportOptions,
     landingPage,
     logoutConfirmationModal,
     error,
     errorPage,
-    ticket
+    ticket,
+    deleteTicketModal,
 } = data;
 
 const resources = {
@@ -30,14 +35,19 @@ const resources = {
     pnrSearch,
     filterSort,
     tripDetails,
+    bookingsList,
     tripListing,
+    usersList,
+    tableExportOptions,
+    tableNoRowsOverlay,
     landingPage,
     auth,
     passengerDetails,
     logoutConfirmationModal,
     error,
     errorPage,
-    ticket
+    deleteTicketModal,
+    ticket,
 } as const;
 
 export default resources;
