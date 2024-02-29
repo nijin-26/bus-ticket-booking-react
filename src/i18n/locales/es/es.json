@@ -6,10 +6,11 @@
         "hello": "hola"
     },
     "headerFooter": {
-        "myBooking": "Mis Reservas",
+        "myBookings": "Mis Reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
         "login": "Iniciar sesión",
-        "logout": "Cerrar sesión"
+        "logout": "Cerrar sesión",
+        "greetingText": "Hola,"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",
