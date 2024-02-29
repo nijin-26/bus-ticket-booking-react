@@ -33,15 +33,15 @@ export const Ticket = ({ data }: { data: ITicket }) => {
             </Box>
             <Stack
                 direction={isSmallScreen ? 'column' : 'row'}
-                spacing={'20px'}
+                spacing={'2rem'}
                 flex={'2'}
                 justifyContent={'space-between'}
             >
                 <Stack
-                    padding={'15px'}
+                    padding={'1.5rem'}
                     direction={'column'}
                     flex={'3'}
-                    spacing={'20px'}
+                    spacing={'2rem'}
                     justifyContent={'space-around'}
                 >
                     <TwoLineHeading
@@ -52,7 +52,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row row-wrap"
-                        spacing={isMediumScreen ? '5px' : '0'}
+                        spacing={isMediumScreen ? '0.5rem' : '0'}
                     >
                         <TwoLineHeading
                             title={t('from')}
@@ -81,7 +81,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row row-wrap"
-                        spacing={isMediumScreen ? '5px' : '0'}
+                        spacing={isMediumScreen ? '0.5rem' : '0'}
                     >
                         <TwoLineHeading
                             title={t('to')}
@@ -110,7 +110,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         direction={isMediumScreen ? 'column' : 'row'}
                         justifyContent={'space-between'}
                         className="details-row row-wrap"
-                        spacing={isMediumScreen ? '5px' : '0'}
+                        spacing={isMediumScreen ? '0.5rem' : '0'}
                     >
                         <TwoLineHeading
                             title={t('pnr')}
@@ -159,7 +159,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                 <Box
                     component="div"
                     className={`rotated-barcode-container ${
-                        isSmallScreen ? 'small-screen' : ''
+                        isSmallScreen && 'small-screen'
                     }`}
                     flex={'1'}
                 >
@@ -171,8 +171,8 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         <div className="dotted-vertical-div"></div>
                         <Stack
                             direction={'column'}
-                            padding={'20px'}
-                            spacing={'10px'}
+                            padding={'2rem'}
+                            spacing={'1rem'}
                             justifyContent={'space-between'}
                             flex={'1.5'}
                         >
