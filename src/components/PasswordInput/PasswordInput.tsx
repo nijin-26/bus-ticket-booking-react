@@ -3,6 +3,11 @@ import { fieldToTextField, TextFieldProps } from 'formik-mui';
 import { TextField, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
+enum EInputType {
+    textInput = 'text',
+    passwordInput = 'password',
+}
+
 export const PasswordInput = (props: TextFieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -13,7 +18,9 @@ export const PasswordInput = (props: TextFieldProps) => {
     return (
         <TextField
             {...fieldToTextField(props)}
-            type={showPassword ? 'text' : 'password'}
+            type={
+                showPassword ? EInputType.textInput : EInputType.passwordInput
+            }
             //to prevent copying text entered in password field
             onCopy={(e) => {
                 e.preventDefault();
