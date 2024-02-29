@@ -39,7 +39,6 @@ const PassengerDetailsForm = ({
         const inputObj = convertFormikDataToApiData(obj);
         try {
             const responseBook = await bookTicket(tripId, inputObj);
-            console.log(responseBook);
             toast.success(t('apiSuccessMessage'));
             navigate(`${paths.ticket}/${responseBook.pnrNumber}`, {
                 state: responseBook,
