@@ -28,6 +28,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { paths } from '../../config';
+import { EUserRole } from '../../types';
+import { BackupTable, PeopleAlt } from '@mui/icons-material';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
@@ -154,8 +156,32 @@ export const Header = () => {
                                             <Divider component="li" />
                                         </>
                                     )}
-                                    {/*TODO : Need to update link after myBookings page is added*/}
-                                    <MenuItem component={NavLink} to="/">
+                                    {user.role === EUserRole.ADMIN ? (
+                                        <MenuItem
+                                            component={NavLink}
+                                            to="/users"
+                                            onClick={() => {
+                                                handleCloseUserMenu();
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <PeopleAlt fontSize="small" />
+                                            </ListItemIcon>
+                                            <Typography
+                                                variant="body2"
+                                                textAlign="center"
+                                            >
+                                                {t('allUsers')}
+                                            </Typography>
+                                        </MenuItem>
+                                    ) : null}
+                                    <MenuItem
+                                        component={NavLink}
+                                        to="/user/bookings"
+                                        onClick={() => {
+                                            handleCloseUserMenu();
+                                        }}
+                                    >
                                         <ListItemIcon>
                                             <PermContactCalendarIcon fontSize="small" />
                                         </ListItemIcon>
@@ -166,6 +192,25 @@ export const Header = () => {
                                             {t('myBookings')}
                                         </Typography>
                                     </MenuItem>
+                                    {user.role === EUserRole.ADMIN ? (
+                                        <MenuItem
+                                            component={NavLink}
+                                            to="/bookings"
+                                            onClick={() => {
+                                                handleCloseUserMenu();
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <BackupTable fontSize="small" />
+                                            </ListItemIcon>
+                                            <Typography
+                                                variant="body2"
+                                                textAlign="center"
+                                            >
+                                                {t('allBookings')}
+                                            </Typography>
+                                        </MenuItem>
+                                    ) : null}
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);

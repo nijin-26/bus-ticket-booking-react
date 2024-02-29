@@ -25,6 +25,7 @@
 -   [86cueubmz] Implemented trip booking page and booking details form UI
 -   [86cukqvct] Implemented API layer
 -   [86cumak5j] Enhanced API layer and added converters for requests and responses
+-   [86cuewzyq] Added user listing page and bookings list page
 -   [86cueujxt] Implemented bus search functionality for action bar and action bar filters, handling query params, corresponding reducer busSearchSlice and toggle animation
 -   [86cuerykj] Implemented authentication functionality, protected routes and role based access controls.
 -   [86cujnfuc] API integration of Trip Listing Page.

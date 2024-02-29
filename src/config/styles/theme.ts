@@ -17,6 +17,7 @@ const fontStyles = {
 };
 
 const lightTheme = {
+    mode: "light",
     primary: colors.deepPurple,
     secondary: colors.lightPurple,
     textPrimary: colors.black,
@@ -29,11 +30,14 @@ const lightTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
+    grey500: colors.grey500,
+    linkColor: colors.linkColor,
     cardWhite: colors.cardWhite,
     green: colors.green,
 };
 
 const darkTheme = {
+    mode: "dark",
     primary: colors.lightPurple,
     secondary: colors.deepPurple,
     background: colors.black,
@@ -46,6 +50,8 @@ const darkTheme = {
     red: colors.red,
     redHover: colors.redHover,
     boxShadowPrimary: colors.boxShadowPrimary,
+    grey500: colors.grey500,
+    linkColor: colors.lightPurple,
     cardWhite: colors.cardWhite,
     green: colors.green,
 };
