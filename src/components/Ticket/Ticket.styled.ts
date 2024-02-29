@@ -3,13 +3,13 @@ import { Stack } from '@mui/material';
 import { colors } from '../../config';
 
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
-    borderRadius: '25px',
+    borderRadius: '2.5rem',
     backgroundColor: theme.color.cardWhite,
-    minWidth: '350px',
+    minWidth: '35rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
-    margin: '20px',
+    margin: '2rem',
     boxShadow:
         '0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1)',
 
@@ -23,11 +23,11 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     },
     '&>:first-of-type': {
         color: colors.white,
-        borderRadius: '15px 15px 0 0', // Apply the same borderRadius as the parent
+        borderRadius: '2rem 2rem 0 0', 
     },
     '& > :last-child': {
         padding: '10px',
-        borderRadius: '0 0 15px 15px', // Apply the same borderRadius as the parent
+        borderRadius: '0 0 2rem 2rem',
     },
     '.details-row': {
         '& > *': {
@@ -67,7 +67,6 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         width: '1px',
         border: '1px dashed',
         borderColor:theme.color.textPrimary,
-        borderRadius: '5px',
-        marginLeft: '35px', // Adjust the margin to position the line between the two columns
+        marginLeft: '3.5rem', // Adjust the margin to position the line between the two columns
     },
 }));

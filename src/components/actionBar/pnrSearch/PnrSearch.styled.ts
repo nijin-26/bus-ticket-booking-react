@@ -2,7 +2,7 @@ import { LoadingButton } from '@mui/lab';
 import styled from '@emotion/styled';
 import { colors } from '../../../config';
 
-export const Overlay = styled('div')(({ theme }) => ({
+export const Overlay = styled('div')(() => ({
     position: 'fixed',
     top: 0,
     left: 0,
