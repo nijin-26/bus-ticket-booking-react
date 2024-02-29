@@ -1,22 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { DatagridListingPage } from '../../components/DatagridListingpage/DatagridListingPage';
-import getBookingsTableColumns from './getBookingsTableColumns';
-import { ITicket } from '../../types';
-import { TicketModal } from '../../components/Ticket/TicketModal';
+import { DatagridListingPage } from '../../../components/DatagridListingpage/DatagridListingPage';
+import getBookingsTableColumns from '../getBookingsTableColumns';
+import { ITicket } from '../../../types';
+import { TicketModal } from '../../../components/Ticket/TicketModal';
 import { useState } from 'react';
-import { IPaginatedData } from '../../api/types/pagination';
-import { ConfirmDialog } from '../../components';
+import { ConfirmDialog } from '../../../components';
+import { getAllBookings } from '../../../api/endpoints/ticket.api';
 
-export const BookingsListPage = ({
-    getData,
-    frontendPagination,
-}: {
-    getData: (
-        page: string,
-        pageSize: string
-    ) => Promise<ITicket[]> | Promise<IPaginatedData<ITicket>>;
-    frontendPagination: boolean;
-}) => {
+export const AllBookingsListPage = () => {
     const { t } = useTranslation(['bookingsList', 'deleteTicketModal']);
 
     const [showTicket, setShowTicket] = useState<boolean>(false);
@@ -42,9 +33,9 @@ export const BookingsListPage = ({
             <DatagridListingPage<ITicket>
                 columns={columns}
                 t={t}
-                getData={getData}
+                getData={getAllBookings}
                 rowId={'pnrNumber'}
-                frontendPagination={frontendPagination}
+                frontendPagination={true}
             />
             {showTicket && <TicketModal cancelModal={cancelModal} />}
             <ConfirmDialog
