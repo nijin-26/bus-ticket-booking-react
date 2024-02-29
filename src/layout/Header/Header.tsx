@@ -17,7 +17,7 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import { toast } from 'react-toastify';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { ConfirmDialog } from '../../components';
 import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -140,9 +140,8 @@ export const Header = () => {
                                     sx={{ mt: '5px' }}
                                 >
                                     {isSmallScreen && (
-                                        <>
+                                        <li>
                                             <Typography
-                                                component="li"
                                                 textAlign="center"
                                                 px={2}
                                                 pb={1.5}
@@ -151,11 +150,14 @@ export const Header = () => {
                                                 {t('greetingText')}{' '}
                                                 {user.fullName}!
                                             </Typography>
-                                            <Divider component="li" />
-                                        </>
+                                            <Divider />
+                                        </li>
                                     )}
                                     {/*TODO : Need to update link after myBookings page is added*/}
-                                    <MenuItem component={NavLink} to="/">
+                                    <MenuItem
+                                        component={RouterLink}
+                                        to={paths.home}
+                                    >
                                         <ListItemIcon>
                                             <PermContactCalendarIcon fontSize="small" />
                                         </ListItemIcon>
