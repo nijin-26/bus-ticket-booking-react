@@ -17,12 +17,23 @@ export default function PnrSearch() {
         navigate(`${paths.ticket}?pnr=${pnrValue}`);
     };
 
+    const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        console.log('im in keydown handler');
+
+        if (event.key === 'Enter' && pnrValue) {
+            console.log('im in if condition');
+
+            searchPnrHandler();
+        }
+    };
+
     return (
         <Wrapper>
             <Stack spacing={5} direction="row">
                 <TextField
                     label={t('searchForTicketByPNR')}
                     value={pnrValue}
+                    fullWidth
                     onChange={(e) => {
                         setPnrValue(e.target.value);
                     }}
@@ -33,7 +44,7 @@ export default function PnrSearch() {
                             </InputAdornment>
                         ),
                     }}
-                    fullWidth
+                    onKeyDown={keyDownHandler}
                 />
             </Stack>
             <CenteredButton
