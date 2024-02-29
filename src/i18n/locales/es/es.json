@@ -123,6 +123,7 @@
                 "label": "Mujer"
             }
         ],
+
         "checkout": "Pagar",
         "fullNameRequired": "El Nombre Completo es un campo requerido",
         "ageRequired": "La Edad es un campo requerido",
@@ -151,5 +152,11 @@
         "dialogContent": "¿Está seguro de que desea confirmar?",
         "checkout": "Finalizar compra",
         "absentStateError": "No se pudo recuperar la información de la reserva"
+    },
+
+    "errorPage": {
+        "errorPageHeading": "¡Vaya! Parece que no podemos encontrar la página que estás buscando.",
+        "goBack": "Volver",
+        "goHome": "Ir a inicio"
     }
 }

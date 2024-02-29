@@ -31,3 +31,4 @@
 -   [86cuewzt9] API integration of Trip Details Section.
 
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
+-   [86cupmdug] Added error page, illustration and navigation buttons

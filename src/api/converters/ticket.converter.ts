@@ -2,6 +2,7 @@ import { IGender, ITicket } from '../../types';
 import {
     IBookingListingResponse,
     IBookingResponse,
+    IMyBookingsResponse,
     IPnrResponse,
     ITicketExternal,
 } from '../types/ticket';
@@ -65,4 +66,13 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
         })),
     };
     return ticket;
+};
+
+export const getTicketsFromMyBookingsResponse = (
+    response: IMyBookingsResponse
+): ITicket[] => {
+    const tickets = response.bookings.map((pnr) =>
+        getTicketFromPnrResponse(pnr)
+    );
+    return tickets;
 };
