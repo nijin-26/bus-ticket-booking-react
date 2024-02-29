@@ -59,6 +59,8 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         },
     },
     '& .rotated-barcode-container.small-screen': {
+        marginBottom: '1rem',
+
         '& > svg': {
             rotate: '0deg', // Keep the original angle on small screens
         },
