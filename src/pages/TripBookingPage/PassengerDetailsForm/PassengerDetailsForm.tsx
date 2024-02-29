@@ -53,7 +53,8 @@ const PassengerDetailsForm = ({
                     toast.error(t('seatAlreadyBookedErrorMessage'));
                     navigate(paths.home, { replace: true });
                 }
-            } else toast.error(t('apiErrorMessage'));
+            } else
+                toast.error(t('apiErrorMessage'), { toastId: 'apiErrorMsg' });
         } finally {
             loaderFun(false);
         }
