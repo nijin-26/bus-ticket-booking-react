@@ -1,5 +1,6 @@
 import { LoadingButton } from '@mui/lab';
 import styled from '@emotion/styled';
+import { colors } from '../../../config';
 
 export const Overlay = styled('div')(({ theme }) => ({
     position: 'fixed',
@@ -27,7 +28,7 @@ export const Overlay = styled('div')(({ theme }) => ({
         top: '10%',
         right: '5%',
         cursor: 'pointer',
-        color: theme.color.background,
+        color: colors.white,
     },
 }));
 
