@@ -11,6 +11,7 @@ import {
     IBookingListingResponse,
     IBookingRequest,
     IBookingResponse,
+    ICancelBookingResponse,
     IMyBookingsResponse,
     IPnrResponse,
 } from '../types/ticket';
@@ -59,4 +60,13 @@ export const getTicketByPnr = async (pnr: string): Promise<ITicket> => {
     );
     const ticket = getTicketFromPnrResponse(response);
     return ticket;
+};
+
+export const cancelBooking = async (
+    bookingId: string
+): Promise<ICancelBookingResponse> => {
+    const res: ICancelBookingResponse = await API.post(
+        `${apiRoutes.cancelBooking}/${bookingId}`
+    );
+    return res;
 };
