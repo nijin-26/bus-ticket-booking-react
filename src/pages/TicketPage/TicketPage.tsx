@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Ticket } from '../../components';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { Home } from '@mui/icons-material';
@@ -8,7 +8,6 @@ import { paths } from '../../config';
 import { useGetTicketData } from '../../components/Ticket/utils/useGetTicketData';
 
 export const TicketPage = () => {
-    const { pnrNumber } = useParams();
     const navigate = useNavigate();
 
     const { t } = useTranslation('errorPage');
@@ -17,7 +16,7 @@ export const TicketPage = () => {
         navigate(paths.home);
     };
 
-    const { ticketData, loading } = useGetTicketData(pnrNumber);
+    const { ticketData, loading } = useGetTicketData();
 
     if (loading) {
         return <FullScreenLoader open={loading} />;
