@@ -58,7 +58,8 @@
         "to": "To",
         "date": "Date",
         "passengers": "Passengers",
-        "explore": "Explore"
+        "explore": "Explore",
+        "locationError": "Oops. We are having trouble getting locations"
     },
     "pnrSearch": {
         "searchForTicketByPNR": "Search for your ticket by PNR number",

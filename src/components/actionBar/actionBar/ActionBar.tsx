@@ -81,7 +81,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
 
     useEffect(() => {
         getLocOptions().catch(() => {
-            toast.error('Failed to get locations');
+            toast.error(t('locationError'));
         });
     }, []);
 

@@ -58,7 +58,8 @@
         "to": "Hasta",
         "date": "Fecha",
         "passengers": "Pasajeros",
-        "explore": "Explorar"
+        "explore": "Explorar",
+        "locationError": "Ups. Estamos teniendo problemas para conseguir ubicaciones."
     },
     "pnrSearch": {
         "searchForTicketByPNR": "Buscar su boleto por número PNR",
