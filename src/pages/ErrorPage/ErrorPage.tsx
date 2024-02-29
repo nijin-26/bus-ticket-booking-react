@@ -1,4 +1,3 @@
-import { ErrorPageWrapper } from './ErrorPage.styled';
 import { Button, Stack, useMediaQuery } from '@mui/material';
 import {
     ErrorHeading,
