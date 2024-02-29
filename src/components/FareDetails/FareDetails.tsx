@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 interface IFareDetailsProps {
@@ -14,18 +14,21 @@ export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
     } x ₹${farePerSeat} = ₹${totalFare}`;
 
     const { font } = useTheme();
+    const isMinWidth = useMediaQuery('(min-width:600px)');
 
     return (
         <Stack direction={'row'} spacing={1}>
             <Typography
                 variant="body1"
-                fontSize={font.h2}
+                fontSize={isMinWidth ? font.h2 : font.md}
                 fontWeight={font.fontWeightMedium}
             >
                 {t('checkoutTitle')}
                 {'  '}:
             </Typography>
-            <Typography fontSize={font.h2}>{totalFareInString}</Typography>
+            <Typography fontSize={isMinWidth ? font.h2 : font.md}>
+                {totalFareInString}
+            </Typography>
         </Stack>
     );
 };

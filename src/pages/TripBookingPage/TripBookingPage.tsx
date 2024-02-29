@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
 import { ConfirmDialog, TripCardAccordion } from '../../components';
@@ -20,6 +20,7 @@ import { fromSerializable } from '../../utils/tripDetailsUtils';
 export const TripBookingPage = () => {
     const { t } = useTranslation('bookingPageConfirmation');
     const navigate = useNavigate();
+    const isMinWidth = useMediaQuery('(min-width:600px)');
 
     const selectTripDetails = (state: RootState) => state.tripDetails;
     const selectSerializedTripDetails = createSelector(
@@ -55,20 +56,14 @@ export const TripBookingPage = () => {
     return (
         <>
             <Stack direction="row" alignItems="center" mt={4} mb={3} gap="2rem">
-                <Typography component="h1" variant="h4">
+                <Typography component="h1" variant={isMinWidth ? 'h4' : 'h6'}>
                     {state.origin.name}
                 </Typography>
                 <LongArrow width="8rem" height="100%" />
-                <Typography component="h1" variant="h4">
+                <Typography component="h1" variant={isMinWidth ? 'h4' : 'h6'}>
                     {state.destination.name}
                 </Typography>
             </Stack>
-            {/* <TripCardAccordion
-                defaultExpanded={true}
-                data={state}
-                mode="view"
-            />
-            <PassengerDetailsForm /> */}
             <TripCardAccordion
                 defaultExpanded={true}
                 data={state}

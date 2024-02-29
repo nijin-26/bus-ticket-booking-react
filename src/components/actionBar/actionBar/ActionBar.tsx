@@ -262,7 +262,6 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
                 <Grid item xs={12} md={3}>
                     <DatePicker
                         label={t('date')}
-                        disablePast
                         value={tripDate}
                         minDate={tomorrow}
                         slots={{

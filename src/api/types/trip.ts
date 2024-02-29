@@ -63,10 +63,6 @@ export enum ISortOrder {
     DESC = 'DESC',
 }
 
-// export interface ITripsQueryResponse {
-//     trips: ITrip[];
-// }
-
 export interface ITripDetailRequest {
     id: string;
 }
@@ -98,13 +94,3 @@ export enum ISeatStatus {
     AVAILABLE = 'AVAILABLE',
     SELECTED = 'SELECTED',
 }
-
-// export enum ISeatType {
-//     SLEEPER = 'SLEEPER',
-//     SEATER = 'SEATER',
-// }
-
-// export enum IBusType {
-//     AC = 'AC',
-//     NON_AC = 'NON_AC',
-// }
