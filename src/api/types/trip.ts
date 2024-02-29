@@ -10,7 +10,7 @@ export interface ITripExternal {
     durationInHours: string;
     busId: string;
     busType: IBusType;
-    seatType: ISeatType;
+    seatType: ISeatTypeExternal;
     totalSeats: number;
     farePerSeat: string;
     origin: ILocationExternal;
@@ -61,4 +61,10 @@ export enum ITripsSortKey {
 export enum ISortOrder {
     ASC = 'ASC',
     DESC = 'DESC',
+}
+
+export enum ISeatTypeExternal {
+    SLEEPER = 'SLEEPER',
+    SEATER = 'SEATER',
+    Sleeper = 'Sleeper',
 }
