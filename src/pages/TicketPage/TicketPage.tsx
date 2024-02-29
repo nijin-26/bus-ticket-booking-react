@@ -1,50 +1,40 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { getTicketByPnr } from '../../api/endpoints/ticket.api';
-import { ITicket } from '../../types';
+import { useNavigate } from 'react-router-dom';
 import { Ticket } from '../../components';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
+import { Home } from '@mui/icons-material';
+import { Button } from '@mui/material';
+import { paths } from '../../config';
+import { useGetTicketData } from '../../components/Ticket/utils/useGetTicketData';
 
 export const TicketPage = () => {
-    const location = useLocation();
-    const { pnrNumber } = useParams();
-    const { t } = useTranslation('error');
+    const navigate = useNavigate();
 
-    const ticketDataFromState = location.state as ITicket | null;
+    const { t } = useTranslation('errorPage');
 
-    const [ticketData, setTicketData] = useState<ITicket>();
-    const [loading, setLoading] = useState<boolean>(true);
+    const goHomeHandler = () => {
+        navigate(paths.home);
+    };
 
-    const errorText = t('unexpected');
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                if (pnrNumber) {
-                    const response = await getTicketByPnr(pnrNumber);
-                    console.log(response);
-                    setTicketData(response);
-                }
-            } catch (error) {
-                toast.error(errorText);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (!ticketDataFromState) {
-            void fetchData();
-        } else {
-            setTicketData(ticketDataFromState);
-            setLoading(false);
-        }
-    }, [errorText, pnrNumber, ticketDataFromState]);
+    const { ticketData, loading } = useGetTicketData();
 
     if (loading) {
         return <FullScreenLoader open={loading} />;
     }
 
-    return ticketData && <Ticket data={ticketData} />;
+    return (
+        ticketData && (
+            <>
+                <Button
+                    variant="contained"
+                    onClick={goHomeHandler}
+                    startIcon={<Home />}
+                    sx={{ marginTop: '10px' }}
+                >
+                    {t('goHome')}
+                </Button>
+                <Ticket data={ticketData} />
+            </>
+        )
+    );
 };

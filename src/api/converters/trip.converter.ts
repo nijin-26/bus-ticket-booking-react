@@ -1,5 +1,9 @@
-import { ISeatStatus, ITrip, ITripDetailed } from '../../types';
-import { ITripDetailedExternal, ITripExternal } from '../types/trip';
+import { ISeatStatus, ISeatType, ITrip, ITripDetailed } from '../../types';
+import {
+    ISeatTypeExternal,
+    ITripDetailedExternal,
+    ITripExternal,
+} from '../types/trip';
 import { getLocationFromLocationExternal } from './location.converter';
 
 export const getTripFromTripExternal = (tripExternal: ITripExternal): ITrip => {
@@ -12,10 +16,22 @@ export const getTripFromTripExternal = (tripExternal: ITripExternal): ITrip => {
         farePerSeat: parseFloat(tripExternal.farePerSeat),
         totalSeats: 46,
         busType: tripExternal.busType,
-        seatType: tripExternal.seatType,
+        seatType: getSeatTypeFromSeatTypeExternal(tripExternal.seatType),
         availableSeats: tripExternal.totalSeats,
     };
     return trip;
+};
+
+export const getSeatTypeFromSeatTypeExternal = (
+    seatTypeExternal: ISeatTypeExternal
+): ISeatType => {
+    switch (seatTypeExternal) {
+        case ISeatTypeExternal.Sleeper:
+        case ISeatTypeExternal.SLEEPER:
+            return ISeatType.SLEEPER;
+        case ISeatTypeExternal.SEATER:
+            return ISeatType.SEATER;
+    }
 };
 
 export const getTripDetailedFromTripDetailedExternal = (

@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import storage from '../../utils/storageUtils';
+import { storage } from '../../utils';
 
 export const onRequest = (config: AxiosRequestConfig) => {
     const token = storage.getItem<string>('accessToken');

@@ -1,34 +1,46 @@
 import styled from '@emotion/styled';
 import { Stack } from '@mui/material';
+import { colors } from '../../config';
 
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
-    borderRadius: '25px',
+    borderRadius: '2.5rem',
     backgroundColor: theme.color.cardWhite,
-    minWidth: 350,
+    minWidth: '35rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
-    margin: '20px',
-    boxShadow:
-        '0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1)',
+    margin: '2rem',
+    boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
+    cursor: 'auto',
 
     h1: {
         fontSize: theme.font.h2,
         fontWeight: theme.font.fontWeightMedium,
     },
     '& > :first-of-type, & > :last-child': {
-        padding: '20px',
-        backgroundColor: theme.color.primary,
+        padding: '2rem',
+        backgroundColor: colors.deepPurple,
     },
     '&>:first-of-type': {
-        color: theme.color.background,
-        borderRadius: '15px 15px 0 0', // Apply the same borderRadius as the parent
+        color: colors.white,
+        borderRadius: '2rem 2rem 0 0',
     },
     '& > :last-child': {
-        padding: '10px',
-        borderRadius: '0 0 15px 15px', // Apply the same borderRadius as the parent
+        padding: '1rem',
+        borderRadius: '0 0 2rem 2rem',
     },
     '.details-row': {
+        '& > *': {
+            flex: 1,
+        },
+    },
+    '.row-wrap': {
+        flexWrap: 'wrap',
+    },
+    '.full-row-wrap': {
+        '&>:first-of-type': {
+            flex: '2',
+        },
         '& > *': {
             flex: 1,
         },
@@ -47,14 +59,16 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         },
     },
     '& .rotated-barcode-container.small-screen': {
+        marginBottom: '1rem',
+
         '& > svg': {
             rotate: '0deg', // Keep the original angle on small screens
         },
     },
     '& .dotted-vertical-div': {
-        width: '1px', // Set width to create a vertical line
-        border: '1px dashed black',
-        borderRadius: '5px',
-        marginLeft: '35px', // Adjust the margin to position the line between the two columns
+        width: '0.1rem',
+        border: '0.1rem dashed',
+        borderColor: theme.color.textPrimary,
+        marginLeft: '3.5rem', // Adjust the margin to position the line between the two columns
     },
 }));

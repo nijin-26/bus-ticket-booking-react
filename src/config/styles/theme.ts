@@ -17,6 +17,7 @@ const fontStyles = {
 };
 
 const lightTheme = {
+    mode: 'light',
     primary: colors.deepPurple,
     secondary: colors.lightPurple,
     textPrimary: colors.black,
@@ -28,12 +29,15 @@ const lightTheme = {
     busLayoutBg: colors.busLayoutBg,
     red: colors.red,
     redHover: colors.redHover,
-    boxShadowPrimary: colors.boxShadowPrimary,
+    boxShadowPrimary: colors.boxShadowLight,
     cardWhite: colors.cardWhite,
+    grey500: colors.grey500,
+    linkColor: colors.linkColor,
     green: colors.green,
 };
 
 const darkTheme = {
+    mode: 'dark',
     primary: colors.lightPurple,
     secondary: colors.deepPurple,
     background: colors.black,
@@ -45,8 +49,10 @@ const darkTheme = {
     busLayoutBg: colors.darkBusLayoutBg,
     red: colors.red,
     redHover: colors.redHover,
-    boxShadowPrimary: colors.boxShadowPrimary,
-    cardWhite: colors.cardWhite,
+    boxShadowPrimary: colors.boxShadowDark,
+    cardWhite: colors.black,
+    grey500: colors.grey500,
+    linkColor: colors.darkLinkColor,
     green: colors.green,
 };
 

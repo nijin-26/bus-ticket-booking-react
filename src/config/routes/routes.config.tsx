@@ -3,10 +3,12 @@ import { LandingPage, TripsListingPage, TripBookingPage } from '../../pages';
 import { ErrorPage } from '../../pages/ErrorPage/ErrorPage';
 import { Layout } from '../../layout';
 import { paths } from '..';
-import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
+import { BookingsListPage } from '../../pages/BookingsListPage/BookingsListPage';
+import { UsersListingPage } from '../../pages/UserListingPage/UsersListingPage';
 import { RequireAuth } from '../../components/RequireAuth/RequireAuth';
 import { EUserRole } from '../../types';
 import { TicketPage } from '../../pages/TicketPage/TicketPage';
+import { getAllBookings, getMyBookings } from '../../api/endpoints/ticket.api';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -28,6 +30,16 @@ export const routesConfig: RouteObject[] = [
                         path: paths.usersListing,
                         element: <UsersListingPage />,
                     },
+                    {
+                        path: paths.bookings,
+                        element: (
+                            <BookingsListPage
+                                key="allBookings"
+                                getData={getAllBookings}
+                                frontendPagination={true}
+                            />
+                        ),
+                    },
                 ],
             },
             {
@@ -40,6 +52,16 @@ export const routesConfig: RouteObject[] = [
                     {
                         path: paths.tripBooking,
                         element: <TripBookingPage />,
+                    },
+                    {
+                        path: paths.myBookings,
+                        element: (
+                            <BookingsListPage
+                                key="myBookings"
+                                getData={getMyBookings}
+                                frontendPagination={false}
+                            />
+                        ),
                     },
                 ],
             },

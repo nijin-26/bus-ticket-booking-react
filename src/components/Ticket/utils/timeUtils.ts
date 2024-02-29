@@ -1,12 +1,15 @@
 export const formatDate = (date: Date, short: boolean = false) => {
-    const timeOptions: Intl.DateTimeFormatOptions = {
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-    };
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    const amOrPm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours =
+        hours % 12 === 0 ? 12 : hours < 12 ? `0${hours}` : hours % 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
     const dateOptions: Intl.DateTimeFormatOptions = {
         month: 'short',
-        day: '2-digit',
+        day: 'numeric',
     };
 
     const formattedDateTime = date.toLocaleString(
@@ -16,6 +19,6 @@ export const formatDate = (date: Date, short: boolean = false) => {
 
     return {
         formattedDate: short ? formattedDateTime : date.toLocaleDateString(),
-        formattedTime: date.toLocaleTimeString(undefined, timeOptions),
+        formattedTime: `${formattedHours}:${formattedMinutes} ${amOrPm}`,
     };
 };

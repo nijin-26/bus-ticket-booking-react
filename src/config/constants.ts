@@ -5,9 +5,10 @@ export const paths = {
     home: '/',
     tripsListing: '/trips',
     tripDetail: '/trips/:tripId',
+    bookings: '/bookings',
     usersListing: '/users',
     tripBooking: '/trips/booking',
-    // ticket: '/ticket/:pnrNumber',
+    myBookings: '/user/bookings',
     ticket: '/ticket',
 };
 
@@ -22,13 +23,16 @@ export const colors = {
     bookedSeat: '#bdbdbd',
     darkBookedSeat: '#8a8a8a',
     seat: '#fcfcfc',
-    darkSeat: '#d2d2d2',
-    busLayoutBg: '#eeeeee',
+    darkSeat: '#e1dede',
+    busLayoutBg: '#E8DEF8',
     darkBusLayoutBg: '#575757',
     red: '#D84E55',
-    boxShadowPrimary: 'rgba(0,0,0,0.26)',
+    boxShadowLight: 'rgba(0,0,0,0.26)',
+    boxShadowDark: 'rgba(0,0,0,1)',
     green: '#56A55C',
     redHover: '#AB3840',
+    linkColor: '#0000EE',
+    darkLinkColor: '#B596E8',
 };
 
 // api format: id, name => mui format: id, label

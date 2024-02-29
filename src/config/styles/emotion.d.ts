@@ -17,6 +17,7 @@ declare module '@emotion/react' {
         };
 
         color: {
+            mode: string;
             primary: string;
             secondary: string;
             textPrimary: string;
@@ -29,6 +30,8 @@ declare module '@emotion/react' {
             red: string;
             redHover: string;
             boxShadowPrimary: string;
+            grey500: string;
+            linkColor: string;
             cardWhite: string;
             green:string
         };
