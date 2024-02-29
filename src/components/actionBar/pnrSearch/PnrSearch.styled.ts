@@ -12,7 +12,7 @@ export const Overlay = styled('div')(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 5,
+    zIndex: 1,
     cursor: 'pointer',
 
     '.centered-ticket-container ': {
@@ -21,7 +21,7 @@ export const Overlay = styled('div')(() => ({
         left: '50%',
         width: '100%', // Use 100% width
         transform: 'translate(-50%, -50%)',
-        maxWidth: '1200px',
+        maxWidth: '120rem',
     },
     '.close-icon': {
         position: 'absolute',

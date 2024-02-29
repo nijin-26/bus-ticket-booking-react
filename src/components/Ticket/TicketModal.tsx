@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const pnrNumber: string | null = searchParams.get('pnr');
+    const pnrNumber = searchParams.get('pnr');
 
     const { ticketData, loading } = useGetTicketData();
 
@@ -17,12 +17,14 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
     return (
         ticketData && (
             <Overlay
-                onClick={() => {
-                    if (pnrNumber) {
-                        searchParams.delete('pnr');
-                        setSearchParams(searchParams);
+                onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                        if (pnrNumber) {
+                            searchParams.delete('pnr');
+                            setSearchParams(searchParams);
+                        }
+                        cancelModal();
                     }
-                    cancelModal();
                 }}
             >
                 <CloseIcon
