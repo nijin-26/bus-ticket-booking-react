@@ -5,10 +5,12 @@ import Barcode from 'react-barcode';
 import { TwoLineHeading } from './components/TwoLineHeading';
 import { ITicket } from '../../types';
 import { formatDate } from './utils/timeUtils';
+import { useTranslation } from 'react-i18next';
 
 export const Ticket = ({ data }: { data: ITicket }) => {
     const isSmallScreen = useMediaQuery('(max-width:860px)');
     const isMediumScreen = useMediaQuery('(max-width:1024px)');
+    const { t } = useTranslation('ticket');
 
     const { pnrNumber, trip, seats } = data;
     const { departureTimestamp, arrivalTimestamp } = trip;
@@ -25,7 +27,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         className="app-logo"
                     />
                     <Typography component={'h1'} variant="h2">
-                        TICKET
+                        {t('ticket')}
                     </Typography>
                 </Stack>
             </Box>
@@ -43,7 +45,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                     justifyContent={'space-around'}
                 >
                     <TwoLineHeading
-                        title="Passenger Name"
+                        title={t('passengerName')}
                         value={seats[0].passenger.fullName}
                     />
                     <Stack
@@ -53,7 +55,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading
-                            title="FROM"
+                            title={t('from')}
                             value={`${trip.origin.name} - ${trip.origin.shortCode}`}
                         />
                         <Stack
@@ -62,13 +64,13 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                             className="row-wrap"
                         >
                             <TwoLineHeading
-                                title="Date"
+                                title={t('date')}
                                 value={
                                     formatDate(departureTimestamp).formattedDate
                                 }
                             />
                             <TwoLineHeading
-                                title="Time"
+                                title={t('time')}
                                 value={
                                     formatDate(departureTimestamp).formattedTime
                                 }
@@ -82,7 +84,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading
-                            title="To"
+                            title={t('to')}
                             value={`${trip.destination.name} - ${trip.destination.shortCode}`}
                         />
                         <Stack
@@ -91,13 +93,13 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                             className="row-wrap"
                         >
                             <TwoLineHeading
-                                title="Date"
+                                title={t('date')}
                                 value={
                                     formatDate(arrivalTimestamp).formattedDate
                                 }
                             />
                             <TwoLineHeading
-                                title="Time"
+                                title={t('time')}
                                 value={
                                     formatDate(arrivalTimestamp).formattedTime
                                 }
@@ -111,7 +113,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         spacing={isMediumScreen ? '5px' : '0'}
                     >
                         <TwoLineHeading
-                            title="PNR"
+                            title={t('pnr')}
                             value={pnrNumber.toUpperCase()}
                         />
                         <Stack
@@ -120,7 +122,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                             className="row-wrap"
                         >
                             <TwoLineHeading
-                                title="Passenger Count"
+                                title={t('passengerCount')}
                                 value={`${
                                     adults.length > 0
                                         ? `${adults.length} ${
@@ -144,7 +146,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                                 }`}
                             />
                             <TwoLineHeading
-                                title={`Seat Number${
+                                title={`${t('seatNumber')}${
                                     seats.length > 1 ? 's' : ''
                                 }`}
                                 value={seats
@@ -175,7 +177,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                             flex={'1.5'}
                         >
                             <TwoLineHeading
-                                title="Passenger Name"
+                                title={t('passengerName')}
                                 value={seats[0].passenger.fullName}
                             />
                             <Stack
@@ -183,16 +185,16 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                                 justifyContent={'space-between'}
                             >
                                 <TwoLineHeading
-                                    title="FROM"
+                                    title={t('from')}
                                     value={trip.origin.shortCode}
                                 />
                                 <TwoLineHeading
-                                    title="To"
+                                    title={t('to')}
                                     value={trip.destination.shortCode}
                                 />
                             </Stack>
                             <TwoLineHeading
-                                title="Departure"
+                                title={t('departure')}
                                 value={formatDate(
                                     departureTimestamp,
                                     true
@@ -202,7 +204,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                                 )}
                             />
                             <TwoLineHeading
-                                title="Arrival"
+                                title={t('arrival')}
                                 value={formatDate(
                                     arrivalTimestamp,
                                     true
@@ -212,7 +214,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                                 )}
                             />
                             <TwoLineHeading
-                                title={`Seat Number${
+                                title={`${t('seatNumber')}${
                                     seats.length > 1 ? 's' : ''
                                 }`}
                                 value={seats

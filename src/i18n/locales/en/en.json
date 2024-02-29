@@ -149,5 +149,18 @@
         "errorPageHeading": "Oops! We can't seem to find the page you are looking for.",
         "goBack": "Go back",
         "goHome": "Go home"
+    },
+    "ticket":{
+        "ticket":"TICKET",
+        "passengerName":"Passenger Name",
+        "from":"From",
+        "to":"To",
+        "date":"Date",
+        "time":"Time",
+        "pnr":"PNR",
+        "passengerCount":"Passenger Count",
+        "seatNumber":"Seat Number",
+        "departure":"Departure",
+        "arrival":"Arrival"
     }
 }
