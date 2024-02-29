@@ -22,6 +22,8 @@ const {
     passengerDetails: enPassengerDetails,
     logoutConfirmationModal: enLogoutConfirmationModal,
     error: enError,
+    errorPage: enErrorPage,
+    ticket: enTicket,
 } = en;
 
 const {
@@ -43,6 +45,8 @@ const {
     passengerDetails: esPassengerDetails,
     logoutConfirmationModal: esLogoutConfirmationModal,
     error: esError,
+    errorPage: esErrorPage,
+    ticket: esTicket,
 } = es;
 
 export const defaultNS = 'ns1';
@@ -68,6 +72,8 @@ void i18n.use(initReactI18next).init({
             passengerDetails: enPassengerDetails,
             logoutConfirmationModal: enLogoutConfirmationModal,
             error: enError,
+            errorPage: enErrorPage,
+            ticket: enTicket,
         },
         es: {
             ns1: esNs1,
@@ -88,6 +94,8 @@ void i18n.use(initReactI18next).init({
             passengerDetails: esPassengerDetails,
             logoutConfirmationModal: esLogoutConfirmationModal,
             error: esError,
+            errorPage: esErrorPage,
+            ticket: esTicket,
         },
     },
     lng: 'en',
@@ -112,6 +120,8 @@ void i18n.use(initReactI18next).init({
         'auth',
         'tableExportOptions',
         'logoutConfirmationModal',
+        'errorPage',
+        'ticket',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

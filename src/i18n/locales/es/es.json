@@ -160,6 +160,7 @@
                 "label": "Otro"
             }
         ],
+
         "checkout": "Pagar",
         "fullNameRequired": "El Nombre Completo es un campo requerido",
         "ageRequired": "La Edad es un campo requerido",
@@ -177,5 +178,24 @@
     },
     "error": {
         "unexpected": "Se ha producido un error inesperado."
+    },
+
+    "errorPage": {
+        "errorPageHeading": "¡Vaya! Parece que no podemos encontrar la página que estás buscando.",
+        "goBack": "Volver",
+        "goHome": "Ir a inicio"
+    },
+    "ticket": {
+        "ticket":"BOLETO",
+        "passengerName": "Nombre del pasajero",
+        "from": "De",
+        "to": "destino",
+        "date": "fecha",
+        "time": "tiempo",
+        "pnr": "PNR",
+        "passengerCount": "Conteo de pasajeros",
+        "seatNumber": "Número de asiento",
+        "departure": "Partida",
+        "arrival": "Llegada"
     }
 }

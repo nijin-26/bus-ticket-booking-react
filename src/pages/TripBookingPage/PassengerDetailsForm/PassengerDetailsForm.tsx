@@ -7,6 +7,9 @@ import { FareDetails } from '../../../components/FareDetails/FareDetails';
 import { StyledButton } from '../../../components/Button/Button.styled';
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../config';
+import { IBusType, IGender, ISeatType, ITicket } from '../../../types';
 
 interface IPassengerDetails {
     passengers: {
@@ -23,6 +26,7 @@ const PassengerDetailsForm = () => {
 
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
     const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Incrementing languageChangeKey to force re-render when language changes
@@ -40,6 +44,174 @@ const PassengerDetailsForm = () => {
             age: '',
             gender: '',
         }));
+    };
+
+    const handleCheckout = () => {
+        const iticketObj: ITicket = {
+            pnrNumber: '976xq5',
+            trip: {
+                id: '97',
+                origin: {
+                    id: '8',
+                    name: 'Palakkad',
+                    shortCode: 'PLK',
+                },
+                destination: {
+                    id: '9',
+                    name: 'Pathanamthitta',
+                    shortCode: 'PTA',
+                },
+                departureTimestamp: new Date('1970-01-01T00:00:00.000Z'),
+                arrivalTimestamp: new Date('1970-01-01T00:00:00.000Z'),
+                farePerSeat: 1100,
+                totalSeats: 46,
+                busType: IBusType.AC,
+                seatType: ISeatType.SEATER,
+                availableSeats: 45,
+            },
+            seats: [
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 23,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 7,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 6,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 10,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 1,
+                    passenger: {
+                        fullName: 'Akshay Krishna',
+                        age: 5,
+                        gender: IGender.MALE,
+                    },
+                },
+            ],
+        };
+
+        navigate(paths.ticket.replace(':pnrNumber', iticketObj.pnrNumber), {
+            state: iticketObj,
+        });
     };
 
     return (
@@ -151,7 +323,11 @@ const PassengerDetailsForm = () => {
                             <FareDetails noOfSeats={3} farePerSeat={1200} />
                         </Grid>
                         <Grid item xs={12} sm={3} ml="auto">
-                            <StyledButton type="submit" fullWidth>
+                            <StyledButton
+                                type="submit"
+                                fullWidth
+                                onClick={handleCheckout}
+                            >
                                 {t('checkout')}
                             </StyledButton>
                         </Grid>

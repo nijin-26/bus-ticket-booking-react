@@ -1,10 +1,11 @@
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList } from '@mui/lab';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ActionBar from '../actionBar/ActionBar';
 import PnrSearch from '../pnrSearch/PnrSearch';
 import { Panel, WrapperPaper } from './ActionBarTab.styled';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -15,10 +16,19 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
 }: IActionBarProps) => {
     const { t } = useTranslation('actionBarTab');
     const [value, setValue] = useState('1');
+    const [searchParams] = useSearchParams();
 
     const changeTabHandler = (_: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
+
+    useEffect(() => {
+        const pnr = searchParams.get('pnr');
+
+        if (pnr) {
+            setValue('2');
+        }
+    }, [searchParams]);
 
     return (
         <WrapperPaper sx={{ px: 2 }} elevation={4}>
