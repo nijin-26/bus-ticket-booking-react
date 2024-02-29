@@ -15,7 +15,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppSelector } from './app/hooks';
-import { getMyBookings } from './api/endpoints/ticket.api';
 
 const basename = '/';
 
