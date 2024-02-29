@@ -12,7 +12,7 @@ export const Overlay = styled('div')(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 5,
+    zIndex: 1,
     cursor: 'pointer',
 
     '.centered-ticket-container ': {

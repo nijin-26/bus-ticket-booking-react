@@ -17,12 +17,14 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
     return (
         ticketData && (
             <Overlay
-                onClick={() => {
-                    if (pnrNumber) {
-                        searchParams.delete('pnr');
-                        setSearchParams(searchParams);
+                onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                        if (pnrNumber) {
+                            searchParams.delete('pnr');
+                            setSearchParams(searchParams);
+                        }
+                        cancelModal();
                     }
-                    cancelModal();
                 }}
             >
                 <CloseIcon
