@@ -1,12 +1,19 @@
-import { UsersListingPageWrapper } from './UsersListingPage.styled';
-import { UsersTable } from './components/Table/UsersTable';
-import users from '../../data/sampleUsers.json';
+import { useTranslation } from 'react-i18next';
+import { DatagridListingPage } from '../../components/DatagridListingpage/DatagridListingPage';
+import { IUser } from '../../types';
+import getUsersTableColumns from './getUsersTableColumns';
+import { getUsers } from '../../api/endpoints/user.api';
 
 export const UsersListingPage = () => {
+    const { t } = useTranslation('usersList');
+    const columns = getUsersTableColumns(t);
     return (
-        <UsersListingPageWrapper component={'section'}>
-            <h1>Users</h1>
-            <UsersTable users={users} />
-        </UsersListingPageWrapper>
+        <DatagridListingPage<IUser>
+            columns={columns}
+            t={t}
+            getData={getUsers}
+            rowId={'id'}
+            frontendPagination={false}
+        />
     );
 };
