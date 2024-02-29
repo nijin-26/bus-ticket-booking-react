@@ -28,7 +28,7 @@ const lightTheme = {
     busLayoutBg: colors.busLayoutBg,
     red: colors.red,
     redHover: colors.redHover,
-    boxShadowPrimary: colors.boxShadowPrimary,
+    boxShadowPrimary: colors.boxShadowLight,
     cardWhite: colors.cardWhite,
     green: colors.green,
 };
@@ -45,7 +45,7 @@ const darkTheme = {
     busLayoutBg: colors.darkBusLayoutBg,
     red: colors.red,
     redHover: colors.redHover,
-    boxShadowPrimary: colors.boxShadowPrimary,
+    boxShadowPrimary: colors.boxShadowDark,
     cardWhite: colors.black,
     green: colors.green,
 };
