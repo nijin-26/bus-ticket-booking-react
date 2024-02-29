@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import storage from '../../utils/storageUtils';
+import { getUserDataFromStorage, storage } from '../../utils';
 import { IAuthData, IAuthUser } from '../../types';
-import { getUserDataFromStorage } from '../../utils/authUtils';
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;

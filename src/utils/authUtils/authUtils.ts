@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
-import storage from './storageUtils';
-import { IAuthUser, IDecodedAccessToken } from '../types';
+import { IAuthUser, IDecodedAccessToken } from '../../types';
+import { storage } from '..';
 
 //This function returns the user details stored in local storage,
 //if accessToken stored in local storage has not expired
