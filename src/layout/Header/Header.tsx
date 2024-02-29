@@ -142,7 +142,7 @@ export const Header = () => {
                                     sx={{ mt: '5px' }}
                                 >
                                     {isSmallScreen && (
-                                        <>
+                                        <Box>
                                             <Typography
                                                 component="li"
                                                 textAlign="center"
@@ -154,7 +154,7 @@ export const Header = () => {
                                                 {user.fullName}!
                                             </Typography>
                                             <Divider component="li" />
-                                        </>
+                                        </Box>
                                     )}
                                     {user.role === EUserRole.ADMIN ? (
                                         <MenuItem
