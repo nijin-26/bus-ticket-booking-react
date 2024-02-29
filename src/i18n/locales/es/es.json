@@ -126,6 +126,7 @@
                 "label": "Otro"
             }
         ],
+
         "checkout": "Pagar",
         "fullNameRequired": "El Nombre Completo es un campo requerido",
         "ageRequired": "La Edad es un campo requerido",
@@ -143,5 +144,11 @@
     },
     "error": {
         "unexpected": "Se ha producido un error inesperado."
+    },
+
+    "errorPage": {
+        "errorPageHeading": "¡Vaya! Parece que no podemos encontrar la página que estás buscando.",
+        "goBack": "Volver",
+        "goHome": "Ir a inicio"
     }
 }

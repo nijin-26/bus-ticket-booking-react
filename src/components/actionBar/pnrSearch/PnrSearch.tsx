@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 export default function PnrSearch() {
     const { t } = useTranslation('pnrSearch');
 
-    const searchPnrHandler = async () => {
+    const searchPnrHandler = () => {
         // handler function
     };
 

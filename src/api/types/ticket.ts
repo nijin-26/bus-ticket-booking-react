@@ -54,3 +54,7 @@ export interface IMyBookingsResponse {
     bookings: IPnrResponse[];
     resultCount: number;
 }
+
+export interface ICancelBookingResponse {
+    pnrNumber: string;
+}
