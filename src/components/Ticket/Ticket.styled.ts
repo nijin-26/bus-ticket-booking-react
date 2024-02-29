@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Stack } from '@mui/material';
+import { colors } from '../../config';
 
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
     borderRadius: '25px',
@@ -18,10 +19,10 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     },
     '& > :first-of-type, & > :last-child': {
         padding: '20px',
-        backgroundColor: theme.color.primary,
+        backgroundColor: colors.deepPurple,
     },
     '&>:first-of-type': {
-        color: theme.color.background,
+        color: colors.white,
         borderRadius: '15px 15px 0 0', // Apply the same borderRadius as the parent
     },
     '& > :last-child': {
@@ -63,8 +64,9 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         },
     },
     '& .dotted-vertical-div': {
-        width: '1px', // Set width to create a vertical line
-        border: '1px dashed black',
+        width: '1px',
+        border: '1px dashed',
+        borderColor:theme.color.textPrimary,
         borderRadius: '5px',
         marginLeft: '35px', // Adjust the margin to position the line between the two columns
     },

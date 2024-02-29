@@ -23,7 +23,6 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                     <DirectionsBusRoundedIcon
                         fontSize="medium"
                         className="app-logo"
-                        color="secondary"
                     />
                     <Typography component={'h1'} variant="h2">
                         TICKET
