@@ -9,7 +9,8 @@
         "myBookings": "My Bookings",
         "copyRight": "© 2024 All rights reserved",
         "login": "Login",
-        "logout": "Logout"
+        "logout": "Logout",
+        "greetingText": "Hi,"
     },
     "auth": {
         "signIn": "SIGN IN",

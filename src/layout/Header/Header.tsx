@@ -13,9 +13,11 @@ import {
     Typography,
     IconButton,
     ListItemIcon,
+    Divider,
+    useMediaQuery,
 } from '@mui/material';
 import { toast } from 'react-toastify';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog } from '../../components';
 import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -31,6 +33,7 @@ export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const isSmallScreen = useMediaQuery('(max-width:500px)');
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
@@ -111,9 +114,11 @@ export const Header = () => {
                                     endIcon={<KeyboardArrowDownIcon />}
                                     variant="outlined"
                                 >
-                                    <Typography variant="body2">
-                                        {user.fullName}
-                                    </Typography>
+                                    {!isSmallScreen && (
+                                        <Typography variant="body2">
+                                            {user.fullName}
+                                        </Typography>
+                                    )}
                                 </StyledProfileButton>
                                 <Menu
                                     id="profile-menu"
@@ -134,8 +139,27 @@ export const Header = () => {
                                     }}
                                     sx={{ mt: '5px' }}
                                 >
+                                    {isSmallScreen && (
+                                        <li>
+                                            <Typography
+                                                textAlign="center"
+                                                px={2}
+                                                pb={1.5}
+                                                pt={1}
+                                            >
+                                                {t('greetingText')}{' '}
+                                                {user.fullName}!
+                                            </Typography>
+                                            <Divider />
+                                        </li>
+                                    )}
                                     {/*TODO : Need to update link after myBookings page is added*/}
-                                    <MenuItem component={NavLink} to="/">
+                                    <MenuItem
+                                        onClick={() => {
+                                            navigate(paths.usersListing);
+                                            handleCloseUserMenu();
+                                        }}
+                                    >
                                         <ListItemIcon>
                                             <PermContactCalendarIcon fontSize="small" />
                                         </ListItemIcon>
@@ -149,6 +173,7 @@ export const Header = () => {
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);
+                                            handleCloseUserMenu();
                                         }}
                                     >
                                         <ListItemIcon>
