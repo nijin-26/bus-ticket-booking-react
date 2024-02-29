@@ -31,11 +31,7 @@ export const SeatLegend = () => {
                 <ul>
                     <Seat seatStatus="selected" mode="view" />
                     <li>
-                        <Typography
-                            variant="body2"
-                            className="title"
-                            style={{ marginLeft: '15px' }}
-                        >
+                        <Typography variant="body2" className="title">
                             {t('selected')}
                         </Typography>
                     </li>
