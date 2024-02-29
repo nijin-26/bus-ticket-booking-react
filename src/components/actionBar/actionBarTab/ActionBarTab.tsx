@@ -17,18 +17,17 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
     const { t } = useTranslation('actionBarTab');
     const [value, setValue] = useState('1');
     const [searchParams] = useSearchParams();
+    const pnr = searchParams.get('pnr');
 
     const changeTabHandler = (_: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 
     useEffect(() => {
-        const pnr = searchParams.get('pnr');
-
         if (pnr) {
             setValue('2');
         }
-    }, [searchParams]);
+    }, [pnr]);
 
     return (
         <WrapperPaper sx={{ px: 2 }} elevation={4}>

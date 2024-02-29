@@ -9,7 +9,7 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const pnrNumber: string | null = searchParams.get('pnr');
 
-    const { ticketData, loading } = useGetTicketData(pnrNumber);
+    const { ticketData, loading } = useGetTicketData();
 
     if (loading) {
         return <FullScreenLoader open={loading} />;
@@ -18,8 +18,10 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
         ticketData && (
             <Overlay
                 onClick={() => {
-                    searchParams.delete('pnr');
-                    setSearchParams(searchParams);
+                    if (pnrNumber) {
+                        searchParams.delete('pnr');
+                        setSearchParams(searchParams);
+                    }
                     cancelModal();
                 }}
             >
