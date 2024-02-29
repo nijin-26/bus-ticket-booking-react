@@ -155,10 +155,27 @@ export const Header = () => {
                                             <Divider />
                                         </li>
                                     )}
-                                    {/*TODO : Need to update link after myBookings page is added*/}
+                                    {user.role === EUserRole.ADMIN && (
+                                        <MenuItem
+                                            onClick={() => {
+                                                navigate(paths.usersListing);
+                                                handleCloseUserMenu();
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <PeopleAlt fontSize="small" />
+                                            </ListItemIcon>
+                                            <Typography
+                                                variant="body2"
+                                                textAlign="center"
+                                            >
+                                                {t('allUsers')}
+                                            </Typography>
+                                        </MenuItem>
+                                    )}
                                     <MenuItem
                                         onClick={() => {
-                                            navigate(paths.usersListing);
+                                            navigate(paths.myBookings);
                                             handleCloseUserMenu();
                                         }}
                                     >
@@ -172,7 +189,7 @@ export const Header = () => {
                                             {t('myBookings')}
                                         </Typography>
                                     </MenuItem>
-                                    {user.role === EUserRole.ADMIN ? (
+                                    {user.role === EUserRole.ADMIN && (
                                         <MenuItem
                                             onClick={() => {
                                                 navigate(paths.bookings);
@@ -189,7 +206,7 @@ export const Header = () => {
                                                 {t('allBookings')}
                                             </Typography>
                                         </MenuItem>
-                                    ) : null}
+                                    )}
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);
