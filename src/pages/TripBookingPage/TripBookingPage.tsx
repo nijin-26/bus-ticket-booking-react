@@ -63,11 +63,17 @@ export const TripBookingPage = () => {
                     mb={3}
                     gap="2rem"
                 >
-                    <Typography component="h1" variant="h4">
+                    <Typography
+                        component="h1"
+                        variant={isMinWidth ? 'h4' : 'h6'}
+                    >
                         {state.origin.name}
                     </Typography>
                     <LongArrow width="8rem" height="100%" />
-                    <Typography component="h1" variant="h4">
+                    <Typography
+                        component="h1"
+                        variant={isMinWidth ? 'h4' : 'h6'}
+                    >
                         {state.destination.name}
                     </Typography>
                 </Stack>
