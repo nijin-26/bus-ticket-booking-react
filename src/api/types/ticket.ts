@@ -1,5 +1,4 @@
 import { ITicket } from '../../types/ticket';
-import { IUserExternal } from './user';
 import { ITripExternal } from './trip';
 
 export interface ITicketRequest {
@@ -51,4 +50,7 @@ export interface IPnrResponse extends ITripExternal {
     }[];
 }
 
-export type IMyBookingsResponse = IPnrResponse[];
+export interface IMyBookingsResponse {
+    bookings: IPnrResponse[];
+    resultCount: number;
+}

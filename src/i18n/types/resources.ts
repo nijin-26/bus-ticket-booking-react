@@ -34,6 +34,7 @@ const resources = {
     filterSort,
     tripDetails,
     bookingsList,
+    tripListing,
     usersList,
     tableExportOptions,
     tableNoRowsOverlay,

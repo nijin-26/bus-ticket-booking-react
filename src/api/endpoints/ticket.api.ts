@@ -4,12 +4,14 @@ import {
     getTicketFromBookingResponse,
     getTicketFromPnrResponse,
     getTicketsFromBookingListingResponse,
+    getTicketsFromMyBookingsResponse,
 } from '../converters/ticket.converter';
 import { IPaginatedData } from '../types/pagination';
 import {
     IBookingListingResponse,
     IBookingRequest,
     IBookingResponse,
+    IMyBookingsResponse,
     IPnrResponse,
 } from '../types/ticket';
 

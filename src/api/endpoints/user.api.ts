@@ -17,5 +17,8 @@ export const getUsers = async (
     const users: IUser[] = response.users.map((user) =>
         getUserFromUserExternal(user)
     );
-    return users;
+    return {
+        data: users,
+        total: response.resultCount,
+    };
 };
