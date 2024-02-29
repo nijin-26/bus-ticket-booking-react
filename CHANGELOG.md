@@ -14,7 +14,6 @@
 -   [86cueuap5] Add UI for SignIn & SignUp with validation schema using formik & yup.
 -   [86cuex0z1] Implemented trip details section of the accordian including creation of custom alert and long button along with seat legend and incorporation of seat layout.
 -   [86cueuydg] Created axios instance, implemented axios interceptors and local storage helper functions
--   [86cueuydg] Created axios instance, implemented axios interceptors and local storage helper functions
 -   [86cuhfyvp] Implemented functionality of Trip listing card using dummy data
 -   [86cugqgpt] Implemented filters and sort for action bar
 -   [86cueubmz] Implemented trip booking page and booking details form UI
@@ -28,4 +27,4 @@
 -   [86cuewzt9] API integration of Trip Details Section.
 -   [86cupmdug] Added error page, illustration and navigation buttons
 -   [86cur11g8] Integration of Ticket page after booking confirmation and also enabled search by PNR.
--   [86cupmdug] Added error page, illustration and navigation buttons
+-   [86cuerykj] [SERVICE] Add visibility toggle feature for password inputs and made auth modals responsive.

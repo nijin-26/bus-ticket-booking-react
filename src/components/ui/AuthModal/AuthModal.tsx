@@ -1,26 +1,34 @@
 import { useState } from 'react';
-import { Box, Collapse, Modal, Tabs } from '@mui/material';
+import {
+    Box,
+    Collapse,
+    Dialog,
+    Tab,
+    Tabs,
+    Typography,
+    useMediaQuery,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
-
-import { AuthModalWrapper, StyledTab } from './AuthModal.styled';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 
-type TAuthModalProps = {
+interface IAuthModalProps {
     isOpen: boolean;
     closeModal: () => void;
-};
+}
 
 enum ESelectedAuthTab {
     SIGN_IN,
     SIGN_UP,
 }
 
-export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
+export const AuthModal = ({ isOpen, closeModal }: IAuthModalProps) => {
+    const { t } = useTranslation('auth');
+    const isXsScreen = useMediaQuery('(max-width:500px)');
+
     const [selectedTab, setSelectedTab] = useState<ESelectedAuthTab>(
         ESelectedAuthTab.SIGN_IN
     );
-    const { t } = useTranslation('auth');
 
     const handleTabChange = (
         _: React.SyntheticEvent,
@@ -35,15 +43,23 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
     };
 
     return (
-        <Modal open={isOpen} onClose={closeModal} component={'div'}>
-            <AuthModalWrapper>
+        <Dialog open={isOpen} onClose={closeModal} fullScreen={isXsScreen}>
+            <Box>
                 <Tabs
                     value={selectedTab}
                     onChange={handleTabChange}
                     variant="fullWidth"
                 >
-                    <StyledTab label={t('signIn')} />
-                    <StyledTab label={t('signUp')} />
+                    <Tab
+                        label={
+                            <Typography variant="h6">{t('signIn')}</Typography>
+                        }
+                    />
+                    <Tab
+                        label={
+                            <Typography variant="h6">{t('signUp')}</Typography>
+                        }
+                    />
                 </Tabs>
                 <Box px={2}>
                     <Collapse
@@ -67,7 +83,7 @@ export const AuthModal = ({ isOpen, closeModal }: TAuthModalProps) => {
                         </Box>
                     </Collapse>
                 </Box>
-            </AuthModalWrapper>
-        </Modal>
+            </Box>
+        </Dialog>
     );
 };

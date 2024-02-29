@@ -11,7 +11,8 @@
         "login": "Login",
         "logout": "Logout",
         "allBookings": "All bookings",
-        "allUsers": "All users"
+        "allUsers": "All users",
+        "greetingText": "Hi,"
     },
     "auth": {
         "signIn": "SIGN IN",

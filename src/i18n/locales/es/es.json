@@ -11,7 +11,8 @@
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
         "allBookings": "Todas las reservas",
-        "allUsers": "Todos los usuarios"
+        "allUsers": "Todos los usuarios",
+        "greetingText": "Hola,"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",

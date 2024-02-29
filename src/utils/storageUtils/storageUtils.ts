@@ -1,4 +1,4 @@
-const storage = {
+export const storage = {
     // returns the keyValue if it exists else returns null
     getItem: <TKeyValue>(keyName: string) => {
         const localStorageKeyValue = localStorage.getItem(keyName);
@@ -16,5 +16,3 @@ const storage = {
         localStorage.removeItem(keyName);
     },
 };
-
-export default storage;

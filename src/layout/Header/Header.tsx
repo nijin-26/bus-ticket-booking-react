@@ -13,6 +13,8 @@ import {
     Typography,
     IconButton,
     ListItemIcon,
+    Divider,
+    useMediaQuery,
 } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +35,7 @@ export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const isSmallScreen = useMediaQuery('(max-width:500px)');
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
@@ -113,9 +116,11 @@ export const Header = () => {
                                     endIcon={<KeyboardArrowDownIcon />}
                                     variant="outlined"
                                 >
-                                    <Typography variant="body2">
-                                        {user.fullName}
-                                    </Typography>
+                                    {!isSmallScreen && (
+                                        <Typography variant="body2">
+                                            {user.fullName}
+                                        </Typography>
+                                    )}
                                 </StyledProfileButton>
                                 <Menu
                                     id="profile-menu"
@@ -136,27 +141,24 @@ export const Header = () => {
                                     }}
                                     sx={{ mt: '5px' }}
                                 >
-                                    {user.role === EUserRole.ADMIN ? (
-                                        <MenuItem
-                                            onClick={() => {
-                                                navigate(paths.usersListing);
-                                                handleCloseUserMenu();
-                                            }}
-                                        >
-                                            <ListItemIcon>
-                                                <PeopleAlt fontSize="small" />
-                                            </ListItemIcon>
+                                    {isSmallScreen && (
+                                        <li>
                                             <Typography
-                                                variant="body2"
                                                 textAlign="center"
+                                                px={2}
+                                                pb={1.5}
+                                                pt={1}
                                             >
-                                                {t('allUsers')}
+                                                {t('greetingText')}{' '}
+                                                {user.fullName}!
                                             </Typography>
-                                        </MenuItem>
-                                    ) : null}
+                                            <Divider />
+                                        </li>
+                                    )}
+                                    {/*TODO : Need to update link after myBookings page is added*/}
                                     <MenuItem
                                         onClick={() => {
-                                            navigate(paths.myBookings);
+                                            navigate(paths.usersListing);
                                             handleCloseUserMenu();
                                         }}
                                     >
