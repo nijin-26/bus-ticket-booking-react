@@ -15,7 +15,7 @@ import {
     ListItemIcon,
 } from '@mui/material';
 import { toast } from 'react-toastify';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog } from '../../components';
 import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -138,9 +138,8 @@ export const Header = () => {
                                 >
                                     {user.role === EUserRole.ADMIN ? (
                                         <MenuItem
-                                            component={NavLink}
-                                            to="/users"
                                             onClick={() => {
+                                                navigate(paths.usersListing);
                                                 handleCloseUserMenu();
                                             }}
                                         >
@@ -156,9 +155,8 @@ export const Header = () => {
                                         </MenuItem>
                                     ) : null}
                                     <MenuItem
-                                        component={NavLink}
-                                        to="/user/bookings"
                                         onClick={() => {
+                                            navigate(paths.myBookings);
                                             handleCloseUserMenu();
                                         }}
                                     >
@@ -174,9 +172,8 @@ export const Header = () => {
                                     </MenuItem>
                                     {user.role === EUserRole.ADMIN ? (
                                         <MenuItem
-                                            component={NavLink}
-                                            to="/bookings"
                                             onClick={() => {
+                                                navigate(paths.bookings);
                                                 handleCloseUserMenu();
                                             }}
                                         >
@@ -194,6 +191,7 @@ export const Header = () => {
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);
+                                            handleCloseUserMenu();
                                         }}
                                     >
                                         <ListItemIcon>

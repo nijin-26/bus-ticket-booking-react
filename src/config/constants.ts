@@ -31,6 +31,7 @@ export const colors = {
     green: '#56A55C',
     redHover: '#AB3840',
     linkColor: '#0000EE',
+    darkLinkColor: '#B596E8',
 };
 
 // api format: id, name => mui format: id, label

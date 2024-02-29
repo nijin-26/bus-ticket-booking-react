@@ -3,12 +3,12 @@ import { LandingPage, TripsListingPage, TripBookingPage } from '../../pages';
 import { ErrorPage } from '../../pages/ErrorPage/ErrorPage';
 import { Layout } from '../../layout';
 import { paths } from '..';
-import { AllBookingsPage } from '../../pages/BookingsList/AllBookingsPage/AllBookingsPage';
-import { UsersListingPage } from '../../pages/UserListing/UsersListingPage';
-import { MyBookingsPage } from '../../pages/BookingsList/MyBookingsPage/MyBookingsPage';
+import { BookingsListPage } from '../../pages/BookingsListPage/BookingsListPage';
+import { UsersListingPage } from '../../pages/UserListingPage/UsersListingPage';
 import { RequireAuth } from '../../components/RequireAuth/RequireAuth';
 import { EUserRole } from '../../types';
 import { TicketPage } from '../../pages/TicketPage/TicketPage';
+import { getAllBookings, getMyBookings } from '../../api/endpoints/ticket.api';
 
 export const routesConfig: RouteObject[] = [
     {
@@ -32,7 +32,12 @@ export const routesConfig: RouteObject[] = [
                     },
                     {
                         path: paths.bookings,
-                        element: <AllBookingsPage />,
+                        element: (
+                            <BookingsListPage
+                                getData={getAllBookings}
+                                frontendPagination={true}
+                            />
+                        ),
                     },
                 ],
             },
@@ -55,7 +60,12 @@ export const routesConfig: RouteObject[] = [
             },
             {
                 path: paths.myBookings,
-                element: <MyBookingsPage />,
+                element: (
+                    <BookingsListPage
+                        getData={getMyBookings}
+                        frontendPagination={false}
+                    />
+                ),
             },
         ],
     },

@@ -3,12 +3,19 @@ import { GridColDef } from '@mui/x-data-grid';
 import { ITicket } from '../../types';
 import { getDateFromTimestamp } from '../../utils';
 import { TFunction } from 'i18next';
+import { Dispatch, SetStateAction } from 'react';
+import { IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 interface GridValueGetterParams {
     row: ITicket;
 }
 
-const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
+const getBookingsTableColumns = (
+    t: TFunction,
+    setShowTicket: Dispatch<SetStateAction<boolean>>,
+    setShowDeleteTicketModal: Dispatch<SetStateAction<string>>
+): GridColDef[] => {
     return [
         {
             field: 'pnrNumber',
@@ -17,7 +24,15 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <>
-                        <Link to="#">{params.row.pnrNumber}</Link>
+                        <Link
+                            to="#"
+                            state={params.row}
+                            onClick={() => {
+                                setShowTicket(true);
+                            }}
+                        >
+                            {params.row.pnrNumber}
+                        </Link>
                     </>
                 );
             },
@@ -94,26 +109,25 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
                 );
             },
         },
-        // TODO: Add delete icon when cancellation API is complete.
-        // {
-        //     field: 'delete',
-        //     headerName: '',
-        //     align: 'center',
-        //     maxWidth: 50,
-        //     renderCell: (params: GridValueGetterParams): JSX.Element => {
-        //         return (
-        //             <p>
-        //                 <IconButton
-        //                     onClick={() => {
-        //                         console.log(params);
-        //                     }}
-        //                 >
-        //                     <Delete />
-        //                 </IconButton>
-        //             </p>
-        //         );
-        //     },
-        // },
+        {
+            field: 'delete',
+            headerName: '',
+            align: 'center',
+            maxWidth: 50,
+            renderCell: (params: GridValueGetterParams): JSX.Element => {
+                return (
+                    <p>
+                        <IconButton
+                            onClick={() => {
+                                setShowDeleteTicketModal(params.row.pnrNumber);
+                            }}
+                        >
+                            <Delete />
+                        </IconButton>
+                    </p>
+                );
+            },
+        },
     ];
 };
 export default getBookingsTableColumns;

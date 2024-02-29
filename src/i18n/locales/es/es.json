@@ -106,6 +106,13 @@
     "tableNoRowsOverlay": {
         "noRows": "Sin datos"
     },
+    "deleteTicketModal": {
+        "title": "Eliminar reserva",
+        "message": "Esta acción eliminará permanentemente todos los datos relacionados con su reserva. ¿Está seguro de que desea continuar?",
+        "confirmText": "Eliminar",
+        "cancelText": "Cancelar",
+        "logoutSuccessMessage": "Reserva cancelada exitosamente."
+    },
     "bookingsList": {
         "pageTitle": "Lista de Reservas",
         "cardTitle": "Total de reservas",
@@ -186,7 +193,7 @@
         "goHome": "Ir a inicio"
     },
     "ticket": {
-        "ticket":"BOLETO",
+        "ticket": "BOLETO",
         "passengerName": "Nombre del pasajero",
         "from": "De",
         "to": "destino",
