@@ -17,7 +17,7 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import { toast } from 'react-toastify';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog } from '../../components';
 import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -155,8 +155,10 @@ export const Header = () => {
                                     )}
                                     {/*TODO : Need to update link after myBookings page is added*/}
                                     <MenuItem
-                                        component={RouterLink}
-                                        to={paths.home}
+                                        onClick={() => {
+                                            navigate(paths.usersListing);
+                                            handleCloseUserMenu();
+                                        }}
                                     >
                                         <ListItemIcon>
                                             <PermContactCalendarIcon fontSize="small" />
@@ -171,6 +173,7 @@ export const Header = () => {
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);
+                                            handleCloseUserMenu();
                                         }}
                                     >
                                         <ListItemIcon>
