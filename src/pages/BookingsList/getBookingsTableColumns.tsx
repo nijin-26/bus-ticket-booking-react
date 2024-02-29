@@ -94,6 +94,26 @@ const getBookingsTableColumns = (t: TFunction): GridColDef[] => {
                 );
             },
         },
+        // TODO: Add delete icon when cancellation API is complete.
+        // {
+        //     field: 'delete',
+        //     headerName: '',
+        //     align: 'center',
+        //     maxWidth: 50,
+        //     renderCell: (params: GridValueGetterParams): JSX.Element => {
+        //         return (
+        //             <p>
+        //                 <IconButton
+        //                     onClick={() => {
+        //                         console.log(params);
+        //                     }}
+        //                 >
+        //                     <Delete />
+        //                 </IconButton>
+        //             </p>
+        //         );
+        //     },
+        // },
     ];
 };
 export default getBookingsTableColumns;
