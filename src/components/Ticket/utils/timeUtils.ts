@@ -9,7 +9,7 @@ export const formatDate = (date: Date, short: boolean = false) => {
 
     const dateOptions: Intl.DateTimeFormatOptions = {
         month: 'short',
-        day: '2-digit',
+        day: 'numeric',
     };
 
     const formattedDateTime = date.toLocaleString(
