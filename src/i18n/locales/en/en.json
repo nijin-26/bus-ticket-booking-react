@@ -6,10 +6,12 @@
         "hello": "hello"
     },
     "headerFooter": {
-        "myBookings": "My Bookings",
+        "myBookings": "My bookings",
         "copyRight": "© 2024 All rights reserved",
         "login": "Login",
         "logout": "Logout",
+        "allBookings": "All bookings",
+        "allUsers": "All users",
         "greetingText": "Hi,"
     },
     "auth": {
@@ -90,7 +92,7 @@
         "duration": "Duration",
         "busType": "Bus Type",
         "emptyResponse": "Trip data not available",
-        "errorResponse":"Error fetching the trip details"
+        "errorResponse": "Error fetching the trip details"
     },
     "tripListing": {
         "busTypeAC": "Bus Type - AC",
@@ -101,6 +103,39 @@
         "loadMore": "Load More",
         "noOptions": "No options matching your search",
         "change": "Try changing your dates or destination to see results"
+    },
+    "tableNoRowsOverlay": {
+        "noData": "No data"
+    },
+    "bookingsList": {
+        "pageTitle": "Bookings List",
+        "cardTitle": "Total bookings",
+        "pnrNumber": "PNR Number",
+        "username": "User Name",
+        "origin": "Origin",
+        "destination": "Destination",
+        "busType": "Bus Type",
+        "seatType": "Seat Type",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "booking",
+        "date": "Date",
+        "tripId": "Trip ID",
+        "pax": "Pax",
+        "download": "Download"
+    },
+    "tableExportOptions": {
+        "export": "Export",
+        "exportAsCsv": "Download as CSV",
+        "exportPrint": "Print"
+    },
+    "usersList": {
+        "pageTitle": "Users List",
+        "cardTitle": "Total users",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "user",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone"
     },
     "landingPage": {
         "busWithUs": "Bus with us."
@@ -142,6 +177,13 @@
         "cancelText": "Cancel",
         "logoutSuccessMessage": "You have been successfully logged out. Have a great day!"
     },
+    "deleteTicketModal": {
+        "title": "Delete Booking",
+        "message": "This action will permanently delete all the data related to your booking. Are you sure you want to continue?",
+        "confirmText": "Delete",
+        "cancelText": "Cancel",
+        "logoutSuccessMessage": "Ticket cancelled successfully."
+    },
     "error": {
         "unexpected": "Please try searching again, we have an unexpected error."
     },
@@ -150,5 +192,18 @@
         "errorPageHeading": "Oops! We can't seem to find the page you are looking for.",
         "goBack": "Go back",
         "goHome": "Go home"
+    },
+    "ticket": {
+        "ticket": "TICKET",
+        "passengerName": "Passenger Name",
+        "from": "From",
+        "to": "To",
+        "date": "Date",
+        "time": "Time",
+        "pnr": "PNR",
+        "passengerCount": "Passenger Count",
+        "seatNumber": "Seat Number",
+        "departure": "Departure",
+        "arrival": "Arrival"
     }
 }

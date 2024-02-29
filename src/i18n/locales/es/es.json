@@ -6,10 +6,12 @@
         "hello": "hola"
     },
     "headerFooter": {
-        "myBookings": "Mis Reservas",
+        "myBooking": "Mis reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
+        "allBookings": "Todas las reservas",
+        "allUsers": "Todos los usuarios",
         "greetingText": "Hola,"
     },
     "auth": {
@@ -102,6 +104,46 @@
         "noOptions": "No hay opciones que coincidan con tu búsqueda",
         "change": "Prueba a cambiar las fechas o el destino para ver resultados"
     },
+    "tableNoRowsOverlay": {
+        "noRows": "Sin datos"
+    },
+    "deleteTicketModal": {
+        "title": "Eliminar reserva",
+        "message": "Esta acción eliminará permanentemente todos los datos relacionados con su reserva. ¿Está seguro de que desea continuar?",
+        "confirmText": "Eliminar",
+        "cancelText": "Cancelar",
+        "logoutSuccessMessage": "Reserva cancelada exitosamente."
+    },
+    "bookingsList": {
+        "pageTitle": "Lista de Reservas",
+        "cardTitle": "Total de reservas",
+        "pnrNumber": "Número de PNR",
+        "username": "Nombre de usuario",
+        "origin": "Origen",
+        "destination": "Destino",
+        "busType": "Tipo de autobús",
+        "seatType": "Tipo de asiento",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "reservas",
+        "date": "Fecha",
+        "tripId": "ID de viaje",
+        "pax": "Pasajero",
+        "download": "Descargar"
+    },
+    "usersList": {
+        "pageTitle": "Lista de Usuarios",
+        "cardTitle": "Usuarios totales",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "usuario",
+        "fullName": "Nombre completo",
+        "email": "Correo electrónico",
+        "phone": "Teléfono"
+    },
+    "tableExportOptions": {
+        "export": "Exportar",
+        "exportAsCsv": "Descargar como CSV",
+        "exportPrint": "Imprimir"
+    },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
     },
@@ -150,5 +192,18 @@
         "errorPageHeading": "¡Vaya! Parece que no podemos encontrar la página que estás buscando.",
         "goBack": "Volver",
         "goHome": "Ir a inicio"
+    },
+    "ticket": {
+        "ticket": "BOLETO",
+        "passengerName": "Nombre del pasajero",
+        "from": "De",
+        "to": "destino",
+        "date": "fecha",
+        "time": "tiempo",
+        "pnr": "PNR",
+        "passengerCount": "Conteo de pasajeros",
+        "seatNumber": "Número de asiento",
+        "departure": "Partida",
+        "arrival": "Llegada"
     }
 }

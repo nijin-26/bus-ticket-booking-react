@@ -1,6 +1,15 @@
 import { format, formatDuration, intervalToDuration } from 'date-fns';
 
-export function convertTimeStamp(departureDate: Date, arrivalDate: Date) {
+export const convertTimeStamp = (
+    departureDate: Date,
+    arrivalDate: Date
+): {
+    formattedDepartureTime: string;
+    formattedDepartureDate: string;
+    formattedArrivalTime: string;
+    formattedArrivalDate: string;
+    formattedDuration: string;
+} => {
     const formattedDepartureTime = format(departureDate, 'p');
     const formattedDepartureDate = format(departureDate, 'do LLL');
     const formattedArrivalTime = format(arrivalDate, 'p');
@@ -10,9 +19,11 @@ export function convertTimeStamp(departureDate: Date, arrivalDate: Date) {
         start: departureDate,
         end: arrivalDate,
     });
+
     const formattedDuration = formatDuration(duration, {
         format: ['days', 'hours', 'minutes'],
     });
+
     return {
         formattedDepartureTime,
         formattedDepartureDate,
@@ -20,4 +31,15 @@ export function convertTimeStamp(departureDate: Date, arrivalDate: Date) {
         formattedArrivalDate,
         formattedDuration,
     };
-}
+};
+
+export const getDateFromTimestamp = (
+    date: Date,
+    dateFormat?: string,
+    timeFormat?: string
+) => {
+    return {
+        formattedDate: format(date, dateFormat || 'dd-MMM-yyyy'),
+        formattedTime: format(date, timeFormat || 'hh:mm a'),
+    };
+};
