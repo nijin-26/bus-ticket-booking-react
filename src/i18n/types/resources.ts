@@ -16,6 +16,7 @@ const {
     landingPage,
     logoutConfirmationModal,
     error,
+    errorPage,
 } = data;
 
 const resources = {
@@ -34,6 +35,7 @@ const resources = {
     passengerDetails,
     logoutConfirmationModal,
     error,
+    errorPage,
 } as const;
 
 export default resources;
