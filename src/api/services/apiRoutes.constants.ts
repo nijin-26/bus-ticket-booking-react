@@ -8,6 +8,7 @@ export const apiRoutes = {
     booking: 'booking',
     bookingPnr: 'booking/pnr',
     userBooking: 'booking/user/all',
+    cancelBooking: 'booking/cancel',
     user: 'user',
     myBookings: 'booking/user/all',
 };

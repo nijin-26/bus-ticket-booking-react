@@ -28,3 +28,4 @@
 -   [86cuewzt9] API integration of Trip Details Section.
 -   [86cupmdug] Added error page, illustration and navigation buttons
 -   [86cur11g8] Integration of Ticket page after booking confirmation and also enabled search by PNR.
+-   [86cupmdug] Added error page, illustration and navigation buttons
