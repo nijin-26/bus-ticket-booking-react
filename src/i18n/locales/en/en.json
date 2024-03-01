@@ -80,7 +80,8 @@
         "priceHighToLow": "Price: high to low",
         "priceLowToHigh": "Price: low to high",
         "clearAll": "Clear all",
-        "clear": "Clear"
+        "clear": "Clear",
+        "filter": "Filter"
     },
     "tripDetails": {
         "info": "Click on an available seat to proceed with your transaction.",

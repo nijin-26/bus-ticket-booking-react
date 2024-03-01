@@ -80,7 +80,8 @@
         "priceHighToLow": "Precio: de alto a bajo",
         "priceLowToHigh": "Precio: de bajo a alto",
         "clearAll": "Limpiar todo",
-        "clear": "Limpiar"
+        "clear": "Limpiar",
+        "filter": "Filtrar"
     },
     "tripDetails": {
         "info": "Haga clic en un asiento disponible para continuar con su transacción.",
