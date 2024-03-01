@@ -41,7 +41,6 @@ const PassengerDetailsForm = ({
             const bookingResponse = await bookTicket(tripId, inputObj);
             toast.success(t('apiSuccessMessage'));
             navigate(`${paths.ticket}/${bookingResponse.pnrNumber}`, {
-                state: bookingResponse,
                 replace: true,
             });
         } catch (error) {

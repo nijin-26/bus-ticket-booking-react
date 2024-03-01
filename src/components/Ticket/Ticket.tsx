@@ -8,7 +8,7 @@ import { formatDate } from './utils/timeUtils';
 import { useTranslation } from 'react-i18next';
 
 export const Ticket = ({ data }: { data: ITicket }) => {
-    const isSmallScreen = useMediaQuery('(max-width:86rem)');
+    const isSmallScreen = useMediaQuery('(max-width:50rem)');
     const isMediumScreen = useMediaQuery('(max-width:102rem)');
     const { t } = useTranslation('ticket');
 
@@ -146,7 +146,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                                 }`}
                             />
                             <TwoLineHeading
-                                title={`${t('seatNumber')}${
+                                title={`${String(t('seatNumber'))}${
                                     seats.length > 1 ? 's' : ''
                                 }`}
                                 value={seats
@@ -214,7 +214,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                                 )}
                             />
                             <TwoLineHeading
-                                title={`${t('seatNumber')}${
+                                title={`${String(t('seatNumber'))}${
                                     seats.length > 1 ? 's' : ''
                                 }`}
                                 value={seats

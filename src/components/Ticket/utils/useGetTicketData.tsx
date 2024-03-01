@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getTicketByPnr } from '../../../api/endpoints/ticket.api';
 import { ITicket } from '../../../types';
 
 export const useGetTicketData = () => {
     const { pnrNumber: pnrNumberFromParams } = useParams();
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const pnrNumberFromSearchParams = searchParams.get('pnr');
     const [ticketData, setTicketData] = useState<ITicket>();
     const [loading, setLoading] = useState<boolean>(true);
-    const location = useLocation();
-
-    const ticketDataFromState = location.state as ITicket | null;
 
     const { t } = useTranslation('error');
     const errorText = t('unexpected');
@@ -24,30 +21,28 @@ export const useGetTicketData = () => {
                 const response = await getTicketByPnr(pnr);
                 setTicketData(response);
             } catch (error) {
+                if (pnrNumberFromSearchParams) {
+                    searchParams.delete('pnr');
+                    setSearchParams(searchParams);
+                }
                 toast.error(errorText, { toastId: 'Error toast ' });
             } finally {
                 setLoading(false);
             }
         };
 
-        if (!ticketDataFromState) {
-            if (pnrNumberFromParams) {
-                void fetchData(pnrNumberFromParams);
-                return;
-            }
+        if (pnrNumberFromParams) {
+            void fetchData(pnrNumberFromParams);
+            return;
+        }
 
-            if (pnrNumberFromSearchParams) {
-                void fetchData(pnrNumberFromSearchParams);
-            }
-        } else {
-            setTicketData(ticketDataFromState);
-            setLoading(false);
+        if (pnrNumberFromSearchParams) {
+            void fetchData(pnrNumberFromSearchParams);
         }
     }, [
         errorText,
         pnrNumberFromParams,
         pnrNumberFromSearchParams,
-        ticketDataFromState,
     ]);
 
     return { ticketData, loading };

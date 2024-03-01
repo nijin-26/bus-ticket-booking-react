@@ -30,6 +30,10 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
                 <CloseIcon
                     onClick={(e) => {
                         e.stopPropagation(); // Prevents the overlay's onClick from being triggered
+                        if (pnrNumber) {
+                            searchParams.delete('pnr');
+                            setSearchParams(searchParams);
+                        }
                         cancelModal();
                     }}
                     className="close-icon"
