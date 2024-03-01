@@ -1,4 +1,4 @@
-import { FilterAlt } from '@mui/icons-material';
+import { Close, FilterAlt } from '@mui/icons-material';
 import { Badge, Box, IconButton, SwipeableDrawer } from '@mui/material';
 import { useState } from 'react';
 import SortGroup from '../sortFilterRadioGroups/SortGroup';
@@ -7,10 +7,12 @@ import SeatTypeGroup from '../sortFilterRadioGroups/SeatTypeGroup';
 import { FilterSortHeading, FilterSubHeading } from './ActionBarDrawerStyled';
 import { useAppSelector } from '../../../app/hooks';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function ActionBarDrawer() {
     const [drawer, setDrawer] = useState(false);
     const [searchParams] = useSearchParams();
+    const { t } = useTranslation('filterSort');
     const storedparams = useAppSelector((state) => state.busSearch);
     const busTypeParams =
         searchParams.get('busType') ?? storedparams.busType?.toString();
@@ -61,13 +63,24 @@ export default function ActionBarDrawer() {
                     sx: { width: '100%', p: '2rem' },
                 }}
             >
-                <FilterSortHeading>Filter</FilterSortHeading>
-                <FilterSubHeading>Bus type</FilterSubHeading>
+                <IconButton
+                    sx={{
+                        width: '4rem',
+                        height: '4rem',
+                        marginLeft: 'auto',
+                        marginRight: '2rem',
+                    }}
+                    onClick={toggleDrawer}
+                >
+                    <Close />
+                </IconButton>
+                <FilterSortHeading>{t('filter')}</FilterSortHeading>
+                <FilterSubHeading>{t('busType')}</FilterSubHeading>
                 <BusTypeGroup />
-                <FilterSubHeading>Seat type</FilterSubHeading>
+                <FilterSubHeading>{t('seatType')}</FilterSubHeading>
                 <SeatTypeGroup />
 
-                <FilterSortHeading>Sort</FilterSortHeading>
+                <FilterSortHeading>{t('sort')}</FilterSortHeading>
                 <SortGroup />
             </SwipeableDrawer>
         </Box>
