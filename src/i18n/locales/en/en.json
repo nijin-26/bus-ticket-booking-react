@@ -110,6 +110,8 @@
         "noData": "No data"
     },
     "bookingsList": {
+        "allBookingsPageTitle": "All Bookings",
+        "myBookingsPageTitle": "My Bookings",
         "pageTitle": "Bookings List",
         "cardTitle": "Total bookings",
         "pnrNumber": "PNR Number",

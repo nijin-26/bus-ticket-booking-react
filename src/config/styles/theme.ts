@@ -57,11 +57,11 @@ const darkTheme = {
 };
 
 const breakpoints = {
-    extraSmall: '50rem',
-    small: '60rem',
-    medium: '90rem',
-    large: '120rem',
-    extraLarge: '160rem',
+    extraSmall: '31rem',
+    small: '38rem',
+    medium: '56rem',
+    large: '75rem',
+    extraLarge: '100rem',
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({

@@ -207,6 +207,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
                                             </>
                                         ),
                                     }}
+                                    autoFocus
                                 />
                             )}
                         />

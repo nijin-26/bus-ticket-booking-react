@@ -12,16 +12,16 @@ export default function PnrSearch() {
     const [searchParams, setSearchParams] = useSearchParams();
     const getPnrBySearch = searchParams.get('pnr') ?? '';
     const [pnrValue, setPnrValue] = useState<string>(getPnrBySearch);
-    const [showTicket, setShowTicket] = useState<boolean>(getPnrBySearch!='');
-    
+    const [showTicket, setShowTicket] = useState<boolean>(getPnrBySearch != '');
+
     const searchPnrHandler = () => {
         setSearchParams({ pnr: pnrValue });
         setShowTicket(true);
     };
 
     const cancelModal = () => {
-        setShowTicket(false)
-    }
+        setShowTicket(false);
+    };
     return (
         <>
             <Wrapper>
@@ -40,6 +40,7 @@ export default function PnrSearch() {
                             ),
                         }}
                         fullWidth
+                        autoFocus
                     />
                 </Stack>
                 <CenteredButton

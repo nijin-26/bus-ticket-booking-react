@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useTheme } from '@emotion/react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
 import { logout, showAuthModal } from '../../app/features/authSlice';
@@ -35,7 +36,10 @@ export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const isSmallScreen = useMediaQuery('(max-width:500px)');
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(
+        `(max-width:${theme.breakpointValues.small})`
+    );
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);

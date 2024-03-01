@@ -117,7 +117,8 @@
         "logoutSuccessMessage": "Reserva cancelada exitosamente."
     },
     "bookingsList": {
-        "pageTitle": "Lista de Reservas",
+        "allBookingsPageTitle": "Todas las Reservas",
+        "myBookingsPageTitle": "Mis Reservas",
         "cardTitle": "Total de reservas",
         "pnrNumber": "Número de PNR",
         "username": "Nombre de usuario",

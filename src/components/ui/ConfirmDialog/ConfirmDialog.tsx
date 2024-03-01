@@ -26,14 +26,14 @@ export const ConfirmDialog = ({
     ...props
 }: IConfirmDialogProps) => {
     const theme = useTheme();
-    const fullScreen = useMediaQuery(
+    const isExtraSmallScreen = useMediaQuery(
         `(max-width:${theme.breakpointValues.extraSmall})`
     );
 
     return (
         <>
             <Dialog
-                fullScreen={fullScreen}
+                fullScreen={isExtraSmallScreen}
                 open={props.open}
                 onClose={props.handleClose}
                 aria-labelledby="responsive-dialog-title"

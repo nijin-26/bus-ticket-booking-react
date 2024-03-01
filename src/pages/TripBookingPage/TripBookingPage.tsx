@@ -15,12 +15,16 @@ import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fromSerializable } from '../../utils/tripDetailsUtils';
-// TODO: fetch data from store
+import { useTheme } from '@emotion/react';
 
 export const TripBookingPage = () => {
     const { t } = useTranslation('bookingPageConfirmation');
     const navigate = useNavigate();
-    const isMinWidth = useMediaQuery('(min-width:600px)');
+    const { breakpointValues } = useTheme();
+
+    const isLargeScreen = useMediaQuery(
+        `(min-width:${breakpointValues.small})`
+    );
 
     const selectTripDetails = (state: RootState) => state.tripDetails;
     const selectSerializedTripDetails = createSelector(
@@ -65,14 +69,14 @@ export const TripBookingPage = () => {
                 >
                     <Typography
                         component="h1"
-                        variant={isMinWidth ? 'h4' : 'h6'}
+                        variant={isLargeScreen ? 'h4' : 'h6'}
                     >
                         {state.origin.name}
                     </Typography>
                     <LongArrow width="8rem" height="100%" />
                     <Typography
                         component="h1"
-                        variant={isMinWidth ? 'h4' : 'h6'}
+                        variant={isLargeScreen ? 'h4' : 'h6'}
                     >
                         {state.destination.name}
                     </Typography>
