@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './locales/en/en.json';
 import es from './locales/es/es.json';
+import { LanguageCode } from '../types';
+import { storage } from '../utils';
 
 const {
     ns1: enNs1,
@@ -54,7 +56,8 @@ const {
 } = es;
 
 export const defaultNS = 'ns1';
-const language = localStorage.getItem('language')?.toString();
+const language =
+    storage.getItem<LanguageCode>('language') ?? LanguageCode.English;
 
 void i18n.use(initReactI18next).init({
     resources: {
@@ -108,7 +111,7 @@ void i18n.use(initReactI18next).init({
         },
     },
     lng: language,
-    fallbackLng: 'en',
+    fallbackLng: LanguageCode.English,
     defaultNS,
     ns: [
         'ns1',

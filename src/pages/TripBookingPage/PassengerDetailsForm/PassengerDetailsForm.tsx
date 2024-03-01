@@ -19,14 +19,14 @@ import { IAuthResponseError } from '../../../types';
 interface IPassengerDetailsFormProps {
     selectedSeats: number[];
     formikRef: RefObject<FormikProps<IPassengersInputFromFormik>>;
-    loaderFun: (bool: boolean) => void;
+    loaderFunction: (bool: boolean) => void;
     tripId: string;
 }
 
 const PassengerDetailsForm = ({
     selectedSeats,
     formikRef,
-    loaderFun,
+    loaderFunction,
     tripId,
 }: IPassengerDetailsFormProps) => {
     const navigate = useNavigate();
@@ -38,10 +38,10 @@ const PassengerDetailsForm = ({
     const postBookingData = async (obj: IPassengersInputFromFormik) => {
         const inputObj = convertFormikDataToApiData(obj);
         try {
-            const responseBook = await bookTicket(tripId, inputObj);
+            const bookingResponse = await bookTicket(tripId, inputObj);
             toast.success(t('apiSuccessMessage'));
-            navigate(`${paths.ticket}/${responseBook.pnrNumber}`, {
-                state: responseBook,
+            navigate(`${paths.ticket}/${bookingResponse.pnrNumber}`, {
+                state: bookingResponse,
                 replace: true,
             });
         } catch (error) {
@@ -55,7 +55,7 @@ const PassengerDetailsForm = ({
             } else
                 toast.error(t('apiErrorMessage'), { toastId: 'apiErrorMsg' });
         } finally {
-            loaderFun(false);
+            loaderFunction(false);
         }
     };
     useEffect(() => {

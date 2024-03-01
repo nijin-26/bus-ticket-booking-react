@@ -12,7 +12,8 @@
         "logout": "Logout",
         "allBookings": "All bookings",
         "allUsers": "All users",
-        "greetingText": "Hi,"
+        "greetingText": "Hi,",
+        "languageError": "Error while changing language"
     },
     "auth": {
         "signIn": "SIGN IN",

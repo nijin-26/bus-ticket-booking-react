@@ -12,7 +12,8 @@
         "logout": "Cerrar sesión",
         "allBookings": "Todas las reservas",
         "allUsers": "Todos los usuarios",
-        "greetingText": "Hola,"
+        "greetingText": "Hola,",
+        "languageError": "Error al cambiar de idioma"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",

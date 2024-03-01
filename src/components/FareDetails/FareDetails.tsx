@@ -13,8 +13,8 @@ export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
         noOfSeats > 1 ? 's' : ''
     } x ₹${farePerSeat} = ₹${totalFare}`;
 
-    const { font } = useTheme();
-    const isMinWidth = useMediaQuery('(min-width:600px)');
+    const { font, breakpointValues } = useTheme();
+    const isMinWidth = useMediaQuery(`(min-width:${breakpointValues.small})`);
 
     return (
         <Stack direction={'row'} spacing={1}>
