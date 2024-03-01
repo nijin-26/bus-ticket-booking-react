@@ -6,7 +6,7 @@ import { getTicketByPnr } from '../../../api/endpoints/ticket.api';
 import { ITicket } from '../../../types';
 
 export const useGetTicketData = () => {
-    const { pnrNumber: pnrNumberFromParams } = useParams();
+    const { pnr: pnrNumberFromParams } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
     const pnrNumberFromSearchParams = searchParams.get('pnr');
     const [ticketData, setTicketData] = useState<ITicket>();
@@ -34,15 +34,16 @@ export const useGetTicketData = () => {
         if (pnrNumberFromParams) {
             void fetchData(pnrNumberFromParams);
             return;
-        }
-
-        if (pnrNumberFromSearchParams) {
+        } else if (pnrNumberFromSearchParams) {
             void fetchData(pnrNumberFromSearchParams);
+            return;
         }
     }, [
         errorText,
         pnrNumberFromParams,
         pnrNumberFromSearchParams,
+        searchParams,
+        setSearchParams,
     ]);
 
     return { ticketData, loading };
