@@ -41,72 +41,59 @@ const getBookingsTableColumns = (
             field: 'passengerCount',
             headerName: t('pax'),
             maxWidth: 50,
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
-                return <p>{params.row.seats.length}</p>;
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.seats.length;
             },
         },
         {
             field: 'tripId',
             headerName: t('tripId'),
             maxWidth: 80,
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
-                return <p>{params.row.trip.id}</p>;
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.trip.id;
             },
         },
         {
             field: 'departureDate',
             headerName: t('date'),
             maxWidth: 150,
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
+            valueGetter: (params: GridValueGetterParams) => {
                 const { formattedDate } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,
                     'dd-MMM-yyyy'
                 );
-                return <p>{formattedDate}</p>;
+                return formattedDate;
             },
         },
         {
             field: 'origin',
             headerName: t('origin'),
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
+            valueGetter: (params: GridValueGetterParams) => {
                 const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,
                     undefined,
                     'hh:mm a'
                 );
-                return (
-                    <p>
-                        {params.row.trip.origin.shortCode} ({formattedTime})
-                    </p>
-                );
+                return `${params.row.trip.origin.shortCode} (${formattedTime})`;
             },
         },
         {
             field: 'destination',
             headerName: t('destination'),
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
+            valueGetter: (params: GridValueGetterParams) => {
                 const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.arrivalTimestamp,
                     undefined,
                     'hh:mm a'
                 );
-                return (
-                    <p>
-                        {params.row.trip.destination.shortCode} ({formattedTime}
-                        )
-                    </p>
-                );
+                return `${params.row.trip.destination.shortCode} (${formattedTime})`;
             },
         },
         {
             field: 'busType',
             headerName: t('busType'),
-            renderCell: (params: GridValueGetterParams): JSX.Element => {
-                return (
-                    <p>
-                        {params.row.trip.busType}/{params.row.trip.seatType}
-                    </p>
-                );
+            valueGetter: (params: GridValueGetterParams) => {
+                return `${params.row.trip.busType}/${params.row.trip.seatType}`;
             },
         },
         {
@@ -114,6 +101,7 @@ const getBookingsTableColumns = (
             headerName: '',
             align: 'center',
             maxWidth: 50,
+            disableExport: true,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <p>

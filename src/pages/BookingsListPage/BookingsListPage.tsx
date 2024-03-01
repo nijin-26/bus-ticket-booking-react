@@ -48,8 +48,8 @@ export const BookingsListPage = ({
             />
             {showTicket && <TicketModal cancelModal={cancelModal} />}
             <ConfirmDialog
-                title={`${t(
-                    'deleteTicketModal:title'
+                title={`${String(
+                    t('deleteTicketModal:title')
                 )} ${showDeleteTicketModal} ?`}
                 open={showDeleteTicketModal != ''}
                 handleClose={() => {
