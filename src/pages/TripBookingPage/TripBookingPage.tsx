@@ -34,7 +34,7 @@ export const TripBookingPage = () => {
 
     const [showDialog, setShowDialog] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
-    const setShowLoaderFun = (bool: boolean) => {
+    const setShowLoaderFunction = (bool: boolean) => {
         setShowLoader(bool);
     };
     const formikRef = useRef<FormikProps<IPassengersInputFromFormik>>(null);
@@ -85,7 +85,7 @@ export const TripBookingPage = () => {
                 <PassengerDetailsForm
                     formikRef={formikRef}
                     selectedSeats={selectedSeats}
-                    loaderFun={setShowLoaderFun}
+                    loaderFunction={setShowLoaderFunction}
                     tripId={state.id}
                 />
 
