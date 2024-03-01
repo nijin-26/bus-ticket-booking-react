@@ -33,7 +33,15 @@ declare module '@emotion/react' {
             grey500: string;
             linkColor: string;
             cardWhite: string;
-            green:string
+            green: string;
+        };
+
+        breakpointValues: {
+            extraSmall: string;
+            small: string;
+            medium: string;
+            large: string;
+            extraLarge: string;
         };
     }
 }

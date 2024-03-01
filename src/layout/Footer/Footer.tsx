@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleLanguage } from '../../app/features/languageSlice';
 import { LanguageCode } from '../../types';
+import { toast } from 'react-toastify';
 
 export const Footer = () => {
     const { t } = useTranslation('headerFooter');
@@ -39,7 +40,11 @@ export const Footer = () => {
             setSelectedLanguage(
                 languageObjSelected.label + '-' + languageObjSelected.code
             );
-            dispatch(toggleLanguage(languageCode));
+            try {
+                dispatch(toggleLanguage(languageCode));
+            } catch (error) {
+                toast.error(t('languageError'));
+            }
         }
     };
 

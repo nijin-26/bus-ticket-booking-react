@@ -3,40 +3,70 @@ import { Box, Grid, MenuItem, Paper, Typography } from '@mui/material';
 import getValidationSchema from './validation';
 import { Select, TextField } from 'formik-mui';
 import { useTranslation } from 'react-i18next';
-import { FareDetails } from '../../../components/FareDetails/FareDetails';
-import { StyledButton } from '../../../components/Button/Button.styled';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 import { useTheme } from '@emotion/react';
+import {
+    IPassengersInputFromFormik,
+    convertFormikDataToApiData,
+} from '../../../utils';
+import { bookTicket } from '../../../api/endpoints/ticket.api';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../config';
-import { IBusType, IGender, ISeatType, ITicket } from '../../../types';
+import axios from 'axios';
+import { IAuthResponseError } from '../../../types';
 
-interface IPassengerDetails {
-    passengers: {
-        seatNumber: number;
-        fullName: string;
-        age: string;
-        gender: string;
-    }[];
+interface IPassengerDetailsFormProps {
+    selectedSeats: number[];
+    formikRef: RefObject<FormikProps<IPassengersInputFromFormik>>;
+    loaderFunction: (bool: boolean) => void;
+    tripId: string;
 }
 
-const PassengerDetailsForm = () => {
+const PassengerDetailsForm = ({
+    selectedSeats,
+    formikRef,
+    loaderFunction,
+    tripId,
+}: IPassengerDetailsFormProps) => {
+    const navigate = useNavigate();
     const { t } = useTranslation('passengerDetails');
     const theme = useTheme();
 
     const [languageChangeKey, setLanguageChangeKey] = useState(0);
-    const formikRef = useRef<FormikProps<IPassengerDetails>>(null);
-    const navigate = useNavigate();
 
+    const postBookingData = async (obj: IPassengersInputFromFormik) => {
+        const inputObj = convertFormikDataToApiData(obj);
+        try {
+            const bookingResponse = await bookTicket(tripId, inputObj);
+            toast.success(t('apiSuccessMessage'));
+            navigate(`${paths.ticket}/${bookingResponse.pnrNumber}`, {
+                state: bookingResponse,
+                replace: true,
+            });
+        } catch (error) {
+            if (axios.isAxiosError<IAuthResponseError>(error)) {
+                const errorMessage = error.response?.data.message;
+
+                if (errorMessage === 'Required seat already booked') {
+                    toast.error(t('seatAlreadyBookedErrorMessage'));
+                    navigate(paths.home, { replace: true });
+                }
+            } else
+                toast.error(t('apiErrorMessage'), { toastId: 'apiErrorMsg' });
+        } finally {
+            loaderFunction(false);
+        }
+    };
     useEffect(() => {
         // Incrementing languageChangeKey to force re-render when language changes
         setLanguageChangeKey((prevKey) => prevKey + 1);
         void formikRef.current?.validateForm();
-    }, [t]);
+    }, [t, formikRef]);
 
     const generateInitialValues = () => {
-        const selectedSeatCount = 2;
-        const seatNumber = [1, 2];
+        const selectedSeatCount = selectedSeats.length;
+        const seatNumber = selectedSeats;
 
         return Array.from({ length: selectedSeatCount }, (_, index) => ({
             seatNumber: seatNumber[index],
@@ -44,174 +74,6 @@ const PassengerDetailsForm = () => {
             age: '',
             gender: '',
         }));
-    };
-
-    const handleCheckout = () => {
-        const iticketObj: ITicket = {
-            pnrNumber: '976xq5',
-            trip: {
-                id: '97',
-                origin: {
-                    id: '8',
-                    name: 'Palakkad',
-                    shortCode: 'PLK',
-                },
-                destination: {
-                    id: '9',
-                    name: 'Pathanamthitta',
-                    shortCode: 'PTA',
-                },
-                departureTimestamp: new Date('1970-01-01T00:00:00.000Z'),
-                arrivalTimestamp: new Date('1970-01-01T00:00:00.000Z'),
-                farePerSeat: 1100,
-                totalSeats: 46,
-                busType: IBusType.AC,
-                seatType: ISeatType.SEATER,
-                availableSeats: 45,
-            },
-            seats: [
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 23,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 7,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 6,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 10,
-                        gender: IGender.MALE,
-                    },
-                },
-                {
-                    seatNumber: 1,
-                    passenger: {
-                        fullName: 'Akshay Krishna',
-                        age: 5,
-                        gender: IGender.MALE,
-                    },
-                },
-            ],
-        };
-
-        navigate(paths.ticket.replace(':pnrNumber', iticketObj.pnrNumber), {
-            state: iticketObj,
-        });
     };
 
     return (
@@ -223,8 +85,8 @@ const PassengerDetailsForm = () => {
             validationSchema={getValidationSchema(t)}
             validateOnChange={false}
             onSubmit={(values, { setSubmitting }) => {
+                void postBookingData(values);
                 setSubmitting(false);
-                alert(JSON.stringify(values, null, 2));
             }}
         >
             {({ values }) => (
@@ -317,21 +179,6 @@ const PassengerDetailsForm = () => {
                             ))
                         }
                     </FieldArray>
-
-                    <Grid container alignItems="center" mb={6} spacing={1.5}>
-                        <Grid item xs={12} sm={9}>
-                            <FareDetails noOfSeats={3} farePerSeat={1200} />
-                        </Grid>
-                        <Grid item xs={12} sm={3} ml="auto">
-                            <StyledButton
-                                type="submit"
-                                fullWidth
-                                onClick={handleCheckout}
-                            >
-                                {t('checkout')}
-                            </StyledButton>
-                        </Grid>
-                    </Grid>
                 </Form>
             )}
         </Formik>

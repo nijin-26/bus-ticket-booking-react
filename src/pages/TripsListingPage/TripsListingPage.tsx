@@ -120,7 +120,11 @@ export const TripsListingPage = () => {
             <section className="accordions">
                 {tripData.length !== 0
                     ? tripData.map((indData) => (
-                          <TripCardAccordion key={indData.id} data={indData} mode='edit'/>
+                          <TripCardAccordion
+                              key={indData.id}
+                              data={indData}
+                              mode="edit"
+                          />
                       ))
                     : !loading &&
                       !hasError && (

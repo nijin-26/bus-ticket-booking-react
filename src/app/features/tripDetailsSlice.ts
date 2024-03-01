@@ -31,7 +31,7 @@ const tripDetailsSlice = createSlice({
             _state,
             action: PayloadAction<ITripDetailedSerializable>
         ) => {
-            return action.payload
+            return action.payload;
         },
         resetTripDetailsData: () => {
             return initialState;

@@ -9,7 +9,7 @@ export const paths = {
     usersListing: '/users',
     tripBooking: '/trips/booking',
     myBookings: '/user/bookings',
-    ticket: '/ticket/:pnrNumber',
+    ticket: '/ticket',
 };
 
 export const colors = {

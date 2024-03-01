@@ -10,11 +10,9 @@ import { ThemeProvider as CustomThemeProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
 
-//React-toastify
+import { useAppSelector } from './app/hooks';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { useAppSelector } from './app/hooks';
 
 const basename = '/';
 

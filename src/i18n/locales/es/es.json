@@ -12,7 +12,8 @@
         "logout": "Cerrar sesión",
         "allBookings": "Todas las reservas",
         "allUsers": "Todos los usuarios",
-        "greetingText": "Hola,"
+        "greetingText": "Hola,",
+        "languageError": "Error al cambiar de idioma"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",
@@ -91,6 +92,7 @@
         "arrival": "Llegada",
         "duration": "Duración",
         "busType": "Tipo de autobús",
+        "seat": "asiento",
         "emptyResponse": "Datos del viaje no disponibles",
         "errorResponse": "Error al recuperar los detalles del viaje"
     },
@@ -162,10 +164,6 @@
             {
                 "value": "female",
                 "label": "Mujer"
-            },
-            {
-                "value": "other",
-                "label": "Otro"
             }
         ],
 
@@ -175,7 +173,10 @@
         "genderRequired": "El Género es un campo requerido",
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
-        "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+        "AgeRangeCheck": "La Edad debe estar entre 1 y 130",
+        "apiSuccessMessage": "Reserva exitosa",
+        "apiErrorMessage": "Error al reservar. Por favor, inténtalo de nuevo",
+        "seatAlreadyBookedErrorMessage": "¡Vaya! Los asientos seleccionados ya están reservados"
     },
     "logoutConfirmationModal": {
         "title": "¿Estás seguro?",
@@ -205,5 +206,13 @@
         "seatNumber": "Número de asiento",
         "departure": "Partida",
         "arrival": "Llegada"
+    },
+    "bookingPageConfirmation": {
+        "confirmationTitle": "Confirmar Reserva",
+        "agreeText": "Confirmar",
+        "DisagreeText": "Rechazar",
+        "dialogContent": "¿Está seguro de que desea confirmar?",
+        "checkout": "Finalizar compra",
+        "absentStateError": "No se pudo recuperar la información de la reserva"
     }
 }

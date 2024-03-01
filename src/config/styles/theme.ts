@@ -56,9 +56,18 @@ const darkTheme = {
     green: colors.green,
 };
 
+const breakpoints = {
+    extraSmall: '50rem',
+    small: '60rem',
+    medium: '90rem',
+    large: '120rem',
+    extraLarge: '160rem',
+};
+
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
     font: fontStyles,
     color: mode === 'light' ? lightTheme : darkTheme,
+    breakpointValues: breakpoints,
 });
 
 export const getMuiTheme = (mode: PaletteMode): ThemeOptions => ({

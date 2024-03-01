@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './locales/en/en.json';
 import es from './locales/es/es.json';
+import { LanguageCode } from '../types';
+import { storage } from '../utils';
 
 const {
     ns1: enNs1,
@@ -26,6 +28,7 @@ const {
     errorPage: enErrorPage,
     ticket: enTicket,
     deleteTicketModal: enDeleteTicketModal,
+    bookingPageConfirmation: enBookingPageConfirmation,
 } = en;
 
 const {
@@ -51,9 +54,12 @@ const {
     errorPage: esErrorPage,
     ticket: esTicket,
     deleteTicketModal: esDeleteTicketModal,
+    bookingPageConfirmation: esBookingPageConfirmation,
 } = es;
 
 export const defaultNS = 'ns1';
+const language =
+    storage.getItem<LanguageCode>('language') ?? LanguageCode.English;
 
 void i18n.use(initReactI18next).init({
     resources: {
@@ -80,6 +86,7 @@ void i18n.use(initReactI18next).init({
             errorPage: enErrorPage,
             ticket: enTicket,
             deleteTicketModal: enDeleteTicketModal,
+            bookingPageConfirmation: enBookingPageConfirmation,
         },
         es: {
             ns1: esNs1,
@@ -104,10 +111,11 @@ void i18n.use(initReactI18next).init({
             errorPage: esErrorPage,
             ticket: esTicket,
             deleteTicketModal: esDeleteTicketModal,
+            bookingPageConfirmation: esBookingPageConfirmation,
         },
     },
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: language,
+    fallbackLng: LanguageCode.English,
     defaultNS,
     ns: [
         'ns1',
@@ -131,6 +139,7 @@ void i18n.use(initReactI18next).init({
         'errorPage',
         'ticket',
         'deleteTicketModal',
+        'bookingPageConfirmation',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

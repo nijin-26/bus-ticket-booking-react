@@ -8,7 +8,6 @@ import busSearchSlice from './features/busSearchSlice';
 import authReducer from './features/authSlice';
 import tripDetailsReducer from './features/tripDetailsSlice';
 
-
 export const store = configureStore({
     reducer: {
         theme: themeReducer,

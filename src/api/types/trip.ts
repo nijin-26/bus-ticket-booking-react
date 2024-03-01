@@ -68,3 +68,35 @@ export enum ISeatTypeExternal {
     SEATER = 'SEATER',
     Sleeper = 'Sleeper',
 }
+
+export interface ITripDetailRequest {
+    id: string;
+}
+
+export interface ITripDetailResponse extends ITrip {
+    seats: ISeat[];
+}
+
+export interface ITrip {
+    id: string;
+    origin: string;
+    destination: string;
+    departureTimestamp: string;
+    arrivalTimestamp: string;
+    seatType: ISeatType;
+    busType: IBusType;
+    farePerSeat: number;
+    availableSeats: number;
+    totalSeats: number;
+}
+
+export interface ISeat {
+    seatNumber: number;
+    status: ISeatStatus;
+}
+
+export enum ISeatStatus {
+    BOOKED = 'BOOKED',
+    AVAILABLE = 'AVAILABLE',
+    SELECTED = 'SELECTED',
+}

@@ -3,21 +3,22 @@ import data from '../locales/en/en.json';
 const {
     ns1,
     ns2,
-    auth,
     headerFooter,
     seatLayout,
     tripDetails,
-    tripListing,
     passengerDetails,
     actionBarTab,
     actionBar,
+    tripListing,
     pnrSearch,
     filterSort,
     bookingsList,
     usersList,
+    auth,
     tableNoRowsOverlay,
     tableExportOptions,
     landingPage,
+    bookingPageConfirmation,
     logoutConfirmationModal,
     error,
     errorPage,
@@ -48,6 +49,7 @@ const resources = {
     errorPage,
     deleteTicketModal,
     ticket,
+    bookingPageConfirmation,
 } as const;
 
 export default resources;
