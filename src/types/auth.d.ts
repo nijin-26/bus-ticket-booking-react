@@ -48,3 +48,12 @@ export enum TAlertStatus {
     warning = 'warning',
     success = 'success',
 }
+
+//includes state for signIn modal like redirect if any, alert messages to show
+export interface ISignInState {
+    from?: string;
+    info?: {
+        message: string;
+        status: TAlertStatus;
+    };
+}

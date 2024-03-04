@@ -10,7 +10,7 @@ import getValidationSchema from './validationSchema';
 import { ISignInForm } from '../../../../types';
 import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 import { useNavigate } from 'react-router-dom';
-import { clearRedirectState } from '../../../../app/features/authSlice';
+import { clearSignInState } from '../../../../app/features/authSlice';
 
 interface ISignInProps {
     closeModal: () => void;
@@ -26,7 +26,8 @@ const SignIn = ({ closeModal }: ISignInProps) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const redirectState = useAppSelector((state) => state.auth.redirectState);
+    const redirectTo = useAppSelector((state) => state.auth.signInState?.from);
+    const signInInfo = useAppSelector((state) => state.auth.signInState?.info);
 
     const [loading, setLoading] = useState(false);
 
@@ -44,9 +45,9 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                         t
                     );
                     setLoading(false);
-                    if (redirectState) {
-                        navigate(redirectState.from, { replace: true });
-                        dispatch(clearRedirectState());
+                    if (redirectTo) {
+                        navigate(redirectTo, { replace: true });
+                        dispatch(clearSignInState());
                     }
                 }}
             >
@@ -54,13 +55,13 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                     return (
                         <Form noValidate>
                             <Stack gap={4}>
-                                {redirectState && (
-                                    <Alert severity={redirectState.status}>
+                                {signInInfo && (
+                                    <Alert severity={signInInfo.status}>
                                         <Typography
                                             component="p"
                                             variant="body2"
                                         >
-                                            {redirectState.message}
+                                            {signInInfo.message}
                                         </Typography>
                                     </Alert>
                                 )}

@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { paths } from '../../config';
-import { setRedirectState, showAuthModal } from '../../app/features/authSlice';
+import { setSignInState, showAuthModal } from '../../app/features/authSlice';
 import { useTranslation } from 'react-i18next';
 import { EUserRole, TAlertStatus } from '../../types';
 import { toast } from 'react-toastify';
@@ -29,10 +29,12 @@ export const RequireAuth = ({ allowedRoles }: IRequireAuthProps) => {
         return <Navigate to={paths.home} replace />;
     } else {
         dispatch(
-            setRedirectState({
+            setSignInState({
                 from: location.pathname,
-                message: t('unauthorizedErrorMessage'),
-                status: TAlertStatus.warning,
+                info: {
+                    message: t('unauthorizedErrorMessage'),
+                    status: TAlertStatus.warning,
+                },
             })
         );
         dispatch(showAuthModal());

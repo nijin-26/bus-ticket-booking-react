@@ -1,23 +1,17 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getUserDataFromStorage, storage } from '../../utils';
-import { IAuthData, IAuthUser, TAlertStatus } from '../../types';
+import { IAuthData, IAuthUser, ISignInState } from '../../types';
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;
     user: IAuthUser | null;
-    redirectState: IRedirectState | null;
-}
-
-interface IRedirectState {
-    from: string;
-    message: string;
-    status: TAlertStatus;
+    signInState: ISignInState | null;
 }
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
     user: getUserDataFromStorage(),
-    redirectState: null,
+    signInState: null,
 };
 
 const authSlice = createSlice({
@@ -37,11 +31,11 @@ const authSlice = createSlice({
             storage.setItem('userData', rest);
             state.user = rest;
         },
-        setRedirectState: (state, action: PayloadAction<IRedirectState>) => {
-            state.redirectState = action.payload;
+        setSignInState: (state, action: PayloadAction<ISignInState>) => {
+            state.signInState = { ...state.signInState, ...action.payload };
         },
-        clearRedirectState: (state) => {
-            state.redirectState = null;
+        clearSignInState: (state) => {
+            state.signInState = null;
         },
         logout: (state) => {
             storage.removeItem('accessToken');
@@ -55,8 +49,8 @@ export const {
     showAuthModal,
     hideAuthModal,
     setCredentials,
-    setRedirectState,
-    clearRedirectState,
+    setSignInState,
+    clearSignInState,
     logout,
 } = authSlice.actions;
 
