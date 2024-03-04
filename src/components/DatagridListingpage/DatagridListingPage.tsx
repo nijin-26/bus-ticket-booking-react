@@ -1,13 +1,12 @@
 import { Stack, Box, Typography, CircularProgress } from '@mui/material';
 import { DatagridListingPageWrapper } from './DatagridListingPage.styled';
 import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { IPagination } from '../../types/pagination';
 import { GridColDef } from '@mui/x-data-grid';
 import { TFunction } from 'i18next';
 import { CustomTable } from './datagrid/CustomTable';
 import { IPaginatedData } from '../../api/types/pagination';
-import { paths } from '../../config';
 
 interface IDatagridListingPage<T> {
     columns: GridColDef[];
@@ -17,6 +16,7 @@ interface IDatagridListingPage<T> {
         pageSize: string
     ) => Promise<T[]> | Promise<IPaginatedData<T>>;
     rowId: keyof T;
+    pageTitleTranslation: string;
     frontendPagination: boolean;
 }
 
@@ -26,14 +26,8 @@ export const DatagridListingPage = <T,>({
     getData,
     rowId,
     frontendPagination,
+    pageTitleTranslation,
 }: IDatagridListingPage<T>) => {
-    const currentLocation = useLocation();
-
-    const pageTitle =
-        currentLocation.pathname === paths.myBookings
-            ? t('myBookingsPageTitle')
-            : t('allBookingsPageTitle');
-
     const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
     const updateSearchParams = (newPage: string) => {
         searchParams.set('page', String(newPage));
@@ -101,7 +95,7 @@ export const DatagridListingPage = <T,>({
                         component="h2"
                         sx={{ lineHeight: '10rem' }}
                     >
-                        {pageTitle}
+                        {t(pageTitleTranslation)}
                     </Typography>
                 </Box>
                 <Box

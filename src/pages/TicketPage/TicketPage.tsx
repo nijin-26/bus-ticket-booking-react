@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Ticket } from '../../components';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { Home } from '@mui/icons-material';
-import { Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import { paths } from '../../config';
 import { useGetTicketData } from '../../components/Ticket/utils/useGetTicketData';
 
@@ -24,17 +24,24 @@ export const TicketPage = () => {
 
     return (
         ticketData && (
-            <>
+            <Stack
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    height: '100vh',
+                }}
+            >
+                <Ticket data={ticketData} />
                 <Button
                     variant="contained"
                     onClick={goHomeHandler}
                     startIcon={<Home />}
-                    sx={{ marginTop: '10px' }}
+                    sx={{ margin: '2rem', alignSelf: 'center' }}
                 >
                     {t('goHome')}
                 </Button>
-                <Ticket data={ticketData} />
-            </>
+            </Stack>
         )
     );
 };

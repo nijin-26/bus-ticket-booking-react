@@ -6,7 +6,6 @@ import {
     getTicketFromPnrResponse,
     getTicketsFromBookingListingResponse,
 } from '../converters/ticket.converter';
-import { IPaginatedData } from '../types/pagination';
 import {
     IBookingListingResponse,
     IBookingRequest,
@@ -48,21 +47,15 @@ export const getAllBookings = async (): Promise<ITicket[]> => {
     return tickets;
 };
 
-export const getMyBookings = async (
-    page: string,
-    pageSize: string
-): Promise<IPaginatedData<ITicket>> => {
+export const getMyBookings = async (): Promise<ITicket[]> => {
     const response: IMyBookingsResponse = await API.get(apiRoutes.userBooking, {
         params: {
-            page: page,
-            pageSize: pageSize,
+            page: 1,
+            pageSize: 2000,
         },
     });
     const tickets = getTicketsFromMyBookingsResponse(response);
-    return {
-        data: tickets,
-        total: response.resultCount,
-    };
+    return tickets;
 };
 
 export const getTicketByPnr = async (pnr: string): Promise<ITicket> => {

@@ -16,9 +16,7 @@ const Seat = ({
     const { t } = useTranslation('seatLayout');
     return seatNumber ? (
         <Tooltip
-            title={`${seatNumber}: ${t(
-                seatStatus as 'available' | 'unavailable' | 'selected'
-            )}`}
+            title={t(seatStatus as 'available' | 'unavailable' | 'selected')}
             arrow
         >
             <SeatWrapper
@@ -31,12 +29,13 @@ const Seat = ({
                         : 'disable-click'
                 }`}
                 onClick={() => {
-                    mode === 'edit'&& (seatStatus === 'available' ||
-                          seatStatus === 'selected') &&
+                    mode === 'edit' &&
+                        (seatStatus === 'available' ||
+                            seatStatus === 'selected') &&
                         updateSelectedSeats &&
                         updateSelectedSeats(seatNumber);
                 }}
-            />
+            >{seatNumber}</SeatWrapper>
         </Tooltip>
     ) : (
         <SeatWrapper className={`seat ${seatStatus}`}></SeatWrapper>

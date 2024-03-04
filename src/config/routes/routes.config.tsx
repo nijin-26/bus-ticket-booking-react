@@ -37,6 +37,7 @@ export const routesConfig: RouteObject[] = [
                                 key="allBookings"
                                 getData={getAllBookings}
                                 frontendPagination={true}
+                                pageTitleTranslation={'allBookingsPageTitle'}
                             />
                         ),
                     },
@@ -59,7 +60,8 @@ export const routesConfig: RouteObject[] = [
                             <BookingsListPage
                                 key="myBookings"
                                 getData={getMyBookings}
-                                frontendPagination={false}
+                                frontendPagination={true}
+                                pageTitleTranslation={'myBookingsPageTitle'}
                             />
                         ),
                     },
@@ -68,6 +70,10 @@ export const routesConfig: RouteObject[] = [
             {
                 path: `${paths.ticket}/:pnr`,
                 element: <TicketPage />,
+            },
+            {
+                path: paths.error,
+                element: <ErrorPage />,
             },
         ],
     },

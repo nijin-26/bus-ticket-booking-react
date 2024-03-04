@@ -9,7 +9,8 @@ export const paths = {
     usersListing: '/users',
     tripBooking: '/trips/booking',
     myBookings: '/user/bookings',
-    ticket: '/ticket',
+    ticket: '/trips/booking/ticket',
+    error: '/404',
 };
 
 export const colors = {

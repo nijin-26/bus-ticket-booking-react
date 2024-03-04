@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+    useSearchParams,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getTicketByPnr } from '../../../api/endpoints/ticket.api';
 import { ITicket } from '../../../types';
+import { paths } from '../../../config';
 
 export const useGetTicketData = () => {
     const { pnr: pnrNumberFromParams } = useParams();
@@ -13,6 +19,7 @@ export const useGetTicketData = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const location = useLocation();
     const ticketDataFromLocationState = location.state as ITicket | null;
+    const navigate = useNavigate();
 
     const { t } = useTranslation('ticket');
     const errorText = t('errorPNRSearch');
@@ -26,6 +33,8 @@ export const useGetTicketData = () => {
                 if (pnrNumberFromSearchParams) {
                     searchParams.delete('pnr');
                     setSearchParams(searchParams);
+                } else {
+                    navigate(paths.error, { replace: true });
                 }
                 toast.error(errorText, { toastId: 'Error toast ' });
             } finally {
@@ -45,6 +54,7 @@ export const useGetTicketData = () => {
         }
     }, [
         errorText,
+        navigate,
         pnrNumberFromParams,
         pnrNumberFromSearchParams,
         searchParams,
