@@ -67,6 +67,7 @@ export enum ISeatTypeExternal {
     SLEEPER = 'SLEEPER',
     SEATER = 'SEATER',
     Sleeper = 'Sleeper',
+    Seater = 'Seater',
 }
 
 export interface ITripDetailRequest {
