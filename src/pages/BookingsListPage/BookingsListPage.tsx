@@ -12,9 +12,11 @@ import { toast } from 'react-toastify';
 export const BookingsListPage = ({
     getData,
     frontendPagination,
+    pageTitleTranslation,
 }: {
     getData: () => Promise<ITicket[]>;
     frontendPagination: boolean;
+    pageTitleTranslation: string;
 }) => {
     const { t } = useTranslation(['bookingsList', 'deleteTicketModal']);
 
@@ -58,6 +60,7 @@ export const BookingsListPage = ({
                 getData={getData}
                 rowId={'pnrNumber'}
                 frontendPagination={frontendPagination}
+                pageTitleTranslation={pageTitleTranslation}
             />
             {showTicket && <TicketModal cancelModal={cancelModal} />}
             <ConfirmDialog
