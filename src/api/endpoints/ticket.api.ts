@@ -49,20 +49,15 @@ export const getAllBookings = async (): Promise<ITicket[]> => {
 };
 
 export const getMyBookings = async (
-    page: string,
-    pageSize: string
-): Promise<IPaginatedData<ITicket>> => {
+): Promise<ITicket[]> => {
     const response: IMyBookingsResponse = await API.get(apiRoutes.userBooking, {
         params: {
-            page: page,
-            pageSize: pageSize,
+            page: 0,
+            pageSize: 2000,
         },
     });
     const tickets = getTicketsFromMyBookingsResponse(response);
-    return {
-        data: tickets,
-        total: response.resultCount,
-    };
+    return tickets;
 };
 
 export const getTicketByPnr = async (pnr: string): Promise<ITicket> => {
