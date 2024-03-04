@@ -11,4 +11,5 @@ export const apiRoutes = {
     cancelBooking: 'booking/cancel',
     user: 'user',
     myBookings: 'booking/user/all',
+    renewToken: 'auth/renew-token',
 };
