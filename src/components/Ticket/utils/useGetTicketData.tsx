@@ -34,7 +34,7 @@ export const useGetTicketData = () => {
                     searchParams.delete('pnr');
                     setSearchParams(searchParams);
                 } else {
-                    navigate(paths.error);
+                    navigate(paths.error, { replace: true });
                 }
                 toast.error(errorText, { toastId: 'Error toast ' });
             } finally {
@@ -52,7 +52,15 @@ export const useGetTicketData = () => {
             void fetchData(pnrNumberFromSearchParams);
             return;
         }
-    }, [errorText, navigate, pnrNumberFromParams, pnrNumberFromSearchParams, searchParams, setSearchParams, ticketDataFromLocationState]);
+    }, [
+        errorText,
+        navigate,
+        pnrNumberFromParams,
+        pnrNumberFromSearchParams,
+        searchParams,
+        setSearchParams,
+        ticketDataFromLocationState,
+    ]);
 
     return { ticketData, loading };
 };
