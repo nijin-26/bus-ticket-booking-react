@@ -29,6 +29,7 @@ export const getSeatTypeFromSeatTypeExternal = (
         case ISeatTypeExternal.Sleeper:
         case ISeatTypeExternal.SLEEPER:
             return ISeatType.SLEEPER;
+        case ISeatTypeExternal.Seater:
         case ISeatTypeExternal.SEATER:
             return ISeatType.SEATER;
     }
