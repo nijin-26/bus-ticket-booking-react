@@ -112,7 +112,7 @@ const getBookingsTableColumns = (
                         <Delete />
                     </IconButton>
                 ) : (
-                    <p>CANCELLED</p>
+                    <p>Cancelled</p>
                 );
             },
         },
