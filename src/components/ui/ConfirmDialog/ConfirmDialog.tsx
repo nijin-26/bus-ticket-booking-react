@@ -56,16 +56,7 @@ export const ConfirmDialog = ({
                 <DialogContent>
                     <DialogContentText>{props.children}</DialogContentText>
                 </DialogContent>
-                <DialogActions>
-                    <Button
-                        onClick={() => {
-                            handleAgreeFunction();
-                            props.handleClose();
-                        }}
-                        autoFocus
-                    >
-                        {props.agreeText}
-                    </Button>
+                <DialogActions sx={{ gap: '1rem' }}>
                     {props.disagreeText && (
                         <Button
                             autoFocus
@@ -77,6 +68,16 @@ export const ConfirmDialog = ({
                             {props.disagreeText}
                         </Button>
                     )}
+                    <Button
+                        onClick={() => {
+                            handleAgreeFunction();
+                            props.handleClose();
+                        }}
+                        autoFocus
+                        variant="contained"
+                    >
+                        {props.agreeText}
+                    </Button>
                 </DialogActions>
             </Dialog>
         </>
