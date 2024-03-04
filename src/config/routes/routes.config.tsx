@@ -59,7 +59,7 @@ export const routesConfig: RouteObject[] = [
                             <BookingsListPage
                                 key="myBookings"
                                 getData={getMyBookings}
-                                frontendPagination={false}
+                                frontendPagination={true}
                             />
                         ),
                     },

@@ -6,7 +6,6 @@ import {
     getTicketFromPnrResponse,
     getTicketsFromBookingListingResponse,
 } from '../converters/ticket.converter';
-import { IPaginatedData } from '../types/pagination';
 import {
     IBookingListingResponse,
     IBookingRequest,
