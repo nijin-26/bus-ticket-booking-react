@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+import { useNavigate } from 'react-router-dom';
 import { Alert, Button, Stack, Typography } from '@mui/material';
+import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 import { PasswordInput } from '../../..';
 import signInSubmitHandler from './submitHandler';
 import getValidationSchema from './validationSchema';
 import { ISignInForm } from '../../../../types';
-import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
-import { useNavigate } from 'react-router-dom';
 import { clearSignInState } from '../../../../app/features/authSlice';
 
 interface ISignInProps {
@@ -30,6 +30,11 @@ const SignIn = ({ closeModal }: ISignInProps) => {
     const signInInfo = useAppSelector((state) => state.auth.signInState?.info);
 
     const [loading, setLoading] = useState(false);
+    const [credentialErrorAlert, setCredentialErrorAlert] = useState(false);
+
+    const showCredentialErrorAlert = () => {
+        setCredentialErrorAlert(true);
+    };
 
     return (
         <>
@@ -42,7 +47,8 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                         values,
                         formikHelpers,
                         dispatch,
-                        t
+                        t,
+                        showCredentialErrorAlert
                     );
                     setLoading(false);
                     if (redirectTo) {
@@ -81,6 +87,19 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                     name="password"
                                     required
                                 />
+
+                                {credentialErrorAlert && (
+                                    <Alert severity="error">
+                                        <Typography
+                                            component="p"
+                                            variant="body2"
+                                        >
+                                            {t(
+                                                'invalidCredentialsErrorMessage'
+                                            )}
+                                        </Typography>
+                                    </Alert>
+                                )}
 
                                 <Stack
                                     direction={'row'}

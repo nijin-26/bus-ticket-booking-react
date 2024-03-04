@@ -14,7 +14,8 @@ const signInSubmitHandler = async (
     values: ISignInForm,
     formikHelpers: FormikHelpers<ISignInForm>,
     dispatch: AppDispatch,
-    t: TFunction<'auth'>
+    t: TFunction<'auth'>,
+    showCredentialErrorAlert: () => void
 ) => {
     try {
         const userData = await signIn(values);
@@ -29,17 +30,11 @@ const signInSubmitHandler = async (
             error.response?.status === 401
         ) {
             const errorMessage = error.response.data.message;
-            if (errorMessage === 'Invalid credentials.') {
-                formikHelpers.setFieldError(
-                    'password',
-                    t('invalidPasswordErrorMessage')
-                );
-                return;
-            } else if (errorMessage === 'User not found.') {
-                formikHelpers.setFieldError(
-                    'email',
-                    t('userNotFoundErrorMessage')
-                );
+            if (
+                errorMessage === 'Invalid credentials.' ||
+                errorMessage === 'User not found.'
+            ) {
+                showCredentialErrorAlert();
                 return;
             }
         }
