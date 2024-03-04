@@ -34,8 +34,9 @@ export const TripsListingPage = () => {
         const originId = searchParams.get('originId') as string;
         const destinationId = searchParams.get('destinationId') as string;
         const tripDate = searchParams.get('tripDate') as string;
-        if (!originId && !destinationId && !tripDate) {
+        if (!originId || !destinationId || !tripDate) {
             navigate(paths.home);
+            return;
         }
         const sortByParam = searchParams.get('sortBy');
         const sortOrderParam = searchParams.get(
