@@ -5,6 +5,7 @@ export enum EUserRole {
 
 export interface IAuthData {
     accessToken: string;
+    refreshToken: string;
     fullName: string;
     email: string;
     role: EUserRole;

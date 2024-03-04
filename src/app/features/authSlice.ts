@@ -30,8 +30,9 @@ const authSlice = createSlice({
             state.isAuthModalDisplayed = false;
         },
         setCredentials: (state, action: PayloadAction<IAuthData>) => {
-            const { accessToken, ...rest } = action.payload;
+            const { accessToken, refreshToken, ...rest } = action.payload;
             storage.setItem('accessToken', accessToken);
+            storage.setItem('refreshToken', refreshToken);
             storage.setItem('userData', rest);
             state.user = rest;
         },
