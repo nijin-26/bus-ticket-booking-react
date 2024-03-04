@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { GridColDef } from '@mui/x-data-grid';
-import { ITicket } from '../../types';
+import { ITicket, ITicketStatus } from '../../types';
 import { getDateFromTimestamp } from '../../utils';
 import { TFunction } from 'i18next';
 import { Dispatch, SetStateAction } from 'react';
@@ -100,19 +100,19 @@ const getBookingsTableColumns = (
             field: 'delete',
             headerName: '',
             align: 'center',
-            maxWidth: 50,
+            maxWidth: 90,
             disableExport: true,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
-                return (
-                    <p>
-                        <IconButton
-                            onClick={() => {
-                                setShowDeleteTicketModal(params.row.pnrNumber);
-                            }}
-                        >
-                            <Delete />
-                        </IconButton>
-                    </p>
+                return params.row.status === ITicketStatus.CONFIRMED ? (
+                    <IconButton
+                        onClick={() => {
+                            setShowDeleteTicketModal(params.row.pnrNumber);
+                        }}
+                    >
+                        <Delete />
+                    </IconButton>
+                ) : (
+                    <p>CANCELLED</p>
                 );
             },
         },

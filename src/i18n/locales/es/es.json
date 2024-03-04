@@ -133,7 +133,9 @@
         "date": "Fecha",
         "tripId": "ID de viaje",
         "pax": "Pasajero",
-        "download": "Descargar"
+        "download": "Descargar",
+        "successToast": "Reserva eliminada exitosamente.",
+        "errorToast": "Error al eliminar la reserva."
     },
     "usersList": {
         "pageTitle": "Lista de Usuarios",
@@ -208,7 +210,8 @@
         "passengerCount": "Conteo de pasajeros",
         "seatNumber": "Número de asiento",
         "departure": "Partida",
-        "arrival": "Llegada"
+        "arrival": "Llegada",
+        "errorPNRSearch": "¡Lo siento! No se pudo encontrar el PNR buscado."
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",

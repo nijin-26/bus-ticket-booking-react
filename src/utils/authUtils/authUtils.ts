@@ -19,7 +19,7 @@ export const getUserDataFromStorage = () => {
                 return userData;
             }
         } catch (error) {
-            console.log('Invalid accessToken');
+            console.error('Invalid accessToken');
         }
     }
     storage.removeItem('userData');

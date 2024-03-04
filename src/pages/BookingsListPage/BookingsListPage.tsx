@@ -6,6 +6,9 @@ import { TicketModal } from '../../components/Ticket/TicketModal';
 import { useState } from 'react';
 import { ConfirmDialog } from '../../components';
 import { IPaginatedData } from '../../api/types/pagination';
+import { cancelBooking } from '../../api/endpoints/ticket.api';
+import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
+import { toast } from 'react-toastify';
 
 export const BookingsListPage = ({
     getData,
@@ -22,7 +25,7 @@ export const BookingsListPage = ({
     const [showTicket, setShowTicket] = useState<boolean>(false);
     const [showDeleteTicketModal, setShowDeleteTicketModal] =
         useState<string>('');
-
+    const [loading, setLoading] = useState<boolean>(false);
     const columns = getBookingsTableColumns(
         t,
         setShowTicket,
@@ -33,9 +36,23 @@ export const BookingsListPage = ({
     };
 
     const handleDelete = () => {
-        //TODO: Add deletion logic here
-        console.log('Deleting');
+        void (async () => {
+            try {
+                setLoading(true);
+                await cancelBooking(showDeleteTicketModal);
+                toast.success(t('successToast'));
+            } catch (e) {
+                console.error(e);
+                toast.error(t('errorToast'));
+            } finally {
+                setLoading(false);
+            }
+        })();
     };
+
+    if (loading) {
+        return <FullScreenLoader open={loading} />;
+    }
 
     return (
         <>

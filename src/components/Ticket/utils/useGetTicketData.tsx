@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getTicketByPnr } from '../../../api/endpoints/ticket.api';
 import { ITicket } from '../../../types';
@@ -11,9 +11,11 @@ export const useGetTicketData = () => {
     const pnrNumberFromSearchParams = searchParams.get('pnr');
     const [ticketData, setTicketData] = useState<ITicket>();
     const [loading, setLoading] = useState<boolean>(true);
+    const location = useLocation();
+    const ticketDataFromLocationState = location.state as ITicket | null;
 
-    const { t } = useTranslation('error');
-    const errorText = t('unexpected');
+    const { t } = useTranslation('ticket');
+    const errorText = t('errorPNRSearch');
 
     useEffect(() => {
         const fetchData = async (pnr: string) => {
@@ -31,7 +33,10 @@ export const useGetTicketData = () => {
             }
         };
 
-        if (pnrNumberFromParams) {
+        if (ticketDataFromLocationState) {
+            setTicketData(ticketDataFromLocationState);
+            setLoading(false);
+        } else if (pnrNumberFromParams) {
             void fetchData(pnrNumberFromParams);
             return;
         } else if (pnrNumberFromSearchParams) {
@@ -44,6 +49,7 @@ export const useGetTicketData = () => {
         pnrNumberFromSearchParams,
         searchParams,
         setSearchParams,
+        ticketDataFromLocationState,
     ]);
 
     return { ticketData, loading };
