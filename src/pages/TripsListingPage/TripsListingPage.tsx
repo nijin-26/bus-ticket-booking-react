@@ -34,8 +34,12 @@ export const TripsListingPage = () => {
         const originId = searchParams.get('originId') as string;
         const destinationId = searchParams.get('destinationId') as string;
         const tripDate = searchParams.get('tripDate') as string;
-        if (!originId && !destinationId && !tripDate) {
+        if (!originId || !destinationId || !tripDate) {
+            toast.error(t('tripListing:missingParamsToast'), {
+                toastId: 'no locations toast',
+            });
             navigate(paths.home);
+            return;
         }
         const sortByParam = searchParams.get('sortBy');
         const sortOrderParam = searchParams.get(
@@ -120,7 +124,11 @@ export const TripsListingPage = () => {
             <section className="accordions">
                 {tripData.length !== 0
                     ? tripData.map((indData) => (
-                          <TripCardAccordion key={indData.id} data={indData} mode='edit'/>
+                          <TripCardAccordion
+                              key={indData.id}
+                              data={indData}
+                              mode="edit"
+                          />
                       ))
                     : !loading &&
                       !hasError && (

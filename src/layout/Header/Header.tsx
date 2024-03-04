@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useTheme } from '@emotion/react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
 import { logout, showAuthModal } from '../../app/features/authSlice';
@@ -28,12 +29,17 @@ import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { paths } from '../../config';
+import { EUserRole } from '../../types';
+import { BackupTable, PeopleAlt } from '@mui/icons-material';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const isSmallScreen = useMediaQuery('(max-width:500px)');
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(
+        `(max-width:${theme.breakpointValues.small})`
+    );
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
@@ -153,10 +159,27 @@ export const Header = () => {
                                             <Divider />
                                         </li>
                                     )}
-                                    {/*TODO : Need to update link after myBookings page is added*/}
+                                    {user.role === EUserRole.ADMIN && (
+                                        <MenuItem
+                                            onClick={() => {
+                                                navigate(paths.usersListing);
+                                                handleCloseUserMenu();
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <PeopleAlt fontSize="small" />
+                                            </ListItemIcon>
+                                            <Typography
+                                                variant="body2"
+                                                textAlign="center"
+                                            >
+                                                {t('allUsers')}
+                                            </Typography>
+                                        </MenuItem>
+                                    )}
                                     <MenuItem
                                         onClick={() => {
-                                            navigate(paths.usersListing);
+                                            navigate(paths.myBookings);
                                             handleCloseUserMenu();
                                         }}
                                     >
@@ -170,6 +193,24 @@ export const Header = () => {
                                             {t('myBookings')}
                                         </Typography>
                                     </MenuItem>
+                                    {user.role === EUserRole.ADMIN && (
+                                        <MenuItem
+                                            onClick={() => {
+                                                navigate(paths.bookings);
+                                                handleCloseUserMenu();
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <BackupTable fontSize="small" />
+                                            </ListItemIcon>
+                                            <Typography
+                                                variant="body2"
+                                                textAlign="center"
+                                            >
+                                                {t('allBookings')}
+                                            </Typography>
+                                        </MenuItem>
+                                    )}
                                     <MenuItem
                                         onClick={() => {
                                             setIsLogoutModalDisplayed(true);

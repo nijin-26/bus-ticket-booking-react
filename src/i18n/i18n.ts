@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './locales/en/en.json';
 import es from './locales/es/es.json';
+import { LanguageCode } from '../types';
+import { storage } from '../utils';
 
 const {
     ns1: enNs1,
@@ -14,12 +16,19 @@ const {
     filterSort: enFilterSort,
     tripDetails: enTripDetails,
     tripListing: enTripListing,
+    bookingsList: enBookingsList,
+    usersList: enUsersList,
+    tableExportOptions: enTableExportOptions,
+    tableNoRowsOverlay: enTableNoRowsOverlay,
     landingPage: enLandingPage,
     auth: enAuth,
     passengerDetails: enPassengerDetails,
     logoutConfirmationModal: enLogoutConfirmationModal,
     error: enError,
     errorPage: enErrorPage,
+    ticket: enTicket,
+    deleteTicketModal: enDeleteTicketModal,
+    bookingPageConfirmation: enBookingPageConfirmation,
 } = en;
 
 const {
@@ -34,14 +43,23 @@ const {
     filterSort: esFilterSort,
     tripDetails: esTripDetails,
     tripListing: esTripListing,
+    bookingsList: esBookingsList,
+    tableExportOptions: esTableExportOptions,
+    usersList: esUsersList,
+    tableNoRowsOverlay: esTableNoRowsOverlay,
     landingPage: eslandingPage,
     passengerDetails: esPassengerDetails,
     logoutConfirmationModal: esLogoutConfirmationModal,
     error: esError,
     errorPage: esErrorPage,
+    ticket: esTicket,
+    deleteTicketModal: esDeleteTicketModal,
+    bookingPageConfirmation: esBookingPageConfirmation,
 } = es;
 
 export const defaultNS = 'ns1';
+const language =
+    storage.getItem<LanguageCode>('language') ?? LanguageCode.English;
 
 void i18n.use(initReactI18next).init({
     resources: {
@@ -57,11 +75,18 @@ void i18n.use(initReactI18next).init({
             filterSort: enFilterSort,
             tripDetails: enTripDetails,
             tripListing: enTripListing,
+            bookingsList: enBookingsList,
+            usersList: enUsersList,
+            tableExportOptions: enTableExportOptions,
+            tableNoRowsOverlay: enTableNoRowsOverlay,
             landingPage: enLandingPage,
             passengerDetails: enPassengerDetails,
             logoutConfirmationModal: enLogoutConfirmationModal,
             error: enError,
             errorPage: enErrorPage,
+            ticket: enTicket,
+            deleteTicketModal: enDeleteTicketModal,
+            bookingPageConfirmation: enBookingPageConfirmation,
         },
         es: {
             ns1: esNs1,
@@ -75,15 +100,22 @@ void i18n.use(initReactI18next).init({
             filterSort: esFilterSort,
             tripDetails: esTripDetails,
             tripListing: esTripListing,
+            bookingsList: esBookingsList,
+            usersList: esUsersList,
+            tableExportOptions: esTableExportOptions,
+            tableNoRowsOverlay: esTableNoRowsOverlay,
             landingPage: eslandingPage,
             passengerDetails: esPassengerDetails,
             logoutConfirmationModal: esLogoutConfirmationModal,
             error: esError,
             errorPage: esErrorPage,
+            ticket: esTicket,
+            deleteTicketModal: esDeleteTicketModal,
+            bookingPageConfirmation: esBookingPageConfirmation,
         },
     },
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: language,
+    fallbackLng: LanguageCode.English,
     defaultNS,
     ns: [
         'ns1',
@@ -96,11 +128,18 @@ void i18n.use(initReactI18next).init({
         'actionBar',
         'pnrSearch',
         'filterSort',
+        'bookingsList',
+        'usersList',
+        'tableNoRowsOverlay',
         'tripListing',
         'landingPage',
         'auth',
+        'tableExportOptions',
         'logoutConfirmationModal',
         'errorPage',
+        'ticket',
+        'deleteTicketModal',
+        'bookingPageConfirmation',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

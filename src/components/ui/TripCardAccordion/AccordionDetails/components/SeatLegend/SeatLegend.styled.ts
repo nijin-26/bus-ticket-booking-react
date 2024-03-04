@@ -18,13 +18,13 @@ const SeatLegendWrapper = styled('ul')(({ theme }) => ({
             '& .seat': {
                 width: '2rem',
                 height: '2rem',
-                boxShadow: `0 0 4px ${theme.color.boxShadowPrimary}`,
+                boxShadow: `0 0 0.4rem ${theme.color.boxShadowPrimary}`,
             },
         },
     },
 
     '.title': {
-        marginLeft: '15px',
+        marginLeft: '1.5rem',
     },
 }));
 

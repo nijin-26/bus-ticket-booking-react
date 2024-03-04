@@ -1,4 +1,5 @@
-import { ISeat, ISeatStatus } from "../types";
+import { ISeat, ISeatStatus } from '../types';
+import { IGender, IPassengerSeat } from '../types';
 
 interface IPassengerDetails {
     fullName: string;
@@ -8,18 +9,24 @@ interface IPassengerDetails {
 interface IPassengers extends IPassengerDetails {
     seatNumber: number;
 }
-export interface IPassengersInput {
+export interface IPassengersInputFromFormik {
     passengers: IPassengers[];
 }
 
-export const converterFun = (obj: IPassengersInput) => {
-    const passengersArray = obj.passengers;
-    const convertedPassengersArray = passengersArray.map((each) => {
-        {
-            each.seatNumber, { ...each };
-        }
-    });
-    return { tripId: 1, convertedPassengersArray };
+export const convertFormikDataToApiData = (
+    obj: IPassengersInputFromFormik
+): IPassengerSeat[] => {
+    return obj.passengers.map((each) => ({
+        seatNumber: each.seatNumber,
+        passenger: {
+            fullName: each.fullName,
+            age: Number(each.age),
+            gender:
+                each.gender.toUpperCase() === 'MALE'
+                    ? IGender.MALE
+                    : IGender.FEMALE,
+        },
+    }));
 };
 
 export const filterSelectedSeats = (arr: ISeat[]) => {

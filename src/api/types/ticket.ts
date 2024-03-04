@@ -18,7 +18,7 @@ export interface ITicketExternal extends IBookingExternal {
     trip: ITripExternal;
     seatNumber: string;
     fare: string;
-    status: string;
+    status: ITicketStatusExternal;
     pnrNumber: string;
     tripId: string;
     id: string;
@@ -42,11 +42,11 @@ export interface IPnrResponse extends ITripExternal {
         id: string;
         pnrNumber: string;
         seatNumber: string;
-        status: string;
         fare: string;
         passengerName: string;
         passengerAge: string;
         passengerGender: string;
+        status: ITicketStatusExternal;
     }[];
 }
 
@@ -57,4 +57,9 @@ export interface IMyBookingsResponse {
 
 export interface ICancelBookingResponse {
     pnrNumber: string;
+}
+
+export enum ITicketStatusExternal {
+    Confirmed = 'confirmed',
+    Cancelled = 'cancelled',
 }

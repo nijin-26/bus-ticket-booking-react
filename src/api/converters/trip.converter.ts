@@ -19,9 +19,6 @@ export const getTripFromTripExternal = (tripExternal: ITripExternal): ITrip => {
         seatType: getSeatTypeFromSeatTypeExternal(tripExternal.seatType),
         availableSeats: tripExternal.totalSeats,
     };
-    if (tripExternal.seatType == ISeatTypeExternal.Sleeper) {
-        console.log(tripExternal, trip);
-    }
     return trip;
 };
 
@@ -32,6 +29,7 @@ export const getSeatTypeFromSeatTypeExternal = (
         case ISeatTypeExternal.Sleeper:
         case ISeatTypeExternal.SLEEPER:
             return ISeatType.SLEEPER;
+        case ISeatTypeExternal.Seater:
         case ISeatTypeExternal.SEATER:
             return ISeatType.SEATER;
     }

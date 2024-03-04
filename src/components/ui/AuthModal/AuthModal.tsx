@@ -11,6 +11,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
+import { useTheme } from '@emotion/react';
 
 interface IAuthModalProps {
     isOpen: boolean;
@@ -23,8 +24,11 @@ enum ESelectedAuthTab {
 }
 
 export const AuthModal = ({ isOpen, closeModal }: IAuthModalProps) => {
+    const { breakpointValues } = useTheme();
     const { t } = useTranslation('auth');
-    const isXsScreen = useMediaQuery('(max-width:500px)');
+    const isXsScreen = useMediaQuery(
+        `(max-width:${breakpointValues.extraSmall})`
+    );
 
     const [selectedTab, setSelectedTab] = useState<ESelectedAuthTab>(
         ESelectedAuthTab.SIGN_IN

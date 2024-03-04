@@ -6,11 +6,14 @@
         "hello": "hola"
     },
     "headerFooter": {
-        "myBookings": "Mis Reservas",
+        "myBookings": "Mis reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
-        "greetingText": "Hola,"
+        "allBookings": "Todas las reservas",
+        "allUsers": "Todos los usuarios",
+        "greetingText": "Hola,",
+        "languageError": "Error al cambiar de idioma"
     },
     "auth": {
         "signIn": "INICIAR SESIÓN",
@@ -77,7 +80,8 @@
         "priceHighToLow": "Precio: de alto a bajo",
         "priceLowToHigh": "Precio: de bajo a alto",
         "clearAll": "Limpiar todo",
-        "clear": "Limpiar"
+        "clear": "Limpiar",
+        "filter": "Filtrar"
     },
     "tripDetails": {
         "info": "Haga clic en un asiento disponible para continuar con su transacción.",
@@ -89,6 +93,7 @@
         "arrival": "Llegada",
         "duration": "Duración",
         "busType": "Tipo de autobús",
+        "seat": "asiento",
         "emptyResponse": "Datos del viaje no disponibles",
         "errorResponse": "Error al recuperar los detalles del viaje"
     },
@@ -100,7 +105,49 @@
         "seatsAvailable": "asientos disponibles",
         "loadMore": "Cargar más",
         "noOptions": "No hay opciones que coincidan con tu búsqueda",
-        "change": "Prueba a cambiar las fechas o el destino para ver resultados"
+        "change": "Prueba a cambiar las fechas o el destino para ver resultados",
+        "missingParamsToast": "Por favor proporcione lugares de viaje"
+    },
+    "tableNoRowsOverlay": {
+        "noRows": "Sin datos"
+    },
+    "deleteTicketModal": {
+        "title": "Eliminar reserva",
+        "message": "Esta acción eliminará permanentemente todos los datos relacionados con su reserva. ¿Está seguro de que desea continuar?",
+        "confirmText": "Eliminar",
+        "cancelText": "Cancelar",
+        "logoutSuccessMessage": "Reserva cancelada exitosamente."
+    },
+    "bookingsList": {
+        "allBookingsPageTitle": "Todas las Reservas",
+        "myBookingsPageTitle": "Mis Reservas",
+        "cardTitle": "Total de reservas",
+        "pnrNumber": "Número de PNR",
+        "username": "Nombre de usuario",
+        "origin": "Origen",
+        "destination": "Destino",
+        "busType": "Tipo de autobús",
+        "seatType": "Tipo de asiento",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "reservas",
+        "date": "Fecha",
+        "tripId": "ID de viaje",
+        "pax": "Pasajero",
+        "download": "Descargar"
+    },
+    "usersList": {
+        "pageTitle": "Lista de Usuarios",
+        "cardTitle": "Usuarios totales",
+        "tableFooterTotal": "Total",
+        "tableFooterSubject": "usuario",
+        "fullName": "Nombre completo",
+        "email": "Correo electrónico",
+        "phone": "Teléfono"
+    },
+    "tableExportOptions": {
+        "export": "Exportar",
+        "exportAsCsv": "Descargar como CSV",
+        "exportPrint": "Imprimir"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
@@ -120,10 +167,6 @@
             {
                 "value": "female",
                 "label": "Mujer"
-            },
-            {
-                "value": "other",
-                "label": "Otro"
             }
         ],
 
@@ -133,7 +176,10 @@
         "genderRequired": "El Género es un campo requerido",
         "fullNameLength": "El Nombre Completo debe tener entre 3 y 60 caracteres",
         "AgeNumberCheck": "La edad debe ser un número válido",
-        "AgeRangeCheck": "La Edad debe estar entre 1 y 130"
+        "AgeRangeCheck": "La Edad debe estar entre 1 y 130",
+        "apiSuccessMessage": "Reserva exitosa",
+        "apiErrorMessage": "Error al reservar. Por favor, inténtalo de nuevo",
+        "seatAlreadyBookedErrorMessage": "¡Vaya! Los asientos seleccionados ya están reservados"
     },
     "logoutConfirmationModal": {
         "title": "¿Estás seguro?",
@@ -150,5 +196,26 @@
         "errorPageHeading": "¡Vaya! Parece que no podemos encontrar la página que estás buscando.",
         "goBack": "Volver",
         "goHome": "Ir a inicio"
+    },
+    "ticket": {
+        "ticket": "BOLETO",
+        "passengerName": "Nombre del pasajero",
+        "from": "De",
+        "to": "destino",
+        "date": "fecha",
+        "time": "tiempo",
+        "pnr": "PNR",
+        "passengerCount": "Conteo de pasajeros",
+        "seatNumber": "Número de asiento",
+        "departure": "Partida",
+        "arrival": "Llegada"
+    },
+    "bookingPageConfirmation": {
+        "confirmationTitle": "Confirmar Reserva",
+        "agreeText": "Confirmar",
+        "DisagreeText": "Rechazar",
+        "dialogContent": "¿Está seguro de que desea confirmar?",
+        "checkout": "Finalizar compra",
+        "absentStateError": "No se pudo recuperar la información de la reserva"
     }
 }

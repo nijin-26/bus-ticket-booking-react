@@ -9,11 +9,16 @@ import { useNavigate } from 'react-router-dom';
 import lost from '../../assets/Lost.svg';
 import { useTranslation } from 'react-i18next';
 import { paths } from '../../config';
+import { useTheme } from '@emotion/react';
 
 export const ErrorPage = () => {
     const navigate = useNavigate();
     const { t } = useTranslation('errorPage');
-    const matches = useMediaQuery('(min-width:600px)');
+    const theme = useTheme();
+
+    const matches = useMediaQuery(
+        `(min-width:${theme.breakpointValues.small})`
+    );
 
     const goHomeHandler = () => {
         navigate(paths.home);

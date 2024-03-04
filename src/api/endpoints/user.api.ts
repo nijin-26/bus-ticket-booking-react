@@ -1,13 +1,13 @@
 import { API, apiRoutes } from '..';
 import { IUser } from '../../types';
 import { getUserFromUserExternal } from '../converters/user.converter';
-import { PaginatedData } from '../types/pagination';
+import { IPaginatedData } from '../types/pagination';
 import { IUsersResponse } from '../types/user';
 
 export const getUsers = async (
-    page: number,
-    pageSize: number
-): Promise<PaginatedData<IUser>> => {
+    page: string,
+    pageSize: string
+): Promise<IPaginatedData<IUser>> => {
     const response: IUsersResponse = await API.get(apiRoutes.user, {
         params: {
             page,

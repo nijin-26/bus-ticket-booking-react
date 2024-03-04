@@ -17,6 +17,7 @@ const fontStyles = {
 };
 
 const lightTheme = {
+    mode: 'light',
     primary: colors.deepPurple,
     secondary: colors.lightPurple,
     textPrimary: colors.black,
@@ -28,11 +29,15 @@ const lightTheme = {
     busLayoutBg: colors.busLayoutBg,
     red: colors.red,
     redHover: colors.redHover,
-    boxShadowPrimary: colors.boxShadowPrimary,
+    boxShadowPrimary: colors.boxShadowLight,
+    cardWhite: colors.cardWhite,
+    grey500: colors.grey500,
+    linkColor: colors.linkColor,
     green: colors.green,
 };
 
 const darkTheme = {
+    mode: 'dark',
     primary: colors.lightPurple,
     secondary: colors.deepPurple,
     background: colors.black,
@@ -44,13 +49,25 @@ const darkTheme = {
     busLayoutBg: colors.darkBusLayoutBg,
     red: colors.red,
     redHover: colors.redHover,
-    boxShadowPrimary: colors.boxShadowPrimary,
+    boxShadowPrimary: colors.boxShadowDark,
+    cardWhite: colors.black,
+    grey500: colors.grey500,
+    linkColor: colors.darkLinkColor,
     green: colors.green,
+};
+
+const breakpoints = {
+    extraSmall: '31rem',
+    small: '38rem',
+    medium: '56rem',
+    large: '75rem',
+    extraLarge: '100rem',
 };
 
 export const getCustomTheme = (mode: PaletteMode): Theme => ({
     font: fontStyles,
     color: mode === 'light' ? lightTheme : darkTheme,
+    breakpointValues: breakpoints,
 });
 
 export const getMuiTheme = (mode: PaletteMode): ThemeOptions => ({

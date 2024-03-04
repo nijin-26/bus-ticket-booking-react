@@ -1,10 +1,11 @@
-import { IGender, ITicket } from '../../types';
+import { IGender, ITicket, ITicketStatus } from '../../types';
 import {
     IBookingListingResponse,
     IBookingResponse,
     IMyBookingsResponse,
     IPnrResponse,
     ITicketExternal,
+    ITicketStatusExternal,
 } from '../types/ticket';
 import { getTripFromTripExternal } from './trip.converter';
 
@@ -12,6 +13,7 @@ const getTicketFromTicketExternals = (
     ticketExternals: ITicketExternal[]
 ): ITicket => {
     const ticket: ITicket = {
+        status: getTicketStatusFromExternal(ticketExternals[0].status),
         pnrNumber: ticketExternals[0].pnrNumber,
         trip: getTripFromTripExternal(ticketExternals[0].trip),
         seats: ticketExternals.map((booking) => ({
@@ -56,6 +58,7 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
     const ticket: ITicket = {
         pnrNumber,
         trip,
+        status: getTicketStatusFromExternal(response.bookings[0].status),
         seats: response.bookings.map((booking) => ({
             seatNumber: parseInt(booking.seatNumber),
             passenger: {
@@ -75,4 +78,15 @@ export const getTicketsFromMyBookingsResponse = (
         getTicketFromPnrResponse(pnr)
     );
     return tickets;
+};
+
+export const getTicketStatusFromExternal = (
+    status: ITicketStatusExternal
+): ITicketStatus => {
+    switch (status) {
+        case ITicketStatusExternal.Confirmed:
+            return ITicketStatus.CONFIRMED;
+        case ITicketStatusExternal.Cancelled:
+            return ITicketStatus.CANCELLED;
+    }
 };

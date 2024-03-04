@@ -6,8 +6,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 import { IconButton } from '@mui/material';
+import { useTheme } from '@emotion/react';
 
 interface IConfirmDialogProps {
     title?: string;
@@ -26,12 +26,14 @@ export const ConfirmDialog = ({
     ...props
 }: IConfirmDialogProps) => {
     const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const isExtraSmallScreen = useMediaQuery(
+        `(max-width:${theme.breakpointValues.extraSmall})`
+    );
 
     return (
         <>
             <Dialog
-                fullScreen={fullScreen}
+                fullScreen={isExtraSmallScreen}
                 open={props.open}
                 onClose={props.handleClose}
                 aria-labelledby="responsive-dialog-title"
