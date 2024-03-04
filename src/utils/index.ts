@@ -1,4 +1,4 @@
 export * from './dateUtils';
 export * from './storageUtils/storageUtils';
-export * from './bookingUtils';
+export * from './bookingUtils/bookingUtils';
 export * from './authUtils/authUtils';
