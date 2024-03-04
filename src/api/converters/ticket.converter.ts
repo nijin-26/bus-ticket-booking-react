@@ -74,9 +74,41 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
 export const getTicketsFromMyBookingsResponse = (
     response: IMyBookingsResponse
 ): ITicket[] => {
-    const tickets = response.bookings.map((pnr) =>
-        getTicketFromPnrResponse(pnr)
-    );
+    const tickets: ITicket[] = [];
+    for (const tripBooking of response.bookings) {
+        const tripTickets: Map<string, ITicket> = new Map();
+        const trip = getTripFromTripExternal(tripBooking);
+        for (const booking of tripBooking.bookings) {
+            if (tripTickets.has(booking.pnrNumber)) {
+                tripTickets.get(booking.pnrNumber)?.seats.push({
+                    seatNumber: parseInt(booking.seatNumber),
+                    passenger: {
+                        fullName: booking.passengerName,
+                        age: parseInt(booking.passengerAge),
+                        gender: booking.passengerGender as IGender,
+                    },
+                });
+            } else {
+                const ticket: ITicket = {
+                    pnrNumber: booking.pnrNumber,
+                    trip,
+                    status: getTicketStatusFromExternal(booking.status),
+                    seats: [
+                        {
+                            seatNumber: parseInt(booking.seatNumber),
+                            passenger: {
+                                fullName: booking.passengerName,
+                                age: parseInt(booking.passengerAge),
+                                gender: booking.passengerGender as IGender,
+                            },
+                        },
+                    ],
+                };
+                tripTickets.set(booking.pnrNumber, ticket);
+            }
+        }
+        tickets.push(...Array.from(tripTickets.values()));
+    }
     return tickets;
 };
 
