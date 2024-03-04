@@ -48,11 +48,10 @@ export const getAllBookings = async (): Promise<ITicket[]> => {
     return tickets;
 };
 
-export const getMyBookings = async (
-): Promise<ITicket[]> => {
+export const getMyBookings = async (): Promise<ITicket[]> => {
     const response: IMyBookingsResponse = await API.get(apiRoutes.userBooking, {
         params: {
-            page: 0,
+            page: 1,
             pageSize: 2000,
         },
     });
