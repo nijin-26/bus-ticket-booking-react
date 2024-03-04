@@ -42,3 +42,9 @@ export interface ISignUpForm {
     password: string;
     confirmPassword: string;
 }
+
+export enum TAlertStatus {
+    error = 'error',
+    warning = 'warning',
+    success = 'success',
+}

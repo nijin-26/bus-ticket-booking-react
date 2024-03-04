@@ -55,7 +55,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                         <Form noValidate>
                             <Stack gap={4}>
                                 {redirectState && (
-                                    <Alert severity="error">
+                                    <Alert severity={redirectState.status}>
                                         <Typography
                                             component="p"
                                             variant="body2"
@@ -87,10 +87,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                     justifyContent={'center'}
                                 >
                                     <Button
-                                        onClick={() => {
-                                            dispatch(clearRedirectState());
-                                            closeModal();
-                                        }}
+                                        onClick={closeModal}
                                         variant="outlined"
                                         fullWidth
                                     >

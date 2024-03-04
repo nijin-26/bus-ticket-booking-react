@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getUserDataFromStorage, storage } from '../../utils';
-import { IAuthData, IAuthUser } from '../../types';
+import { IAuthData, IAuthUser, TAlertStatus } from '../../types';
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;
@@ -11,6 +11,7 @@ interface IAuthState {
 interface IRedirectState {
     from: string;
     message: string;
+    status: TAlertStatus;
 }
 
 const initialState: IAuthState = {
