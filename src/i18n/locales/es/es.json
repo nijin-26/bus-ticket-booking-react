@@ -172,7 +172,7 @@
             }
         ],
 
-        "checkout": "Pagar",
+        "checkout": "Completar reserva",
         "fullNameRequired": "El Nombre Completo es un campo requerido",
         "ageRequired": "La Edad es un campo requerido",
         "genderRequired": "El Género es un campo requerido",
@@ -218,7 +218,7 @@
         "agreeText": "Confirmar",
         "DisagreeText": "Rechazar",
         "dialogContent": "¿Está seguro de que desea confirmar?",
-        "checkout": "Finalizar compra",
+        "checkout": "Completar reserva",
         "absentStateError": "No se pudo recuperar la información de la reserva"
     }
 }

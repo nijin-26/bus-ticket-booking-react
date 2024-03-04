@@ -166,7 +166,7 @@
             }
         ],
 
-        "checkout": "Checkout",
+        "checkout": "Complete Booking",
         "fullNameRequired": "Full Name is a required field",
         "ageRequired": "Age is a required field",
         "genderRequired": "Gender is a required field",
@@ -212,14 +212,14 @@
         "seatNumber": "Seat Number",
         "departure": "Departure",
         "arrival": "Arrival",
-        "errorPNRSearch":"Sorry! Couldn't find the searched PNR."
+        "errorPNRSearch": "Sorry! Couldn't find the searched PNR."
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
-        "checkout": "Checkout",
+        "checkout": "Complete Booking",
         "absentStateError": "Error while fetching booking data"
     }
 }
