@@ -6,7 +6,7 @@
         "hello": "hola"
     },
     "headerFooter": {
-        "myBooking": "Mis reservas",
+        "myBookings": "Mis reservas",
         "copyRight": "© 2024 Todos los derechos reservados",
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
@@ -105,7 +105,8 @@
         "seatsAvailable": "asientos disponibles",
         "loadMore": "Cargar más",
         "noOptions": "No hay opciones que coincidan con tu búsqueda",
-        "change": "Prueba a cambiar las fechas o el destino para ver resultados"
+        "change": "Prueba a cambiar las fechas o el destino para ver resultados",
+        "missingParamsToast": "Por favor proporcione lugares de viaje"
     },
     "tableNoRowsOverlay": {
         "noRows": "Sin datos"

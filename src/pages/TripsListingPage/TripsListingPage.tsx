@@ -35,6 +35,9 @@ export const TripsListingPage = () => {
         const destinationId = searchParams.get('destinationId') as string;
         const tripDate = searchParams.get('tripDate') as string;
         if (!originId || !destinationId || !tripDate) {
+            toast.error(t('tripListing:missingParamsToast'), {
+                toastId: 'no locations toast',
+            });
             navigate(paths.home);
             return;
         }
