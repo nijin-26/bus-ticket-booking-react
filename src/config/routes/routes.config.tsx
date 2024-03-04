@@ -69,6 +69,10 @@ export const routesConfig: RouteObject[] = [
                 path: `${paths.ticket}/:pnr`,
                 element: <TicketPage />,
             },
+            {
+                path: paths.error,
+                element:<ErrorPage />
+            }
         ],
     },
 ];
