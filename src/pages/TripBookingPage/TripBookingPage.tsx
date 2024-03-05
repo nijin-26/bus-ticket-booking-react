@@ -57,6 +57,21 @@ export const TripBookingPage = () => {
         }
     }, [navigate, state, t]);
 
+    useEffect(() => {
+        console.log('useEffect');
+        // handle reload and close
+        const showWarning = (e: BeforeUnloadEvent) => {
+            console.log('showWarning');
+            e.preventDefault();
+            return t('unsavedChangesWarning');
+        };
+        window.addEventListener('beforeunload', showWarning);
+        
+        return () => {
+            window.removeEventListener('beforeunload', showWarning);
+        };
+    }, [t]);
+
     return (
         state.seats.length && (
             <>

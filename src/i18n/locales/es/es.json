@@ -219,6 +219,7 @@
         "DisagreeText": "Rechazar",
         "dialogContent": "¿Está seguro de que desea confirmar?",
         "checkout": "Completar reserva",
-        "absentStateError": "No se pudo recuperar la información de la reserva"
+        "absentStateError": "No se pudo recuperar la información de la reserva",
+        "unsavedChangesWarning": "Tiene cambios sin guardar. Estás seguro que quieres irte?"
     }
 }

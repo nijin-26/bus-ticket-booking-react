@@ -220,6 +220,7 @@
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
         "checkout": "Complete Booking",
-        "absentStateError": "Error while fetching booking data"
+        "absentStateError": "Error while fetching booking data",
+        "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
     }
 }
