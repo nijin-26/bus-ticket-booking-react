@@ -112,9 +112,9 @@
         "noRows": "Sin datos"
     },
     "deleteTicketModal": {
-        "title": "Eliminar reserva",
-        "message": "Esta acción eliminará permanentemente todos los datos relacionados con su reserva. ¿Está seguro de que desea continuar?",
-        "confirmText": "Eliminar",
+        "title": "Cancelar reserva",
+        "message": "Esta acción cancelará permanentemente la reserva. Estás seguro de que quieres continuar?",
+        "confirmText": "Confirmar",
         "cancelText": "Cancelar",
         "logoutSuccessMessage": "Reserva cancelada exitosamente."
     },
