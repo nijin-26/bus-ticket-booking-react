@@ -5,7 +5,7 @@ import { Container } from '@mui/material';
 import { MainWrapper } from './Layout.styled';
 import { AuthModal } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { hideAuthModal } from '../../app/features/authSlice';
+import { clearSignInState, hideAuthModal } from '../../app/features/authSlice';
 
 export const Layout = () => {
     const isAuthModalDisplayed = useAppSelector(
@@ -25,6 +25,7 @@ export const Layout = () => {
             <AuthModal
                 isOpen={isAuthModalDisplayed}
                 closeModal={() => {
+                    dispatch(clearSignInState());
                     dispatch(hideAuthModal());
                 }}
             />

@@ -36,12 +36,12 @@
         "passwordRequired": "Se requiere la contraseña.",
         "passwordMatch": "Las contraseñas deben coincidir.",
         "confirmPasswordRequired": "Se requiere confirmar la contraseña.",
-        "invalidPasswordErrorMessage": "Contraseña incorrecta",
-        "userNotFoundErrorMessage": "El usuario no existe",
+        "invalidCredentialsErrorMessage": "Correo electrónico o contraseña incorrectos.",
         "userAlreadyExistsErrorMessage": "El usuario ya existe",
         "signInSuccessToastMessage": "Inicio de sesión exitoso. ¡Feliz de tenerte aquí!",
         "signInErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
-        "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada exitosamente. Por favor, inicia sesión para continuar.",
+        "signUpSuccessToastMessage": "¡Bienvenido a bordo! Tu cuenta ha sido creada exitosamente.",
+        "signUpSuccessAlertMessage": "Tu cuenta ha sido creada exitosamente. Por favor, inicia sesión para continuar.",
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
         "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",
@@ -112,9 +112,9 @@
         "noRows": "Sin datos"
     },
     "deleteTicketModal": {
-        "title": "Eliminar reserva",
-        "message": "Esta acción eliminará permanentemente todos los datos relacionados con su reserva. ¿Está seguro de que desea continuar?",
-        "confirmText": "Eliminar",
+        "title": "Cancelar reserva",
+        "message": "Esta acción cancelará permanentemente la reserva. Estás seguro de que quieres continuar?",
+        "confirmText": "Confirmar",
         "cancelText": "Cancelar",
         "logoutSuccessMessage": "Reserva cancelada exitosamente."
     },
@@ -229,6 +229,7 @@
         "DisagreeText": "Rechazar",
         "dialogContent": "¿Está seguro de que desea confirmar?",
         "checkout": "Completar reserva",
-        "absentStateError": "No se pudo recuperar la información de la reserva"
+        "absentStateError": "No se pudo recuperar la información de la reserva",
+        "unsavedChangesWarning": "Tiene cambios sin guardar. Estás seguro que quieres irte?"
     }
 }
