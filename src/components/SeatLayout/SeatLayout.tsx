@@ -17,7 +17,7 @@ const SeatLayout = ({
     seats: ISeat[];
     selectedSeats: number[];
     mode: 'view' | 'edit';
-    updateSelectedSeats: (seat: number) => void;
+    updateSelectedSeats?: (seat: number) => void;
 }) => {
     const [berth, setBerth] = useState<{
         lowerBerth: number[][];

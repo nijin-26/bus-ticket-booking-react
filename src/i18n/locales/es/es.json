@@ -211,7 +211,17 @@
         "seatNumber": "Número de asiento",
         "departure": "Partida",
         "arrival": "Llegada",
-        "errorPNRSearch": "¡Lo siento! No se pudo encontrar el PNR buscado."
+        "errorPNRSearch": "¡Lo siento! No se pudo encontrar el PNR buscado.",
+        "fareDetails": "Detalles de la tarifa",
+        "noOfSeats": "Número de asientos",
+        "farePerSeat": "Tarifa por asiento",
+        "paidAmt": "Monto total pagado",
+        "viewSeatLayout": "Ver Distribución de Asientos",
+        "name": "Nombre",
+        "age": "Edad",
+        "gender": "Género"
+
+
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",

@@ -212,7 +212,16 @@
         "seatNumber": "Seat Number",
         "departure": "Departure",
         "arrival": "Arrival",
-        "errorPNRSearch": "Sorry! Couldn't find the searched PNR."
+        "errorPNRSearch": "Sorry! Couldn't find the searched PNR.",
+        "fareDetails":"Fare Details",
+        "noOfSeats":"No of Seats",
+        "farePerSeat":"Fare Per Seat",
+        "paidAmt":"Total Paid Amount",
+        "viewSeatLayout":"View Seat Layout",
+        "name":"Name",
+        "age":"Age",
+        "gender":"Gender"
+
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
