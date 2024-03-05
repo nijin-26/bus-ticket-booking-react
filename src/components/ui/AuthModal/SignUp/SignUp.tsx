@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '../../../../app/hooks';
 import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
@@ -24,6 +25,8 @@ const initialValues: ISignUpForm = {
 
 const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
     const { t } = useTranslation('auth');
+    const dispatch = useAppDispatch();
+
     const [loading, setLoading] = useState(false);
 
     return (
@@ -37,7 +40,8 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                         values,
                         formikHelpers,
                         setSignInAsSelectedTab,
-                        t
+                        t,
+                        dispatch
                     );
                     setLoading(false);
                 }}
