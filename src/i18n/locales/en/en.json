@@ -127,7 +127,9 @@
         "date": "Date",
         "tripId": "Trip ID",
         "pax": "Pax",
-        "download": "Download"
+        "download": "Download",
+        "successToast": "Booking deleted successfully.",
+        "errorToast": "Failed to delete booking."
     },
     "tableExportOptions": {
         "export": "Export",
@@ -164,7 +166,7 @@
             }
         ],
 
-        "checkout": "Checkout",
+        "checkout": "Complete Booking",
         "fullNameRequired": "Full Name is a required field",
         "ageRequired": "Age is a required field",
         "genderRequired": "Gender is a required field",
@@ -209,14 +211,15 @@
         "passengerCount": "Passenger Count",
         "seatNumber": "Seat Number",
         "departure": "Departure",
-        "arrival": "Arrival"
+        "arrival": "Arrival",
+        "errorPNRSearch": "Sorry! Couldn't find the searched PNR."
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
-        "checkout": "Checkout",
+        "checkout": "Complete Booking",
         "absentStateError": "Error while fetching booking data"
     }
 }

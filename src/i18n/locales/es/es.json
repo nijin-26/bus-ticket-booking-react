@@ -133,7 +133,9 @@
         "date": "Fecha",
         "tripId": "ID de viaje",
         "pax": "Pasajero",
-        "download": "Descargar"
+        "download": "Descargar",
+        "successToast": "Reserva eliminada exitosamente.",
+        "errorToast": "Error al eliminar la reserva."
     },
     "usersList": {
         "pageTitle": "Lista de Usuarios",
@@ -170,7 +172,7 @@
             }
         ],
 
-        "checkout": "Pagar",
+        "checkout": "Completar reserva",
         "fullNameRequired": "El Nombre Completo es un campo requerido",
         "ageRequired": "La Edad es un campo requerido",
         "genderRequired": "El Género es un campo requerido",
@@ -208,14 +210,15 @@
         "passengerCount": "Conteo de pasajeros",
         "seatNumber": "Número de asiento",
         "departure": "Partida",
-        "arrival": "Llegada"
+        "arrival": "Llegada",
+        "errorPNRSearch": "¡Lo siento! No se pudo encontrar el PNR buscado."
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",
         "agreeText": "Confirmar",
         "DisagreeText": "Rechazar",
         "dialogContent": "¿Está seguro de que desea confirmar?",
-        "checkout": "Finalizar compra",
+        "checkout": "Completar reserva",
         "absentStateError": "No se pudo recuperar la información de la reserva"
     }
 }

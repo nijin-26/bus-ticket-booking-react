@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useSearchParams } from 'react-router-dom';
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+    useSearchParams,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getTicketByPnr } from '../../../api/endpoints/ticket.api';
 import { ITicket } from '../../../types';
+import { paths } from '../../../config';
 
 export const useGetTicketData = () => {
     const { pnr: pnrNumberFromParams } = useParams();
@@ -11,9 +17,12 @@ export const useGetTicketData = () => {
     const pnrNumberFromSearchParams = searchParams.get('pnr');
     const [ticketData, setTicketData] = useState<ITicket>();
     const [loading, setLoading] = useState<boolean>(true);
+    const location = useLocation();
+    const ticketDataFromLocationState = location.state as ITicket | null;
+    const navigate = useNavigate();
 
-    const { t } = useTranslation('error');
-    const errorText = t('unexpected');
+    const { t } = useTranslation('ticket');
+    const errorText = t('errorPNRSearch');
 
     useEffect(() => {
         const fetchData = async (pnr: string) => {
@@ -24,6 +33,8 @@ export const useGetTicketData = () => {
                 if (pnrNumberFromSearchParams) {
                     searchParams.delete('pnr');
                     setSearchParams(searchParams);
+                } else {
+                    navigate(paths.error, { replace: true });
                 }
                 toast.error(errorText, { toastId: 'Error toast ' });
             } finally {
@@ -31,7 +42,10 @@ export const useGetTicketData = () => {
             }
         };
 
-        if (pnrNumberFromParams) {
+        if (ticketDataFromLocationState) {
+            setTicketData(ticketDataFromLocationState);
+            setLoading(false);
+        } else if (pnrNumberFromParams) {
             void fetchData(pnrNumberFromParams);
             return;
         } else if (pnrNumberFromSearchParams) {
@@ -40,10 +54,12 @@ export const useGetTicketData = () => {
         }
     }, [
         errorText,
+        navigate,
         pnrNumberFromParams,
         pnrNumberFromSearchParams,
         searchParams,
         setSearchParams,
+        ticketDataFromLocationState,
     ]);
 
     return { ticketData, loading };

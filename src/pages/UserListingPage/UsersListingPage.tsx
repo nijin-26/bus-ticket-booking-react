@@ -14,6 +14,7 @@ export const UsersListingPage = () => {
             getData={getUsers}
             rowId={'id'}
             frontendPagination={false}
+            pageTitleTranslation={'pageTitle'}
         />
     );
 };
