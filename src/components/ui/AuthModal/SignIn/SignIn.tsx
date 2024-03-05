@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Button, Stack, Typography } from '@mui/material';
+import { Alert, Button, Collapse, Stack, Typography } from '@mui/material';
 import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
@@ -32,10 +32,6 @@ const SignIn = ({ closeModal }: ISignInProps) => {
     const [loading, setLoading] = useState(false);
     const [credentialErrorAlert, setCredentialErrorAlert] = useState(false);
 
-    const showCredentialErrorAlert = () => {
-        setCredentialErrorAlert(true);
-    };
-
     return (
         <>
             <Formik
@@ -48,7 +44,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                         formikHelpers,
                         dispatch,
                         t,
-                        showCredentialErrorAlert
+                        setCredentialErrorAlert
                     );
                     setLoading(false);
                     if (redirectTo) {
@@ -88,7 +84,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                     required
                                 />
 
-                                {credentialErrorAlert && (
+                                <Collapse in={credentialErrorAlert}>
                                     <Alert severity="error">
                                         <Typography
                                             component="p"
@@ -99,7 +95,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                             )}
                                         </Typography>
                                     </Alert>
-                                )}
+                                </Collapse>
 
                                 <Stack
                                     direction={'row'}

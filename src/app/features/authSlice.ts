@@ -39,6 +39,7 @@ const authSlice = createSlice({
         },
         logout: (state) => {
             storage.removeItem('accessToken');
+            storage.removeItem('refreshToken');
             storage.removeItem('userData');
             state.user = null;
         },

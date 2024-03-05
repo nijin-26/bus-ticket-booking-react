@@ -5,6 +5,7 @@ import {
     hideAuthModal,
 } from '../../../../app/features/authSlice';
 import { TFunction } from 'i18next';
+import { Dispatch, SetStateAction } from 'react';
 import { FormikHelpers } from 'formik';
 import { IAuthResponseError, ISignInForm } from '../../../../types';
 import { AppDispatch } from '../../../../app/store';
@@ -15,9 +16,10 @@ const signInSubmitHandler = async (
     formikHelpers: FormikHelpers<ISignInForm>,
     dispatch: AppDispatch,
     t: TFunction<'auth'>,
-    showCredentialErrorAlert: () => void
+    setCredentialErrorAlert: Dispatch<SetStateAction<boolean>>
 ) => {
     try {
+        setCredentialErrorAlert(false);
         const userData = await signIn(values);
         dispatch(setCredentials(userData));
 
@@ -34,7 +36,7 @@ const signInSubmitHandler = async (
                 errorMessage === 'Invalid credentials.' ||
                 errorMessage === 'User not found.'
             ) {
-                showCredentialErrorAlert();
+                setCredentialErrorAlert(true);
                 return;
             }
         }
