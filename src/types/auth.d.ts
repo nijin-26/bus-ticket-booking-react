@@ -5,6 +5,7 @@ export enum EUserRole {
 
 export interface IAuthData {
     accessToken: string;
+    refreshToken: string;
     fullName: string;
     email: string;
     role: EUserRole;
@@ -40,4 +41,19 @@ export interface ISignUpForm {
     phone: string;
     password: string;
     confirmPassword: string;
+}
+
+export enum TAlertStatus {
+    error = 'error',
+    warning = 'warning',
+    success = 'success',
+}
+
+//includes state for signIn modal like redirect if any, alert messages to show
+export interface ISignInState {
+    from?: string;
+    info?: {
+        message: string;
+        status: TAlertStatus;
+    };
 }
