@@ -7,6 +7,7 @@ export interface ISignInRequest {
 
 export interface ISignInResponse {
     accessToken: string;
+    refreshToken: string;
     firstName: string;
     email: string;
     role: EUserRole;

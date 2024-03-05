@@ -1,19 +1,22 @@
 import { Overlay } from '../actionBar/pnrSearch/PnrSearch.styled';
 import { Ticket } from './Ticket';
 import FullScreenLoader from '../FullScreenLoader/FullScreenLoader';
-import CloseIcon from '@mui/icons-material/Close';
 import { useGetTicketData } from './utils/useGetTicketData';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { paths } from '../../config/constants';
+import { Button } from '@mui/material';
 
 export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const pnrNumber = searchParams.get('pnr');
+    const navigate = useNavigate();
 
     const { ticketData, loading } = useGetTicketData();
 
     if (loading) {
         return <FullScreenLoader open={loading} />;
     }
+
     return (
         ticketData && (
             <Overlay
@@ -27,18 +30,17 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
                     }
                 }}
             >
-                <CloseIcon
-                    onClick={(e) => {
-                        e.stopPropagation(); // Prevents the overlay's onClick from being triggered
-                        if (pnrNumber) {
-                            searchParams.delete('pnr');
-                            setSearchParams(searchParams);
-                        }
-                        cancelModal();
-                    }}
-                    className="close-icon"
-                />
                 <div className="centered-ticket-container">
+                    <Button
+                        variant="contained"
+                        onClick={() => {
+                            navigate(paths.ticket + '/' + ticketData.pnrNumber);
+                        }}
+                        className="ticket-btn"
+                    >
+                        {' '}
+                        View Detailed Ticket
+                    </Button>
                     <Ticket data={ticketData} />
                 </div>
             </Overlay>

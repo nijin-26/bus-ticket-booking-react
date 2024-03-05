@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-import { Alert, Button, Stack, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Alert, Button, Collapse, Stack, Typography } from '@mui/material';
+import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 import { PasswordInput } from '../../..';
 import signInSubmitHandler from './submitHandler';
 import getValidationSchema from './validationSchema';
 import { ISignInForm } from '../../../../types';
-import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
-import { useNavigate } from 'react-router-dom';
-import { clearRedirectState } from '../../../../app/features/authSlice';
+import { clearSignInState } from '../../../../app/features/authSlice';
 
 interface ISignInProps {
     closeModal: () => void;
@@ -26,9 +26,11 @@ const SignIn = ({ closeModal }: ISignInProps) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const redirectState = useAppSelector((state) => state.auth.redirectState);
+    const redirectTo = useAppSelector((state) => state.auth.signInState?.from);
+    const signInInfo = useAppSelector((state) => state.auth.signInState?.info);
 
     const [loading, setLoading] = useState(false);
+    const [credentialErrorAlert, setCredentialErrorAlert] = useState(false);
 
     return (
         <>
@@ -41,12 +43,13 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                         values,
                         formikHelpers,
                         dispatch,
-                        t
+                        t,
+                        setCredentialErrorAlert
                     );
                     setLoading(false);
-                    if (redirectState) {
-                        navigate(redirectState.from, { replace: true });
-                        dispatch(clearRedirectState());
+                    if (redirectTo) {
+                        navigate(redirectTo, { replace: true });
+                        dispatch(clearSignInState());
                     }
                 }}
             >
@@ -54,13 +57,13 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                     return (
                         <Form noValidate>
                             <Stack gap={4}>
-                                {redirectState && (
-                                    <Alert severity="error">
+                                {signInInfo && (
+                                    <Alert severity={signInInfo.status}>
                                         <Typography
                                             component="p"
                                             variant="body2"
                                         >
-                                            {redirectState.message}
+                                            {signInInfo.message}
                                         </Typography>
                                     </Alert>
                                 )}
@@ -81,16 +84,26 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                     required
                                 />
 
+                                <Collapse in={credentialErrorAlert}>
+                                    <Alert severity="error">
+                                        <Typography
+                                            component="p"
+                                            variant="body2"
+                                        >
+                                            {t(
+                                                'invalidCredentialsErrorMessage'
+                                            )}
+                                        </Typography>
+                                    </Alert>
+                                </Collapse>
+
                                 <Stack
                                     direction={'row'}
                                     gap={2}
                                     justifyContent={'center'}
                                 >
                                     <Button
-                                        onClick={() => {
-                                            dispatch(clearRedirectState());
-                                            closeModal();
-                                        }}
+                                        onClick={closeModal}
                                         variant="outlined"
                                         fullWidth
                                     >

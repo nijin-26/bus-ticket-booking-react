@@ -2,14 +2,21 @@ import axios from 'axios';
 import { ISignUpProps, signUp } from '../../../../api';
 import { TFunction } from 'i18next';
 import { FormikHelpers } from 'formik';
-import { IAuthResponseError, ISignUpForm } from '../../../../types';
+import {
+    IAuthResponseError,
+    ISignUpForm,
+    TAlertStatus,
+} from '../../../../types';
+import { AppDispatch } from '../../../../app/store';
 import { toast } from 'react-toastify';
+import { setSignInState } from '../../../../app/features/authSlice';
 
 const signUpSubmitHandler = async (
     values: ISignUpForm,
     formikHelpers: FormikHelpers<ISignUpForm>,
     setSignInAsSelectedTab: () => void,
-    t: TFunction<'auth'>
+    t: TFunction<'auth'>,
+    dispatch: AppDispatch
 ) => {
     try {
         const { confirmPassword, ...signUpProps } = values;
@@ -17,6 +24,14 @@ const signUpSubmitHandler = async (
 
         formikHelpers.resetForm();
         toast.success(t('signUpSuccessToastMessage'));
+        dispatch(
+            setSignInState({
+                info: {
+                    message: t('signUpSuccessAlertMessage'),
+                    status: TAlertStatus.success,
+                },
+            })
+        );
         setSignInAsSelectedTab();
     } catch (error) {
         if (axios.isAxiosError<IAuthResponseError>(error)) {

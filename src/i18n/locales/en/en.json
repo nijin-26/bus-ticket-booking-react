@@ -36,12 +36,12 @@
         "passwordRequired": "Password is required.",
         "passwordMatch": "Passwords must match.",
         "confirmPasswordRequired": "Confirm Password is required.",
-        "invalidPasswordErrorMessage": "Incorrect Password",
-        "userNotFoundErrorMessage": "User does not exist",
+        "invalidCredentialsErrorMessage": "Incorrect email or password.",
         "userAlreadyExistsErrorMessage": "User already exists",
         "signInSuccessToastMessage": "Login successful. Happy to have you here!",
         "signInErrorToastMessage": "Unexpected error. Please try again later.",
-        "signUpSuccessToastMessage": "Welcome aboard! Your account has been successfully created. Please sign in to continue.",
+        "signUpSuccessToastMessage": "Welcome aboard! Your account has been successfully created.",
+        "signUpSuccessAlertMessage": "Your account has been successfully created. Please sign in to continue.",
         "signUpErrorToastMessage": "Unexpected error. Please try again later.",
         "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication.",
         "forbiddenErrorMessage": "Access Denied: You don't have sufficient authorization to view this page.",
@@ -185,9 +185,9 @@
         "logoutSuccessMessage": "You have been successfully logged out. Have a great day!"
     },
     "deleteTicketModal": {
-        "title": "Delete Booking",
-        "message": "This action will permanently delete all the data related to your booking. Are you sure you want to continue?",
-        "confirmText": "Delete",
+        "title": "Cancel Booking",
+        "message": "This action will permanently cancel the booking. Are you sure you want to continue?",
+        "confirmText": "Confirm",
         "cancelText": "Cancel",
         "logoutSuccessMessage": "Ticket cancelled successfully."
     },
@@ -212,7 +212,16 @@
         "seatNumber": "Seat Number",
         "departure": "Departure",
         "arrival": "Arrival",
-        "errorPNRSearch": "Sorry! Couldn't find the searched PNR."
+        "errorPNRSearch": "Sorry! Couldn't find the searched PNR.",
+        "fareDetails":"Fare Details",
+        "noOfSeats":"No of Seats",
+        "farePerSeat":"Fare Per Seat",
+        "paidAmt":"Total Paid Amount",
+        "viewSeatLayout":"View Seat Layout",
+        "name":"Name",
+        "age":"Age",
+        "gender":"Gender"
+
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
@@ -220,6 +229,7 @@
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
         "checkout": "Complete Booking",
-        "absentStateError": "Error while fetching booking data"
+        "absentStateError": "Error while fetching booking data",
+        "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
     }
 }

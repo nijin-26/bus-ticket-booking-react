@@ -5,7 +5,7 @@ import { getDateFromTimestamp } from '../../utils';
 import { TFunction } from 'i18next';
 import { Dispatch, SetStateAction } from 'react';
 import { IconButton } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Cancel } from '@mui/icons-material';
 
 interface GridValueGetterParams {
     row: ITicket;
@@ -109,7 +109,7 @@ const getBookingsTableColumns = (
                             setShowDeleteTicketModal(params.row.pnrNumber);
                         }}
                     >
-                        <Delete />
+                        <Cancel />
                     </IconButton>
                 ) : (
                     <p>Cancelled</p>

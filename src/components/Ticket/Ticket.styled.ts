@@ -9,7 +9,6 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
-    margin: '2rem',
     boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
     cursor: 'auto',
 
