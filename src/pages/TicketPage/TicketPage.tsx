@@ -41,13 +41,7 @@ export const TicketPage = () => {
     }
     return (
         ticketData && (
-            <Stack
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                }}
-            >
+            <Stack direction={'column'} justifyContent={'center'} mb={'2rem'}>
                 {/* Home Button */}
                 <Button
                     variant="contained"
@@ -63,7 +57,7 @@ export const TicketPage = () => {
                 </Button>
 
                 <Ticket data={ticketData} />
-                {/* Home Button */}
+                {/* View Seat Layout */}
                 <Button
                     variant="text"
                     onClick={openSeatLayout}
