@@ -16,6 +16,7 @@ const seatLayoutWrapper = styled('div')<ISeatLayoutWrapperProps>(
         flexDirection: isVerticalOrientation ? 'column' : 'row',
         maxWidth: isVerticalOrientation ? '32rem' : 'none',
         alignSelf: 'center',
+        width: '100%',
 
         '.driver-cabin': {
             display: 'flex',
