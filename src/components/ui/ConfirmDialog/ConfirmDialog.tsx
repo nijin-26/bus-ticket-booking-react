@@ -67,6 +67,7 @@ export const ConfirmDialog = ({
                                 handleDisagreeFunction();
                                 props.handleClose();
                             }}
+                            sx={{textTransform: 'none'}}
                         >
                             {props.disagreeText}
                         </Button>
@@ -78,6 +79,7 @@ export const ConfirmDialog = ({
                         }}
                         autoFocus
                         variant="contained"
+                        sx={{textTransform: 'none'}}
                     >
                         {props.agreeText}
                     </Button>

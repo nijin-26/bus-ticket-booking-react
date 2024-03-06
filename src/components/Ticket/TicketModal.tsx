@@ -5,8 +5,10 @@ import { useGetTicketData } from './utils/useGetTicketData';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { paths } from '../../config/constants';
 import { Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
+    const { t } = useTranslation('ticket');
     const [searchParams, setSearchParams] = useSearchParams();
     const pnrNumber = searchParams.get('pnr');
     const navigate = useNavigate();
@@ -37,9 +39,10 @@ export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
                             navigate(paths.ticket + '/' + ticketData.pnrNumber);
                         }}
                         className="ticket-btn"
+                        sx={{ textTransform: 'none' }}
                     >
                         {' '}
-                        View Detailed Ticket
+                        {t('viewDetailedTicket')}
                     </Button>
                     <Ticket data={ticketData} />
                 </div>

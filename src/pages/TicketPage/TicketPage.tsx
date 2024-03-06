@@ -53,7 +53,11 @@ export const TicketPage = () => {
                     variant="contained"
                     onClick={goHomeHandler}
                     startIcon={<Home />}
-                    sx={{ margin: '2rem 0', alignSelf: 'flex-start' }}
+                    sx={{
+                        margin: '2rem 0',
+                        alignSelf: 'flex-start',
+                        textTransform: 'none',
+                    }}
                 >
                     {t('goHome')}
                 </Button>
@@ -64,7 +68,11 @@ export const TicketPage = () => {
                     variant="text"
                     onClick={openSeatLayout}
                     startIcon={<EventSeatIcon />}
-                    sx={{ margin: '2rem 0', alignSelf: 'flex-end' }}
+                    sx={{
+                        margin: '2rem 0',
+                        alignSelf: 'flex-end',
+                        textTransform: 'none',
+                    }}
                 >
                     {t('ticket:viewSeatLayout')}
                 </Button>

@@ -288,7 +288,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
                 disabled={!(startLocation && stopLocation && tripDate)}
                 loading={loadingState}
                 onClick={searchBusHandler}
-                sx={{ mt: 2 }}
+                sx={{ mt: 2, textTransform: 'none' }}
                 startIcon={<Search />}
             >
                 {t('explore')}

@@ -109,6 +109,7 @@ const getBookingsTableColumns = (
                             setShowDeleteTicketModal(params.row.pnrNumber);
                         }}
                         size="small"
+                        sx={{textTransform: 'none'}}
                     >
                         Cancel
                     </Button>

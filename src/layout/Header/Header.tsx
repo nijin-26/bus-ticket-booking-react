@@ -235,6 +235,7 @@ export const Header = () => {
                                 variant="contained"
                                 color="secondary"
                                 size="small"
+                              
                             >
                                 {t('login')}
                             </Button>

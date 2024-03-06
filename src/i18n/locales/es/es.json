@@ -219,9 +219,8 @@
         "viewSeatLayout": "Ver Distribución de Asientos",
         "name": "Nombre",
         "age": "Edad",
-        "gender": "Género"
-
-
+        "gender": "Género",
+        "viewDetailedTicket": "Ver Boleto Detallado"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",

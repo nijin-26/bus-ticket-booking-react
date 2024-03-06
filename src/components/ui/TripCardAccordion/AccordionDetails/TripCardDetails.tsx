@@ -226,6 +226,7 @@ export const TripCardDetails = ({
                                         );
                                         navigate(paths.tripBooking);
                                     }}
+                                    sx={{textTransform: 'none'}}    
                                 >
                                     {t('checkoutBtnTxt')}
                                 </StyledButton>

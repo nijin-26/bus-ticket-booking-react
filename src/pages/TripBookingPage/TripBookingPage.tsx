@@ -119,6 +119,7 @@ export const TripBookingPage = () => {
                                 handleFormSubmit();
                             }}
                             fullWidth
+                            sx={{ textTransform: 'none' }}
                         >
                             {t('checkout')}
                         </StyledButton>
