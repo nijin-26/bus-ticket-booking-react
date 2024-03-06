@@ -31,4 +31,17 @@ apiClient.interceptors.response.use(
     onResponseError
 );
 
+export const refreshApi = axios.create({
+    baseURL: baseUrl,
+    timeout: 2000,
+});
+
+refreshApi.interceptors.response.use(
+    onResponse as unknown as <TResponse, TConfig>(
+        value: AxiosResponse<TResponse, TConfig>
+    ) =>
+        | AxiosResponse<TResponse, TConfig>
+        | Promise<AxiosResponse<TResponse, TConfig>>
+);
+
 export default apiClient;

@@ -26,3 +26,26 @@ export const getUserDataFromStorage = () => {
     storage.removeItem('accessToken');
     return null;
 };
+
+// This function searches for a token in localStorage
+// and returns it if found and not expired, else returns null
+// and deletes the expired token
+export const getToken = (tokenName: string) => {
+    const tokenValue = storage.getItem<string>(tokenName);
+
+    if (tokenValue) {
+        try {
+            const decodedToken = jwtDecode<IDecodedAccessToken>(tokenValue);
+            const expirationTime = decodedToken.exp * 1000;
+
+            //check if token has NOT expired
+            if (expirationTime >= Date.now()) {
+                return tokenValue;
+            }
+        } catch (error) {
+            console.error('Invalid token');
+        }
+    }
+    storage.removeItem(tokenName);
+    return null;
+};
