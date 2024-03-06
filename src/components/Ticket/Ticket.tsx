@@ -270,7 +270,11 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                     downloadAsPDF();
                 }}
                 startIcon={<Download />}
-                sx={{ margin: '2rem 0', alignSelf: 'center' }}
+                sx={{
+                    margin: '2rem 0',
+                    alignSelf: 'center',
+                    textTransform: 'none',
+                }}
             >
                 {t('downloadTicket')}
             </Button>
