@@ -39,7 +39,6 @@ export const TicketPage = () => {
     if (loading) {
         return <FullScreenLoader open={loading} />;
     }
-
     return (
         ticketData && (
             <Stack
@@ -268,7 +267,7 @@ export const TicketPage = () => {
                                     >
                                         ₹{' '}
                                         {ticketData.trip.farePerSeat *
-                                            ticketData.trip.totalSeats}
+                                            ticketData.seats.length}
                                     </Typography>
                                 </Grid>
                             </Grid>
