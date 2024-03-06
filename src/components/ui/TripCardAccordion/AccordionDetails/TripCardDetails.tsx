@@ -183,8 +183,9 @@ export const TripCardDetails = ({
                             <Stack
                                 direction={{ xs: 'column', sm: 'row' }}
                                 justifyContent={'space-between'}
+                                alignSelf={'center'}
                                 spacing={{ xs: 1, sm: 10 }}
-                                mt={5}
+                                mt={3}
                                 className="checkout-section"
                             >
                                 {selectedSeats.length > 0 &&

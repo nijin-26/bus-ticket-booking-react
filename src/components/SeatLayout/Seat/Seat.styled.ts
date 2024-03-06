@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 const SeatWrapper = styled('li')(({ theme }) => ({
+    p:{
+        fontSize:theme.font.sm,
+    },
     '&.seat': {
         borderRadius: '0.3rem',
         backgroundColor: theme.color.seat,
