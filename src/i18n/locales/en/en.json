@@ -220,8 +220,8 @@
         "viewSeatLayout":"View Seat Layout",
         "name":"Name",
         "age":"Age",
-        "gender":"Gender"
-
+        "gender":"Gender",
+        "downloadTicket":"Download Ticket as PDF"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
