@@ -40,7 +40,6 @@ export const TicketPage = () => {
         return <FullScreenLoader open={loading} />;
     }
 
-    console.log(ticketData);
     return (
         ticketData && (
             <Stack
