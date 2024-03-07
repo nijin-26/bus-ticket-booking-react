@@ -91,8 +91,7 @@ export const TripCardAccordion = ({
                         </Tooltip>
                         <Tooltip
                             title={
-                                data.seatType == ISeatType.SLEEPER ||
-                                data.seatType == ISeatType.Sleeper
+                                data.seatType == ISeatType.SLEEPER
                                     ? t('SeatTypeSleeper')
                                     : t('SeatTypeSeater')
                             }
@@ -100,8 +99,7 @@ export const TripCardAccordion = ({
                         >
                             <img
                                 src={
-                                    data.seatType == ISeatType.SLEEPER ||
-                                    data.seatType == ISeatType.Sleeper
+                                    data.seatType == ISeatType.SLEEPER
                                         ? sleeperIcon
                                         : seatIcon
                                 }
