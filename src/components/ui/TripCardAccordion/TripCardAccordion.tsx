@@ -12,6 +12,8 @@ import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@emotion/react';
 
 let borderDesignClass: string;
 interface ITripCardAccordionData extends ITrip {
@@ -38,6 +40,11 @@ export const TripCardAccordion = ({
     } else {
         borderDesignClass = 'no-seats';
     }
+
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(
+        `(max-width:${theme.breakpointValues.medium})`
+    );
 
     const dates: {
         formattedDepartureTime: string;
@@ -123,7 +130,13 @@ export const TripCardAccordion = ({
                     <p className={`seats ${borderDesignClass}`}>
                         {data.availableSeats} {t('seatsAvailable')}
                     </p>
-                    <p className="price">₹ {data.farePerSeat}/-</p>
+                    <p
+                        className={`price ${
+                            isSmallScreen && 'price-alignment'
+                        }`}
+                    >
+                        ₹ {data.farePerSeat}/-
+                    </p>
                 </Stack>
             </AccordionSummary>
             <TripCardDetails data={data} mode={mode} />

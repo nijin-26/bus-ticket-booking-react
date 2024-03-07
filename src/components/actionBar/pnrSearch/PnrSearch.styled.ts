@@ -1,6 +1,5 @@
 import { LoadingButton } from '@mui/lab';
 import styled from '@emotion/styled';
-import { colors } from '../../../config';
 
 export const Overlay = styled('div')(() => ({
     position: 'fixed',
@@ -18,21 +17,21 @@ export const Overlay = styled('div')(() => ({
     body: {
         overflow: 'hidden',
     },
-    
+
     '.centered-ticket-container ': {
         position: 'absolute',
         top: '50%',
         left: '50%',
-        width: '100%', // Use 100% width
+        width: 'calc(100% - 4rem)',
         transform: 'translate(-50%, -50%)',
         maxWidth: '120rem',
-    },
-    '.close-icon': {
-        position: 'absolute',
-        top: '10%',
-        right: '5%',
-        cursor: 'pointer',
-        color: colors.white,
+        display: 'flex',
+        flexDirection: 'column',
+
+        '.ticket-btn': {
+            margin: '2rem',
+            alignSelf:'flex-end'
+        }
     },
 }));
 

@@ -1,4 +1,4 @@
-import { Tooltip } from '@mui/material';
+import { Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import SeatWrapper from './Seat.styled';
 
@@ -14,13 +14,24 @@ const Seat = ({
     mode: 'view' | 'edit';
 }) => {
     const { t } = useTranslation('seatLayout');
+    const isExtraLargeScreen = useMediaQuery(`(min-width:61rem)`);
+    const isLargeScreen = useMediaQuery(`(min-width:54rem)`);
+    const seatSize = isExtraLargeScreen
+        ? 'large-size-seat'
+        : isLargeScreen
+        ? 'mid-size-seat'
+        : 'small-size-seat';
     return seatNumber ? (
         <Tooltip
-            title={t(seatStatus as 'available' | 'unavailable' | 'selected')}
+            title={
+                mode === 'view'
+                    ? ''
+                    : t(seatStatus as 'available' | 'unavailable' | 'selected')
+            }
             arrow
         >
             <SeatWrapper
-                className={`seat ${seatStatus} ${
+                className={`seat ${seatSize} ${seatStatus} ${
                     mode === 'view'
                         ? 'disable-click'
                         : seatStatus === 'available' ||
@@ -35,10 +46,12 @@ const Seat = ({
                         updateSelectedSeats &&
                         updateSelectedSeats(seatNumber);
                 }}
-            >{seatNumber}</SeatWrapper>
+            >
+                <Typography color={'black'}>{seatNumber}</Typography>
+            </SeatWrapper>
         </Tooltip>
     ) : (
-        <SeatWrapper className={`seat ${seatStatus}`}></SeatWrapper>
+        <SeatWrapper className={`seat ${seatSize} ${seatStatus}`}></SeatWrapper>
     );
 };
 

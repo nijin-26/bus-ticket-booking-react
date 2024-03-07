@@ -38,7 +38,10 @@ export const ConfirmDialog = ({
                 onClose={props.handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title">
+                <DialogTitle
+                    id="responsive-dialog-title"
+                    sx={{ paddingRight: '4.8rem' }}
+                >
                     {props.title}
                 </DialogTitle>
                 <IconButton
@@ -64,6 +67,7 @@ export const ConfirmDialog = ({
                                 handleDisagreeFunction();
                                 props.handleClose();
                             }}
+                            sx={{textTransform: 'none'}}
                         >
                             {props.disagreeText}
                         </Button>
@@ -75,6 +79,7 @@ export const ConfirmDialog = ({
                         }}
                         autoFocus
                         variant="contained"
+                        sx={{textTransform: 'none'}}
                     >
                         {props.agreeText}
                     </Button>
