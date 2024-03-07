@@ -57,13 +57,6 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
             objectFit: 'cover', // Ensure the image covers the entire box
         },
     },
-    '& .rotated-barcode-container.small-screen': {
-        marginBottom: '1rem',
-
-        '& > svg': {
-            rotate: '0deg', // Keep the original angle on small screens
-        },
-    },
     '& .dotted-vertical-div': {
         width: '0.1rem',
         border: '0.1rem dashed',

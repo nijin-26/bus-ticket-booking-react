@@ -18,7 +18,11 @@ const Seat = ({
     const { t } = useTranslation('seatLayout');
     return seatNumber ? (
         <Tooltip
-            title={t(seatStatus as 'available' | 'unavailable' | 'selected')}
+            title={
+                mode === 'view'
+                    ? ''
+                    : t(seatStatus as 'available' | 'unavailable' | 'selected')
+            }
             arrow
         >
             <SeatWrapper

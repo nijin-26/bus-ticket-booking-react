@@ -110,6 +110,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                     onClick={closeModal}
                                     variant="outlined"
                                     fullWidth
+                                    sx={{ textTransform: 'none' }}
                                 >
                                     {t('cancel')}
                                 </Button>
@@ -118,6 +119,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                     variant="contained"
                                     fullWidth
                                     disabled={isSubmitting}
+                                    sx={{ textTransform: 'none' }}
                                 >
                                     {t('signUp')}
                                 </Button>

@@ -16,8 +16,8 @@
         "languageError": "Error al cambiar de idioma"
     },
     "auth": {
-        "signIn": "INICIAR SESIÓN",
-        "signUp": "REGISTRARSE",
+        "signIn": "Iniciar Sesión",
+        "signUp": "Inscribirse",
         "email": "Correo Electrónico",
         "password": "Contraseña",
         "confirmPassword": "Confirmar Contraseña",

@@ -106,6 +106,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                         onClick={closeModal}
                                         variant="outlined"
                                         fullWidth
+                                        sx={{ textTransform: 'none' }}
                                     >
                                         {t('cancel')}
                                     </Button>
@@ -114,6 +115,7 @@ const SignIn = ({ closeModal }: ISignInProps) => {
                                         variant="contained"
                                         fullWidth
                                         disabled={isSubmitting}
+                                        sx={{ textTransform: 'none' }}
                                     >
                                         {t('signIn')}
                                     </Button>
