@@ -46,4 +46,17 @@ describe('Seat filter function for booking', () => {
 
         expect(filterSelectedSeats(input)).toStrictEqual(output);
     });
+
+    it('filter selected seats', () => {
+        const input = [
+            {
+                seatNumber: 40,
+                status: ISeatStatus.BOOKED,
+            },
+        ];
+
+        const output: number[] = [];
+
+        expect(filterSelectedSeats(input)).toStrictEqual(output);
+    });
 });
