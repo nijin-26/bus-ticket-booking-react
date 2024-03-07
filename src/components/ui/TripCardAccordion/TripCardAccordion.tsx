@@ -13,7 +13,7 @@ import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import { convertTimeStamp } from '../../../utils/dateUtils/dateUtils';
+import { convertTimeStamp } from '../../../utils';
 
 let borderDesignClass: string;
 interface ITripCardAccordionData extends ITrip {
