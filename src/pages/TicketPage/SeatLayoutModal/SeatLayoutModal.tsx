@@ -1,5 +1,5 @@
-import SeatLayout from '../../../components/SeatLayout/SeatLayout';
-import { layoutNames } from '../../../components/SeatLayout/seatConfig';
+import SeatLayout from '../../../components/BusLayout/SeatLayout/SeatLayout';
+import { layoutNames } from '../../../components/BusLayout/SeatLayout/seatConfig';
 import { ISeatStatus, ITicket } from '../../../types';
 import { Overlay } from '../../../components/actionBar/pnrSearch/PnrSearch.styled';
 

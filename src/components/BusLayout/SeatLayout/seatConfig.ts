@@ -1,4 +1,4 @@
-import { IBerthLayout, ILayoutConfig } from './types';
+import { IBerthLayout, ILayoutConfig } from '../types';
 
 export const layoutNames = {
     volvo25: 'volvo25',
@@ -21,14 +21,17 @@ export const layoutConfig: ILayoutConfig = {
             aisle: 3,
             door: { 10: 'R' },
             seatType: 'seater',
+            noWindowAt: { R: [], L: [10] },
+            tyreAt: [-1, 10],
         },
     },
 };
 
 //This method uses the layout config and creates a pattern of seats: [[1,1,0,1,1],[1,1,0,1,1]....]
 export const berthLayoutProducer = (berthLayoutConfig: IBerthLayout) => {
-    const berthLayout: number[][] = [];
+    const berthLayout: (string | number)[][] = [];
     for (let i = 0; i < berthLayoutConfig.rows; i++) {
+        //Adding seat postions
         if (
             berthLayoutConfig.exceptionRows &&
             Object.keys(berthLayoutConfig.exceptionRows).includes(String(i + 1))
@@ -58,6 +61,20 @@ export const berthLayoutProducer = (berthLayoutConfig: IBerthLayout) => {
             }
             berthLayout.push(rowLayout);
         }
+
+        //Adding window positions
+        const lastAddedRow: (number | string)[] | undefined = berthLayout.pop();
+        berthLayoutConfig.noWindowAt.L.includes(i + 1)
+            ? lastAddedRow?.splice(0, 0, 'no-window')
+            : lastAddedRow?.splice(0, 0, 'window');
+        berthLayoutConfig.noWindowAt.R.includes(i + 1)
+            ? lastAddedRow?.push('no-window')
+            : lastAddedRow?.push('window');
+
+        lastAddedRow && berthLayout.push(lastAddedRow);
     }
-    return berthLayout;
+    return {
+        seatPosition: berthLayout,
+        tyrePosition: berthLayoutConfig.tyreAt,
+    };
 };

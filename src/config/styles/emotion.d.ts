@@ -34,6 +34,10 @@ declare module '@emotion/react' {
             linkColor: string;
             cardWhite: string;
             green: string;
+            windowColor: string;
+            brakeLight: string;
+            headLight: string;
+            tyre: string;
         };
 
         breakpointValues: {
