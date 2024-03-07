@@ -179,12 +179,11 @@ export const TripCardDetails = ({
                                 mode={mode}
                             />
                         </Stack>
+                        <DetailsGrid tripDetails={tripDetails} />
                         {!data.seats && (
                             <Stack
                                 direction={{ xs: 'column', sm: 'row' }}
-                                justifyContent={'space-between'}
                                 spacing={{ xs: 1, sm: 10 }}
-                                mt={5}
                                 className="checkout-section"
                             >
                                 {selectedSeats.length > 0 &&
@@ -230,7 +229,6 @@ export const TripCardDetails = ({
                                 </StyledButton>
                             </Stack>
                         )}
-                        <DetailsGrid tripDetails={tripDetails} />
                     </>
                 )}
             </Stack>

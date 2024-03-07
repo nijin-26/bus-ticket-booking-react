@@ -235,6 +235,7 @@ export const Header = () => {
                                 variant="contained"
                                 color="secondary"
                                 size="small"
+                                sx={{ textTransform: 'none' }}
                             >
                                 {t('login')}
                             </Button>

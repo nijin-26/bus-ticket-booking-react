@@ -3,6 +3,7 @@ import { Chip, FormControlLabel } from '@mui/material';
 
 export const Wrapper = styled('div')`
     padding: 4rem 0 0 0;
+    width: 100%;
 `;
 
 export const StyledFormControlLabel = styled(FormControlLabel)`

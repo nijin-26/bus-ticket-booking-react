@@ -43,6 +43,7 @@ const LoadMore = ({
                     '& .MuiLoadingButton-loadingIndicator': {
                         color: theme.color.secondary,
                     },
+                    textTransform: 'none',
                 }}
             >
                 {t('loadMore')}

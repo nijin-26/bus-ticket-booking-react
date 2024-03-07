@@ -5,7 +5,6 @@ import { ITicket } from '../../types';
 import { TicketModal } from '../../components/Ticket/TicketModal';
 import { useState } from 'react';
 import { ConfirmDialog } from '../../components';
-import { IPaginatedData } from '../../api/types/pagination';
 import { cancelBooking } from '../../api/endpoints/ticket.api';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { toast } from 'react-toastify';
@@ -13,12 +12,11 @@ import { toast } from 'react-toastify';
 export const BookingsListPage = ({
     getData,
     frontendPagination,
+    pageTitleTranslation,
 }: {
-    getData: (
-        page: string,
-        pageSize: string
-    ) => Promise<ITicket[]> | Promise<IPaginatedData<ITicket>>;
+    getData: () => Promise<ITicket[]>;
     frontendPagination: boolean;
+    pageTitleTranslation: string;
 }) => {
     const { t } = useTranslation(['bookingsList', 'deleteTicketModal']);
 
@@ -62,6 +60,7 @@ export const BookingsListPage = ({
                 getData={getData}
                 rowId={'pnrNumber'}
                 frontendPagination={frontendPagination}
+                pageTitleTranslation={pageTitleTranslation}
             />
             {showTicket && <TicketModal cancelModal={cancelModal} />}
             <ConfirmDialog

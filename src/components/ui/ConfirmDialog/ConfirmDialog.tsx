@@ -38,7 +38,10 @@ export const ConfirmDialog = ({
                 onClose={props.handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title">
+                <DialogTitle
+                    id="responsive-dialog-title"
+                    sx={{ paddingRight: '4.8rem' }}
+                >
                     {props.title}
                 </DialogTitle>
                 <IconButton
@@ -56,16 +59,7 @@ export const ConfirmDialog = ({
                 <DialogContent>
                     <DialogContentText>{props.children}</DialogContentText>
                 </DialogContent>
-                <DialogActions>
-                    <Button
-                        onClick={() => {
-                            handleAgreeFunction();
-                            props.handleClose();
-                        }}
-                        autoFocus
-                    >
-                        {props.agreeText}
-                    </Button>
+                <DialogActions sx={{ gap: '1rem' }}>
                     {props.disagreeText && (
                         <Button
                             autoFocus
@@ -73,10 +67,22 @@ export const ConfirmDialog = ({
                                 handleDisagreeFunction();
                                 props.handleClose();
                             }}
+                            sx={{textTransform: 'none'}}
                         >
                             {props.disagreeText}
                         </Button>
                     )}
+                    <Button
+                        onClick={() => {
+                            handleAgreeFunction();
+                            props.handleClose();
+                        }}
+                        autoFocus
+                        variant="contained"
+                        sx={{textTransform: 'none'}}
+                    >
+                        {props.agreeText}
+                    </Button>
                 </DialogActions>
             </Dialog>
         </>

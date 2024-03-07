@@ -38,6 +38,7 @@ export const ErrorPage = () => {
                     variant="contained"
                     onClick={goBackHandler}
                     startIcon={<ArrowBack />}
+                    sx={{textTransform: 'none'}}
                 >
                     {t('goBack')}
                 </Button>
@@ -46,6 +47,7 @@ export const ErrorPage = () => {
                     variant="contained"
                     onClick={goHomeHandler}
                     startIcon={<Home />}
+                    sx={{ textTransform: 'none' }}
                 >
                     {t('goHome')}
                 </Button>

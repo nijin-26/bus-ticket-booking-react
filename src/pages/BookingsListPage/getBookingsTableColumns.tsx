@@ -4,8 +4,7 @@ import { ITicket, ITicketStatus } from '../../types';
 import { getDateFromTimestamp } from '../../utils';
 import { TFunction } from 'i18next';
 import { Dispatch, SetStateAction } from 'react';
-import { IconButton } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Button } from '@mui/material';
 
 interface GridValueGetterParams {
     row: ITicket;
@@ -104,15 +103,18 @@ const getBookingsTableColumns = (
             disableExport: true,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return params.row.status === ITicketStatus.CONFIRMED ? (
-                    <IconButton
+                    <Button
+                        variant="contained"
                         onClick={() => {
                             setShowDeleteTicketModal(params.row.pnrNumber);
                         }}
+                        size="small"
+                        sx={{textTransform: 'none'}}
                     >
-                        <Delete />
-                    </IconButton>
+                        Cancel
+                    </Button>
                 ) : (
-                    <p>CANCELLED</p>
+                    <p>Cancelled</p>
                 );
             },
         },
