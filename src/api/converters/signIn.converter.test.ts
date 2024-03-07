@@ -6,6 +6,7 @@ import { ISignInResponse } from '../types/signIn';
 test('getAuthDataFromSignInResponse should return the correct auth data', () => {
     const signInResponse: ISignInResponse = {
         accessToken: 'abc123',
+        refreshToken: 'def456',
         firstName: 'John',
         email: 'john@example.com',
         role: EUserRole.CUSTOMER,
@@ -13,6 +14,7 @@ test('getAuthDataFromSignInResponse should return the correct auth data', () => 
 
     const expectedAuthData: IAuthData = {
         accessToken: 'abc123',
+        refreshToken: 'def456',
         fullName: 'John',
         email: 'john@example.com',
         role: EUserRole.CUSTOMER,
