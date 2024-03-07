@@ -73,4 +73,8 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
     '.price': {
         minWidth: '9rem',
     },
+
+    '.price-alignment': {
+        textAlign: 'center',
+    },
 }));

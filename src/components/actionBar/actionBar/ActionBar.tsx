@@ -1,4 +1,10 @@
-import { Autocomplete, TextField, InputAdornment, Grid } from '@mui/material';
+import {
+    Autocomplete,
+    TextField,
+    InputAdornment,
+    Grid,
+    Stack,
+} from '@mui/material';
 
 import {
     FmdGood,
@@ -9,7 +15,6 @@ import {
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useEffect, useState } from 'react';
-import FilterSort from '../filterSort/FilterSort';
 import { CenteredButton, Wrapper } from '../pnrSearch/PnrSearch.styled';
 import { ILocationOptions } from '../types';
 import { paths } from '../../../config';
@@ -21,6 +26,7 @@ import { useDispatch } from 'react-redux';
 import { setBusSearchParams } from '../../../app/features/busSearchSlice';
 import { ToggleButton } from './ActionBar.styled';
 import { toast } from 'react-toastify';
+import FilterSort from '../filterSort/FilterSort';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -281,14 +287,19 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
                 </Grid>
             </Grid>
 
-            {showFilterSort && <FilterSort />}
+            <Stack
+                direction={'row'}
+                style={{ display: 'flex', alignItems: 'center' }}
+            >
+                {showFilterSort && <FilterSort />}
+            </Stack>
 
             <CenteredButton
                 variant="contained"
                 disabled={!(startLocation && stopLocation && tripDate)}
                 loading={loadingState}
                 onClick={searchBusHandler}
-                sx={{ mt: 2 }}
+                sx={{ mt: 2, textTransform: 'none' }}
                 startIcon={<Search />}
             >
                 {t('explore')}

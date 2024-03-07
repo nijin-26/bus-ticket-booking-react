@@ -12,4 +12,13 @@ export const TwoLineHeadingWrapper = styled(Stack)(({ theme }) => ({
         fontSize: theme.font.h2,
         fontWeight: theme.font.fontWeightBold,
     },
+
+    '@media screen and (max-width:728px)': {
+        h2: {
+            fontSize: theme.font.sm,
+        },
+        h3: {
+            fontSize: theme.font.md,
+        },
+    },
 }));

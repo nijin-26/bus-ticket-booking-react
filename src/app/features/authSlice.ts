@@ -1,22 +1,17 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getUserDataFromStorage, storage } from '../../utils';
-import { IAuthData, IAuthUser } from '../../types';
+import { IAuthData, IAuthUser, ISignInState } from '../../types';
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;
     user: IAuthUser | null;
-    redirectState: IRedirectState | null;
-}
-
-interface IRedirectState {
-    from: string;
-    message: string;
+    signInState: ISignInState | null;
 }
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
     user: getUserDataFromStorage(),
-    redirectState: null,
+    signInState: null,
 };
 
 const authSlice = createSlice({
@@ -30,19 +25,21 @@ const authSlice = createSlice({
             state.isAuthModalDisplayed = false;
         },
         setCredentials: (state, action: PayloadAction<IAuthData>) => {
-            const { accessToken, ...rest } = action.payload;
+            const { accessToken, refreshToken, ...rest } = action.payload;
             storage.setItem('accessToken', accessToken);
+            storage.setItem('refreshToken', refreshToken);
             storage.setItem('userData', rest);
             state.user = rest;
         },
-        setRedirectState: (state, action: PayloadAction<IRedirectState>) => {
-            state.redirectState = action.payload;
+        setSignInState: (state, action: PayloadAction<ISignInState>) => {
+            state.signInState = { ...state.signInState, ...action.payload };
         },
-        clearRedirectState: (state) => {
-            state.redirectState = null;
+        clearSignInState: (state) => {
+            state.signInState = null;
         },
         logout: (state) => {
             storage.removeItem('accessToken');
+            storage.removeItem('refreshToken');
             storage.removeItem('userData');
             state.user = null;
         },
@@ -53,8 +50,8 @@ export const {
     showAuthModal,
     hideAuthModal,
     setCredentials,
-    setRedirectState,
-    clearRedirectState,
+    setSignInState,
+    clearSignInState,
     logout,
 } = authSlice.actions;
 

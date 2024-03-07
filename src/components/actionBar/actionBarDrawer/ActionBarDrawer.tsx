@@ -1,5 +1,11 @@
 import { Close, FilterAlt } from '@mui/icons-material';
-import { Badge, Box, IconButton, SwipeableDrawer } from '@mui/material';
+import {
+    Badge,
+    Box,
+    IconButton,
+    SwipeableDrawer,
+    useMediaQuery,
+} from '@mui/material';
 import { useState } from 'react';
 import SortGroup from '../sortFilterRadioGroups/SortGroup';
 import BusTypeGroup from '../sortFilterRadioGroups/BusTypeGroup';
@@ -8,6 +14,7 @@ import { FilterSortHeading, FilterSubHeading } from './ActionBarDrawerStyled';
 import { useAppSelector } from '../../../app/hooks';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@emotion/react';
 
 export default function ActionBarDrawer() {
     const [drawer, setDrawer] = useState(false);
@@ -29,11 +36,23 @@ export default function ActionBarDrawer() {
         drawer ? setDrawer(false) : setDrawer(true);
     };
 
+    // conrol width
+    const { breakpointValues } = useTheme();
+    const isSmallScreen = useMediaQuery(
+        `(max-width:${breakpointValues.small})`
+    );
+    const drawerWidth = isSmallScreen ? '100%' : 300;
+
     return (
         <Box>
             <IconButton
                 onClick={toggleDrawer}
-                sx={{ padding: '1rem', margin: '2rem' }}
+                sx={{
+                    padding: isSmallScreen ? '1rem' : '0',
+                    margin: '2rem',
+                    marginLeft: isSmallScreen ? 'auto' : '0',
+                    marginRight: isSmallScreen ? '2rem' : 0,
+                }}
             >
                 <Badge
                     color="primary"
@@ -60,7 +79,7 @@ export default function ActionBarDrawer() {
                 disableBackdropTransition={!iOS}
                 disableDiscovery={iOS}
                 PaperProps={{
-                    sx: { width: '100%', p: '2rem' },
+                    sx: { width: drawerWidth, p: '2rem' },
                 }}
             >
                 <IconButton
@@ -75,13 +94,19 @@ export default function ActionBarDrawer() {
                     <Close />
                 </IconButton>
                 <FilterSortHeading>{t('filter')}</FilterSortHeading>
+
                 <FilterSubHeading>{t('busType')}</FilterSubHeading>
                 <BusTypeGroup />
+
                 <FilterSubHeading>{t('seatType')}</FilterSubHeading>
                 <SeatTypeGroup />
 
-                <FilterSortHeading>{t('sort')}</FilterSortHeading>
-                <SortGroup />
+                {isSmallScreen && (
+                    <>
+                        <FilterSortHeading>{t('sort')}</FilterSortHeading>
+                        <SortGroup />
+                    </>
+                )}
             </SwipeableDrawer>
         </Box>
     );
