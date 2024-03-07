@@ -1,8 +1,8 @@
 import { IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
-import SeatLayout from '../../../SeatLayout/SeatLayout';
+import SeatLayout from '../../../BusLayout/SeatLayout/SeatLayout';
 import { useEffect, useState } from 'react';
-import { layoutNames } from '../../../SeatLayout/seatConfig';
+import { layoutNames } from '../../../BusLayout/SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../FareDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';

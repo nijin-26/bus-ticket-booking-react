@@ -1,4 +1,4 @@
-import { Tooltip, Typography, useMediaQuery } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import SeatWrapper from './Seat.styled';
 
@@ -7,20 +7,15 @@ const Seat = ({
     seatStatus,
     updateSelectedSeats,
     mode,
+    seatSize,
 }: {
     seatNumber?: number;
     seatStatus: 'available' | 'unavailable' | 'selected' | 'aisle';
     updateSelectedSeats?: (seatNumber: number) => void;
     mode: 'view' | 'edit';
+    seatSize: 'small' | 'medium' | 'large';
 }) => {
     const { t } = useTranslation('seatLayout');
-    const isExtraLargeScreen = useMediaQuery(`(min-width:61rem)`);
-    const isLargeScreen = useMediaQuery(`(min-width:54rem)`);
-    const seatSize = isExtraLargeScreen
-        ? 'large-size-seat'
-        : isLargeScreen
-        ? 'mid-size-seat'
-        : 'small-size-seat';
     return seatNumber ? (
         <Tooltip
             title={
