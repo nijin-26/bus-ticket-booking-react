@@ -29,3 +29,4 @@
 -   [86cur11g8] Integration of Ticket page after booking confirmation and also enabled search by PNR.
 -   [86cuerykj] [SERVICE] Add visibility toggle feature for password inputs and made auth modals responsive.
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
+-   [86cutf4f9] Add testing for booking utils funcitons.
