@@ -16,7 +16,11 @@ export const formatDate = (date: Date, short: boolean = false) => {
         undefined,
         short ? dateOptions : undefined
     );
-
+    console.log(
+        formattedDateTime,'hi',
+        date.toLocaleDateString(),'ji',
+        `${formattedHours}:${formattedMinutes} ${amOrPm}`
+    );
     return {
         formattedDate: short ? formattedDateTime : date.toLocaleDateString(),
         formattedTime: `${formattedHours}:${formattedMinutes} ${amOrPm}`,

@@ -11,6 +11,7 @@ import jsPDF from 'jspdf';
 import { Download } from '@mui/icons-material';
 
 export const Ticket = ({ data }: { data: ITicket }) => {
+    console.log(data)
     const { t } = useTranslation('ticket');
 
     const { pnrNumber, trip, seats } = data;
