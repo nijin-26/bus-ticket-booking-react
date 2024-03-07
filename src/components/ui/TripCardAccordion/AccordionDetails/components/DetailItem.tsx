@@ -11,7 +11,7 @@ export const DetailsItem = ({
     icon
 }: IDetailsItemProps) => {
     return (
-        <Stack direction={'row'} spacing={3}>
+        <Stack direction={'row'}>
             <Stack direction={'row'} spacing={1} className='title-container'>
                 {icon}
                 {title && (
