@@ -1,4 +1,4 @@
-import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
 import { onRequest, onRequestError } from './requestInterceptor';
 import { onResponse, onResponseError } from './responseInterceptor';
 
@@ -11,37 +11,19 @@ if (baseUrl === undefined) {
 const apiClient = axios.create({
     baseURL: baseUrl,
     timeout: 30000,
+    headers: {
+        'Content-type': 'application/json',
+    },
 });
 
-apiClient.interceptors.request.use(
-    onRequest as unknown as <TConfig>(
-        value: InternalAxiosRequestConfig<TConfig>
-    ) =>
-        | InternalAxiosRequestConfig<TConfig>
-        | Promise<InternalAxiosRequestConfig<TConfig>>,
-    onRequestError
-);
-
-apiClient.interceptors.response.use(
-    onResponse as unknown as <TResponse, TConfig>(
-        value: AxiosResponse<TResponse, TConfig>
-    ) =>
-        | AxiosResponse<TResponse, TConfig>
-        | Promise<AxiosResponse<TResponse, TConfig>>,
-    onResponseError
-);
+apiClient.interceptors.request.use(onRequest, onRequestError);
+apiClient.interceptors.response.use(onResponse, onResponseError);
 
 export const refreshApi = axios.create({
     baseURL: baseUrl,
-    timeout: 2000,
+    timeout: 5000,
 });
 
-refreshApi.interceptors.response.use(
-    onResponse as unknown as <TResponse, TConfig>(
-        value: AxiosResponse<TResponse, TConfig>
-    ) =>
-        | AxiosResponse<TResponse, TConfig>
-        | Promise<AxiosResponse<TResponse, TConfig>>
-);
+refreshApi.interceptors.response.use(onResponse);
 
 export default apiClient;

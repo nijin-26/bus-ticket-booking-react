@@ -1,4 +1,8 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { apiRoutes, renewToken } from '..';
+import { getToken, storage } from '../../utils';
+import { store } from '../../app/store';
+import { logout } from '../../app/features/authSlice';
 
 interface IResponseData {
     data: unknown;
@@ -15,16 +19,40 @@ const HTTP_STATUS = {
     SERVER_ERROR: 500,
 };
 
-export const onResponse = (response: AxiosResponse) => {
-    if (
-        response.status >= HTTP_STATUS.SUCCESS &&
-        response.status <= HTTP_STATUS.INFORMATION
-    ) {
-        const responseData = response.data as IResponseData;
-        return Promise.resolve(responseData.data);
-    }
+export const onResponse = (response: AxiosResponse<IResponseData>) => {
+    return Promise.resolve(response.data.data as AxiosResponse);
 };
 
-export const onResponseError = (error: AxiosError) => {
+export const onResponseError = async (error: AxiosError) => {
+    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED) {
+        const failedRequest = error.config;
+
+        //check if it's a sign-in request, if yes pass through the error
+        if (failedRequest?.url?.includes(apiRoutes.signIn)) {
+            return Promise.reject(error);
+        }
+
+        const refreshToken = getToken('refreshToken');
+        if (!refreshToken) {
+            store.dispatch(logout());
+            return Promise.reject(error);
+        }
+
+        try {
+            const response = await renewToken(refreshToken);
+            storage.setItem('accessToken', response.accessToken);
+            storage.setItem('refreshToken', response.refreshToken);
+
+            if (failedRequest) {
+                failedRequest.headers[
+                    'Authorization'
+                ] = `Bearer ${response.accessToken}`;
+
+                return axios(failedRequest);
+            }
+        } catch (error) {
+            store.dispatch(logout());
+        }
+    }
     return Promise.reject(error);
 };

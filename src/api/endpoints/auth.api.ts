@@ -30,11 +30,6 @@ export const signUp = async (props: ISignUpProps): Promise<ISignUpResponse> => {
     return response;
 };
 
-// export const renewToken = async (): Promise<IRenewTokenResponse> => {
-//     const response: IRenewTokenResponse = await API.post(apiRoutes.renewToken);
-//     return response;
-// };
-
 export const renewToken = async (
     refreshToken: string
 ): Promise<IRenewTokenResponse> => {
