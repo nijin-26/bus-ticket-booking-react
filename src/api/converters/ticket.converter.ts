@@ -41,6 +41,7 @@ export const getTicketsFromBookingListingResponse = (
     const ticketExternal = new Map<string, ITicketExternal[]>();
     for (const booking of response.bookings) {
         if (ticketExternal.has(booking.pnrNumber)) {
+            console.log(booking);
             ticketExternal.get(booking.pnrNumber)?.push(booking);
         } else {
             ticketExternal.set(booking.pnrNumber, [booking]);
@@ -84,7 +85,7 @@ export const getTicketsFromMyBookingsResponse = (
                     seatNumber: parseInt(booking.seatNumber),
                     passenger: {
                         fullName: booking.passengerName,
-                        age: parseInt(booking.passengerAge),
+                        age: booking.passengerAge,
                         gender: booking.passengerGender as IGender,
                     },
                 });
