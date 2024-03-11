@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { getTripFromTripExternal } from './trip.converter';
+import { getSeatTypeFromSeatTypeExternal, getTripFromTripExternal } from './trip.converter';
 import { IBusType, ISeatType, ITrip } from '../../types';
 import { ISeatTypeExternal, ITripExternal } from '../types/trip';
 
@@ -55,4 +55,14 @@ test('getTripFromTripExternal should return the correct trip', () => {
     const trip = getTripFromTripExternal(tripExternal);
 
     expect(trip).toEqual(expectedTrip);
+});
+
+test('getSeatTypeFromSeatTypeExternal should return the correct seat type', () => {
+    const seatTypeExternal1: ISeatTypeExternal = ISeatTypeExternal.Sleeper;
+    const seatType1 = getSeatTypeFromSeatTypeExternal(seatTypeExternal1);
+    expect(seatType1).toEqual(ISeatType.SLEEPER);
+
+    const seatTypeExternal2: ISeatTypeExternal = ISeatTypeExternal.Seater;
+    const seatType2 = getSeatTypeFromSeatTypeExternal(seatTypeExternal2);
+    expect(seatType2).toEqual(ISeatType.SEATER);
 });
