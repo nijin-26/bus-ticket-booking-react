@@ -34,6 +34,12 @@ export const colors = {
     redHover: '#AB3840',
     linkColor: '#0000EE',
     darkLinkColor: '#B596E8',
+    windowColor: '#90D0E3',
+    tyre: '#000000',
+    darkModeBrakeLight: '#FF5961',
+    lightModeBrakeLight: '#bdbdbd',
+    darkModeHeadLight: '#eedd82',
+    lightModeHeadLight: '#bdbdbd',
 };
 
 // api format: id, name => mui format: id, label

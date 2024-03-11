@@ -16,8 +16,8 @@
         "languageError": "Error while changing language"
     },
     "auth": {
-        "signIn": "SIGN IN",
-        "signUp": "SIGN UP",
+        "signIn": "Sign In",
+        "signUp": "Sign Up",
         "email": "Email",
         "password": "Password",
         "confirmPassword": "Confirm Password",
@@ -101,7 +101,7 @@
         "busTypeAC": "Bus Type - AC",
         "busTypeNonAC": "Bus Type - Non-AC",
         "SeatTypeSeater": "Seat Type - Seater",
-        "SeatTypeSleeper": "Bus Type - Sleeper",
+        "SeatTypeSleeper": "Seat Type - Sleeper",
         "seatsAvailable": "seats available",
         "loadMore": "Load More",
         "noOptions": "No options matching your search",
@@ -185,9 +185,9 @@
         "logoutSuccessMessage": "You have been successfully logged out. Have a great day!"
     },
     "deleteTicketModal": {
-        "title": "Delete Booking",
-        "message": "This action will permanently delete all the data related to your booking. Are you sure you want to continue?",
-        "confirmText": "Delete",
+        "title": "Cancel Booking",
+        "message": "This action will permanently cancel the booking. Are you sure you want to continue?",
+        "confirmText": "Confirm",
         "cancelText": "Cancel",
         "logoutSuccessMessage": "Ticket cancelled successfully."
     },
@@ -212,7 +212,17 @@
         "seatNumber": "Seat Number",
         "departure": "Departure",
         "arrival": "Arrival",
-        "errorPNRSearch": "Sorry! Couldn't find the searched PNR."
+        "errorPNRSearch": "Sorry! Couldn't find the searched PNR.",
+        "fareDetails": "Fare Details",
+        "noOfSeats": "No of Seats",
+        "farePerSeat": "Fare Per Seat",
+        "paidAmt": "Total Paid Amount",
+        "viewSeatLayout": "View Seat Layout",
+        "name": "Name",
+        "age": "Age",
+        "gender": "Gender",
+        "downloadTicket": "Download Ticket as PDF",
+        "viewDetailedTicket": "View Detailed Ticket"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
@@ -220,6 +230,7 @@
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
         "checkout": "Complete Booking",
-        "absentStateError": "Error while fetching booking data"
+        "absentStateError": "Error while fetching booking data",
+        "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
     }
 }

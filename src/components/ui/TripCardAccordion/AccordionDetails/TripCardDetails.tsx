@@ -1,8 +1,8 @@
 import { IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
-import SeatLayout from '../../../SeatLayout/SeatLayout';
+import SeatLayout from '../../../BusLayout/SeatLayout/SeatLayout';
 import { useEffect, useState } from 'react';
-import { layoutNames } from '../../../SeatLayout/seatConfig';
+import { layoutNames } from '../../../BusLayout/SeatLayout/seatConfig';
 import { StyledAlert } from '../../../Alert/Alert.styled';
 import { FareDetails } from '../../../FareDetails/FareDetails';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -179,12 +179,11 @@ export const TripCardDetails = ({
                                 mode={mode}
                             />
                         </Stack>
+                        <DetailsGrid tripDetails={tripDetails} />
                         {!data.seats && (
                             <Stack
                                 direction={{ xs: 'column', sm: 'row' }}
-                                justifyContent={'space-between'}
                                 spacing={{ xs: 1, sm: 10 }}
-                                mt={5}
                                 className="checkout-section"
                             >
                                 {selectedSeats.length > 0 &&
@@ -230,7 +229,6 @@ export const TripCardDetails = ({
                                 </StyledButton>
                             </Stack>
                         )}
-                        <DetailsGrid tripDetails={tripDetails} />
                     </>
                 )}
             </Stack>

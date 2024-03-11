@@ -57,6 +57,19 @@ export const TripBookingPage = () => {
         }
     }, [navigate, state, t]);
 
+    useEffect(() => {
+        // handle reload and close
+        const showWarning = (e: BeforeUnloadEvent) => {
+            e.preventDefault();
+            return t('unsavedChangesWarning');
+        };
+        window.addEventListener('beforeunload', showWarning);
+
+        return () => {
+            window.removeEventListener('beforeunload', showWarning);
+        };
+    }, [t]);
+
     return (
         state.seats.length && (
             <>
@@ -106,6 +119,7 @@ export const TripBookingPage = () => {
                                 handleFormSubmit();
                             }}
                             fullWidth
+                            sx={{ textTransform: 'none' }}
                         >
                             {t('checkout')}
                         </StyledButton>

@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import { TicketWrapper } from './Ticket.styled';
 import Barcode from 'react-barcode';
@@ -6,10 +6,11 @@ import { TwoLineHeading } from './components/TwoLineHeading';
 import { ITicket } from '../../types';
 import { formatDate } from './utils/timeUtils';
 import { useTranslation } from 'react-i18next';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { Download } from '@mui/icons-material';
 
 export const Ticket = ({ data }: { data: ITicket }) => {
-    const isSmallScreen = useMediaQuery('(max-width:50rem)');
-    const isMediumScreen = useMediaQuery('(max-width:102rem)');
     const { t } = useTranslation('ticket');
 
     const { pnrNumber, trip, seats } = data;
@@ -17,156 +18,186 @@ export const Ticket = ({ data }: { data: ITicket }) => {
 
     const adults = seats.filter((seat) => seat.passenger.age > 18);
     const children = seats.filter((seat) => seat.passenger.age < 18);
+    const downloadAsPDF = () => {
+        const input = document.getElementById('ticket');
+
+        if (input) {
+            const { offsetWidth, offsetHeight } = input;
+
+            void html2canvas(input).then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = 210; // A4 paper width in millimeters
+                const pdfHeight = (offsetHeight * pdfWidth) / offsetWidth;
+                const margin = 10; // Set your desired margin size in millimeters
+
+                // Add margin to the top and left
+                pdf.addImage(
+                    imgData,
+                    'PNG',
+                    margin,
+                    margin,
+                    pdfWidth - 2 * margin,
+                    pdfHeight - 2 * margin
+                );
+
+                pdf.save('ticket.pdf');
+            });
+        }
+    };
 
     return (
-        <TicketWrapper>
-            <Box>
-                <Stack direction={'row'} justifyContent={'space-between'}>
-                    <DirectionsBusRoundedIcon
-                        fontSize="medium"
-                        className="app-logo"
-                    />
-                    <Typography component={'h1'} variant="h2">
-                        {t('ticket')}
-                    </Typography>
-                </Stack>
-            </Box>
-            <Stack
-                direction={isSmallScreen ? 'column' : 'row'}
-                spacing={'2rem'}
-                flex={'2'}
-                justifyContent={'space-between'}
-            >
-                <Stack
-                    padding={'1.5rem'}
-                    direction={'column'}
-                    flex={'3'}
-                    spacing={'2rem'}
-                    justifyContent={'space-around'}
-                >
-                    <TwoLineHeading
-                        title={t('passengerName')}
-                        value={seats[0].passenger.fullName}
-                    />
-                    <Stack
-                        direction={isMediumScreen ? 'column' : 'row'}
-                        justifyContent={'space-between'}
-                        className="details-row row-wrap"
-                        spacing={isMediumScreen ? '0.5rem' : '0'}
-                    >
-                        <TwoLineHeading
-                            title={t('from')}
-                            value={`${trip.origin.name} - ${trip.origin.shortCode}`}
+        <Stack>
+            <TicketWrapper id="ticket">
+                <Box>
+                    <Stack direction={'row'} justifyContent={'space-between'}>
+                        <DirectionsBusRoundedIcon
+                            fontSize="medium"
+                            className="app-logo"
                         />
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                            className="row-wrap"
-                        >
-                            <TwoLineHeading
-                                title={t('date')}
-                                value={
-                                    formatDate(departureTimestamp).formattedDate
-                                }
-                            />
-                            <TwoLineHeading
-                                title={t('time')}
-                                value={
-                                    formatDate(departureTimestamp).formattedTime
-                                }
-                            />
-                        </Stack>
+                        <Typography component={'h1'} variant="h2">
+                            {t('ticket')}
+                        </Typography>
                     </Stack>
-                    <Stack
-                        direction={isMediumScreen ? 'column' : 'row'}
-                        justifyContent={'space-between'}
-                        className="details-row row-wrap"
-                        spacing={isMediumScreen ? '0.5rem' : '0'}
-                    >
-                        <TwoLineHeading
-                            title={t('to')}
-                            value={`${trip.destination.name} - ${trip.destination.shortCode}`}
-                        />
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                            className="row-wrap"
-                        >
-                            <TwoLineHeading
-                                title={t('date')}
-                                value={
-                                    formatDate(arrivalTimestamp).formattedDate
-                                }
-                            />
-                            <TwoLineHeading
-                                title={t('time')}
-                                value={
-                                    formatDate(arrivalTimestamp).formattedTime
-                                }
-                            />
-                        </Stack>
-                    </Stack>
-                    <Stack
-                        direction={isMediumScreen ? 'column' : 'row'}
-                        justifyContent={'space-between'}
-                        className="details-row row-wrap"
-                        spacing={isMediumScreen ? '0.5rem' : '0'}
-                    >
-                        <TwoLineHeading
-                            title={t('pnr')}
-                            value={pnrNumber.toUpperCase()}
-                        />
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                            className="row-wrap"
-                        >
-                            <TwoLineHeading
-                                title={t('passengerCount')}
-                                value={`${
-                                    adults.length > 0
-                                        ? `${adults.length} ${
-                                              adults.length > 1
-                                                  ? 'adults'
-                                                  : 'adult'
-                                          }`
-                                        : ''
-                                }${
-                                    adults.length > 0 && children.length > 0
-                                        ? ' and '
-                                        : ''
-                                }${
-                                    children.length > 0
-                                        ? `${children.length} ${
-                                              children.length > 1
-                                                  ? 'children'
-                                                  : 'child'
-                                          }`
-                                        : ''
-                                }`}
-                            />
-                            <TwoLineHeading
-                                title={`${String(t('seatNumber'))}${
-                                    seats.length > 1 ? 's' : ''
-                                }`}
-                                value={seats
-                                    .map((seat) => seat.seatNumber)
-                                    .join(', ')}
-                            />
-                        </Stack>
-                    </Stack>
-                </Stack>
-                <Box
-                    component="div"
-                    className={`rotated-barcode-container ${
-                        isSmallScreen && 'small-screen'
-                    }`}
-                    flex={'1'}
-                >
-                    <Barcode value={pnrNumber} format="CODE128" />
-                    {/* high-density linear barcode. supports all 128 ASCII characters */}
                 </Box>
-                {!isSmallScreen && (
+                <Stack
+                    direction={'row'}
+                    spacing={'2rem'}
+                    flex={'2'}
+                    justifyContent={'space-between'}
+                >
+                    <Stack
+                        padding={'1.5rem'}
+                        direction={'column'}
+                        flex={'3'}
+                        spacing={'2rem'}
+                        justifyContent={'space-around'}
+                    >
+                        <TwoLineHeading
+                            title={t('passengerName')}
+                            value={seats[0].passenger.fullName}
+                        />
+                        <Stack
+                            direction={'column'}
+                            justifyContent={'space-between'}
+                            className="details-row row-wrap"
+                            spacing="0.5rem"
+                        >
+                            <TwoLineHeading
+                                title={t('from')}
+                                value={`${trip.origin.name} - ${trip.origin.shortCode}`}
+                            />
+                            <Stack
+                                direction={'row'}
+                                justifyContent={'space-between'}
+                                className="row-wrap"
+                            >
+                                <TwoLineHeading
+                                    title={t('date')}
+                                    value={
+                                        formatDate(departureTimestamp)
+                                            .formattedDate
+                                    }
+                                />
+                                <TwoLineHeading
+                                    title={t('time')}
+                                    value={
+                                        formatDate(departureTimestamp)
+                                            .formattedTime
+                                    }
+                                />
+                            </Stack>
+                        </Stack>
+                        <Stack
+                            direction={'column'}
+                            justifyContent={'space-between'}
+                            className="details-row row-wrap"
+                            spacing={'0.5rem'}
+                        >
+                            <TwoLineHeading
+                                title={t('to')}
+                                value={`${trip.destination.name} - ${trip.destination.shortCode}`}
+                            />
+                            <Stack
+                                direction={'row'}
+                                justifyContent={'space-between'}
+                                className="row-wrap"
+                            >
+                                <TwoLineHeading
+                                    title={t('date')}
+                                    value={
+                                        formatDate(arrivalTimestamp)
+                                            .formattedDate
+                                    }
+                                />
+                                <TwoLineHeading
+                                    title={t('time')}
+                                    value={
+                                        formatDate(arrivalTimestamp)
+                                            .formattedTime
+                                    }
+                                />
+                            </Stack>
+                        </Stack>
+                        <Stack
+                            direction={'column'}
+                            justifyContent={'space-between'}
+                            className="details-row row-wrap"
+                            spacing={'0.5rem'}
+                        >
+                            <TwoLineHeading
+                                title={t('pnr')}
+                                value={pnrNumber.toUpperCase()}
+                            />
+                            <Stack
+                                direction={'row'}
+                                justifyContent={'space-between'}
+                                className="row-wrap"
+                            >
+                                <TwoLineHeading
+                                    title={t('passengerCount')}
+                                    value={`${
+                                        adults.length > 0
+                                            ? `${adults.length} ${
+                                                  adults.length > 1
+                                                      ? 'adults'
+                                                      : 'adult'
+                                              }`
+                                            : ''
+                                    }${
+                                        adults.length > 0 && children.length > 0
+                                            ? ' and '
+                                            : ''
+                                    }${
+                                        children.length > 0
+                                            ? `${children.length} ${
+                                                  children.length > 1
+                                                      ? 'children'
+                                                      : 'child'
+                                              }`
+                                            : ''
+                                    }`}
+                                />
+                                <TwoLineHeading
+                                    title={`${String(t('seatNumber'))}${
+                                        seats.length > 1 ? 's' : ''
+                                    }`}
+                                    value={seats
+                                        .map((seat) => seat.seatNumber)
+                                        .join(', ')}
+                                />
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                    <Box
+                        component="div"
+                        className={`rotated-barcode-container`}
+                        flex={'1'}
+                    >
+                        <Barcode value={pnrNumber} format="CODE128" />
+                        {/* high-density linear barcode. supports all 128 ASCII characters */}
+                    </Box>
+
                     <>
                         <div className="dotted-vertical-div"></div>
                         <Stack
@@ -223,9 +254,23 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                             />
                         </Stack>
                     </>
-                )}
-            </Stack>
-            <Box></Box>
-        </TicketWrapper>
+                </Stack>
+                <Box></Box>
+            </TicketWrapper>
+            <Button
+                variant="contained"
+                onClick={() => {
+                    downloadAsPDF();
+                }}
+                startIcon={<Download />}
+                sx={{
+                    margin: '2rem 0',
+                    alignSelf: 'center',
+                    textTransform: 'none',
+                }}
+            >
+                {t('downloadTicket')}
+            </Button>
+        </Stack>
     );
 };

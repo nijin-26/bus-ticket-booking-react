@@ -7,6 +7,8 @@ export interface IBerthLayout {
     exceptionRows?: {
         [key: number]: number[];
     };
+    noWindowAt: { L: number[]; R: number[] };
+    tyreAt: number[];
 }
 
 export interface ILayout {

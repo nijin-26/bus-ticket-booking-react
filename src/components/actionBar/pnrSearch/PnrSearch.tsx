@@ -22,6 +22,7 @@ export default function PnrSearch() {
     const cancelModal = () => {
         setShowTicket(false);
     };
+
     return (
         <>
             <Wrapper>

@@ -5,7 +5,7 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
     marginBottom: '2rem',
     backgroundColor: theme.color.background,
     borderRadius: '0.7rem',
-    borderLeft: `0.8rem solid${theme.color.red}`,
+    borderLeft: `0.8rem solid ${theme.color.red}`,
     boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
 
     '.details': {
@@ -20,11 +20,11 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
     },
 
     '&.less-seats': {
-        borderLeft: `0.8rem solid${theme.color.red}`,
+        borderLeft: `0.8rem solid ${theme.color.red}`,
     },
 
     '&.no-seats': {
-        borderLeft: `0.8rem solid${theme.color.textSecondary}`,
+        borderLeft: `0.8rem solid ${theme.color.textSecondary}`,
     },
 
     '.trip-card-icons': {
@@ -72,5 +72,9 @@ export const TripAccordionWrapper = styled(Accordion)(({ theme }) => ({
 
     '.price': {
         minWidth: '9rem',
+    },
+
+    '.price-alignment': {
+        textAlign: 'center',
     },
 }));
