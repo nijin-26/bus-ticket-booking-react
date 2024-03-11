@@ -3,6 +3,7 @@ import { API, apiRoutes, renewToken } from '..';
 import { getToken, storage } from '../../utils';
 import { store } from '../../app/store';
 import { logout } from '../../app/features/authSlice';
+import { toast } from 'react-toastify';
 
 interface IResponseData {
     data: unknown;
@@ -30,9 +31,6 @@ export const onResponseError = async (error: AxiosError) => {
         failedRequest &&
         !failedRequest._retry
     ) {
-        // Set the _retry flag to true to indicate that the request will be retried
-        failedRequest._retry = true;
-
         // Check if it's a sign-in request, if yes no need to renew token
         if (failedRequest.url?.includes(apiRoutes.signIn)) {
             return Promise.reject(error);
@@ -40,9 +38,16 @@ export const onResponseError = async (error: AxiosError) => {
 
         const refreshToken = getToken('refreshToken');
         if (!refreshToken) {
+            toast.error(
+                'Session Expired: You have been logged out for security reasons.',
+                { toastId: 'expired session' }
+            );
             store.dispatch(logout());
             return Promise.reject(error);
         }
+
+        // Set the _retry flag to true to indicate that the request will be retried
+        failedRequest._retry = true;
 
         try {
             const response = await renewToken(refreshToken);

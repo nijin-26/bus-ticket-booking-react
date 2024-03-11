@@ -1,8 +1,8 @@
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { storage } from '../../utils';
+import { getToken } from '../../utils';
 
 export const onRequest = (config: InternalAxiosRequestConfig) => {
-    const accessToken = storage.getItem<string>('accessToken');
+    const accessToken = getToken('accessToken');
     if (accessToken) {
         config.headers.set('Authorization', `Bearer ${accessToken}`);
     }
