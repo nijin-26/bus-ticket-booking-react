@@ -13,7 +13,7 @@ import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import { convertTimeStamp } from '../../../utils/dateUtils/dateUtils';
+import { convertTimeStamp } from '../../../utils';
 
 let borderDesignClass: string;
 interface ITripCardAccordionData extends ITrip {
@@ -91,8 +91,7 @@ export const TripCardAccordion = ({
                         </Tooltip>
                         <Tooltip
                             title={
-                                data.seatType == ISeatType.SLEEPER ||
-                                data.seatType == ISeatType.Sleeper
+                                data.seatType == ISeatType.SLEEPER
                                     ? t('SeatTypeSleeper')
                                     : t('SeatTypeSeater')
                             }
@@ -100,8 +99,7 @@ export const TripCardAccordion = ({
                         >
                             <img
                                 src={
-                                    data.seatType == ISeatType.SLEEPER ||
-                                    data.seatType == ISeatType.Sleeper
+                                    data.seatType == ISeatType.SLEEPER
                                         ? sleeperIcon
                                         : seatIcon
                                 }

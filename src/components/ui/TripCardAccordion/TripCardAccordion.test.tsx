@@ -20,14 +20,14 @@ const mockData: ITrip = {
 describe('TripCardAccordion', () => {
     it('renders trip details', () => {
         render(<TripCardAccordion data={mockData} mode="view" />);
-        expect(screen.getByText('9:00 AM')).toBeInTheDocument();
-        expect(screen.getByText('2:00 PM')).toBeInTheDocument();
+        expect(screen.getByText('9:00 AM')).toBeVisible();
+        expect(screen.getByText('2:00 PM')).toBeVisible();
         const dateElements = screen.queryAllByText('15th Jun');
-        expect(dateElements[0]).toBeInTheDocument();
-        expect(dateElements[1]).toBeInTheDocument();
-        expect(screen.getByText('5 hours')).toBeInTheDocument();
-        expect(screen.getByText('15 seats available')).toBeInTheDocument();
-        expect(screen.getByText('₹ 1000/-')).toBeInTheDocument();
+        expect(dateElements[0]).toBeVisible();
+        expect(dateElements[1]).toBeVisible();
+        expect(screen.getByText('5 hours')).toBeVisible();
+        expect(screen.getByText('15 seats available')).toBeVisible();
+        expect(screen.getByText('₹ 1000/-')).toBeVisible();
     });
 
     it('expands and collapse the accoridion on clicking', async () => {
