@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ISeat } from '../../types';
 import getSeatStatus from './utils/getSeatStatus';
 import Seat from './Seat/Seat';
+import { useMediaQuery } from '@mui/material';
 
 const SeatLayout = ({
     layoutName,
@@ -17,12 +18,14 @@ const SeatLayout = ({
     seats: ISeat[];
     selectedSeats: number[];
     mode: 'view' | 'edit';
-    updateSelectedSeats: (seat: number) => void;
+    updateSelectedSeats?: (seat: number) => void;
 }) => {
     const [berth, setBerth] = useState<{
         lowerBerth: number[][];
     }>({ lowerBerth: [] });
     let seatIndex = 0;
+
+    const isSmallScreeen = useMediaQuery(`(max-width:50rem)`);
 
     useEffect(() => {
         setBerth((prev) => ({
@@ -34,7 +37,7 @@ const SeatLayout = ({
     }, [layoutName]);
 
     return (
-        <SeatLayoutWrapper>
+        <SeatLayoutWrapper isVerticalOrientation={isSmallScreeen}>
             <div className="driver-cabin">
                 <img
                     src={steeringWheel}
