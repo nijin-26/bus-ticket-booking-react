@@ -2,6 +2,7 @@ import { test, expect } from 'vitest';
 import {
     IBookingListingResponse,
     IBookingResponse,
+    IMyBookingsResponse,
     IPnrResponse,
     ITicketStatusExternal,
 } from '../types/ticket.ts';
@@ -17,6 +18,7 @@ import {
     getTicketFromPnrResponse,
     getTicketStatusFromExternal,
     getTicketsFromBookingListingResponse,
+    getTicketsFromMyBookingsResponse,
 } from './ticket.converter.ts';
 import { ISeatTypeExternal } from '../types/trip.ts';
 
@@ -250,4 +252,145 @@ test('getPnrFromBookingResponse should return the correct data', () => {
     const expectedPnr: string = '97456p';
 
     expect(getPnrFromBookingResponse(response)).toEqual(expectedPnr);
+});
+
+test('getTicketsFromMyBookingsResponse should return the correct data', () => {
+    const response: IMyBookingsResponse = {
+        bookings: [
+            {
+                id: 101,
+                tripDate: '2024-05-13T18:30:00.000Z',
+                departure: '2024-05-14T17:52:56.000Z',
+                arrival: '2024-05-14T21:52:56.000Z',
+                durationInHours: '3.5',
+                busId: 'G1',
+                busType: IBusType.AC,
+                seatType: ISeatTypeExternal.Sleeper,
+                totalSeats: 42,
+                farePerSeat: '1200.00',
+                bookings: [
+                    {
+                        id: 107,
+                        pnrNumber: '101opf',
+                        seatNumber: '31',
+                        status: ITicketStatusExternal.Confirmed,
+                        fare: '1200.00',
+                        passengerName: 'Adi',
+                        passengerAge: 123,
+                        passengerGender: 'male',
+                    },
+                    {
+                        id: 108,
+                        pnrNumber: '101opf',
+                        seatNumber: '32',
+                        status: ITicketStatusExternal.Confirmed,
+                        fare: '1200.00',
+                        passengerName: 'Babu',
+                        passengerAge: 123,
+                        passengerGender: 'female',
+                    },
+                    {
+                        id: 153,
+                        pnrNumber: '101wul',
+                        seatNumber: '30',
+                        status: ITicketStatusExternal.Confirmed,
+                        fare: '1200.00',
+                        passengerName: 'Dev',
+                        passengerAge: 123,
+                        passengerGender: 'female',
+                    },
+                ],
+                origin: {
+                    id: 8,
+                    name: 'Palakkad',
+                    shortCode: 'PLK',
+                },
+                destination: {
+                    id: 9,
+                    name: 'Pathanamthitta',
+                    shortCode: 'PTA',
+                },
+            },
+        ],
+        resultCount: 1,
+    };
+    const expectedTickets: ITicket[] = [
+        {
+            pnrNumber: '101opf',
+            trip: {
+                id: '101',
+                origin: {
+                    id: '8',
+                    name: 'Palakkad',
+                    shortCode: 'PLK',
+                },
+                destination: {
+                    id: '9',
+                    name: 'Pathanamthitta',
+                    shortCode: 'PTA',
+                },
+                departureTimestamp: new Date('2024-05-14T17:52:56.000Z'),
+                arrivalTimestamp: new Date('2024-05-14T21:52:56.000Z'),
+                farePerSeat: 1200,
+                totalSeats: 46,
+                busType: IBusType.AC,
+                seatType: ISeatType.SLEEPER,
+                availableSeats: 42,
+            },
+            status: ITicketStatus.CONFIRMED,
+            seats: [
+                {
+                    seatNumber: 31,
+                    passenger: {
+                        fullName: 'Adi',
+                        age: 123,
+                        gender: IGender.MALE,
+                    },
+                },
+                {
+                    seatNumber: 32,
+                    passenger: {
+                        fullName: 'Babu',
+                        age: 123,
+                        gender: IGender.FEMALE,
+                    },
+                },
+            ],
+        },
+        {
+            pnrNumber: '101wul',
+            trip: {
+                id: '101',
+                origin: {
+                    id: '8',
+                    name: 'Palakkad',
+                    shortCode: 'PLK',
+                },
+                destination: {
+                    id: '9',
+                    name: 'Pathanamthitta',
+                    shortCode: 'PTA',
+                },
+                departureTimestamp: new Date('2024-05-14T17:52:56.000Z'),
+                arrivalTimestamp: new Date('2024-05-14T21:52:56.000Z'),
+                farePerSeat: 1200,
+                totalSeats: 46,
+                busType: IBusType.AC,
+                seatType: ISeatType.SLEEPER,
+                availableSeats: 42,
+            },
+            status: ITicketStatus.CONFIRMED,
+            seats: [
+                {
+                    seatNumber: 30,
+                    passenger: {
+                        fullName: 'Dev',
+                        age: 123,
+                        gender: IGender.FEMALE,
+                    },
+                },
+            ],
+        },
+    ];
+    expect(getTicketsFromMyBookingsResponse(response)).toEqual(expectedTickets);
 });

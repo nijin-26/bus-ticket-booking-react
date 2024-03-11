@@ -99,7 +99,7 @@ export const getTicketsFromMyBookingsResponse = (
                             seatNumber: parseInt(booking.seatNumber),
                             passenger: {
                                 fullName: booking.passengerName,
-                                age: parseInt(booking.passengerAge),
+                                age: booking.passengerAge,
                                 gender: booking.passengerGender as IGender,
                             },
                         },
