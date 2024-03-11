@@ -74,7 +74,6 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
 export const getTicketsFromMyBookingsResponse = (
     response: IMyBookingsResponse
 ): ITicket[] => {
-    console.log('getTicketsFromMyBookingsResponse input', response);
     const tickets: ITicket[] = [];
     for (const tripBooking of response.bookings) {
         const tripTickets: Map<string, ITicket> = new Map();
@@ -110,7 +109,6 @@ export const getTicketsFromMyBookingsResponse = (
         }
         tickets.push(...Array.from(tripTickets.values()));
     }
-    console.log('getTicketsFromMyBookingsResponse output', tickets);
     return tickets;
 };
 
