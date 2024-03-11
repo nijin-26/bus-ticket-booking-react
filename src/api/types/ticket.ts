@@ -1,5 +1,5 @@
 import { ITicket } from '../../types/ticket';
-import { ITripExternal } from './trip';
+import { ISeatTypeExternal, ITripExternal } from './trip';
 
 export interface ITicketRequest {
     pnrNumber: string;
@@ -28,7 +28,21 @@ export interface IBookingRequest {
     bookings: IBookingExternal[];
 }
 
-export type IBookingResponse = ITicketExternal[];
+export type IBookingResponse = (Omit<
+    ITicketExternal,
+    'passengerAge' | 'trip'
+> & {
+    passengerAge: string;
+    trip: Omit<
+        ITripExternal,
+        'departure' | 'arrival' | 'durationInHours' | 'seatType'
+    > & {
+        departure: string | null;
+        arrival: string | null;
+        durationInHours: string | null;
+        seatType: ISeatTypeExternal | null;
+    };
+})[];
 
 export interface IBookingListingResponse {
     bookings: ITicketExternal[];

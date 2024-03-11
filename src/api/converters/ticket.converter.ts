@@ -28,11 +28,11 @@ const getTicketFromTicketExternals = (
     return ticket;
 };
 
-export const getTicketFromBookingResponse = (
+export const getPnrFromBookingResponse = (
     response: IBookingResponse
-): ITicket => {
-    const ticket = getTicketFromTicketExternals(response);
-    return ticket;
+): string => {
+    const pnr = response[0].pnrNumber;
+    return pnr;
 };
 
 export const getTicketsFromBookingListingResponse = (
