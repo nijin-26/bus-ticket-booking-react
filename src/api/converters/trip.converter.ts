@@ -38,6 +38,7 @@ export const getSeatTypeFromSeatTypeExternal = (
 export const getTripDetailedFromTripDetailedExternal = (
     tripDetailedExternal: ITripDetailedExternal
 ) => {
+    console.log('getTripDetailedFromTripDetailedExternal input', tripDetailedExternal)
     const tripDetailed: ITripDetailed = {
         ...getTripFromTripExternal(tripDetailedExternal),
         seats: [],
@@ -51,5 +52,6 @@ export const getTripDetailedFromTripDetailedExternal = (
             status: seat ? ISeatStatus.BOOKED : ISeatStatus.AVAILABLE,
         });
     }
+    console.log('getTripDetailedFromTripDetailedExternal output', tripDetailed)
     return tripDetailed;
 };

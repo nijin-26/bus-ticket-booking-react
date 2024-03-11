@@ -10,7 +10,7 @@ export interface ITicketResponse extends ITicket {}
 export interface IBookingExternal {
     seatNumber: string;
     passengerName: string;
-    passengerAge: string;
+    passengerAge: number;
     passengerGender: string;
 }
 

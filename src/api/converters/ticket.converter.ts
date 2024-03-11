@@ -74,6 +74,7 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
 export const getTicketsFromMyBookingsResponse = (
     response: IMyBookingsResponse
 ): ITicket[] => {
+    console.log('getTicketsFromMyBookingsResponse input', response);
     const tickets: ITicket[] = [];
     for (const tripBooking of response.bookings) {
         const tripTickets: Map<string, ITicket> = new Map();
@@ -109,16 +110,20 @@ export const getTicketsFromMyBookingsResponse = (
         }
         tickets.push(...Array.from(tripTickets.values()));
     }
+    console.log('getTicketsFromMyBookingsResponse output', tickets);
     return tickets;
 };
 
 export const getTicketStatusFromExternal = (
     status: ITicketStatusExternal
 ): ITicketStatus => {
+    console.log('getTicketStatusFromExternal input', status);
     switch (status) {
         case ITicketStatusExternal.Confirmed:
+            console.log('getTicketStatusFromExternal output', ITicketStatus.CONFIRMED);
             return ITicketStatus.CONFIRMED;
         case ITicketStatusExternal.Cancelled:
+            console.log('getTicketStatusFromExternal output', ITicketStatus.CANCELLED);
             return ITicketStatus.CANCELLED;
     }
 };
