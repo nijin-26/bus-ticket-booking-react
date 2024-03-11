@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 const SeatWrapper = styled('li')(({ theme }) => ({
-    p:{
-        fontSize:theme.font.sm,
+    p: {
+        fontSize: theme.font.sm,
     },
     '&.seat': {
         borderRadius: '0.3rem',
         backgroundColor: theme.color.seat,
         textAlign: 'center',
     },
-    '&.large-size-seat': {
+    '&.large': {
         p: {
             lineHeight: '4.5rem',
         },
@@ -16,13 +16,13 @@ const SeatWrapper = styled('li')(({ theme }) => ({
         height: '4.5rem',
     },
 
-    '&.mid-size-seat': {
+    '&.medium': {
         p: { lineHeight: '3.5rem' },
         width: '3.5rem',
         height: '3.5rem',
     },
 
-    '&.small-size-seat': {
+    '&.small': {
         p: { lineHeight: '3rem' },
         width: '3rem',
         height: '3rem',

@@ -34,6 +34,10 @@ const lightTheme = {
     grey500: colors.grey500,
     linkColor: colors.linkColor,
     green: colors.green,
+    windowColor: colors.windowColor,
+    brakeLight: colors.lightModeBrakeLight,
+    headLight: colors.lightModeHeadLight,
+    tyre: colors.tyre,
 };
 
 const darkTheme = {
@@ -54,6 +58,10 @@ const darkTheme = {
     grey500: colors.grey500,
     linkColor: colors.darkLinkColor,
     green: colors.green,
+    windowColor: colors.windowColor,
+    tyre: colors.tyre,
+    brakeLight: colors.darkModeBrakeLight,
+    headLight: colors.darkModeHeadLight,
 };
 
 const breakpoints = {
