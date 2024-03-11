@@ -20,7 +20,7 @@ const getTicketFromTicketExternals = (
             seatNumber: parseInt(booking.seatNumber),
             passenger: {
                 fullName: booking.passengerName,
-                age: parseInt(booking.passengerAge),
+                age: booking.passengerAge,
                 gender: booking.passengerGender as IGender,
             },
         })),
@@ -38,6 +38,7 @@ export const getTicketFromBookingResponse = (
 export const getTicketsFromBookingListingResponse = (
     response: IBookingListingResponse
 ): ITicket[] => {
+    console.log('getTicketsFromBookingListingResponse input', response);
     const ticketExternal = new Map<string, ITicketExternal[]>();
     for (const booking of response.bookings) {
         if (ticketExternal.has(booking.pnrNumber)) {
@@ -49,10 +50,12 @@ export const getTicketsFromBookingListingResponse = (
     const tickets = Array.from(ticketExternal.values()).map((ticket) =>
         getTicketFromTicketExternals(ticket)
     );
+    console.log('getTicketsFromBookingListingResponse output', tickets);
     return tickets;
 };
 
 export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
+    console.log('getTicketFromPnrResponse input', response);
     const pnrNumber = response.bookings[0].pnrNumber;
     const trip = getTripFromTripExternal(response);
     const ticket: ITicket = {
@@ -68,6 +71,7 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
             },
         })),
     };
+    console.log('getTicketFromPnrResponse output', ticket);
     return ticket;
 };
 
@@ -117,13 +121,10 @@ export const getTicketsFromMyBookingsResponse = (
 export const getTicketStatusFromExternal = (
     status: ITicketStatusExternal
 ): ITicketStatus => {
-    console.log('getTicketStatusFromExternal input', status);
     switch (status) {
         case ITicketStatusExternal.Confirmed:
-            console.log('getTicketStatusFromExternal output', ITicketStatus.CONFIRMED);
             return ITicketStatus.CONFIRMED;
         case ITicketStatusExternal.Cancelled:
-            console.log('getTicketStatusFromExternal output', ITicketStatus.CANCELLED);
             return ITicketStatus.CANCELLED;
     }
 };

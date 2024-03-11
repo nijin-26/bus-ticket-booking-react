@@ -31,15 +31,11 @@ test('getTripFromTripExternal should return the correct trip', () => {
         farePerSeat: '1140.00',
         origin: {
             id: 8,
-            createdAt: '2024-02-13T03:20:13.404Z',
-            updatedAt: '2024-02-13T03:20:13.404Z',
             name: 'Palakkad',
             shortCode: 'PLK',
         },
         destination: {
             id: 9,
-            createdAt: '2024-02-13T03:20:17.108Z',
-            updatedAt: '2024-02-13T03:20:17.108Z',
             name: 'Pathanamthitta',
             shortCode: 'PTA',
         },
@@ -95,15 +91,11 @@ test('getTripDetailedFromTripDetailedExternal should return the correct trip det
         farePerSeat: '1140.00',
         origin: {
             id: 8,
-            createdAt: '2024-02-13T03:20:13.404Z',
-            updatedAt: '2024-02-13T03:20:13.404Z',
             name: 'Palakkad',
             shortCode: 'PLK',
         },
         destination: {
             id: 9,
-            createdAt: '2024-02-13T03:20:17.108Z',
-            updatedAt: '2024-02-13T03:20:17.108Z',
             name: 'Pathanamthitta',
             shortCode: 'PTA',
         },

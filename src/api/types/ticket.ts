@@ -20,10 +20,7 @@ export interface ITicketExternal extends IBookingExternal {
     fare: string;
     status: ITicketStatusExternal;
     pnrNumber: string;
-    tripId: string;
-    id: string;
-    createdAt: string;
-    updatedAt: string;
+    id: number;
 }
 
 export interface IBookingRequest {
