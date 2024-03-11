@@ -7,9 +7,7 @@ test('getLocationFromLocationExternal should return the correct location object'
     const locationExternal: ILocationExternal = {
         name: 'New York',
         shortCode: 'NY',
-        id: '1',
-        createdAt: '2021-08-01T00:00:00.000Z',
-        updatedAt: '2021-08-01T00:00:00.000Z',
+        id: 1,
     };
 
     const expectedLocation: ILocation = {

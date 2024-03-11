@@ -36,12 +36,12 @@ export interface IBookingListingResponse {
 
 export interface IPnrResponse extends ITripExternal {
     bookings: {
-        id: string;
+        id: number;
         pnrNumber: string;
         seatNumber: string;
         fare: string;
         passengerName: string;
-        passengerAge: string;
+        passengerAge: number;
         passengerGender: string;
         status: ITicketStatusExternal;
     }[];
