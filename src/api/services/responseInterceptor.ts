@@ -1,5 +1,5 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { apiRoutes, renewToken } from '..';
+import { AxiosError, AxiosResponse } from 'axios';
+import { API, apiRoutes, renewToken } from '..';
 import { getToken, storage } from '../../utils';
 import { store } from '../../app/store';
 import { logout } from '../../app/features/authSlice';
@@ -24,11 +24,17 @@ export const onResponse = (response: AxiosResponse<IResponseData>) => {
 };
 
 export const onResponseError = async (error: AxiosError) => {
-    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED) {
-        const failedRequest = error.config;
+    const failedRequest = error.config;
+    if (
+        error.response?.status === HTTP_STATUS.UNAUTHORIZED &&
+        failedRequest &&
+        !failedRequest._retry
+    ) {
+        // Set the _retry flag to true to indicate that the request will be retried
+        failedRequest._retry = true;
 
-        //check if it's a sign-in request, if yes pass through the error
-        if (failedRequest?.url?.includes(apiRoutes.signIn)) {
+        // Check if it's a sign-in request, if yes no need to renew token
+        if (failedRequest.url?.includes(apiRoutes.signIn)) {
             return Promise.reject(error);
         }
 
@@ -43,16 +49,16 @@ export const onResponseError = async (error: AxiosError) => {
             storage.setItem('accessToken', response.accessToken);
             storage.setItem('refreshToken', response.refreshToken);
 
-            if (failedRequest) {
-                failedRequest.headers[
-                    'Authorization'
-                ] = `Bearer ${response.accessToken}`;
+            failedRequest.headers[
+                'Authorization'
+            ] = `Bearer ${response.accessToken}`;
 
-                return axios(failedRequest);
-            }
+            // Retry the failed request with the new access token
+            return API(failedRequest);
         } catch (error) {
             store.dispatch(logout());
         }
     }
+
     return Promise.reject(error);
 };
