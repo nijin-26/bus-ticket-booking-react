@@ -41,7 +41,6 @@ export const getTicketsFromBookingListingResponse = (
     const ticketExternal = new Map<string, ITicketExternal[]>();
     for (const booking of response.bookings) {
         if (ticketExternal.has(booking.pnrNumber)) {
-            console.log(booking);
             ticketExternal.get(booking.pnrNumber)?.push(booking);
         } else {
             ticketExternal.set(booking.pnrNumber, [booking]);
