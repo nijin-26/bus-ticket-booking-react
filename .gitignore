@@ -25,3 +25,6 @@ dist-ssr
 
 # Enviroment variable files
 .env
+
+# Vitest coverage
+coverage
