@@ -4,3 +4,4 @@ export * from './ui/ConfirmDialog/ConfirmDialog';
 export * from './RequireAuth/RequireAuth';
 export * from './Ticket/Ticket';
 export * from './PasswordInput/PasswordInput';
+export * from './FullScreenLoader/FullScreenLoader';

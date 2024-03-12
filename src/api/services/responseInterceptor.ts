@@ -31,8 +31,11 @@ export const onResponseError = async (error: AxiosError) => {
         failedRequest &&
         !failedRequest._retry
     ) {
-        // Check if it's a sign-in request, if yes no need to renew token
-        if (failedRequest.url?.includes(apiRoutes.signIn)) {
+        // Check if it's a signIn or signOut request, if yes no need to renew token
+        if (
+            failedRequest.url?.includes(apiRoutes.signIn) ||
+            failedRequest.url?.includes(apiRoutes.signOut)
+        ) {
             return Promise.reject(error);
         }
 

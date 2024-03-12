@@ -4,7 +4,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 interface IFullScreenLoaderProps {
     open: boolean;
 }
-const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
+export const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
     return (
         <Backdrop
             sx={{
@@ -17,5 +17,3 @@ const FullScreenLoader = ({ open }: IFullScreenLoaderProps) => {
         </Backdrop>
     );
 };
-
-export default FullScreenLoader;

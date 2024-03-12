@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useTheme } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
 import { logout, showAuthModal } from '../../app/features/authSlice';
@@ -18,8 +19,7 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { ConfirmDialog } from '../../components';
+import { ConfirmDialog, FullScreenLoader } from '../../components';
 import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
@@ -28,21 +28,26 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import { BackupTable, PeopleAlt } from '@mui/icons-material';
 import { paths } from '../../config';
 import { EUserRole } from '../../types';
-import { BackupTable, PeopleAlt } from '@mui/icons-material';
+import { signOut } from '../../api';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const theme = useTheme();
+
     const isSmallScreen = useMediaQuery(
         `(max-width:${theme.breakpointValues.small})`
     );
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
+
+    const [logoutLoading, setLogoutLoading] = useState(false);
+
     const [isLogoutModalDisplayed, setIsLogoutModalDisplayed] =
         useState<boolean>(false);
 
@@ -63,11 +68,18 @@ export const Header = () => {
         dispatch(toggleTheme());
     };
 
-    const handleLogoutClick = () => {
-        dispatch(logout());
-        handleCloseUserMenu();
-        toast.success(t('logoutConfirmationModal:logoutSuccessMessage'));
-        navigate(paths.home);
+    const handleLogoutClick = async () => {
+        setLogoutLoading(true);
+        try {
+            await signOut();
+        } catch (error) {
+            console.error('logout error : ', error);
+        } finally {
+            dispatch(logout());
+            handleCloseUserMenu();
+            setLogoutLoading(false);
+            toast.success(t('logoutConfirmationModal:logoutSuccessMessage'));
+        }
     };
 
     return (
@@ -251,10 +263,11 @@ export const Header = () => {
                 }}
                 agreeText={t('logoutConfirmationModal:confirmText')}
                 disagreeText={t('logoutConfirmationModal:cancelText')}
-                handleAgreeFunction={handleLogoutClick}
+                handleAgreeFunction={() => void handleLogoutClick()}
             >
                 {t('logoutConfirmationModal:message')}
             </ConfirmDialog>
+            <FullScreenLoader open={logoutLoading} />
         </>
     );
 };

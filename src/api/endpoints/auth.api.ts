@@ -30,6 +30,11 @@ export const signUp = async (props: ISignUpProps): Promise<ISignUpResponse> => {
     return response;
 };
 
+export const signOut = async () => {
+    const response = await API.post(apiRoutes.signOut);
+    return response;
+};
+
 export const renewToken = async (
     refreshToken: string
 ): Promise<IRenewTokenResponse> => {

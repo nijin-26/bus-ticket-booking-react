@@ -6,7 +6,6 @@ import { storage } from '..';
 //if userData and accessToken or refreshToken is present
 //else returns null
 export const getUserDataFromStorage = () => {
-    // const accessToken = getToken('accessToken');
     const userData = storage.getItem<IAuthUser>('userData');
     const refreshToken = getToken('refreshToken');
     const accessToken = getToken('accessToken');

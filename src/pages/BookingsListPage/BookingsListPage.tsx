@@ -4,9 +4,8 @@ import getBookingsTableColumns from './getBookingsTableColumns';
 import { ITicket } from '../../types';
 import { TicketModal } from '../../components/Ticket/TicketModal';
 import { useState } from 'react';
-import { ConfirmDialog } from '../../components';
+import { ConfirmDialog, FullScreenLoader } from '../../components';
 import { cancelBooking } from '../../api/endpoints/ticket.api';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { toast } from 'react-toastify';
 
 export const BookingsListPage = ({

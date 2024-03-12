@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Ticket } from '../../components';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
+import { FullScreenLoader, Ticket } from '../../components';
 import { Home } from '@mui/icons-material';
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import {

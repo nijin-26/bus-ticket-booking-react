@@ -1,6 +1,7 @@
 export const apiRoutes = {
     signIn: 'auth/sign-in',
     signUp: 'auth/sign-up',
+    signOut: 'auth/logout',
     location: 'location',
     trip: 'trip',
     tripSearch: 'trip/search',

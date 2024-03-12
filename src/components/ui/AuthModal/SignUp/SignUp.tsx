@@ -3,12 +3,11 @@ import { useAppDispatch } from '../../../../app/hooks';
 import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
-import { PasswordInput } from '../../..';
+import { FullScreenLoader, PasswordInput } from '../../..';
 import getValidationSchema from './validationSchema';
 import signUpSubmitHandler from './submitHandler';
 import { ISignUpForm } from '../../../../types';
 import { useState } from 'react';
-import FullScreenLoader from '../../../FullScreenLoader/FullScreenLoader';
 
 interface ISignUpProps {
     closeModal: () => void;
