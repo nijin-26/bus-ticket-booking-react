@@ -11,6 +11,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     position: 'relative',
     boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
     cursor: 'auto',
+    marginTop: '2rem',
 
     h1: {
         fontSize: theme.font.h2,
