@@ -169,8 +169,8 @@ export const TicketPage = () => {
                                             <Typography component="div">
                                                 {seat.passenger.gender ===
                                                 IGender.MALE
-                                                    ? 'Male'
-                                                    : 'Female'}
+                                                    ? t('ticket:male')
+                                                    : t('ticket:female')}
                                             </Typography>
                                         </Grid>
                                     </Grid>

@@ -3,7 +3,7 @@ import DirectionsBusRoundedIcon from '@mui/icons-material/DirectionsBusRounded';
 import { TicketWrapper } from './Ticket.styled';
 import Barcode from 'react-barcode';
 import { TwoLineHeading } from './components/TwoLineHeading';
-import { ITicket } from '../../types';
+import { ITicket, ITicketStatus } from '../../types';
 import { formatDate } from './utils/timeUtils';
 import { useTranslation } from 'react-i18next';
 import html2canvas from 'html2canvas';
@@ -13,7 +13,7 @@ import { Download } from '@mui/icons-material';
 export const Ticket = ({ data }: { data: ITicket }) => {
     const { t } = useTranslation('ticket');
 
-    const { pnrNumber, trip, seats } = data;
+    const { pnrNumber, trip, seats, status } = data;
     const { departureTimestamp, arrivalTimestamp } = trip;
 
     const adults = seats.filter((seat) => seat.passenger.age > 18);
@@ -73,10 +73,25 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                         spacing={'2rem'}
                         justifyContent={'space-around'}
                     >
-                        <TwoLineHeading
-                            title={t('passengerName')}
-                            value={seats[0].passenger.fullName}
-                        />
+                        <Stack
+                            direction={'row'}
+                            justifyContent={'space-between'}
+                            className="row-wrap"
+                        >
+                            <TwoLineHeading
+                                title={t('passengerName')}
+                                value={seats[0].passenger.fullName}
+                            />
+                            <TwoLineHeading
+                                title={t('status')}
+                                value={
+                                    status === ITicketStatus.CONFIRMED
+                                        ? t('confirmed')
+                                        : t('cancelled')
+                                }
+                            />
+                        </Stack>
+
                         <Stack
                             direction={'column'}
                             justifyContent={'space-between'}

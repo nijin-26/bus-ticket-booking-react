@@ -202,6 +202,9 @@
     "ticket": {
         "ticket": "BOLETO",
         "passengerName": "Nombre del pasajero",
+        "status": "Estado",
+        "confirmed": "Confirmado",
+        "cancelled": "Cancelado",
         "from": "De",
         "to": "destino",
         "date": "fecha",
@@ -220,6 +223,8 @@
         "name": "Nombre",
         "age": "Edad",
         "gender": "Género",
+        "male": "Masculino",
+        "female": "Femenino",
         "viewDetailedTicket": "Ver Boleto Detallado"
     },
     "bookingPageConfirmation": {
