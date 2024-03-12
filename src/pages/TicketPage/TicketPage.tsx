@@ -44,19 +44,6 @@ export const TicketPage = () => {
         ticketData && (
             <Stack direction={'column'} justifyContent={'center'} mb={'2rem'}>
                 {/* Home Button */}
-                <Button
-                    variant="contained"
-                    onClick={goHomeHandler}
-                    startIcon={<Home />}
-                    sx={{
-                        margin: '2rem 0',
-                        alignSelf: 'flex-start',
-                        textTransform: 'none',
-                    }}
-                >
-                    {t('goHome')}
-                </Button>
-
                 <Ticket data={ticketData} />
                 {/* View Seat Layout */}
                 <Button
@@ -280,6 +267,19 @@ export const TicketPage = () => {
                         </Grid>
                     </AccordionDetails>
                 </TicketAccordionWrapper>
+                <Button
+                    variant="contained"
+                    onClick={goHomeHandler}
+                    startIcon={<Home />}
+                    sx={{
+                        margin: '2rem 0',
+                        alignSelf: 'center',
+                        textTransform: 'none',
+                        maxWidth: '200px',
+                    }}
+                >
+                    {t('goHome')}
+                </Button>
             </Stack>
         )
     );
