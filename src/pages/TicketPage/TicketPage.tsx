@@ -18,6 +18,7 @@ import { ArrowDropDownIcon } from '@mui/x-date-pickers';
 import { TicketAccordionWrapper } from './TicketPage.styled';
 import { useState } from 'react';
 import { SeatLayoutModal } from './SeatLayoutModal/SeatLayoutModal';
+import { IGender } from '../../types';
 
 export const TicketPage = () => {
     const { ticketData, loading } = useGetTicketData();
@@ -179,7 +180,10 @@ export const TicketPage = () => {
                                         </Grid>
                                         <Grid item xs={2}>
                                             <Typography component="div">
-                                                {seat.passenger.gender.toUpperCase()}
+                                                {seat.passenger.gender ===
+                                                IGender.MALE
+                                                    ? 'Male'
+                                                    : 'Female'}
                                             </Typography>
                                         </Grid>
                                     </Grid>
