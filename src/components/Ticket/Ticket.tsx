@@ -67,151 +67,161 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                     justifyContent={'space-between'}
                 >
                     <Stack
-                        padding={'1.5rem'}
-                        direction={'column'}
-                        flex={'3'}
+                        direction={'row'}
                         spacing={'2rem'}
-                        justifyContent={'space-around'}
+                        flex={'2'}
+                        className={'barcode-row'}
+                        justifyContent={'space-between'}
                     >
                         <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                            className="row-wrap"
+                            padding={'1.5rem'}
+                            direction={'column'}
+                            flex={'3'}
+                            className={'details-column'}
+                            spacing={'2rem'}
+                            justifyContent={'space-around'}
                         >
-                            <TwoLineHeading
-                                title={t('passengerName')}
-                                value={seats[0].passenger.fullName}
-                            />
-                            <TwoLineHeading
-                                title={t('status')}
-                                value={
-                                    status === ITicketStatus.CONFIRMED
-                                        ? t('confirmed')
-                                        : t('cancelled')
-                                }
-                            />
-                        </Stack>
+                            <Stack
+                                direction={'row'}
+                                justifyContent={'space-between'}
+                                className="row-wrap"
+                            >
+                                <TwoLineHeading
+                                    title={t('passengerName')}
+                                    value={seats[0].passenger.fullName}
+                                />
+                                <TwoLineHeading
+                                    title={t('status')}
+                                    value={
+                                        status === ITicketStatus.CONFIRMED
+                                            ? t('confirmed')
+                                            : t('cancelled')
+                                    }
+                                />
+                            </Stack>
 
-                        <Stack
-                            direction={'column'}
-                            justifyContent={'space-between'}
-                            className="details-row row-wrap"
-                            spacing="0.5rem"
-                        >
-                            <TwoLineHeading
-                                title={t('from')}
-                                value={`${trip.origin.name} - ${trip.origin.shortCode}`}
-                            />
                             <Stack
-                                direction={'row'}
+                                direction={'column'}
                                 justifyContent={'space-between'}
-                                className="row-wrap"
+                                className="details-row row-wrap"
+                                spacing="0.5rem"
                             >
                                 <TwoLineHeading
-                                    title={t('date')}
-                                    value={
-                                        formatDate(departureTimestamp)
-                                            .formattedDate
-                                    }
+                                    title={t('from')}
+                                    value={`${trip.origin.name} - ${trip.origin.shortCode}`}
                                 />
-                                <TwoLineHeading
-                                    title={t('time')}
-                                    value={
-                                        formatDate(departureTimestamp)
-                                            .formattedTime
-                                    }
-                                />
+                                <Stack
+                                    direction={'row'}
+                                    justifyContent={'space-between'}
+                                    className="row-wrap"
+                                >
+                                    <TwoLineHeading
+                                        title={t('date')}
+                                        value={
+                                            formatDate(departureTimestamp)
+                                                .formattedDate
+                                        }
+                                    />
+                                    <TwoLineHeading
+                                        title={t('time')}
+                                        value={
+                                            formatDate(departureTimestamp)
+                                                .formattedTime
+                                        }
+                                    />
+                                </Stack>
                             </Stack>
-                        </Stack>
-                        <Stack
-                            direction={'column'}
-                            justifyContent={'space-between'}
-                            className="details-row row-wrap"
-                            spacing={'0.5rem'}
-                        >
-                            <TwoLineHeading
-                                title={t('to')}
-                                value={`${trip.destination.name} - ${trip.destination.shortCode}`}
-                            />
                             <Stack
-                                direction={'row'}
+                                direction={'column'}
                                 justifyContent={'space-between'}
-                                className="row-wrap"
+                                className="details-row row-wrap"
+                                spacing={'0.5rem'}
                             >
                                 <TwoLineHeading
-                                    title={t('date')}
-                                    value={
-                                        formatDate(arrivalTimestamp)
-                                            .formattedDate
-                                    }
+                                    title={t('to')}
+                                    value={`${trip.destination.name} - ${trip.destination.shortCode}`}
                                 />
-                                <TwoLineHeading
-                                    title={t('time')}
-                                    value={
-                                        formatDate(arrivalTimestamp)
-                                            .formattedTime
-                                    }
-                                />
+                                <Stack
+                                    direction={'row'}
+                                    justifyContent={'space-between'}
+                                    className="row-wrap"
+                                >
+                                    <TwoLineHeading
+                                        title={t('date')}
+                                        value={
+                                            formatDate(arrivalTimestamp)
+                                                .formattedDate
+                                        }
+                                    />
+                                    <TwoLineHeading
+                                        title={t('time')}
+                                        value={
+                                            formatDate(arrivalTimestamp)
+                                                .formattedTime
+                                        }
+                                    />
+                                </Stack>
                             </Stack>
-                        </Stack>
-                        <Stack
-                            direction={'column'}
-                            justifyContent={'space-between'}
-                            className="details-row row-wrap"
-                            spacing={'0.5rem'}
-                        >
-                            <TwoLineHeading
-                                title={t('pnr')}
-                                value={pnrNumber.toUpperCase()}
-                            />
                             <Stack
-                                direction={'row'}
+                                direction={'column'}
                                 justifyContent={'space-between'}
-                                className="row-wrap"
+                                className="details-row row-wrap"
+                                spacing={'0.5rem'}
                             >
                                 <TwoLineHeading
-                                    title={t('passengerCount')}
-                                    value={`${
-                                        adults.length > 0
-                                            ? `${adults.length} ${
-                                                  adults.length > 1
-                                                      ? 'adults'
-                                                      : 'adult'
-                                              }`
-                                            : ''
-                                    }${
-                                        adults.length > 0 && children.length > 0
-                                            ? ' and '
-                                            : ''
-                                    }${
-                                        children.length > 0
-                                            ? `${children.length} ${
-                                                  children.length > 1
-                                                      ? 'children'
-                                                      : 'child'
-                                              }`
-                                            : ''
-                                    }`}
+                                    title={t('pnr')}
+                                    value={pnrNumber.toUpperCase()}
                                 />
-                                <TwoLineHeading
-                                    title={`${String(t('seatNumber'))}${
-                                        seats.length > 1 ? 's' : ''
-                                    }`}
-                                    value={seats
-                                        .map((seat) => seat.seatNumber)
-                                        .join(', ')}
-                                />
+                                <Stack
+                                    direction={'row'}
+                                    justifyContent={'space-between'}
+                                    className="row-wrap"
+                                >
+                                    <TwoLineHeading
+                                        title={t('passengerCount')}
+                                        value={`${
+                                            adults.length > 0
+                                                ? `${adults.length} ${
+                                                      adults.length > 1
+                                                          ? 'adults'
+                                                          : 'adult'
+                                                  }`
+                                                : ''
+                                        }${
+                                            adults.length > 0 &&
+                                            children.length > 0
+                                                ? ' and '
+                                                : ''
+                                        }${
+                                            children.length > 0
+                                                ? `${children.length} ${
+                                                      children.length > 1
+                                                          ? 'children'
+                                                          : 'child'
+                                                  }`
+                                                : ''
+                                        }`}
+                                    />
+                                    <TwoLineHeading
+                                        title={`${String(t('seatNumber'))}${
+                                            seats.length > 1 ? 's' : ''
+                                        }`}
+                                        value={seats
+                                            .map((seat) => seat.seatNumber)
+                                            .join(', ')}
+                                    />
+                                </Stack>
                             </Stack>
                         </Stack>
+                        <Box
+                            component="div"
+                            className={`rotated-barcode-container`}
+                            flex={'1'}
+                        >
+                            <Barcode value={pnrNumber} format="CODE128" />
+                            {/* high-density linear barcode. supports all 128 ASCII characters */}
+                        </Box>
                     </Stack>
-                    <Box
-                        component="div"
-                        className={`rotated-barcode-container`}
-                        flex={'1'}
-                    >
-                        <Barcode value={pnrNumber} format="CODE128" />
-                        {/* high-density linear barcode. supports all 128 ASCII characters */}
-                    </Box>
 
                     <>
                         <div className="dotted-vertical-div"></div>
@@ -219,6 +229,7 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                             direction={'column'}
                             padding={'2rem'}
                             spacing={'1rem'}
+                            className={'tearsheet-column'}
                             justifyContent={'space-between'}
                             flex={'1.5'}
                         >

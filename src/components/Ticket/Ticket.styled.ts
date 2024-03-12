@@ -49,6 +49,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         display: 'flex',
         alignItems: 'center',
         backgroundColor: 'transparent',
+        padding: '1rem',
 
         '& >svg': {
             rotate: '270deg',
@@ -62,5 +63,23 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         border: '0.1rem dashed',
         borderColor: theme.color.textPrimary,
         marginLeft: '3.5rem', // Adjust the margin to position the line between the two columns
+    },
+    '@media screen and (max-width:900px)': {
+        '.barcode-row': {
+            flexDirection: 'column',
+            alignItems: 'center',
+
+            '& .details-column': {
+                width: '100%',
+            },
+        },
+        '& .rotated-barcode-container >svg': {
+            rotate: '0deg',
+            maxWidth: '12rem',
+        },
+
+        '.tearsheet-column': {
+            justifyContent: 'flex-start',
+        },
     },
 }));
