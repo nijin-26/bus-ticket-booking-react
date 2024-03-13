@@ -222,6 +222,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
                     <Grid item xs={12} sm="auto" textAlign="center">
                         <ToggleButton
                             className={toggle ? 'toggle' : 'reverse'}
+                            aria-label="toggle"
                             sx={{
                                 rotate: { xs: '90deg', sm: '0deg' },
                                 height: '4rem',

@@ -30,7 +30,9 @@ export default function FilterSort() {
                 >
                     {/* filters */}
                     <ActionBarDrawer />
+
                     <Button
+                        style={{ textTransform: 'none' }}
                         onClick={() => {
                             searchParams.delete('seatType');
                             setSearchParams(searchParams);

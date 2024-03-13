@@ -34,9 +34,17 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
             <TabContext value={value}>
                 <Box>
                     <TabList onChange={changeTabHandler}>
-                        <Tab label={t('findBuses')} value="1"></Tab>
+                        <Tab
+                            label={t('findBuses')}
+                            value="1"
+                            style={{ textTransform: 'none' }}
+                        ></Tab>
                         {!showFilterSort ? (
-                            <Tab label={t('findTicket')} value="2"></Tab>
+                            <Tab
+                                label={t('findTicket')}
+                                value="2"
+                                style={{ textTransform: 'none' }}
+                            ></Tab>
                         ) : (
                             <Tab disabled></Tab>
                         )}
