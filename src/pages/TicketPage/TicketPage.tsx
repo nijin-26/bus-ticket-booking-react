@@ -275,7 +275,7 @@ export const TicketPage = () => {
                         margin: '2rem 0',
                         alignSelf: 'center',
                         textTransform: 'none',
-                        maxWidth: '200px',
+                        maxWidth: '20rem',
                     }}
                 >
                     {t('goHome')}
