@@ -53,6 +53,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         backgroundColor: 'transparent',
 
         '& >svg': {
+            scale: '1.2',
             rotate: '270deg',
             maxHeight: '10rem',
             width: '100%',
@@ -77,6 +78,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         '& .rotated-barcode-container >svg': {
             rotate: '0deg',
             maxWidth: '12rem',
+            margin: '1rem',
         },
 
         '.tearsheet-column': {
