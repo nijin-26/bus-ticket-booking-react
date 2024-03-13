@@ -50,7 +50,8 @@
     "seatLayout": {
         "available": "Available",
         "unavailable": "Unavailable",
-        "selected": "Selected"
+        "selected": "Selected",
+        "window": "Window"
     },
     "actionBarTab": {
         "findBuses": "Find buses",
