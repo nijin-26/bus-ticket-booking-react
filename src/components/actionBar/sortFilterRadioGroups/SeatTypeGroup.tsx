@@ -55,7 +55,7 @@ export default function SeatTypeGroup() {
                     setSearchParams(searchParams);
                     dispatch(removeSeatFilter());
                 }}
-                sx={{ width: '8rem' }}
+                sx={{ width: '8rem', textTransform: 'none' }}
             >
                 {t('clear')}
             </Button>

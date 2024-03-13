@@ -190,6 +190,7 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
                         <Autocomplete
                             fullWidth
                             options={filterLocationOptions(stopLocation)}
+                            // options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                             value={startLocation}
                             onChange={handleStartSelect}
                             isOptionEqualToValue={(option, value) =>

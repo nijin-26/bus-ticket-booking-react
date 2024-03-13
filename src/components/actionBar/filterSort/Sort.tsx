@@ -21,7 +21,11 @@ export default function Sort() {
 
     return (
         <>
-            <Button variant="outlined" onClick={sortTypeHandler}>
+            <Button
+                variant="outlined"
+                onClick={sortTypeHandler}
+                sx={{ textTransform: 'none' }}
+            >
                 {t('sort')}
             </Button>
 
