@@ -46,7 +46,7 @@
         "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication.",
         "forbiddenErrorMessage": "Access Denied: You don't have sufficient authorization to view this page.",
         "passwordRequirements": "The Password must be atleast 6 characters long and contain an uppercase character, a lowercase character, a number and a special character.",
-        "sessionExpiredToastMessage": "Sesión expirada: Has cerrado sesión por razones de seguridad."
+        "sessionExpiredToastMessage": "Session Expired: You have been logged out for security reasons."
     },
     "seatLayout": {
         "available": "Available",

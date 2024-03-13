@@ -4,6 +4,7 @@ import { getToken, storage } from '../../utils';
 import { store } from '../../app/store';
 import { logout } from '../../app/features/authSlice';
 import { toast } from 'react-toastify';
+import i18n from '../../i18n/i18n';
 
 interface IResponseData {
     data: unknown;
@@ -41,10 +42,9 @@ export const onResponseError = async (error: AxiosError) => {
 
         const refreshToken = getToken('refreshToken');
         if (!refreshToken) {
-            toast.error(
-                'Session Expired: You have been logged out for security reasons.',
-                { toastId: 'expired session' }
-            );
+            toast.error(i18n.t('auth:sessionExpiredToastMessage'), {
+                toastId: 'expired session',
+            });
             store.dispatch(logout());
             return Promise.reject(error);
         }
@@ -65,6 +65,9 @@ export const onResponseError = async (error: AxiosError) => {
             return API(failedRequest);
         } catch (error) {
             store.dispatch(logout());
+            toast.error(i18n.t('auth:sessionExpiredToastMessage'), {
+                toastId: 'expired session',
+            });
         }
     }
 

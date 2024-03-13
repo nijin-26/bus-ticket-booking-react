@@ -75,6 +75,7 @@ export const Header = () => {
         } catch (error) {
             console.error('logout error : ', error);
         } finally {
+            navigate(paths.home);
             dispatch(logout());
             handleCloseUserMenu();
             setLogoutLoading(false);

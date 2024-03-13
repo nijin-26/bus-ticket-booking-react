@@ -45,7 +45,8 @@
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
         "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",
-        "passwordRequirements": "La contraseña debe tener al menos 6 caracteres de longitud y contener un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
+        "passwordRequirements": "La contraseña debe tener al menos 6 caracteres de longitud y contener un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial.",
+        "sessionExpiredToastMessage": "Sesión expirada: Has cerrado sesión por razones de seguridad."
     },
     "seatLayout": {
         "available": "Disponible",
