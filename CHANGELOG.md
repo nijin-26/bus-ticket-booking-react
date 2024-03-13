@@ -30,3 +30,4 @@
 -   [86cuerykj] [SERVICE] Add visibility toggle feature for password inputs and made auth modals responsive.
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
 -   [86cutf88k] Integration of basic Unit testing for dateUtils and TripCardAccordion Component
+-   [86cuu8jjt] Added unit test for components and utility functions in ticket page
