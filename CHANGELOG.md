@@ -31,3 +31,4 @@
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
 -   [86cutf88k] Integration of basic Unit testing for dateUtils and TripCardAccordion Component
 -   [86cuu8mnq] Implemented basic unit testing for LoadMore component.
+-   [86cuvkcpx] Added padding to footer container and added sufficient gap between copyright text and the language selector button for mobile view.
