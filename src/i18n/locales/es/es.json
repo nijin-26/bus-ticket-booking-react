@@ -50,7 +50,8 @@
     "seatLayout": {
         "available": "Disponible",
         "unavailable": "Indisponible",
-        "selected": "Seleccionado"
+        "selected": "Seleccionado",
+        "window": "Ventana"
     },
     "actionBarTab": {
         "findBuses": "Buscar autobuses",
