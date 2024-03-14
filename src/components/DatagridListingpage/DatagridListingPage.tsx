@@ -88,12 +88,16 @@ export const DatagridListingPage = <T,>({
 
     return (
         <DatagridListingPageWrapper>
-            <Stack direction={'row'} spacing={5}>
-                <Box component="div" className="boxes">
+            <Stack
+                direction={'row'}
+                justifyContent={'space-between'}
+                flexWrap="wrap"
+            >
+                <Box component="div" className="boxes" sx={{ mr: '8rem' }}>
                     <Typography
                         variant="h4"
                         component="h2"
-                        sx={{ lineHeight: '10rem' }}
+                        sx={{ lineHeight: '10rem', whiteSpace: 'nowrap' }}
                     >
                         {t(pageTitleTranslation)}
                     </Typography>
@@ -103,6 +107,7 @@ export const DatagridListingPage = <T,>({
                     className="boxes box-bg"
                     boxShadow={3}
                     borderRadius={2}
+                    sx={{ minWidth: '30rem' }}
                 >
                     <Stack direction={'column'} className="box-col">
                         <Typography

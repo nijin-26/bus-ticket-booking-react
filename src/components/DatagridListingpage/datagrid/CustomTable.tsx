@@ -28,6 +28,7 @@ export const CustomTable = <T,>({
     frontendPagination,
 }: ICustomTable<T>) => {
     const { t: tExport } = useTranslation('tableExportOptions');
+
     return (
         <CustomTableWrapper>
             <DataGrid
@@ -35,6 +36,7 @@ export const CustomTable = <T,>({
                     borderRadius: 2,
                     boxShadow: 3,
                     px: '3rem',
+                    width: '100%',
                 }}
                 rows={pageState.data}
                 rowCount={pageState.totalNumberOfData}
