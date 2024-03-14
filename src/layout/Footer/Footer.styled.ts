@@ -20,6 +20,7 @@ export const StyledToolBar = styled(Toolbar)`
 `;
 
 export const StyledButton = styled(Button)(({ theme }) => ({
+    textTransform: 'none',
     color: colors.white,
     borderColor: colors.white,
     ':hover': {
