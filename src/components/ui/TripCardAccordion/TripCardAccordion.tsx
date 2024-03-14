@@ -8,12 +8,12 @@ import Stack from '@mui/material/Stack';
 import LongArrow from '../../icons/LongArrow';
 import Tooltip from '@mui/material/Tooltip';
 import { TripAccordionWrapper } from './TripCardAccordion.styled';
-import { convertTimeStamp } from '../../../utils';
 import { TripCardDetails } from './AccordionDetails/TripCardDetails';
 import { ITrip, IBusType, ISeatType, ISeat } from '../../../types';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@emotion/react';
+import { convertTimeStamp } from '../../../utils';
 
 let borderDesignClass: string;
 interface ITripCardAccordionData extends ITrip {
@@ -53,6 +53,7 @@ export const TripCardAccordion = ({
         formattedArrivalDate: string;
         formattedDuration: string;
     } = convertTimeStamp(data.departureTimestamp, data.arrivalTimestamp);
+
     return (
         <TripAccordionWrapper
             className={`summary ${borderDesignClass}`}
@@ -98,8 +99,7 @@ export const TripCardAccordion = ({
                         >
                             <img
                                 src={
-                                    data.seatType == ISeatType.SLEEPER ||
-                                    data.seatType == ISeatType.Sleeper
+                                    data.seatType == ISeatType.SLEEPER
                                         ? sleeperIcon
                                         : seatIcon
                                 }

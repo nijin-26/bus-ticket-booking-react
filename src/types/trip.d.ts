@@ -29,7 +29,6 @@ export interface ISeat {
 
 export enum ISeatType {
     SLEEPER = 'SLEEPER',
-    Sleeper = 'Sleeper',
     SEATER = 'SEATER',
 }
 

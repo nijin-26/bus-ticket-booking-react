@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 interface IWindowWrapperProps {
-    isVerticalOrientation: boolean;
+    isVerticalOrientation?: boolean;
 }
 
 const Window = styled('li')<IWindowWrapperProps>(
