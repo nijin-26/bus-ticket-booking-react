@@ -31,7 +31,7 @@ export const RequireAuth = ({ allowedRoles }: IRequireAuthProps) => {
             );
             dispatch(showAuthModal());
         }
-    }, [user, location, t, dispatch]);
+    }, [dispatch, location.pathname, t, user]);
 
     if (user && allowedRoles.includes(user.role)) {
         return <Outlet />;
@@ -44,16 +44,6 @@ export const RequireAuth = ({ allowedRoles }: IRequireAuthProps) => {
         );
         return <Navigate to={paths.home} replace />;
     } else {
-        // dispatch(
-        //     setSignInState({
-        //         from: location.pathname,
-        //         info: {
-        //             message: t('unauthorizedErrorMessage'),
-        //             status: TAlertStatus.warning,
-        //         },
-        //     })
-        // );
-        // dispatch(showAuthModal());
         return <Navigate to={paths.home} replace />;
     }
 };
