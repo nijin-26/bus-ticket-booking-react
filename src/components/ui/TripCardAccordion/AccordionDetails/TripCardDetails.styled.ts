@@ -30,6 +30,7 @@ export const TripCardDetailsWrapper = styled(AccordionDetails)(({ theme }) => ({
         textAlign: 'center',
     },
     '& .title-container': {
+        gap: '2rem',
         svg: {
             path: {
                 fill: theme.color.textPrimary,

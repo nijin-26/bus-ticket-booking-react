@@ -93,7 +93,7 @@
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",
-        "busType": "Bus Type",
+        "busType": "Amenities",
         "seat": "seat",
         "emptyResponse": "Trip data not available",
         "errorResponse": "Error fetching the trip details"

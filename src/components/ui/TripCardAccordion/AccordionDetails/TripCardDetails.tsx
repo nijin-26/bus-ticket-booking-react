@@ -121,7 +121,11 @@ export const TripCardDetails = ({
                     <TripCardDetailsLoader />
                 ) : (
                     <>
-                        <Stack direction={'column'} spacing={2}>
+                        <Stack
+                            direction={'column'}
+                            spacing={5}
+                            style={{ marginBottom: '3rem' }}
+                        >
                             <Stack
                                 direction={{ sm: 'column', md: 'row' }}
                                 justifyContent={'space-between'}
@@ -130,6 +134,7 @@ export const TripCardDetails = ({
                                     md: 'center',
                                 }}
                                 spacing={3}
+                                style={{ marginBottom: '3rem' }}
                             >
                                 <SeatLegend />
                                 {selectedSeats.length <= 0 ? (
