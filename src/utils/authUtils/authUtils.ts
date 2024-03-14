@@ -3,6 +3,13 @@ import { IAuthUser, IDecodedAccessToken } from '../../types';
 import { storage } from '..';
 import { renewToken } from '../../api';
 
+//This function clears all auth data stored in local storage
+export const clearAuthDataFromStorage = () => {
+    storage.removeItem('userData');
+    storage.removeItem('accessToken');
+    storage.removeItem('refreshToken');
+};
+
 // This function searches for a token in localStorage
 // and returns it if found and not expired, else returns null
 // and deletes the expired token
@@ -26,9 +33,11 @@ export const getToken = (tokenName: string) => {
     return null;
 };
 
-//This function returns the user details stored in local storage,
-//if userData and accessToken or refreshToken is present
-//else returns null
+// This function retrieves the initial auth state by checking for userData, refreshToken & accessToken in storage.
+// If all necessary data is present, it attempts to renew the access token using the refresh token.
+// If successful, it sets a refresh interval and returns user data along with the interval ID.
+// If renewal fails, it logs an error and returns null.
+// If any required data is missing, it clears user data from storage and returns null.
 export const getInitialAuthState = async () => {
     const userData = storage.getItem<IAuthUser>('userData');
     const refreshToken = getToken('refreshToken');
@@ -44,10 +53,9 @@ export const getInitialAuthState = async () => {
             }
         } catch (error) {
             console.error('Renew Token Failed : ', error);
-            return null;
         }
     }
-    storage.removeItem('userData');
+    clearAuthDataFromStorage();
     return null;
 };
 
@@ -63,13 +71,12 @@ export const getRemainingTimeForExpiry = (tokenValue: string) => {
         return remainingTime;
     } catch (err) {
         console.error('Invalid token');
-        return null;
     }
 };
 
-// This function gets the refreshToken from storage if exists and
-// calls renewToken and updates the new tokens in local storage
-export const refresh = async () => {
+// This function gets the refreshToken from storage and renews the tokens
+// if refreshToken not found then clears the interval for renewingTokens
+export const refresh = async (intervalId: number) => {
     const refreshToken = getToken('refreshToken');
 
     if (refreshToken) {
@@ -79,20 +86,27 @@ export const refresh = async () => {
             storage.setItem('refreshToken', response.refreshToken);
         } catch (error) {
             console.error('Renew Token Failed : ', error);
+            clearInterval(intervalId);
         }
     } else {
-        console.error('Renew Token failed : could not find refreshToken');
+        console.error('Renew-Token failed : no refreshToken');
+        clearInterval(intervalId);
     }
 };
 
-//This function creates a setInterval to renew token periodically
+// This function creates a setInterval to renew token periodically
+// and returns the intervalId
+// returns undefined if remainingTime for expiry cannot be found
 export const setRefreshInterval = (accessToken: string) => {
     const remainingTime = getRemainingTimeForExpiry(accessToken);
     if (remainingTime) {
-        // set interval for renew-token as 2 minutes before token expiry
-        // const intervalForRenew = remainingTime - 120000;
-        const intervalForRenew = 5000;
-        const intervalId = setInterval(refresh, intervalForRenew);
+        // renew token every 2 minutes before access token expires
+        const intervalForRenew = remainingTime - 120000;
+
+        const intervalId = setInterval(
+            () => refresh(intervalId),
+            intervalForRenew
+        );
         return intervalId;
     }
 };

@@ -179,7 +179,7 @@
         "seatAlreadyBookedErrorMessage": "Oops! Selected seats are already booked"
     },
     "logoutConfirmationModal": {
-        "title": "Are you sure?",
+        "title": "Log out?",
         "message": "All your unsaved data will be lost.",
         "confirmText": "Yes",
         "cancelText": "Cancel",
@@ -226,12 +226,18 @@
         "viewDetailedTicket": "View Detailed Ticket"
     },
     "bookingPageConfirmation": {
-        "confirmationTitle": "Confirm Booking",
+        "confirmationTitle": "Unsaved Changes",
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
         "checkout": "Complete Booking",
         "absentStateError": "Error while fetching booking data",
         "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
+    },
+    "signUpDiscardChangesModal": {
+        "title": "Confirm Booking",
+        "message": "You are about to discard your unsaved changes.",
+        "confirmText": "Ok",
+        "cancelText": "Cancel"
     }
 }

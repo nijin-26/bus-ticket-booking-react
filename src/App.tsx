@@ -13,10 +13,10 @@ import { createTheme } from '@mui/material';
 import { useAppSelector } from './app/hooks';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getInitialAuthState } from './utils';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setIntervalId, setUser } from './app/features/authSlice';
+import { getInitialAuthState } from './utils';
 
 const basename = '/';
 

@@ -185,7 +185,7 @@
         "seatAlreadyBookedErrorMessage": "¡Vaya! Los asientos seleccionados ya están reservados"
     },
     "logoutConfirmationModal": {
-        "title": "¿Estás seguro?",
+        "title": "¿Cerrar sesión?",
         "message": "Se perderán todos tus datos no guardados.",
         "confirmText": "Sí",
         "cancelText": "Cancelar",
@@ -231,5 +231,11 @@
         "checkout": "Completar reserva",
         "absentStateError": "No se pudo recuperar la información de la reserva",
         "unsavedChangesWarning": "Tiene cambios sin guardar. Estás seguro que quieres irte?"
+    },
+    "signUpDiscardChangesModal": {
+        "title": "Confirmar Reserva",
+        "message": "Estás a punto de descartar tus cambios no guardados.",
+        "confirmText": "Aceptar",
+        "cancelText": "Cancelar"
     }
 }

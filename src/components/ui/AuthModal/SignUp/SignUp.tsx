@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../../../app/hooks';
 import { Alert, Button, Stack, Typography } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
-import { FullScreenLoader, PasswordInput } from '../../..';
+import { ConfirmDialog, FullScreenLoader, PasswordInput } from '../../..';
 import getValidationSchema from './validationSchema';
 import signUpSubmitHandler from './submitHandler';
 import { ISignUpForm } from '../../../../types';
@@ -23,10 +23,12 @@ const initialValues: ISignUpForm = {
 };
 
 const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
-    const { t } = useTranslation('auth');
+    const { t } = useTranslation(['auth', 'signUpDiscardChangesModal']);
     const dispatch = useAppDispatch();
 
     const [loading, setLoading] = useState(false);
+    const [isCloseConfirmModalDisplayed, setIsCloseConfirmModalDisplayed] =
+        useState<boolean>(false);
 
     return (
         <>
@@ -45,13 +47,13 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                     setLoading(false);
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, dirty }) => (
                     <Form noValidate>
                         <Stack gap={4}>
                             <Field
                                 fullWidth
                                 component={TextField}
-                                label={t('fullName')}
+                                label={t('auth:fullName')}
                                 name="fullName"
                                 required
                             />
@@ -59,7 +61,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                             <Field
                                 fullWidth
                                 component={TextField}
-                                label={t('email')}
+                                label={t('auth:email')}
                                 type="email"
                                 name="email"
                                 required
@@ -68,7 +70,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                             <Field
                                 fullWidth
                                 component={TextField}
-                                label={t('phone')}
+                                label={t('auth:phone')}
                                 name="phone"
                                 required
                             />
@@ -80,7 +82,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                 <Field
                                     fullWidth
                                     component={PasswordInput}
-                                    label={t('password')}
+                                    label={t('auth:password')}
                                     name="password"
                                     required
                                 />
@@ -88,7 +90,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                 <Field
                                     fullWidth
                                     component={PasswordInput}
-                                    label={t('confirmPassword')}
+                                    label={t('auth:confirmPassword')}
                                     name="confirmPassword"
                                     required
                                 />
@@ -96,7 +98,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
 
                             <Alert severity="info">
                                 <Typography component="p" variant="body2">
-                                    {t('passwordRequirements')}
+                                    {t('auth:passwordRequirements')}
                                 </Typography>
                             </Alert>
 
@@ -106,12 +108,20 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                 justifyContent={'center'}
                             >
                                 <Button
-                                    onClick={closeModal}
+                                    onClick={() => {
+                                        if (dirty) {
+                                            setIsCloseConfirmModalDisplayed(
+                                                true
+                                            );
+                                        } else {
+                                            closeModal();
+                                        }
+                                    }}
                                     variant="outlined"
                                     fullWidth
                                     sx={{ textTransform: 'none' }}
                                 >
-                                    {t('cancel')}
+                                    {t('auth:cancel')}
                                 </Button>
                                 <Button
                                     type="submit"
@@ -120,7 +130,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                     disabled={isSubmitting}
                                     sx={{ textTransform: 'none' }}
                                 >
-                                    {t('signUp')}
+                                    {t('auth:signUp')}
                                 </Button>
                             </Stack>
                         </Stack>
@@ -128,6 +138,18 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                 )}
             </Formik>
             <FullScreenLoader open={loading} />
+            <ConfirmDialog
+                title={t('signUpDiscardChangesModal:title')}
+                open={isCloseConfirmModalDisplayed}
+                handleClose={() => {
+                    setIsCloseConfirmModalDisplayed(false);
+                }}
+                agreeText={t('signUpDiscardChangesModal:confirmText')}
+                disagreeText={t('signUpDiscardChangesModal:cancelText')}
+                handleAgreeFunction={closeModal}
+            >
+                {t('signUpDiscardChangesModal:message')}
+            </ConfirmDialog>
         </>
     );
 };

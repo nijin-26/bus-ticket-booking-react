@@ -21,9 +21,9 @@ apiClient.interceptors.response.use(onResponse, onResponseError);
 
 export const refreshApi = axios.create({
     baseURL: baseUrl,
-    timeout: 5000,
+    timeout: 10000,
 });
 
-refreshApi.interceptors.response.use(onResponse);
+refreshApi.interceptors.response.use(onResponse, onResponseError);
 
 export default apiClient;

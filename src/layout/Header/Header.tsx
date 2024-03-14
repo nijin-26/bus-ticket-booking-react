@@ -32,6 +32,7 @@ import { BackupTable, PeopleAlt } from '@mui/icons-material';
 import { paths } from '../../config';
 import { EUserRole } from '../../types';
 import { signOut } from '../../api';
+import { clearAuthDataFromStorage } from '../../utils';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
@@ -79,11 +80,12 @@ export const Header = () => {
             console.error('logout error : ', error);
         } finally {
             if (refreshIntervalId) {
-                console.log('clearing interval : ', refreshIntervalId);
                 clearInterval(refreshIntervalId);
             }
             navigate(paths.home);
             dispatch(logout());
+            clearAuthDataFromStorage();
+
             handleCloseUserMenu();
             setLogoutLoading(false);
             toast.success(t('logoutConfirmationModal:logoutSuccessMessage'));

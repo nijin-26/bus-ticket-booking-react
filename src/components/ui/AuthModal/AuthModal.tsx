@@ -58,11 +58,13 @@ export const AuthModal = ({ isOpen, closeModal }: IAuthModalProps) => {
                         label={
                             <Typography variant="h6">{t('signIn')}</Typography>
                         }
+                        style={{ textTransform: 'none' }}
                     />
                     <Tab
                         label={
                             <Typography variant="h6">{t('signUp')}</Typography>
                         }
+                        style={{ textTransform: 'none' }}
                     />
                 </Tabs>
                 <Box px={2}>

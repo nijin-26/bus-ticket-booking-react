@@ -4,6 +4,7 @@ import { store } from '../../app/store';
 import { logout } from '../../app/features/authSlice';
 import { toast } from 'react-toastify';
 import i18n from '../../i18n/i18n';
+import { clearAuthDataFromStorage } from '../../utils';
 
 interface IResponseData {
     data: unknown;
@@ -26,11 +27,7 @@ export const onResponse = (response: AxiosResponse<IResponseData>) => {
 
 export const onResponseError = async (error: AxiosError) => {
     const failedRequest = error.config;
-    if (
-        error.response?.status === HTTP_STATUS.UNAUTHORIZED &&
-        failedRequest &&
-        !failedRequest._retry
-    ) {
+    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED && failedRequest) {
         // Check if it's a signIn or signOut request, if yes no need to renew token
         if (
             failedRequest.url?.includes(apiRoutes.signIn) ||
@@ -43,6 +40,7 @@ export const onResponseError = async (error: AxiosError) => {
             toastId: 'expired session',
         });
         store.dispatch(logout());
+        clearAuthDataFromStorage();
     }
     return Promise.reject(error);
 };

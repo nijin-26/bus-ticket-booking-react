@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { storage } from '../../utils';
 import { IAuthUser, ISignInState } from '../../types';
 
 interface IAuthState {
@@ -39,9 +38,6 @@ const authSlice = createSlice({
             state.refreshIntervalId = action.payload.id;
         },
         logout: (state) => {
-            storage.removeItem('accessToken');
-            storage.removeItem('refreshToken');
-            storage.removeItem('userData');
             state.user = null;
             state.refreshIntervalId = null;
         },
