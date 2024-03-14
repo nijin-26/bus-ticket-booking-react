@@ -1,4 +1,4 @@
-import { Box, Tab } from '@mui/material';
+import { Box, Tab, useMediaQuery } from '@mui/material';
 import { TabContext, TabList } from '@mui/lab';
 import React, { useEffect, useState } from 'react';
 import ActionBar from '../actionBar/ActionBar';
@@ -6,6 +6,7 @@ import PnrSearch from '../pnrSearch/PnrSearch';
 import { Panel, WrapperPaper } from './ActionBarTab.styled';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -18,6 +19,11 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
     const [value, setValue] = useState('1');
     const [searchParams] = useSearchParams();
     const pnr = searchParams.get('pnr');
+
+    const { breakpointValues } = useTheme();
+    const isSmallScreen = useMediaQuery(
+        `(max-width:${breakpointValues.small})`
+    );
 
     const changeTabHandler = (_: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
@@ -33,7 +39,10 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
         <WrapperPaper sx={{ px: 2 }} elevation={4}>
             <TabContext value={value}>
                 <Box>
-                    <TabList onChange={changeTabHandler}>
+                    <TabList
+                        onChange={changeTabHandler}
+                        variant={isSmallScreen ? 'fullWidth' : 'standard'}
+                    >
                         <Tab label={t('findBuses')} value="1"></Tab>
                         {!showFilterSort ? (
                             <Tab label={t('findTicket')} value="2"></Tab>
