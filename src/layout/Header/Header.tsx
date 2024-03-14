@@ -45,6 +45,9 @@ export const Header = () => {
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
+    const refreshIntervalId = useAppSelector(
+        (state) => state.auth.refreshIntervalId
+    );
 
     const [logoutLoading, setLogoutLoading] = useState(false);
 
@@ -75,6 +78,10 @@ export const Header = () => {
         } catch (error) {
             console.error('logout error : ', error);
         } finally {
+            if (refreshIntervalId) {
+                console.log('clearing interval : ', refreshIntervalId);
+                clearInterval(refreshIntervalId);
+            }
             navigate(paths.home);
             dispatch(logout());
             handleCloseUserMenu();

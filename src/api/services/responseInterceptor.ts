@@ -1,6 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios';
-import { API, apiRoutes, renewToken } from '..';
-import { getToken, storage } from '../../utils';
+import { apiRoutes } from '..';
 import { store } from '../../app/store';
 import { logout } from '../../app/features/authSlice';
 import { toast } from 'react-toastify';
@@ -40,36 +39,10 @@ export const onResponseError = async (error: AxiosError) => {
             return Promise.reject(error);
         }
 
-        const refreshToken = getToken('refreshToken');
-        if (!refreshToken) {
-            toast.error(i18n.t('auth:sessionExpiredToastMessage'), {
-                toastId: 'expired session',
-            });
-            store.dispatch(logout());
-            return Promise.reject(error);
-        }
-
-        // Set the _retry flag to true to indicate that the request will be retried
-        failedRequest._retry = true;
-
-        try {
-            const response = await renewToken(refreshToken);
-            storage.setItem('accessToken', response.accessToken);
-            storage.setItem('refreshToken', response.refreshToken);
-
-            failedRequest.headers[
-                'Authorization'
-            ] = `Bearer ${response.accessToken}`;
-
-            // Retry the failed request with the new access token
-            return API(failedRequest);
-        } catch (error) {
-            store.dispatch(logout());
-            toast.error(i18n.t('auth:sessionExpiredToastMessage'), {
-                toastId: 'expired session',
-            });
-        }
+        toast.error(i18n.t('auth:sessionExpiredToastMessage'), {
+            toastId: 'expired session',
+        });
+        store.dispatch(logout());
     }
-
     return Promise.reject(error);
 };

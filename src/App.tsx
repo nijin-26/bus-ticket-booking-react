@@ -13,6 +13,10 @@ import { createTheme } from '@mui/material';
 import { useAppSelector } from './app/hooks';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getInitialAuthState } from './utils';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setIntervalId, setUser } from './app/features/authSlice';
 
 const basename = '/';
 
@@ -22,6 +26,28 @@ const router = createBrowserRouter(routesConfig, {
 
 function App() {
     const mode = useAppSelector((state) => state.theme.currentTheme);
+    const refreshIntervalId = useAppSelector(
+        (state) => state.auth.refreshIntervalId
+    );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const loadInitialAuthState = async () => {
+            const initialAuthState = await getInitialAuthState();
+
+            if (initialAuthState) {
+                dispatch(setUser(initialAuthState.userData));
+                dispatch(setIntervalId({ id: initialAuthState.intervalId }));
+            }
+        };
+        void loadInitialAuthState();
+
+        return () => {
+            if (refreshIntervalId) {
+                clearInterval(refreshIntervalId);
+            }
+        };
+    }, [dispatch]);
 
     return (
         <>
