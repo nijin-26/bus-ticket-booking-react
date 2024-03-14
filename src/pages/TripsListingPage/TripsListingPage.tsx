@@ -120,7 +120,13 @@ export const TripsListingPage = () => {
 
     return (
         <TripsListingPageWrapper>
-            {matches ? <ActionBarTab showFilterSort /> : <ActionBarDrawer />}
+            {matches ? (
+                <ActionBarTab showFilterSort />
+            ) : (
+                <>
+                    <ActionBarDrawer /> <ActionBarTab />
+                </>
+            )}
             <section className="accordions">
                 {tripData.length !== 0
                     ? tripData.map((indData) => (

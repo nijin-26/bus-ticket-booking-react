@@ -10,10 +10,12 @@ import { useTheme } from '@emotion/react';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
+    showPnrSearch?: boolean;
 }
 
 const ActionBarTab: React.FC<IActionBarProps> = ({
     showFilterSort,
+    showPnrSearch,
 }: IActionBarProps) => {
     const { t } = useTranslation('actionBarTab');
     const [value, setValue] = useState('1');
@@ -44,7 +46,7 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
                         variant={isSmallScreen ? 'fullWidth' : 'standard'}
                     >
                         <Tab label={t('findBuses')} value="1"></Tab>
-                        {!showFilterSort ? (
+                        {showPnrSearch ? (
                             <Tab label={t('findTicket')} value="2"></Tab>
                         ) : (
                             <Tab disabled></Tab>

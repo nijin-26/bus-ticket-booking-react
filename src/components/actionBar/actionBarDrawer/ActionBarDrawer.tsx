@@ -15,6 +15,7 @@ import { useAppSelector } from '../../../app/hooks';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
+import FilterSortIcon from '../../../assets/FilterSortIcon';
 
 export default function ActionBarDrawer() {
     const [drawer, setDrawer] = useState(false);
@@ -37,7 +38,7 @@ export default function ActionBarDrawer() {
     };
 
     // conrol width
-    const { breakpointValues } = useTheme();
+    const { breakpointValues, color } = useTheme();
     const isSmallScreen = useMediaQuery(
         `(max-width:${breakpointValues.small})`
     );
@@ -47,15 +48,30 @@ export default function ActionBarDrawer() {
         <Box>
             <IconButton
                 onClick={toggleDrawer}
+                color="primary"
                 sx={{
                     padding: isSmallScreen ? '1rem' : '0',
                     margin: '2rem',
                     marginLeft: isSmallScreen ? 'auto' : '0',
-                    marginRight: isSmallScreen ? '2rem' : 0,
+                    marginRight: isSmallScreen ? '2rem' : '0',
+                    position: isSmallScreen ? 'fixed' : 'relative',
+                    bottom: isSmallScreen ? '2rem' : '',
+                    right: isSmallScreen ? '1rem' : '',
+                    background: isSmallScreen ? color.primary : 'none',
+                    boxShadow: isSmallScreen
+                        ? `0.2rem ${color.boxShadowPrimary}`
+                        : 'none',
+                    '&:hover': {
+                        backgroundColor: isSmallScreen ? color.primary : 'none',
+                        opacity: '1',
+                        boxShadow: '0',
+                    },
+                    zIndex: '4',
+                    borderRadius: '50%',
                 }}
             >
                 <Badge
-                    color="primary"
+                    color="success"
                     variant="dot"
                     overlap="circular"
                     invisible={Boolean(!busTypeParams && !seatTypeParams)}
@@ -64,10 +80,14 @@ export default function ActionBarDrawer() {
                         horizontal: 'right',
                     }}
                 >
-                    <FilterAlt
-                        color="disabled"
-                        sx={{ width: '4rem', height: '4rem' }}
-                    />
+                    {isSmallScreen ? (
+                        <FilterSortIcon />
+                    ) : (
+                        <FilterAlt
+                            color="disabled"
+                            sx={{ width: '4rem', height: '4rem' }}
+                        />
+                    )}
                 </Badge>
             </IconButton>
 
