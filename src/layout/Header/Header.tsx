@@ -94,8 +94,9 @@ export const Header = () => {
                             size="large"
                             edge="start"
                             color="inherit"
-                            aria-label="menu"
+                            aria-label="theme toggle"
                             className="theme-button"
+                            data-testId="theme toggle"
                         >
                             {themeMode.toString() === 'dark' ? (
                                 <LightModeRoundedIcon />
