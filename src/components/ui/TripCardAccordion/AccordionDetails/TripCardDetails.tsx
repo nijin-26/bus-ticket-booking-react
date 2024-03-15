@@ -115,9 +115,11 @@ export const TripCardDetails = ({
 
     return (
         <TripCardDetailsWrapper>
-            <Stack direction={'column'} p={3} pt={3} alignItems={'center'}>
+            <Stack direction={'column'} p={3} pt={3}>
                 {loading ? (
-                    <CircularProgress color="primary"  />
+                    <span style={{ alignSelf: 'center' }}>
+                        <CircularProgress color="primary" />
+                    </span>
                 ) : (
                     <>
                         <Stack
