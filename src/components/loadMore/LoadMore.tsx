@@ -22,13 +22,14 @@ const LoadMore = ({
 }: ILoadMore) => {
     const theme = useTheme();
     const { t } = useTranslation('tripListing');
+
     const handleLoadMore = () => {
         setBtnLoading(true);
         const totalPages = String(Math.ceil(resultLength / rowsPerPage));
         if (totalPages > page) {
             page = String(Number(page) + 1);
+            setPage(page);
         }
-        setPage(page);
     };
     return (
         <LoadMoreWrapper>

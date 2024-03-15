@@ -51,7 +51,8 @@
     "seatLayout": {
         "available": "Disponible",
         "unavailable": "Indisponible",
-        "selected": "Seleccionado"
+        "selected": "Seleccionado",
+        "window": "Ventana"
     },
     "actionBarTab": {
         "findBuses": "Buscar autobuses",
@@ -147,9 +148,7 @@
         "phone": "Teléfono"
     },
     "tableExportOptions": {
-        "export": "Exportar",
-        "exportAsCsv": "Descargar como CSV",
-        "exportPrint": "Imprimir"
+        "currentPage": "Página actual (.csv)"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."

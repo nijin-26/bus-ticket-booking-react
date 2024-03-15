@@ -51,7 +51,8 @@
     "seatLayout": {
         "available": "Available",
         "unavailable": "Unavailable",
-        "selected": "Selected"
+        "selected": "Selected",
+        "window": "Window"
     },
     "actionBarTab": {
         "findBuses": "Find buses",
@@ -133,9 +134,7 @@
         "errorToast": "Failed to cancel booking."
     },
     "tableExportOptions": {
-        "export": "Export",
-        "exportAsCsv": "Download as CSV",
-        "exportPrint": "Print"
+        "currentPage": "Current page (.csv)"
     },
     "usersList": {
         "pageTitle": "Users List",

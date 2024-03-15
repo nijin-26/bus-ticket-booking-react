@@ -6,7 +6,7 @@ const SeatLegendWrapper = styled('ul')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap:'3rem',
+    gap: '1rem',
 
     li: {
         ul: {
@@ -14,11 +14,12 @@ const SeatLegendWrapper = styled('ul')(({ theme }) => ({
             flexDirection: 'row',
             alignItems: 'center',
             listStyle: 'none',
-            padding:'0',
-            '& .seat': {
+            padding: '0',
+            '& .seat, & .window': {
                 width: '2rem',
                 height: '2rem',
                 boxShadow: `0 0 0.4rem ${theme.color.boxShadowPrimary}`,
+                position: 'static',
             },
         },
     },

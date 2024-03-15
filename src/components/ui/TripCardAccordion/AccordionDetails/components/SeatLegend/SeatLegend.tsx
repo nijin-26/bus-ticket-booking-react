@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import SeatLegendWrapper from './SeatLegend.styled';
 import { useTranslation } from 'react-i18next';
 import Seat from '../../../../../BusLayout/Seat/Seat';
+import Window from '../../../../../BusLayout/Window.styled';
 
 export const SeatLegend = () => {
     const { t } = useTranslation('seatLayout');
@@ -37,6 +38,16 @@ export const SeatLegend = () => {
                     <li>
                         <Typography variant="body2" className="title">
                             {t('selected')}
+                        </Typography>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <Window className="window" />
+                    <li>
+                        <Typography variant="body2" className="title">
+                            {t('window')}
                         </Typography>
                     </li>
                 </ul>
