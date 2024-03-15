@@ -5,7 +5,6 @@ import { colors } from '../../config';
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
     borderRadius: '2.5rem',
     backgroundColor: theme.color.cardWhite,
-    minWidth: '35rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
@@ -79,6 +78,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
             rotate: '0deg',
             maxWidth: '12rem',
             margin: '1rem',
+            scale: '1.1',
         },
 
         '.tearsheet-column': {

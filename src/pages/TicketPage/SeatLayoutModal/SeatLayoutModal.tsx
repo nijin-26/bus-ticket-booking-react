@@ -19,7 +19,7 @@ export const SeatLayoutModal = ({
                 }
             }}
         >
-            <Box overflow={'auto'} height={'100%'} padding={'2rem'}>
+            <Box overflow={'auto'} maxHeight={'100%'} padding={'2rem'}>
                 <SeatLayout
                     layoutName={layoutNames.volvo25}
                     seats={Array.from({ length: 46 }, (_, index) => {
