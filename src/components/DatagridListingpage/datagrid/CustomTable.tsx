@@ -5,7 +5,6 @@ import CustomToolbar from './CustomToolbar';
 import CustomPagination from './CustomPagination/CustomPagination';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay/CustomNoRowsOverlay';
 import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { IPagination } from '../../../types';
 
 export interface ICustomTable<T> {
@@ -27,8 +26,6 @@ export const CustomTable = <T,>({
     t,
     frontendPagination,
 }: ICustomTable<T>) => {
-    const { t: tExport } = useTranslation('tableExportOptions');
-
     return (
         <CustomTableWrapper>
             <DataGrid
@@ -69,11 +66,6 @@ export const CustomTable = <T,>({
                 paginationMode={frontendPagination ? 'client' : 'server'}
                 onPaginationModelChange={(newPaginationModel) => {
                     updatePageState(newPaginationModel);
-                }}
-                localeText={{
-                    toolbarExport: tExport('export'),
-                    toolbarExportCSV: tExport('exportAsCsv'),
-                    toolbarExportPrint: tExport('exportPrint'),
                 }}
                 slots={{
                     toolbar: CustomToolbar,

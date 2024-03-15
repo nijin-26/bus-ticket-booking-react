@@ -8,6 +8,7 @@ const getUsersTableColumns = (t: TFunction): GridColDef[] => {
         {
             field: 'phone',
             headerName: t('phone'),
+            type: 'number',
             minWidth: 200,
         },
     ];

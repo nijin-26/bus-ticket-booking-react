@@ -39,6 +39,7 @@ const getBookingsTableColumns = (
         {
             field: 'passengerCount',
             headerName: t('pax'),
+            type: 'number',
             minWidth: 50,
             maxWidth: 50,
             valueGetter: (params: GridValueGetterParams) => {
@@ -48,6 +49,7 @@ const getBookingsTableColumns = (
         {
             field: 'tripId',
             headerName: t('tripId'),
+            type: 'number',
             minWidth: 80,
             maxWidth: 80,
             valueGetter: (params: GridValueGetterParams) => {

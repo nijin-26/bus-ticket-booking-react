@@ -133,9 +133,7 @@
         "errorToast": "Failed to delete booking."
     },
     "tableExportOptions": {
-        "export": "Export",
-        "exportAsCsv": "Download as CSV",
-        "exportPrint": "Print"
+        "currentPage": "Current page (.csv)"
     },
     "usersList": {
         "pageTitle": "Users List",
