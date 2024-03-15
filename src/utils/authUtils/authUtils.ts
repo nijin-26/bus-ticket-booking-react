@@ -105,7 +105,8 @@ export const setRefreshInterval = (accessToken: string) => {
 
         const intervalId = setInterval(
             () => refresh(intervalId),
-            intervalForRenew
+            //set atleast a minimum interval of 1 minute
+            Math.max(intervalForRenew, 60000)
         );
         return intervalId;
     }

@@ -37,7 +37,6 @@ export const useLogout = () => {
                 axios.isAxiosError<IAuthResponseError>(error) &&
                 error.response?.status === 401
             ) {
-                console.error('logout error : ', error.response);
                 navigate(paths.home);
                 dispatch(logout());
                 clearAuthDataFromStorage();
@@ -46,8 +45,6 @@ export const useLogout = () => {
                 });
                 return;
             }
-
-            console.error(error);
             toast.error(t('logoutErrorMessage'), { toastId: 'logout error' });
         }
     };
