@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { onRequest, onRequestError } from './requestInterceptor';
-import { onResponse, onResponseError } from './responseInterceptor';
+import {
+    onRefreshTokenResponseError,
+    onResponse,
+    onResponseError,
+} from './responseInterceptor';
 
 const baseUrl = import.meta.env.VITE_API_ENDPOINT as string | undefined;
 
@@ -24,6 +28,6 @@ export const refreshApi = axios.create({
     timeout: 10000,
 });
 
-refreshApi.interceptors.response.use(onResponse, onResponseError);
+refreshApi.interceptors.response.use(onResponse, onRefreshTokenResponseError);
 
 export default apiClient;

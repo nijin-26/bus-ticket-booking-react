@@ -5,6 +5,7 @@ import { logout } from '../../app/features/authSlice';
 import { toast } from 'react-toastify';
 import i18n from '../../i18n/i18n';
 import { clearAuthDataFromStorage } from '../../utils';
+import { refreshApi } from './axios';
 
 interface IResponseData {
     data: unknown;
@@ -27,6 +28,7 @@ export const onResponse = (response: AxiosResponse<IResponseData>) => {
 
 export const onResponseError = async (error: AxiosError) => {
     const failedRequest = error.config;
+
     if (error.response?.status === HTTP_STATUS.UNAUTHORIZED && failedRequest) {
         // Check if it's a signIn or signOut request, if yes no need to renew token
         if (
@@ -42,5 +44,27 @@ export const onResponseError = async (error: AxiosError) => {
         store.dispatch(logout());
         clearAuthDataFromStorage();
     }
+
+    return Promise.reject(error);
+};
+
+export const onRefreshTokenResponseError = (error: AxiosError) => {
+    const failedRequest = error.config;
+
+    // if renew-token has returned 401 (due to missing or invalid auth header)
+    // no need to retry request
+    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED) {
+        store.dispatch(logout());
+        clearAuthDataFromStorage();
+        return Promise.reject(error);
+    }
+
+    if (failedRequest && !failedRequest._retry) {
+        failedRequest._retry = true;
+
+        //retrying renew-token request
+        return refreshApi(failedRequest);
+    }
+
     return Promise.reject(error);
 };

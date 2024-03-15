@@ -4,7 +4,7 @@ import { useTheme } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../app/features/themeSlice';
-import { logout, showAuthModal } from '../../app/features/authSlice';
+import { showAuthModal } from '../../app/features/authSlice';
 import {
     Box,
     AppBar,
@@ -18,7 +18,6 @@ import {
     Divider,
     useMediaQuery,
 } from '@mui/material';
-import { toast } from 'react-toastify';
 import { ConfirmDialog, FullScreenLoader } from '../../components';
 import { StyledProfileButton, StyledToolBar } from './Header.styled';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -31,14 +30,14 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { BackupTable, PeopleAlt } from '@mui/icons-material';
 import { paths } from '../../config';
 import { EUserRole } from '../../types';
-import { signOut } from '../../api';
-import { clearAuthDataFromStorage } from '../../utils';
+import { useLogout } from '../../hooks';
 
 export const Header = () => {
     const { t } = useTranslation(['headerFooter', 'logoutConfirmationModal']);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const theme = useTheme();
+    const logoutHandler = useLogout();
 
     const isSmallScreen = useMediaQuery(
         `(max-width:${theme.breakpointValues.small})`
@@ -46,9 +45,6 @@ export const Header = () => {
 
     const themeMode = useAppSelector((state) => state.theme.currentTheme);
     const user = useAppSelector((state) => state.auth.user);
-    const refreshIntervalId = useAppSelector(
-        (state) => state.auth.refreshIntervalId
-    );
 
     const [logoutLoading, setLogoutLoading] = useState(false);
 
@@ -72,24 +68,11 @@ export const Header = () => {
         dispatch(toggleTheme());
     };
 
-    const handleLogoutClick = async () => {
+    const handleLogoutClick = () => {
         setLogoutLoading(true);
-        try {
-            await signOut();
-        } catch (error) {
-            console.error('logout error : ', error);
-        } finally {
-            if (refreshIntervalId) {
-                clearInterval(refreshIntervalId);
-            }
-            navigate(paths.home);
-            dispatch(logout());
-            clearAuthDataFromStorage();
-
-            handleCloseUserMenu();
-            setLogoutLoading(false);
-            toast.success(t('logoutConfirmationModal:logoutSuccessMessage'));
-        }
+        void logoutHandler();
+        handleCloseUserMenu();
+        setLogoutLoading(false);
     };
 
     return (
@@ -273,7 +256,7 @@ export const Header = () => {
                 }}
                 agreeText={t('logoutConfirmationModal:confirmText')}
                 disagreeText={t('logoutConfirmationModal:cancelText')}
-                handleAgreeFunction={() => void handleLogoutClick()}
+                handleAgreeFunction={handleLogoutClick}
             >
                 {t('logoutConfirmationModal:message')}
             </ConfirmDialog>
