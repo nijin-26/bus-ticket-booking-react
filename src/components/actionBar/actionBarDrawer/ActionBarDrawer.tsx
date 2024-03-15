@@ -15,7 +15,6 @@ import { useAppSelector } from '../../../app/hooks';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
-import FilterSortIcon from '../../../assets/FilterSortIcon';
 
 export default function ActionBarDrawer() {
     const [drawer, setDrawer] = useState(false);

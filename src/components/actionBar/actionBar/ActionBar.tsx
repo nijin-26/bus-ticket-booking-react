@@ -4,7 +4,6 @@ import {
     InputAdornment,
     Grid,
     Stack,
-    useMediaQuery,
 } from '@mui/material';
 
 import {
