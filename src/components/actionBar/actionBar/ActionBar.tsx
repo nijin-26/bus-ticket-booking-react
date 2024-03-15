@@ -28,7 +28,6 @@ import { setBusSearchParams } from '../../../app/features/busSearchSlice';
 import { ToggleButton } from './ActionBar.styled';
 import { toast } from 'react-toastify';
 import FilterSort from '../filterSort/FilterSort';
-import { useTheme } from '@emotion/react';
 
 interface IActionBarProps {
     showFilterSort?: boolean;
@@ -40,11 +39,6 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
     const { t } = useTranslation('actionBar');
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const { breakpointValues } = useTheme();
-    const isSmallScreen = useMediaQuery(
-        `(max-width:${breakpointValues.small})`
-    );
 
     const [startLocation, setStartLocation] = useState<ILocationOptions | null>(
         null
