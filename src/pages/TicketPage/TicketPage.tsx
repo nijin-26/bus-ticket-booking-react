@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { Ticket } from '../../components';
 import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
-import { Home } from '@mui/icons-material';
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import {
     AccordionDetails,
@@ -12,7 +10,6 @@ import {
     Stack,
     Typography,
 } from '@mui/material';
-import { paths } from '../../config';
 import { useGetTicketData } from '../../components/Ticket/utils/useGetTicketData';
 import { ArrowDropDownIcon } from '@mui/x-date-pickers';
 import { TicketAccordionWrapper } from './TicketPage.styled';
@@ -23,7 +20,6 @@ import { IGender } from '../../types';
 export const TicketPage = () => {
     const { ticketData, loading } = useGetTicketData();
     const { t } = useTranslation(['errorPage', 'passengerDetails', 'ticket']);
-    const navigate = useNavigate();
     const [viewSeatLayout, setViewSeatLayout] = useState(false);
 
     const openSeatLayout = () => {
@@ -33,9 +29,7 @@ export const TicketPage = () => {
         setViewSeatLayout(false);
     };
 
-    const goHomeHandler = () => {
-        navigate(paths.home);
-    };
+
 
     if (loading) {
         return <FullScreenLoader open={loading} />;
@@ -48,6 +42,7 @@ export const TicketPage = () => {
                 {/* View Seat Layout */}
                 <Button
                     variant="text"
+                    color={'inherit'}
                     onClick={openSeatLayout}
                     startIcon={<EventSeatIcon />}
                     sx={{
@@ -58,6 +53,7 @@ export const TicketPage = () => {
                 >
                     {t('ticket:viewSeatLayout')}
                 </Button>
+
                 {viewSeatLayout && (
                     <SeatLayoutModal
                         cancelModal={cancelSeatLayout}
@@ -267,19 +263,7 @@ export const TicketPage = () => {
                         </Grid>
                     </AccordionDetails>
                 </TicketAccordionWrapper>
-                <Button
-                    variant="contained"
-                    onClick={goHomeHandler}
-                    startIcon={<Home />}
-                    sx={{
-                        margin: '2rem 0',
-                        alignSelf: 'center',
-                        textTransform: 'none',
-                        maxWidth: '20rem',
-                    }}
-                >
-                    {t('goHome')}
-                </Button>
+
             </Stack>
         )
     );

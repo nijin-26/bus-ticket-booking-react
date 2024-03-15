@@ -228,7 +228,8 @@
         "male": "Male",
         "female": "Female",
         "downloadTicket": "Download Ticket as PDF",
-        "viewDetailedTicket": "View Detailed Ticket"
+        "viewDetailedTicket": "View Detailed Ticket",
+        "goHome": "Go home"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",

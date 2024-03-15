@@ -226,7 +226,8 @@
         "gender": "Género",
         "male": "Masculino",
         "female": "Femenino",
-        "viewDetailedTicket": "Ver Boleto Detallado"
+        "viewDetailedTicket": "Ver Boleto Detallado",
+        "goHome": "Ir a inicio"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",

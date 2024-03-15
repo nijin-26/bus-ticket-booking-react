@@ -8,7 +8,9 @@ import { formatDate } from './utils/timeUtils';
 import { useTranslation } from 'react-i18next';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { Download } from '@mui/icons-material';
+import { Download, Home } from '@mui/icons-material';
+import { paths } from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 export const Ticket = ({ data }: { data: ITicket }) => {
     const { t } = useTranslation('ticket');
@@ -18,8 +20,11 @@ export const Ticket = ({ data }: { data: ITicket }) => {
 
     const adults = seats.filter((seat) => seat.passenger.age > 18);
     const children = seats.filter((seat) => seat.passenger.age < 18);
+    const navigate = useNavigate();
+
     const downloadAsPDF = () => {
         const input = document.getElementById('ticket');
+
 
         if (input) {
             const { offsetWidth, offsetHeight } = input;
@@ -44,6 +49,10 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                 pdf.save('ticket.pdf');
             });
         }
+    };
+
+    const goHomeHandler = () => {
+        navigate(paths.home);
     };
 
     return (
@@ -283,6 +292,12 @@ export const Ticket = ({ data }: { data: ITicket }) => {
                 </Stack>
                 <Box></Box>
             </TicketWrapper>
+            <Stack
+                direction={'row'}
+                justifyContent={'center'}
+                padding={'2rem'}
+                gap={'2rem'}
+            >
             <Button
                 variant="contained"
                 onClick={() => {
@@ -297,6 +312,20 @@ export const Ticket = ({ data }: { data: ITicket }) => {
             >
                 {t('downloadTicket')}
             </Button>
+            <Button
+                variant="contained"
+                onClick={goHomeHandler}
+                startIcon={<Home />}
+                sx={{
+                    margin: '2rem 0',
+                    alignSelf: 'center',
+                    textTransform: 'none',
+                    maxWidth: '20rem',
+                }}
+            >
+                {t('goHome')}
+            </Button>
+            </Stack>
         </Stack>
     );
 };
