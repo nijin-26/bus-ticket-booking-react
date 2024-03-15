@@ -44,7 +44,9 @@ export const DetailsGrid = ({
         },
         {
             title: t('busType'),
-            value: `${tripDetails.busType} , ${tripDetails.seatType}`,
+            value: `${tripDetails.busType === IBusType.AC ? 'AC' : 'Non-AC'}, ${
+                tripDetails.seatType === ISeatType.SEATER ? 'Seater' : 'Sleeper'
+            }`,
             icon: <BusIcon />,
         },
     ];
