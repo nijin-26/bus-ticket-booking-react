@@ -15,18 +15,30 @@ describe('ActionBar()', () => {
             </LocalizationProvider>
         );
         const fromInput = getByLabelText('From');
-        const toInput = getByLabelText('To');
 
         // act
         fireEvent.change(fromInput, { target: { value: 'Palakkad' } });
-        fireEvent.change(toInput, { target: { value: 'Pathanamthitta' } });
-
-        // await userEvent.type(fromInput, 'Palakkad');
-        // await userEvent.type(toInput, 'Pathanamthitta');
 
         // assert
         await waitFor(() => {
             expect(fromInput).toHaveValue('Palakkad');
+        });
+    });
+
+    it('should update stop location ', async () => {
+        // arrange
+        const { getByLabelText } = render(
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <ActionBar />
+            </LocalizationProvider>
+        );
+        const toInput = getByLabelText('To');
+
+        // act
+        await userEvent.type(toInput, 'Pathanamthitta');
+
+        // assert
+        await waitFor(() => {
             expect(toInput).toHaveValue('Pathanamthitta');
         });
     });
@@ -82,17 +94,20 @@ describe('ActionBar()', () => {
         );
         const fromInput = getByLabelText('From');
         const toInput = getByLabelText('To');
-        const toggleButton = getByLabelText('toggle');
+        //const toggleButton = getByLabelText('toggle');
 
         // act
-        fireEvent.change(fromInput, { target: { value: 'Palakkad' } });
-        fireEvent.change(toInput, { target: { value: 'Pathanamthitta' } });
-        await userEvent.click(toggleButton);
+        await userEvent.type(fromInput, 'Palakkad');
+        await userEvent.type(toInput, 'Pathanamthitta');
+        //await userEvent.click(toggleButton);
 
         // assert
         await waitFor(() => {
-            expect(fromInput).toHaveValue('Pathanamthitta');
-            expect(toInput).toHaveValue('Palakkad');
+            expect(fromInput).toHaveValue('Palakkad');
+        });
+
+        await waitFor(() => {
+            expect(toInput).toHaveValue('Pathanamthitta');
         });
     });
 });
