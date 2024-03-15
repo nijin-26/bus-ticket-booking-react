@@ -1,4 +1,4 @@
-import { IconButton, Stack, Tooltip } from '@mui/material';
+import { CircularProgress, IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
 import SeatLayout from '../../../BusLayout/SeatLayout/SeatLayout';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,6 @@ import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
 import { toSerializable } from '../../../../utils/tripDetailsUtils';
-import { TripCardDetailsLoader } from './components/Loader/Loader';
 import { toast } from 'react-toastify';
 
 interface ITripCardAccordionData extends ITrip {
@@ -116,9 +115,9 @@ export const TripCardDetails = ({
 
     return (
         <TripCardDetailsWrapper>
-            <Stack direction={'column'} p={3} pt={3}>
+            <Stack direction={'column'} p={3} pt={3} alignItems={'center'}>
                 {loading ? (
-                    <TripCardDetailsLoader />
+                    <CircularProgress color="primary"  />
                 ) : (
                     <>
                         <Stack
