@@ -81,7 +81,10 @@ export default function ActionBarDrawer() {
                     }}
                 >
                     {isSmallScreen ? (
-                        <FilterSortIcon />
+                        <FilterAlt
+                            color="secondary"
+                            sx={{ width: '4rem', height: '4rem' }}
+                        />
                     ) : (
                         <FilterAlt
                             color="disabled"
