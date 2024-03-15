@@ -33,4 +33,12 @@ export const CustomTableWrapper = styled(Box)(({ theme }) => ({
             },
         },
     },
+
+    '& .MuiDataGrid-footerContainer .MuiBox-root': {
+        padding: '1.6rem 0',
+        flexWrap: 'wrap',
+        p: { whiteSpace: 'nowrap', width: '100%' },
+        nav: { width: '100%' },
+        ul: { flexWrap: 'nowrap', width: 'fit-content', marginLeft: 'auto' },
+    },
 }));

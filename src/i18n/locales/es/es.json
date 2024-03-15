@@ -148,9 +148,7 @@
         "phone": "Teléfono"
     },
     "tableExportOptions": {
-        "export": "Exportar",
-        "exportAsCsv": "Descargar como CSV",
-        "exportPrint": "Imprimir"
+        "currentPage": "Página actual (.csv)"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
