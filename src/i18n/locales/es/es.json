@@ -233,7 +233,7 @@
         "unsavedChangesWarning": "Tiene cambios sin guardar. Estás seguro que quieres irte?"
     },
     "signUpDiscardChangesModal": {
-        "title": "Confirmar Reserva",
+        "title": "Cambios No Guardados",
         "message": "Estás a punto de descartar tus cambios no guardados.",
         "confirmText": "Aceptar",
         "cancelText": "Cancelar"

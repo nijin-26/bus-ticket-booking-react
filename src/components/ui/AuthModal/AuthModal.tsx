@@ -47,7 +47,7 @@ export const AuthModal = ({ isOpen, closeModal }: IAuthModalProps) => {
     };
 
     return (
-        <Dialog open={isOpen} onClose={closeModal} fullScreen={isXsScreen}>
+        <Dialog open={isOpen} fullScreen={isXsScreen}>
             <Box>
                 <Tabs
                     value={selectedTab}

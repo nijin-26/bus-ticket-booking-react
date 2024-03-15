@@ -235,7 +235,7 @@
         "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
     },
     "signUpDiscardChangesModal": {
-        "title": "Confirm Booking",
+        "title": "Unsaved Changes",
         "message": "You are about to discard your unsaved changes.",
         "confirmText": "Ok",
         "cancelText": "Cancel"
