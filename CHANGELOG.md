@@ -32,3 +32,4 @@
 -   [86cutf88k] Integration of basic Unit testing for dateUtils and TripCardAccordion Component
 -   [86cuu8mnq] Implemented basic unit testing for LoadMore component.
 -   [86cutf4f9] Add testing for booking utils funcitons.
+-   [86cutf5yg] Integrate renew-token and logout api, add confirmation alert when closing signUp modal after entering data.
