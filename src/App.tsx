@@ -14,6 +14,7 @@ import { useAppSelector } from './app/hooks';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLoadInitialAuthState } from './hooks';
+import { FullScreenLoader } from './components';
 
 const basename = '/';
 
@@ -23,7 +24,12 @@ const router = createBrowserRouter(routesConfig, {
 
 function App() {
     const mode = useAppSelector((state) => state.theme.currentTheme);
-    useLoadInitialAuthState();
+    const loadingAuthState = useLoadInitialAuthState();
+
+    //show loader until auth state has been initialized
+    if (loadingAuthState) {
+        return <FullScreenLoader open={loadingAuthState} />;
+    }
 
     return (
         <>
