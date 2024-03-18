@@ -38,9 +38,9 @@ const PassengerDetailsForm = ({
     const postBookingData = async (obj: IPassengersInputFromFormik) => {
         const inputObj = convertFormikDataToApiData(obj);
         try {
-            const bookingResponse = await bookTicket(tripId, inputObj);
+            const pnrNumber = await bookTicket(tripId, inputObj);
             toast.success(t('apiSuccessMessage'));
-            navigate(`${paths.ticket}/${bookingResponse.pnrNumber}`, {
+            navigate(`${paths.ticket}/${pnrNumber}`, {
                 replace: true,
             });
         } catch (error) {

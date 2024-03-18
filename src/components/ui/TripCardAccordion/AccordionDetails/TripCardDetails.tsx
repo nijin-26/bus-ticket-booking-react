@@ -1,4 +1,4 @@
-import { IconButton, Stack, Tooltip } from '@mui/material';
+import { CircularProgress, IconButton, Stack, Tooltip } from '@mui/material';
 import { DetailsGrid } from './components/DetailsGrid';
 import SeatLayout from '../../../BusLayout/SeatLayout/SeatLayout';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,6 @@ import { setTripDetailsData } from '../../../../app/features/tripDetailsSlice';
 import { getTrip } from '../../../../api';
 import { ISeat, ISeatStatus, ITrip, ITripDetailed } from '../../../../types';
 import { toSerializable } from '../../../../utils/tripDetailsUtils';
-import { TripCardDetailsLoader } from './components/Loader/Loader';
 import { toast } from 'react-toastify';
 
 interface ITripCardAccordionData extends ITrip {
@@ -118,10 +117,16 @@ export const TripCardDetails = ({
         <TripCardDetailsWrapper>
             <Stack direction={'column'} p={3} pt={3}>
                 {loading ? (
-                    <TripCardDetailsLoader />
+                    <span style={{ alignSelf: 'center' }}>
+                        <CircularProgress color="primary" />
+                    </span>
                 ) : (
                     <>
-                        <Stack direction={'column'} spacing={2}>
+                        <Stack
+                            direction={'column'}
+                            spacing={5}
+                            style={{ marginBottom: '3rem' }}
+                        >
                             <Stack
                                 direction={{ sm: 'column', md: 'row' }}
                                 justifyContent={'space-between'}
@@ -130,6 +135,7 @@ export const TripCardDetails = ({
                                     md: 'center',
                                 }}
                                 spacing={3}
+                                style={{ marginBottom: '3rem' }}
                             >
                                 <SeatLegend />
                                 {selectedSeats.length <= 0 ? (
