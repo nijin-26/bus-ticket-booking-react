@@ -30,6 +30,7 @@
 -   [86cuerykj] [SERVICE] Add visibility toggle feature for password inputs and made auth modals responsive.
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
 -   [86cutf88k] Integration of basic Unit testing for dateUtils and TripCardAccordion Component
+-   [86cutf4ea] Added unit tests for converters in API layer
 -   [86cuu8mnq] Implemented basic unit testing for LoadMore component.
 -   [86cutf4f9] Add testing for booking utils funcitons.
 -   [86cuvkum8] Fixed the trip card accordion responsiveness and made necessary UI/UX changes.
