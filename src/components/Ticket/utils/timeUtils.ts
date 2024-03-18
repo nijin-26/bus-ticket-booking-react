@@ -13,7 +13,7 @@ export const formatDate = (date: Date, short: boolean = false) => {
     };
 
     const formattedDateTime = date.toLocaleString(
-        undefined,
+        'en-GB',
         short ? dateOptions : undefined
     );
 
