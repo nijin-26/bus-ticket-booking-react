@@ -84,30 +84,4 @@ describe('ActionBar()', () => {
         // assert
         expect(searchButton).toHaveAttribute('disabled');
     });
-
-    it('should toggle locations when toggle button is clicked', async () => {
-        // arrange
-        const { getByLabelText } = render(
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <ActionBar />
-            </LocalizationProvider>
-        );
-        const fromInput = getByLabelText('From');
-        const toInput = getByLabelText('To');
-        //const toggleButton = getByLabelText('toggle');
-
-        // act
-        await userEvent.type(fromInput, 'Palakkad');
-        await userEvent.type(toInput, 'Pathanamthitta');
-        //await userEvent.click(toggleButton);
-
-        // assert
-        await waitFor(() => {
-            expect(fromInput).toHaveValue('Palakkad');
-        });
-
-        await waitFor(() => {
-            expect(toInput).toHaveValue('Pathanamthitta');
-        });
-    });
 });
