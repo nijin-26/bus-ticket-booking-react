@@ -30,6 +30,11 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
     const [isCloseConfirmModalDisplayed, setIsCloseConfirmModalDisplayed] =
         useState<boolean>(false);
 
+    const signUpCloseHandler = () => {
+        closeModal();
+        setSignInAsSelectedTab();
+    };
+
     return (
         <>
             <Formik
@@ -114,7 +119,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                                                 true
                                             );
                                         } else {
-                                            closeModal();
+                                            signUpCloseHandler();
                                         }
                                     }}
                                     variant="outlined"
@@ -146,7 +151,7 @@ const SignUp = ({ closeModal, setSignInAsSelectedTab }: ISignUpProps) => {
                 }}
                 agreeText={t('signUpDiscardChangesModal:confirmText')}
                 disagreeText={t('signUpDiscardChangesModal:cancelText')}
-                handleAgreeFunction={closeModal}
+                handleAgreeFunction={signUpCloseHandler}
             >
                 {t('signUpDiscardChangesModal:message')}
             </ConfirmDialog>
