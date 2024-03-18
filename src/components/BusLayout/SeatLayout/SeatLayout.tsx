@@ -29,11 +29,11 @@ const SeatLayout = ({
     }>({ lowerBerth: { seatPosition: [], tyrePosition: [] } });
     let seatIndex = 0;
 
-    const isSmallScreeen = useMediaQuery(`(max-width:50rem)`);
+    const isSmallScreen = useMediaQuery(`(max-width:50rem)`);
     const isExtraLargeScreen = useMediaQuery(`(min-width:61rem)`);
     const isLargeScreen = useMediaQuery(`(min-width:54rem)`);
     const seatSize =
-        isSmallScreeen || isExtraLargeScreen
+        isSmallScreen || isExtraLargeScreen
             ? 'large'
             : isLargeScreen
             ? 'medium'
@@ -49,7 +49,7 @@ const SeatLayout = ({
     }, [layoutName]);
 
     return (
-        <SeatLayoutWrapper isVerticalOrientation={isSmallScreeen}>
+        <SeatLayoutWrapper isVerticalOrientation={isSmallScreen}>
             <ul className="head-lights-container">
                 <li className="head-light"></li>
                 <li className="head-light"></li>
@@ -83,7 +83,7 @@ const SeatLayout = ({
                                                     } ${seatSize}`}
                                                     key={`left-window${rowIndex}-${index}`}
                                                     isVerticalOrientation={
-                                                        isSmallScreeen
+                                                        isSmallScreen
                                                     }
                                                 />
                                             );

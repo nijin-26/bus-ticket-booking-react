@@ -44,14 +44,16 @@ export const DetailsGrid = ({
         },
         {
             title: t('busType'),
-            value: `${tripDetails.busType} , ${tripDetails.seatType}`,
+            value: `${tripDetails.busType === IBusType.AC ? 'AC' : 'Non-AC'}, ${
+                tripDetails.seatType === ISeatType.SEATER ? 'Seater' : 'Sleeper'
+            }`,
             icon: <BusIcon />,
         },
     ];
 
     return (
         <Box sx={{ width: '100%' }} mt={3}>
-            <Grid container rowSpacing={2} columnSpacing={10}>
+            <Grid container rowSpacing={3} columnSpacing={10}>
                 {detailsData.map((detail, index) => (
                     <Grid item key={index} xs={12} sm={12} md={6} lg={6}>
                         {/* 

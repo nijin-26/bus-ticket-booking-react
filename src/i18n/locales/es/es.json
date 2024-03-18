@@ -93,7 +93,7 @@
         "departure": "Partida",
         "arrival": "Llegada",
         "duration": "Duración",
-        "busType": "Tipo de autobús",
+        "busType": "Comodidades",
         "seat": "asiento",
         "emptyResponse": "Datos del viaje no disponibles",
         "errorResponse": "Error al recuperar los detalles del viaje"
@@ -148,9 +148,7 @@
         "phone": "Teléfono"
     },
     "tableExportOptions": {
-        "export": "Exportar",
-        "exportAsCsv": "Descargar como CSV",
-        "exportPrint": "Imprimir"
+        "currentPage": "Página actual (.csv)"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."

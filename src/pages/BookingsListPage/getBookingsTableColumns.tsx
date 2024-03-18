@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { GridColDef } from '@mui/x-data-grid';
-import { ITicket, ITicketStatus } from '../../types';
+import { IBusType, ISeatType, ITicket, ITicketStatus } from '../../types';
 import { getDateFromTimestamp } from '../../utils';
 import { TFunction } from 'i18next';
 import { Dispatch, SetStateAction } from 'react';
@@ -19,7 +19,7 @@ const getBookingsTableColumns = (
         {
             field: 'pnrNumber',
             headerName: t('pnrNumber'),
-            maxWidth: 150,
+            minWidth: 124,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return (
                     <>
@@ -39,6 +39,8 @@ const getBookingsTableColumns = (
         {
             field: 'passengerCount',
             headerName: t('pax'),
+            type: 'number',
+            minWidth: 50,
             maxWidth: 50,
             valueGetter: (params: GridValueGetterParams) => {
                 return params.row.seats.length;
@@ -47,6 +49,8 @@ const getBookingsTableColumns = (
         {
             field: 'tripId',
             headerName: t('tripId'),
+            type: 'number',
+            minWidth: 80,
             maxWidth: 80,
             valueGetter: (params: GridValueGetterParams) => {
                 return params.row.trip.id;
@@ -55,7 +59,7 @@ const getBookingsTableColumns = (
         {
             field: 'departureDate',
             headerName: t('date'),
-            maxWidth: 150,
+            minWidth: 124,
             valueGetter: (params: GridValueGetterParams) => {
                 const { formattedDate } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,
@@ -67,6 +71,7 @@ const getBookingsTableColumns = (
         {
             field: 'origin',
             headerName: t('origin'),
+            minWidth: 124,
             valueGetter: (params: GridValueGetterParams) => {
                 const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.departureTimestamp,
@@ -79,6 +84,7 @@ const getBookingsTableColumns = (
         {
             field: 'destination',
             headerName: t('destination'),
+            minWidth: 124,
             valueGetter: (params: GridValueGetterParams) => {
                 const { formattedTime } = getDateFromTimestamp(
                     params.row.trip.arrivalTimestamp,
@@ -91,15 +97,23 @@ const getBookingsTableColumns = (
         {
             field: 'busType',
             headerName: t('busType'),
+            minWidth: 124,
             valueGetter: (params: GridValueGetterParams) => {
-                return `${params.row.trip.busType}/${params.row.trip.seatType}`;
+                return `${
+                    params.row.trip.busType === IBusType.AC ? 'AC' : 'Non-AC'
+                }/${
+                    params.row.trip.seatType === ISeatType.SEATER
+                        ? 'Seater'
+                        : 'Sleeper'
+                }`;
             },
         },
         {
             field: 'delete',
             headerName: '',
             align: 'center',
-            maxWidth: 90,
+            minWidth: 88,
+            maxWidth: 88,
             disableExport: true,
             renderCell: (params: GridValueGetterParams): JSX.Element => {
                 return params.row.status === ITicketStatus.CONFIRMED ? (
@@ -109,7 +123,7 @@ const getBookingsTableColumns = (
                             setShowDeleteTicketModal(params.row.pnrNumber);
                         }}
                         size="small"
-                        sx={{textTransform: 'none'}}
+                        sx={{ textTransform: 'none' }}
                     >
                         Cancel
                     </Button>
