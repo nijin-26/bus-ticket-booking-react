@@ -29,6 +29,7 @@ const {
     ticket: enTicket,
     deleteTicketModal: enDeleteTicketModal,
     bookingPageConfirmation: enBookingPageConfirmation,
+    signUpDiscardChangesModal: enSignUpDiscardChangesModal,
 } = en;
 
 const {
@@ -55,6 +56,7 @@ const {
     ticket: esTicket,
     deleteTicketModal: esDeleteTicketModal,
     bookingPageConfirmation: esBookingPageConfirmation,
+    signUpDiscardChangesModal: esSignUpDiscardChangesModal,
 } = es;
 
 export const defaultNS = 'ns1';
@@ -87,6 +89,7 @@ void i18n.use(initReactI18next).init({
             ticket: enTicket,
             deleteTicketModal: enDeleteTicketModal,
             bookingPageConfirmation: enBookingPageConfirmation,
+            signUpDiscardChangesModal: enSignUpDiscardChangesModal,
         },
         es: {
             ns1: esNs1,
@@ -112,6 +115,7 @@ void i18n.use(initReactI18next).init({
             ticket: esTicket,
             deleteTicketModal: esDeleteTicketModal,
             bookingPageConfirmation: esBookingPageConfirmation,
+            signUpDiscardChangesModal: esSignUpDiscardChangesModal,
         },
     },
     lng: language,
@@ -140,6 +144,7 @@ void i18n.use(initReactI18next).init({
         'ticket',
         'deleteTicketModal',
         'bookingPageConfirmation',
+        'signUpDiscardChangesModal',
     ],
     interpolation: {
         escapeValue: false, //escape dynamic content and opting not to have the i18n library perform additional escaping for the interpolated values.

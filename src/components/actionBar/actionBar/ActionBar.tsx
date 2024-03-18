@@ -82,7 +82,9 @@ const ActionBar: React.FC<IActionBarProps> = ({ showFilterSort }) => {
         const converterLoc = loc.map((locObj) => {
             return { id: Number(locObj.id), label: locObj.name };
         });
-        setLocOptions(converterLoc);
+        setLocOptions(
+            converterLoc.sort((a, b) => a.label.localeCompare(b.label))
+        );
     };
 
     useEffect(() => {

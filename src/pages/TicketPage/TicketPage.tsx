@@ -1,8 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { Ticket } from '../../components';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
-import { Home } from '@mui/icons-material';
+import { FullScreenLoader, Ticket } from '../../components';
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import {
     AccordionDetails,
@@ -12,17 +9,16 @@ import {
     Stack,
     Typography,
 } from '@mui/material';
-import { paths } from '../../config';
 import { useGetTicketData } from '../../components/Ticket/utils/useGetTicketData';
 import { ArrowDropDownIcon } from '@mui/x-date-pickers';
 import { TicketAccordionWrapper } from './TicketPage.styled';
 import { useState } from 'react';
 import { SeatLayoutModal } from './SeatLayoutModal/SeatLayoutModal';
+import { IGender } from '../../types';
 
 export const TicketPage = () => {
     const { ticketData, loading } = useGetTicketData();
     const { t } = useTranslation(['errorPage', 'passengerDetails', 'ticket']);
-    const navigate = useNavigate();
     const [viewSeatLayout, setViewSeatLayout] = useState(false);
 
     const openSeatLayout = () => {
@@ -32,34 +28,17 @@ export const TicketPage = () => {
         setViewSeatLayout(false);
     };
 
-    const goHomeHandler = () => {
-        navigate(paths.home);
-    };
-
     if (loading) {
         return <FullScreenLoader open={loading} />;
     }
     return (
         ticketData && (
             <Stack direction={'column'} justifyContent={'center'} mb={'2rem'}>
-                {/* Home Button */}
-                <Button
-                    variant="contained"
-                    onClick={goHomeHandler}
-                    startIcon={<Home />}
-                    sx={{
-                        margin: '2rem 0',
-                        alignSelf: 'flex-start',
-                        textTransform: 'none',
-                    }}
-                >
-                    {t('goHome')}
-                </Button>
-
                 <Ticket data={ticketData} />
                 {/* View Seat Layout */}
                 <Button
                     variant="text"
+                    color={'inherit'}
                     onClick={openSeatLayout}
                     startIcon={<EventSeatIcon />}
                     sx={{
@@ -70,6 +49,7 @@ export const TicketPage = () => {
                 >
                     {t('ticket:viewSeatLayout')}
                 </Button>
+
                 {viewSeatLayout && (
                     <SeatLayoutModal
                         cancelModal={cancelSeatLayout}
@@ -179,7 +159,10 @@ export const TicketPage = () => {
                                         </Grid>
                                         <Grid item xs={2}>
                                             <Typography component="div">
-                                                {seat.passenger.gender.toUpperCase()}
+                                                {seat.passenger.gender ===
+                                                IGender.MALE
+                                                    ? t('ticket:male')
+                                                    : t('ticket:female')}
                                             </Typography>
                                         </Grid>
                                     </Grid>

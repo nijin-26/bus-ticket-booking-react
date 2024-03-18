@@ -53,11 +53,15 @@ export default function SortGroup() {
         setSearchParams(searchParams);
     };
 
-    const sortParam = searchParams.get('sortBy');
+    const defaultSortParam = 'SeatsAvailable';
+    const queriesSortParam = searchParams.get('sortBy');
 
     return (
         <>
-            <RadioGroup onChange={sortHandler} value={sortParam}>
+            <RadioGroup
+                onChange={sortHandler}
+                value={queriesSortParam ?? defaultSortParam}
+            >
                 <StyledFormControlLabel
                     label={t('startDate')}
                     control={<Radio value="StartDate" />}

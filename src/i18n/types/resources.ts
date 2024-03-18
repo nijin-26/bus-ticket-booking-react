@@ -24,6 +24,7 @@ const {
     errorPage,
     ticket,
     deleteTicketModal,
+    signUpDiscardChangesModal,
 } = data;
 
 const resources = {
@@ -50,6 +51,7 @@ const resources = {
     deleteTicketModal,
     ticket,
     bookingPageConfirmation,
+    signUpDiscardChangesModal,
 } as const;
 
 export default resources;

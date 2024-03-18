@@ -52,7 +52,7 @@ export default function BusTypeGroup() {
                     setSearchParams(searchParams);
                     dispatch(removeBusFilter());
                 }}
-                sx={{ width: '8rem' }}
+                sx={{ width: '8rem', textTransform: 'none' }}
             >
                 {t('clear')}
             </Button>

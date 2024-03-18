@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { signIn } from '../../../../api';
 import {
-    setCredentials,
+    setUser,
     hideAuthModal,
+    setIntervalId,
 } from '../../../../app/features/authSlice';
 import { TFunction } from 'i18next';
 import { Dispatch, SetStateAction } from 'react';
@@ -10,6 +11,7 @@ import { FormikHelpers } from 'formik';
 import { IAuthResponseError, ISignInForm } from '../../../../types';
 import { AppDispatch } from '../../../../app/store';
 import { toast } from 'react-toastify';
+import { setRefreshInterval, storage } from '../../../../utils';
 
 const signInSubmitHandler = async (
     values: ISignInForm,
@@ -20,8 +22,17 @@ const signInSubmitHandler = async (
 ) => {
     try {
         setCredentialErrorAlert(false);
-        const userData = await signIn(values);
-        dispatch(setCredentials(userData));
+        const { accessToken, refreshToken, ...userData } = await signIn(values);
+
+        storage.setItem('accessToken', accessToken);
+        storage.setItem('refreshToken', refreshToken);
+        storage.setItem('userData', userData);
+        dispatch(setUser(userData));
+
+        const intervalId = setRefreshInterval(accessToken);
+        if (intervalId) {
+            dispatch(setIntervalId({ id: intervalId }));
+        }
 
         formikHelpers.resetForm();
         dispatch(hideAuthModal());

@@ -1,7 +1,11 @@
 import { Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
-import { ConfirmDialog, TripCardAccordion } from '../../components';
+import {
+    ConfirmDialog,
+    FullScreenLoader,
+    TripCardAccordion,
+} from '../../components';
 import { useAppSelector } from '../../app/hooks';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
@@ -11,7 +15,6 @@ import { IPassengersInputFromFormik, filterSelectedSeats } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fromSerializable } from '../../utils/tripDetailsUtils';
@@ -35,6 +38,7 @@ export const TripBookingPage = () => {
 
     const selectedSeats = filterSelectedSeats(state.seats);
     const selectedSeatsCount = selectedSeats.length;
+    const [isFormvalid, setIsFormValid] = useState(false);
 
     const [showDialog, setShowDialog] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
@@ -69,6 +73,11 @@ export const TripBookingPage = () => {
             window.removeEventListener('beforeunload', showWarning);
         };
     }, [t]);
+
+    useEffect(() => {
+        setIsFormValid(formikRef.current?.isValid || false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formikRef.current]);
 
     return (
         state.seats.length && (
@@ -115,11 +124,13 @@ export const TripBookingPage = () => {
                     </Grid>
                     <Grid item xs={12} sm={3} ml="auto">
                         <StyledButton
+                            variant="contained"
                             onClick={() => {
                                 handleFormSubmit();
                             }}
                             fullWidth
                             sx={{ textTransform: 'none' }}
+                            disabled={!isFormvalid}
                         >
                             {t('checkout')}
                         </StyledButton>

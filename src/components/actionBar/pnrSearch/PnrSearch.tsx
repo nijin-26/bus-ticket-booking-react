@@ -47,7 +47,7 @@ export default function PnrSearch() {
                 <CenteredButton
                     variant="contained"
                     onClick={searchPnrHandler}
-                    sx={{ mt: 2 }}
+                    sx={{ mt: 2, textTransform: 'none' }}
                     startIcon={<Search />}
                     disabled={pnrValue == ''}
                 >

@@ -20,7 +20,7 @@ const getTicketFromTicketExternals = (
             seatNumber: parseInt(booking.seatNumber),
             passenger: {
                 fullName: booking.passengerName,
-                age: parseInt(booking.passengerAge),
+                age: booking.passengerAge,
                 gender: booking.passengerGender as IGender,
             },
         })),
@@ -28,11 +28,11 @@ const getTicketFromTicketExternals = (
     return ticket;
 };
 
-export const getTicketFromBookingResponse = (
+export const getPnrFromBookingResponse = (
     response: IBookingResponse
-): ITicket => {
-    const ticket = getTicketFromTicketExternals(response);
-    return ticket;
+): string => {
+    const pnr = response[0].pnrNumber;
+    return pnr;
 };
 
 export const getTicketsFromBookingListingResponse = (
@@ -63,7 +63,7 @@ export const getTicketFromPnrResponse = (response: IPnrResponse): ITicket => {
             seatNumber: parseInt(booking.seatNumber),
             passenger: {
                 fullName: booking.passengerName,
-                age: parseInt(booking.passengerAge),
+                age: booking.passengerAge,
                 gender: booking.passengerGender as IGender,
             },
         })),
@@ -84,7 +84,7 @@ export const getTicketsFromMyBookingsResponse = (
                     seatNumber: parseInt(booking.seatNumber),
                     passenger: {
                         fullName: booking.passengerName,
-                        age: parseInt(booking.passengerAge),
+                        age: booking.passengerAge,
                         gender: booking.passengerGender as IGender,
                     },
                 });
@@ -98,7 +98,7 @@ export const getTicketsFromMyBookingsResponse = (
                             seatNumber: parseInt(booking.seatNumber),
                             passenger: {
                                 fullName: booking.passengerName,
-                                age: parseInt(booking.passengerAge),
+                                age: booking.passengerAge,
                                 gender: booking.passengerGender as IGender,
                             },
                         },
