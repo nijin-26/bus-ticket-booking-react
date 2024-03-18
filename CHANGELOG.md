@@ -31,3 +31,11 @@
 -   [86cuewzcv] Implemented functionality of the booking page, added necessary toasts and confirmation dialog for booking.
 -   [86cutf88k] Integration of basic Unit testing for dateUtils and TripCardAccordion Component
 -   [86cuu8jjt] Added unit test for components and utility functions in ticket page
+-   [86cuvanyg] Fixed UI bugs in ticket page
+-   [86cuu8mnq] Implemented basic unit testing for LoadMore component.
+-   [86cutf4ea] Added unit tests for converters in API layer
+-   [86cuu8mnq] Implemented basic unit testing for LoadMore component.
+-   [86cutf4f9] Add testing for booking utils funcitons.
+-   [86cuvkum8] Fixed the trip card accordion responsiveness and made necessary UI/UX changes.
+-   [86cuvkcpx] Added padding to footer container and added sufficient gap between copyright text and the language selector button for mobile view.
+-   [86cuvca6x] Disabled the complete booking button till the form fields are validated and changed the button text format for uniformity.

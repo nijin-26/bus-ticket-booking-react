@@ -2,6 +2,7 @@ import SeatLayout from '../../../components/BusLayout/SeatLayout/SeatLayout';
 import { layoutNames } from '../../../components/BusLayout/SeatLayout/seatConfig';
 import { ISeatStatus, ITicket } from '../../../types';
 import { Overlay } from '../../../components/actionBar/pnrSearch/PnrSearch.styled';
+import { Box } from '@mui/material';
 
 export const SeatLayoutModal = ({
     cancelModal,
@@ -10,7 +11,6 @@ export const SeatLayoutModal = ({
     cancelModal: () => void;
     ticketData: ITicket;
 }) => {
-
     return (
         <Overlay
             onClick={(e) => {
@@ -19,7 +19,7 @@ export const SeatLayoutModal = ({
                 }
             }}
         >
-            <div className="centered-seatlayout-container">
+            <Box overflow={'auto'} maxHeight={'100%'} padding={'2rem'}>
                 <SeatLayout
                     layoutName={layoutNames.volvo25}
                     seats={Array.from({ length: 46 }, (_, index) => {
@@ -38,7 +38,7 @@ export const SeatLayoutModal = ({
                     )}
                     mode={'view'}
                 />
-            </div>
+            </Box>
         </Overlay>
     );
 };

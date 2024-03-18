@@ -1,10 +1,10 @@
 import { API, apiRoutes } from '..';
 import { IPassengerSeat, ITicket } from '../../types';
 import {
-    getTicketFromBookingResponse,
     getTicketsFromMyBookingsResponse,
     getTicketFromPnrResponse,
     getTicketsFromBookingListingResponse,
+    getPnrFromBookingResponse,
 } from '../converters/ticket.converter';
 import {
     IBookingListingResponse,
@@ -18,13 +18,13 @@ import {
 export const bookTicket = async (
     tripId: string,
     seats: IPassengerSeat[]
-): Promise<ITicket> => {
+): Promise<string> => {
     const body: IBookingRequest = {
         tripId: Number(tripId),
         bookings: seats.map((seat) => ({
             seatNumber: seat.seatNumber.toString(),
             passengerName: seat.passenger.fullName,
-            passengerAge: seat.passenger.age.toString(),
+            passengerAge: seat.passenger.age,
             passengerGender: seat.passenger.gender,
         })),
     };
@@ -32,8 +32,8 @@ export const bookTicket = async (
         apiRoutes.allBookings,
         body
     );
-    const ticket = getTicketFromBookingResponse(response);
-    return ticket;
+    const pnr = getPnrFromBookingResponse(response);
+    return pnr;
 };
 
 export const getAllBookings = async (): Promise<ITicket[]> => {

@@ -50,7 +50,8 @@
     "seatLayout": {
         "available": "Disponible",
         "unavailable": "Indisponible",
-        "selected": "Seleccionado"
+        "selected": "Seleccionado",
+        "window": "Ventana"
     },
     "actionBarTab": {
         "findBuses": "Buscar autobuses",
@@ -92,7 +93,7 @@
         "departure": "Partida",
         "arrival": "Llegada",
         "duration": "Duración",
-        "busType": "Tipo de autobús",
+        "busType": "Comodidades",
         "seat": "asiento",
         "emptyResponse": "Datos del viaje no disponibles",
         "errorResponse": "Error al recuperar los detalles del viaje"
@@ -147,9 +148,7 @@
         "phone": "Teléfono"
     },
     "tableExportOptions": {
-        "export": "Exportar",
-        "exportAsCsv": "Descargar como CSV",
-        "exportPrint": "Imprimir"
+        "currentPage": "Página actual (.csv)"
     },
     "landingPage": {
         "busWithUs": "Autobús con nosotras."
@@ -202,6 +201,9 @@
     "ticket": {
         "ticket": "BOLETO",
         "passengerName": "Nombre del pasajero",
+        "status": "Estado",
+        "confirmed": "Confirmado",
+        "cancelled": "Cancelado",
         "from": "De",
         "to": "destino",
         "date": "fecha",
@@ -220,7 +222,10 @@
         "name": "Nombre",
         "age": "Edad",
         "gender": "Género",
-        "viewDetailedTicket": "Ver Boleto Detallado"
+        "male": "Masculino",
+        "female": "Femenino",
+        "viewDetailedTicket": "Ver Boleto Detallado",
+        "goHome": "Ir a inicio"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",

@@ -1,7 +1,5 @@
 export interface ILocationExternal {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
+    id: number;
     name: string;
     shortCode: string;
 }

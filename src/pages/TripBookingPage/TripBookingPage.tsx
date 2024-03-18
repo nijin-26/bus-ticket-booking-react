@@ -35,6 +35,7 @@ export const TripBookingPage = () => {
 
     const selectedSeats = filterSelectedSeats(state.seats);
     const selectedSeatsCount = selectedSeats.length;
+    const [isFormvalid, setIsFormValid] = useState(false);
 
     const [showDialog, setShowDialog] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
@@ -69,6 +70,11 @@ export const TripBookingPage = () => {
             window.removeEventListener('beforeunload', showWarning);
         };
     }, [t]);
+
+    useEffect(() => {
+        setIsFormValid(formikRef.current?.isValid || false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formikRef.current]);
 
     return (
         state.seats.length && (
@@ -115,11 +121,13 @@ export const TripBookingPage = () => {
                     </Grid>
                     <Grid item xs={12} sm={3} ml="auto">
                         <StyledButton
+                            variant="contained"
                             onClick={() => {
                                 handleFormSubmit();
                             }}
                             fullWidth
                             sx={{ textTransform: 'none' }}
+                            disabled={!isFormvalid}
                         >
                             {t('checkout')}
                         </StyledButton>
