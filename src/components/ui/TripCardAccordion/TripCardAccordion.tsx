@@ -71,7 +71,11 @@ export const TripCardAccordion = ({
                     direction={{ xs: 'column', sm: 'column', md: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                 >
-                    <Stack className="trip-card-icons">
+                    <Stack
+                        className="trip-card-icons"
+                        direction={{ xs: 'row', sm: 'row', md: 'column' }}
+                        spacing={{ xs: 6, sm: 6, md: 0.5 }}
+                    >
                         <Tooltip
                             title={
                                 data.busType == IBusType.AC

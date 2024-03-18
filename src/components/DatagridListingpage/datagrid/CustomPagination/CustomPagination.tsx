@@ -1,4 +1,4 @@
-import { Pagination, PaginationItem } from '@mui/material';
+import { Pagination, PaginationItem, useMediaQuery } from '@mui/material';
 import {
     gridPageSelector,
     gridPageSizeSelector,
@@ -18,6 +18,7 @@ const CustomPagination = ({
     t: TFunction;
 }) => {
     const apiRef = useGridApiContext();
+    const isSmallScreen = useMediaQuery(`(max-width:40rem)`);
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageSize = useGridSelector(apiRef, gridPageSizeSelector);
     return totalRows ? (
@@ -40,6 +41,11 @@ const CustomPagination = ({
                     updateSearchParams(String(value));
                     apiRef.current.setPage(value - 1);
                 }}
+                showFirstButton
+                showLastButton
+                siblingCount={1}
+                boundaryCount={0}
+                size={isSmallScreen ? 'small' : 'medium'}
             />
         </CustomPaginationWrapper>
     ) : null;

@@ -1,5 +1,5 @@
-import { ISeat, ISeatStatus } from '../types';
-import { IGender, IPassengerSeat } from '../types';
+import { ISeat, ISeatStatus } from '../../types';
+import { IGender, IPassengerSeat } from '../../types';
 
 interface IPassengerDetails {
     fullName: string;
