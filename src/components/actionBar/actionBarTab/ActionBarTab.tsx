@@ -41,13 +41,18 @@ const ActionBarTab: React.FC<IActionBarProps> = ({
         <WrapperPaper sx={{ px: 2 }} elevation={4}>
             <TabContext value={value}>
                 <Box>
-                    <TabList
-                        onChange={changeTabHandler}
-                        variant={isSmallScreen ? 'fullWidth' : 'standard'}
-                    >
-                        <Tab label={t('findBuses')} value="1"></Tab>
-                        {showPnrSearch ? (
-                            <Tab label={t('findTicket')} value="2"></Tab>
+                    <TabList onChange={changeTabHandler}>
+                        <Tab
+                            label={t('findBuses')}
+                            value="1"
+                            style={{ textTransform: 'none' }}
+                        ></Tab>
+                        {!showFilterSort ? (
+                            <Tab
+                                label={t('findTicket')}
+                                value="2"
+                                style={{ textTransform: 'none' }}
+                            ></Tab>
                         ) : (
                             <Tab disabled></Tab>
                         )}
