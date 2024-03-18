@@ -68,13 +68,6 @@ export const Header = () => {
         dispatch(toggleTheme());
     };
 
-    const handleLogoutClick = () => {
-        setLogoutLoading(true);
-        void logoutHandler();
-        handleCloseUserMenu();
-        setLogoutLoading(false);
-    };
-
     return (
         <>
             <AppBar position="sticky">
@@ -256,7 +249,9 @@ export const Header = () => {
                 }}
                 agreeText={t('logoutConfirmationModal:confirmText')}
                 disagreeText={t('logoutConfirmationModal:cancelText')}
-                handleAgreeFunction={handleLogoutClick}
+                handleAgreeFunction={() => {
+                    void logoutHandler(setLogoutLoading);
+                }}
             >
                 {t('logoutConfirmationModal:message')}
             </ConfirmDialog>

@@ -6,8 +6,12 @@ export const getLocationFromLocationExternal = (
 ) => {
     const location: ILocation = {
         id: locationExternal.id.toString(),
-        name: locationExternal.name,
+        // capitalizing first letter and rest to lowercase
+        name:
+            locationExternal.name.charAt(0).toUpperCase() +
+            locationExternal.name.substring(1).toLowerCase(),
         shortCode: locationExternal.shortCode,
     };
+
     return location;
 };
