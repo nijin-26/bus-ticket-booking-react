@@ -5,12 +5,12 @@ import { colors } from '../../config';
 export const TicketWrapper = styled(Stack)(({ theme }) => ({
     borderRadius: '2.5rem',
     backgroundColor: theme.color.cardWhite,
-    minWidth: '35rem',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
     boxShadow: `0 0 1rem 0 ${theme.color.boxShadowPrimary}`,
     cursor: 'auto',
+    marginTop: '2rem',
 
     h1: {
         fontSize: theme.font.h2,
@@ -36,9 +36,10 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
     '.row-wrap': {
         flexWrap: 'wrap',
     },
+
     '.full-row-wrap': {
         '&>:first-of-type': {
-            flex: '2',
+            flex: '3',
         },
         '& > *': {
             flex: 1,
@@ -51,6 +52,7 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         backgroundColor: 'transparent',
 
         '& >svg': {
+            scale: '1.2',
             rotate: '270deg',
             maxHeight: '10rem',
             width: '100%',
@@ -61,6 +63,26 @@ export const TicketWrapper = styled(Stack)(({ theme }) => ({
         width: '0.1rem',
         border: '0.1rem dashed',
         borderColor: theme.color.textPrimary,
-        marginLeft: '3.5rem', // Adjust the margin to position the line between the two columns
+        marginLeft: '0.5rem', // Adjust the margin to position the line between the two columns
+    },
+    '@media screen and (max-width:900px)': {
+        '.barcode-row': {
+            flexDirection: 'column',
+            alignItems: 'center',
+
+            '& .details-column': {
+                width: '100%',
+            },
+        },
+        '& .rotated-barcode-container >svg': {
+            rotate: '0deg',
+            maxWidth: '12rem',
+            margin: '1rem',
+            scale: '1.1',
+        },
+
+        '.tearsheet-column': {
+            justifyContent: 'flex-start',
+        },
     },
 }));

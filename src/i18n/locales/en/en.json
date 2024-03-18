@@ -202,6 +202,9 @@
     "ticket": {
         "ticket": "TICKET",
         "passengerName": "Passenger Name",
+        "status": "Status",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled",
         "from": "From",
         "to": "To",
         "date": "Date",
@@ -220,8 +223,11 @@
         "name": "Name",
         "age": "Age",
         "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
         "downloadTicket": "Download Ticket as PDF",
-        "viewDetailedTicket": "View Detailed Ticket"
+        "viewDetailedTicket": "View Detailed Ticket",
+        "goHome": "Go home"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirm Booking",
