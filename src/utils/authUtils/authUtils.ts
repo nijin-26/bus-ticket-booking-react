@@ -46,6 +46,9 @@ export const getInitialAuthState = async () => {
     if (userData && refreshToken && accessToken) {
         try {
             const response = await renewToken(refreshToken);
+            storage.setItem('accessToken', response.accessToken);
+            storage.setItem('refreshToken', response.refreshToken);
+
             const intervalId = setRefreshInterval(response.accessToken);
 
             if (intervalId) {
