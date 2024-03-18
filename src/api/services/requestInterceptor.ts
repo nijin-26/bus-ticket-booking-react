@@ -1,14 +1,11 @@
-import { AxiosError, AxiosRequestConfig } from 'axios';
-import { storage } from '../../utils';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { getToken } from '../../utils';
 
-export const onRequest = (config: AxiosRequestConfig) => {
-    const token = storage.getItem<string>('accessToken');
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    config.headers = {
-        'Content-type': 'application/json',
-        ...config.headers,
-        ...headers,
-    };
+export const onRequest = (config: InternalAxiosRequestConfig) => {
+    const accessToken = getToken('accessToken');
+    if (accessToken) {
+        config.headers.set('Authorization', `Bearer ${accessToken}`);
+    }
     return config;
 };
 

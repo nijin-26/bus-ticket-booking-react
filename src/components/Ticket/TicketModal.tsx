@@ -1,11 +1,11 @@
 import { Overlay } from '../actionBar/pnrSearch/PnrSearch.styled';
 import { Ticket } from './Ticket';
-import FullScreenLoader from '../FullScreenLoader/FullScreenLoader';
 import { useGetTicketData } from './utils/useGetTicketData';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { paths } from '../../config/constants';
 import { Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { FullScreenLoader } from '..';
 
 export const TicketModal = ({ cancelModal }: { cancelModal: () => void }) => {
     const { t } = useTranslation('ticket');

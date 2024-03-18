@@ -45,7 +45,8 @@
         "signUpErrorToastMessage": "Error inesperado. Por favor, inténtalo de nuevo más tarde.",
         "unauthorizedErrorMessage": "Por favor, inicia sesión para continuar. Esta página o función requiere autenticación.",
         "forbiddenErrorMessage": "Acceso denegado: No tienes autorización suficiente para ver esta página.",
-        "passwordRequirements": "La contraseña debe tener al menos 6 caracteres de longitud y contener un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial."
+        "passwordRequirements": "La contraseña debe tener al menos 6 caracteres de longitud y contener un carácter en mayúscula, un carácter en minúscula, un número y un carácter especial.",
+        "sessionExpiredToastMessage": "Sesión expirada: Has cerrado sesión por razones de seguridad."
     },
     "seatLayout": {
         "available": "Disponible",
@@ -116,8 +117,7 @@
         "title": "Cancelar reserva",
         "message": "Esta acción cancelará permanentemente la reserva. Estás seguro de que quieres continuar?",
         "confirmText": "Confirmar",
-        "cancelText": "Cancelar",
-        "logoutSuccessMessage": "Reserva cancelada exitosamente."
+        "cancelText": "Cancelar"
     },
     "bookingsList": {
         "allBookingsPageTitle": "Todas las Reservas",
@@ -135,8 +135,8 @@
         "tripId": "ID de viaje",
         "pax": "Pasajero",
         "download": "Descargar",
-        "successToast": "Reserva eliminada exitosamente.",
-        "errorToast": "Error al eliminar la reserva."
+        "successToast": "Reserva cancelada exitosamente.",
+        "errorToast": "Error al cancelar la reserva."
     },
     "usersList": {
         "pageTitle": "Lista de Usuarios",
@@ -183,11 +183,12 @@
         "seatAlreadyBookedErrorMessage": "¡Vaya! Los asientos seleccionados ya están reservados"
     },
     "logoutConfirmationModal": {
-        "title": "¿Estás seguro?",
+        "title": "¿Cerrar sesión?",
         "message": "Se perderán todos tus datos no guardados.",
         "confirmText": "Sí",
         "cancelText": "Cancelar",
-        "logoutSuccessMessage": "Has cerrado sesión correctamente. ¡Que tengas un gran día!"
+        "logoutSuccessMessage": "Has cerrado sesión correctamente. ¡Que tengas un gran día!",
+        "logoutErrorMessage": "¡Error al cerrar sesión! Por favor, inténtalo de nuevo."
     },
     "error": {
         "unexpected": "Se ha producido un error inesperado."
@@ -201,6 +202,9 @@
     "ticket": {
         "ticket": "BOLETO",
         "passengerName": "Nombre del pasajero",
+        "status": "Estado",
+        "confirmed": "Confirmado",
+        "cancelled": "Cancelado",
         "from": "De",
         "to": "destino",
         "date": "fecha",
@@ -219,7 +223,10 @@
         "name": "Nombre",
         "age": "Edad",
         "gender": "Género",
-        "viewDetailedTicket": "Ver Boleto Detallado"
+        "male": "Masculino",
+        "female": "Femenino",
+        "viewDetailedTicket": "Ver Boleto Detallado",
+        "goHome": "Ir a inicio"
     },
     "bookingPageConfirmation": {
         "confirmationTitle": "Confirmar Reserva",
@@ -229,5 +236,11 @@
         "checkout": "Completar reserva",
         "absentStateError": "No se pudo recuperar la información de la reserva",
         "unsavedChangesWarning": "Tiene cambios sin guardar. Estás seguro que quieres irte?"
+    },
+    "signUpDiscardChangesModal": {
+        "title": "Tienes cambios no guardados.",
+        "message": "Estás a punto de descartar tus cambios no guardados.",
+        "confirmText": "Aceptar",
+        "cancelText": "Cancelar"
     }
 }

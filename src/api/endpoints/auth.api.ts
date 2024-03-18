@@ -4,6 +4,7 @@ import { getAuthDataFromSignInResponse } from '../converters/signIn.converter';
 import { IRenewTokenResponse } from '../types/renewToken';
 import { ISignInRequest, ISignInResponse } from '../types/signIn';
 import { ISignUpRequest, ISignUpResponse } from '../types/signUp';
+import { refreshApi } from '../services/axios';
 
 export interface ISignUpProps {
     fullName: string;
@@ -29,7 +30,22 @@ export const signUp = async (props: ISignUpProps): Promise<ISignUpResponse> => {
     return response;
 };
 
-export const renewToken = async (): Promise<IRenewTokenResponse> => {
-    const response: IRenewTokenResponse = await API.post(apiRoutes.renewToken);
+export const signOut = async () => {
+    const response = await API.post(apiRoutes.signOut);
+    return response;
+};
+
+export const renewToken = async (
+    refreshToken: string
+): Promise<IRenewTokenResponse> => {
+    const response: IRenewTokenResponse = await refreshApi.post(
+        apiRoutes.renewToken,
+        null,
+        {
+            headers: {
+                Authorization: `Bearer ${refreshToken}`,
+            },
+        }
+    );
     return response;
 };
