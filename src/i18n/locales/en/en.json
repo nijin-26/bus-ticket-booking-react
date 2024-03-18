@@ -50,7 +50,8 @@
     "seatLayout": {
         "available": "Available",
         "unavailable": "Unavailable",
-        "selected": "Selected"
+        "selected": "Selected",
+        "window": "Window"
     },
     "actionBarTab": {
         "findBuses": "Find buses",
@@ -92,7 +93,7 @@
         "departure": "Departure",
         "arrival": "Arrival",
         "duration": "Duration",
-        "busType": "Bus Type",
+        "busType": "Amenities",
         "seat": "seat",
         "emptyResponse": "Trip data not available",
         "errorResponse": "Error fetching the trip details"
@@ -132,9 +133,7 @@
         "errorToast": "Failed to delete booking."
     },
     "tableExportOptions": {
-        "export": "Export",
-        "exportAsCsv": "Download as CSV",
-        "exportPrint": "Print"
+        "currentPage": "Current page (.csv)"
     },
     "usersList": {
         "pageTitle": "Users List",
@@ -229,7 +228,7 @@
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
-        "checkout": "Complete Booking",
+        "checkout": "Complete booking",
         "absentStateError": "Error while fetching booking data",
         "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
     }

@@ -9,15 +9,16 @@ interface IFareDetailsProps {
 export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
     const { t } = useTranslation('tripDetails');
     const totalFare = noOfSeats * farePerSeat;
-    const totalFareInString = `${noOfSeats} ${t('seat')}${
+    const totalCalculationInString = `${noOfSeats} ${t('seat')}${
         noOfSeats > 1 ? 's' : ''
     } x ₹${farePerSeat} = ₹${totalFare}`;
+    const totalFareInString = `₹${totalFare}`;
 
     const { font, breakpointValues } = useTheme();
     const isMinWidth = useMediaQuery(`(min-width:${breakpointValues.small})`);
 
     return (
-        <Stack direction={'row'} spacing={1}>
+        <Stack direction={'row'} spacing={1} flexWrap={'wrap'}>
             <Typography
                 variant="body1"
                 fontSize={isMinWidth ? font.h2 : font.md}
@@ -27,7 +28,7 @@ export const FareDetails = ({ noOfSeats, farePerSeat }: IFareDetailsProps) => {
                 {'  '}:
             </Typography>
             <Typography fontSize={isMinWidth ? font.h2 : font.md}>
-                {totalFareInString}
+                {!isMinWidth ? totalFareInString : totalCalculationInString}
             </Typography>
         </Stack>
     );
