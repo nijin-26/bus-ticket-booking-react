@@ -45,7 +45,8 @@
         "signUpErrorToastMessage": "Unexpected error. Please try again later.",
         "unauthorizedErrorMessage": "Please log in to continue. This page or feature requires authentication.",
         "forbiddenErrorMessage": "Access Denied: You don't have sufficient authorization to view this page.",
-        "passwordRequirements": "The Password must be atleast 6 characters long and contain an uppercase character, a lowercase character, a number and a special character."
+        "passwordRequirements": "The Password must be atleast 6 characters long and contain an uppercase character, a lowercase character, a number and a special character.",
+        "sessionExpiredToastMessage": "Session Expired: You have been logged out for security reasons."
     },
     "seatLayout": {
         "available": "Available",
@@ -129,8 +130,8 @@
         "tripId": "Trip ID",
         "pax": "Pax",
         "download": "Download",
-        "successToast": "Booking deleted successfully.",
-        "errorToast": "Failed to delete booking."
+        "successToast": "Booking cancelled successfully.",
+        "errorToast": "Failed to cancel booking."
     },
     "tableExportOptions": {
         "currentPage": "Current page (.csv)"
@@ -177,18 +178,18 @@
         "seatAlreadyBookedErrorMessage": "Oops! Selected seats are already booked"
     },
     "logoutConfirmationModal": {
-        "title": "Are you sure?",
+        "title": "Log out?",
         "message": "All your unsaved data will be lost.",
         "confirmText": "Yes",
         "cancelText": "Cancel",
-        "logoutSuccessMessage": "You have been successfully logged out. Have a great day!"
+        "logoutSuccessMessage": "You have been successfully logged out. Have a great day!",
+        "logoutErrorMessage": "Logout failed! Please try again."
     },
     "deleteTicketModal": {
         "title": "Cancel Booking",
         "message": "This action will permanently cancel the booking. Are you sure you want to continue?",
         "confirmText": "Confirm",
-        "cancelText": "Cancel",
-        "logoutSuccessMessage": "Ticket cancelled successfully."
+        "cancelText": "Cancel"
     },
     "error": {
         "unexpected": "Please try searching again, we have an unexpected error."
@@ -230,12 +231,18 @@
         "goHome": "Go home"
     },
     "bookingPageConfirmation": {
-        "confirmationTitle": "Confirm Booking",
+        "confirmationTitle": "Unsaved Changes",
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
         "checkout": "Complete booking",
         "absentStateError": "Error while fetching booking data",
         "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
+    },
+    "signUpDiscardChangesModal": {
+        "title": "You have Unsaved Changes",
+        "message": "You are about to discard your unsaved changes.",
+        "confirmText": "Ok",
+        "cancelText": "Cancel"
     }
 }

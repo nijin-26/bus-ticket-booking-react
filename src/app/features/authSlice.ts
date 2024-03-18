@@ -1,17 +1,18 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { getUserDataFromStorage, storage } from '../../utils';
-import { IAuthData, IAuthUser, ISignInState } from '../../types';
+import { IAuthUser, ISignInState } from '../../types';
 
 interface IAuthState {
     isAuthModalDisplayed: boolean;
     user: IAuthUser | null;
     signInState: ISignInState | null;
+    refreshIntervalId: number | null;
 }
 
 const initialState: IAuthState = {
     isAuthModalDisplayed: false,
-    user: getUserDataFromStorage(),
+    user: null,
     signInState: null,
+    refreshIntervalId: null,
 };
 
 const authSlice = createSlice({
@@ -24,12 +25,8 @@ const authSlice = createSlice({
         hideAuthModal: (state) => {
             state.isAuthModalDisplayed = false;
         },
-        setCredentials: (state, action: PayloadAction<IAuthData>) => {
-            const { accessToken, refreshToken, ...rest } = action.payload;
-            storage.setItem('accessToken', accessToken);
-            storage.setItem('refreshToken', refreshToken);
-            storage.setItem('userData', rest);
-            state.user = rest;
+        setUser: (state, action: PayloadAction<IAuthUser>) => {
+            state.user = action.payload;
         },
         setSignInState: (state, action: PayloadAction<ISignInState>) => {
             state.signInState = { ...state.signInState, ...action.payload };
@@ -37,11 +34,12 @@ const authSlice = createSlice({
         clearSignInState: (state) => {
             state.signInState = null;
         },
+        setIntervalId: (state, action: PayloadAction<{ id: number }>) => {
+            state.refreshIntervalId = action.payload.id;
+        },
         logout: (state) => {
-            storage.removeItem('accessToken');
-            storage.removeItem('refreshToken');
-            storage.removeItem('userData');
             state.user = null;
+            state.refreshIntervalId = null;
         },
     },
 });
@@ -49,9 +47,10 @@ const authSlice = createSlice({
 export const {
     showAuthModal,
     hideAuthModal,
-    setCredentials,
+    setUser,
     setSignInState,
     clearSignInState,
+    setIntervalId,
     logout,
 } = authSlice.actions;
 

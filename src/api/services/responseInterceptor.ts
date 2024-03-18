@@ -1,4 +1,11 @@
 import { AxiosError, AxiosResponse } from 'axios';
+import { apiRoutes } from '..';
+import { store } from '../../app/store';
+import { logout } from '../../app/features/authSlice';
+import { toast } from 'react-toastify';
+import i18n from '../../i18n/i18n';
+import { clearAuthDataFromStorage } from '../../utils';
+import { refreshApi } from './axios';
 
 interface IResponseData {
     data: unknown;
@@ -15,16 +22,49 @@ const HTTP_STATUS = {
     SERVER_ERROR: 500,
 };
 
-export const onResponse = (response: AxiosResponse) => {
-    if (
-        response.status >= HTTP_STATUS.SUCCESS &&
-        response.status <= HTTP_STATUS.INFORMATION
-    ) {
-        const responseData = response.data as IResponseData;
-        return Promise.resolve(responseData.data);
-    }
+export const onResponse = (response: AxiosResponse<IResponseData>) => {
+    return Promise.resolve(response.data.data as AxiosResponse);
 };
 
-export const onResponseError = (error: AxiosError) => {
+export const onResponseError = async (error: AxiosError) => {
+    const failedRequest = error.config;
+
+    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED && failedRequest) {
+        // Check if it's a signIn or signOut request, if yes no need to renew token
+        if (
+            failedRequest.url?.includes(apiRoutes.signIn) ||
+            failedRequest.url?.includes(apiRoutes.signOut)
+        ) {
+            return Promise.reject(error);
+        }
+
+        toast.error(i18n.t('auth:sessionExpiredToastMessage'), {
+            toastId: 'expired session',
+        });
+        store.dispatch(logout());
+        clearAuthDataFromStorage();
+    }
+
+    return Promise.reject(error);
+};
+
+export const onRefreshTokenResponseError = (error: AxiosError) => {
+    const failedRequest = error.config;
+
+    // if renew-token has returned 401 (due to missing or invalid auth header)
+    // no need to retry request
+    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED) {
+        store.dispatch(logout());
+        clearAuthDataFromStorage();
+        return Promise.reject(error);
+    }
+
+    if (failedRequest && !failedRequest._retry) {
+        failedRequest._retry = true;
+
+        //retrying renew-token request
+        return refreshApi(failedRequest);
+    }
+
     return Promise.reject(error);
 };

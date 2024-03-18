@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Ticket } from '../../components';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
+import { FullScreenLoader, Ticket } from '../../components';
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import {
     AccordionDetails,
@@ -29,15 +28,12 @@ export const TicketPage = () => {
         setViewSeatLayout(false);
     };
 
-
-
     if (loading) {
         return <FullScreenLoader open={loading} />;
     }
     return (
         ticketData && (
             <Stack direction={'column'} justifyContent={'center'} mb={'2rem'}>
-                {/* Home Button */}
                 <Ticket data={ticketData} />
                 {/* View Seat Layout */}
                 <Button
@@ -263,7 +259,6 @@ export const TicketPage = () => {
                         </Grid>
                     </AccordionDetails>
                 </TicketAccordionWrapper>
-
             </Stack>
         )
     );

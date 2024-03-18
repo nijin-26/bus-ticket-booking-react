@@ -4,7 +4,7 @@ import {
     ITripsQueryRequest,
     ITripsSortKey,
 } from '../../api/types/trip';
-import { TripCardAccordion } from '../../components';
+import { FullScreenLoader, TripCardAccordion } from '../../components';
 import ActionBarDrawer from '../../components/actionBar/actionBarDrawer/ActionBarDrawer';
 import ActionBarTab from '../../components/actionBar/actionBarTab/ActionBarTab';
 import LoadMore from '../../components/loadMore/LoadMore';
@@ -14,7 +14,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getTrips } from '../../api';
 import { IBusType, ISeatType, ITrip } from '../../types';
 import { paths, rowsPerPage } from '../../config';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import bus from '../../assets/bus.svg';

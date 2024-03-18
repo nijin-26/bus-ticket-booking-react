@@ -1,7 +1,11 @@
 import { Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 import PassengerDetailsForm from './PassengerDetailsForm/PassengerDetailsForm';
 import LongArrow from '../../components/icons/LongArrow';
-import { ConfirmDialog, TripCardAccordion } from '../../components';
+import {
+    ConfirmDialog,
+    FullScreenLoader,
+    TripCardAccordion,
+} from '../../components';
 import { useAppSelector } from '../../app/hooks';
 import { StyledButton } from '../../components/Button/Button.styled';
 import { FareDetails } from '../../components/FareDetails/FareDetails';
@@ -11,7 +15,6 @@ import { IPassengersInputFromFormik, filterSelectedSeats } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import FullScreenLoader from '../../components/FullScreenLoader/FullScreenLoader';
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fromSerializable } from '../../utils/tripDetailsUtils';
