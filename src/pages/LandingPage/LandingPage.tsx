@@ -19,7 +19,7 @@ export const LandingPage = () => {
             )}
 
             <LandingPageHeading>{t('busWithUs')}</LandingPageHeading>
-            <ActionBarTab />
+            <ActionBarTab showPnrSearch />
         </LandingPageWrapper>
     );
 };

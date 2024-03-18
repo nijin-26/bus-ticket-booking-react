@@ -40,3 +40,4 @@
 -   [86cuvkcpx] Added padding to footer container and added sufficient gap between copyright text and the language selector button for mobile view.
 -   [86cuvca6x] Disabled the complete booking button till the form fields are validated and changed the button text format for uniformity.
 -   [86cutf5yg] Integrate renew-token and logout api, add confirmation alert when closing signUp modal after entering data.
+-   [86cuvmyyy] Bug fixes to action bar component: capitalization, location option sort, bus search in mobile view
