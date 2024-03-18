@@ -228,7 +228,7 @@
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
         "dialogContent": "Are you sure you want to confirm",
-        "checkout": "Complete Booking",
+        "checkout": "Complete booking",
         "absentStateError": "Error while fetching booking data",
         "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
     }
