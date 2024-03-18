@@ -1,5 +1,5 @@
 import { ITicket } from '../../types/ticket';
-import { ITripExternal } from './trip';
+import { ISeatTypeExternal, ITripExternal } from './trip';
 
 export interface ITicketRequest {
     pnrNumber: string;
@@ -10,7 +10,7 @@ export interface ITicketResponse extends ITicket {}
 export interface IBookingExternal {
     seatNumber: string;
     passengerName: string;
-    passengerAge: string;
+    passengerAge: number;
     passengerGender: string;
 }
 
@@ -20,10 +20,7 @@ export interface ITicketExternal extends IBookingExternal {
     fare: string;
     status: ITicketStatusExternal;
     pnrNumber: string;
-    tripId: string;
-    id: string;
-    createdAt: string;
-    updatedAt: string;
+    id: number;
 }
 
 export interface IBookingRequest {
@@ -31,7 +28,21 @@ export interface IBookingRequest {
     bookings: IBookingExternal[];
 }
 
-export type IBookingResponse = ITicketExternal[];
+export type IBookingResponse = (Omit<
+    ITicketExternal,
+    'passengerAge' | 'trip'
+> & {
+    passengerAge: string;
+    trip: Omit<
+        ITripExternal,
+        'departure' | 'arrival' | 'durationInHours' | 'seatType'
+    > & {
+        departure: string | null;
+        arrival: string | null;
+        durationInHours: string | null;
+        seatType: ISeatTypeExternal | null;
+    };
+})[];
 
 export interface IBookingListingResponse {
     bookings: ITicketExternal[];
@@ -39,12 +50,12 @@ export interface IBookingListingResponse {
 
 export interface IPnrResponse extends ITripExternal {
     bookings: {
-        id: string;
+        id: number;
         pnrNumber: string;
         seatNumber: string;
         fare: string;
         passengerName: string;
-        passengerAge: string;
+        passengerAge: number;
         passengerGender: string;
         status: ITicketStatusExternal;
     }[];
