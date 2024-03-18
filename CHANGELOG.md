@@ -32,3 +32,4 @@
 -   [86cutf88k] Integration of basic Unit testing for dateUtils and TripCardAccordion Component
 -   [86cuu8mnq] Implemented basic unit testing for LoadMore component.
 -   [86cutf4f9] Add testing for booking utils funcitons.
+-   [86cuvkum8] Fixed the trip card accordion responsiveness and made necessary UI/UX changes.
