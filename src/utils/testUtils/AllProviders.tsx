@@ -5,6 +5,8 @@ import { ThemeProvider as CustomThemeProvider } from '@emotion/react';
 import { getCustomTheme, getMuiTheme } from '../../config';
 import { createTheme } from '@mui/material';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 export const AllTheProviders = ({
     children,
@@ -13,11 +15,13 @@ export const AllTheProviders = ({
 }) => {
     return (
         <Provider store={store}>
-            <MuiThemeProvider theme={createTheme(getMuiTheme('dark'))}>
-                <CustomThemeProvider theme={getCustomTheme('dark')}>
-                    <BrowserRouter>{children}</BrowserRouter>
-                </CustomThemeProvider>
-            </MuiThemeProvider>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <MuiThemeProvider theme={createTheme(getMuiTheme('dark'))}>
+                    <CustomThemeProvider theme={getCustomTheme('dark')}>
+                        <BrowserRouter>{children}</BrowserRouter>
+                    </CustomThemeProvider>
+                </MuiThemeProvider>
+            </LocalizationProvider>
         </Provider>
     );
 };

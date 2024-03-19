@@ -7,13 +7,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import userEvent from '@testing-library/user-event';
 
 describe('ActionBar()', () => {
-    it('should update state upon selecting start and stop location', async () => {
+    it('should update state upon selecting start location', async () => {
         // arrange
-        const { getByLabelText } = render(
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <ActionBar />
-            </LocalizationProvider>
-        );
+        const { getByLabelText } = render(<ActionBar />);
         const fromInput = getByLabelText('From');
 
         // act
@@ -25,13 +21,9 @@ describe('ActionBar()', () => {
         });
     });
 
-    it('should update stop location ', async () => {
+    it('should update state upon selecting stop location ', async () => {
         // arrange
-        const { getByLabelText } = render(
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <ActionBar />
-            </LocalizationProvider>
-        );
+        const { getByLabelText } = render(<ActionBar />);
         const toInput = getByLabelText('To');
 
         // act
@@ -45,11 +37,7 @@ describe('ActionBar()', () => {
 
     it('should enable search button when all inputs are filled', () => {
         // arrange
-        const { getByLabelText, getByText } = render(
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <ActionBar />
-            </LocalizationProvider>
-        );
+        const { getByLabelText, getByText } = render(<ActionBar />);
         const fromInput = getByLabelText('From');
         const toInput = getByLabelText('To');
         const dateInput = getByLabelText('Date');
@@ -66,11 +54,7 @@ describe('ActionBar()', () => {
 
     it('should disable search button when all inputs are not filled', () => {
         // arrange
-        const { getByLabelText, getByText } = render(
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <ActionBar />
-            </LocalizationProvider>
-        );
+        const { getByLabelText, getByText } = render(<ActionBar />);
         const fromInput = getByLabelText('From');
         const toInput = getByLabelText('To');
         const dateInput = getByLabelText('Date');
