@@ -229,7 +229,7 @@
         "goHome": "Ir a inicio"
     },
     "bookingPageConfirmation": {
-        "confirmationTitle": "Confirmar Reserva",
+        "confirmationTitle": "Confirmar reserva",
         "agreeText": "Confirmar",
         "DisagreeText": "Rechazar",
         "dialogContent": "¿Está seguro de que desea confirmar?",

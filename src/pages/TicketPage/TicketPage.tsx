@@ -74,7 +74,7 @@ export const TicketPage = () => {
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={2} overflow="auto">
                             {/* Row 1 */}
                             <Grid
                                 container

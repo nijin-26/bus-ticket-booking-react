@@ -231,10 +231,10 @@
         "goHome": "Go home"
     },
     "bookingPageConfirmation": {
-        "confirmationTitle": "Unsaved Changes",
+        "confirmationTitle": "Confirm booking",
         "agreeText": "Confirm",
         "DisagreeText": "Decline",
-        "dialogContent": "Are you sure you want to confirm",
+        "dialogContent": "Are you sure you want to proceed with your booking?",
         "checkout": "Complete booking",
         "absentStateError": "Error while fetching booking data",
         "unsavedChangesWarning": "You have unsaved changes. Are you sure you want to leave?"
